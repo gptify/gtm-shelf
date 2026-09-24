@@ -99,3 +99,18 @@ export function getStageBySlug(slug: string): Stage | undefined {
 export function getCategoryBySlug(slug: string): Category | undefined {
   return CATEGORIES.find((c) => c.slug === slug);
 }
+
+export async function getToolBySlug(slug: string): Promise<ToolPublic | undefined> {
+  const tools = await getTools();
+  return tools.find((t) => t.slug === slug);
+}
+
+export async function getToolsByStageId(stageId: number): Promise<ToolPublic[]> {
+  const tools = await getTools();
+  return tools.filter((t) => t.stage_id === stageId);
+}
+
+export async function getToolsByCategoryId(categoryId: number): Promise<ToolPublic[]> {
+  const tools = await getTools();
+  return tools.filter((t) => t.category_id === categoryId);
+}
