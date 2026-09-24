@@ -359,6 +359,105 @@ export function StackCostSimulator() {
           </div>
         </div>
       </div>
+
+      {/* Model Methodology & Benchmark Sources */}
+      <div
+        style={{
+          marginTop: '36px',
+          paddingTop: '28px',
+          borderTop: '1px solid var(--border)',
+        }}
+      >
+        <details
+          style={{
+            cursor: 'pointer',
+            background: 'var(--bg)',
+            border: '1px solid var(--border)',
+            borderRadius: '12px',
+            padding: '16px 20px',
+          }}
+          open
+        >
+          <summary
+            style={{
+              fontSize: '0.9375rem',
+              fontWeight: 700,
+              color: 'var(--ink)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              userSelect: 'none',
+            }}
+          >
+            <span>Methodology &amp; Industry Benchmark Sources</span>
+            <span style={{ fontSize: '0.75rem', color: 'var(--muted)', fontWeight: 500 }}>
+              How these estimates are calculated ▾
+            </span>
+          </summary>
+
+          <div
+            style={{
+              marginTop: '16px',
+              paddingTop: '16px',
+              borderTop: '1px solid var(--border)',
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+              gap: '20px',
+              fontSize: '0.8125rem',
+              color: 'var(--muted)',
+              lineHeight: 1.5,
+              cursor: 'default',
+            }}
+          >
+            <div>
+              <div style={{ fontWeight: 700, color: 'var(--ink)', marginBottom: '4px' }}>
+                1. Software Stack Licensing
+              </div>
+              <p style={{ margin: 0 }}>
+                Estimated monthly costs are benchmarked against live public pricing across verified GTM Shelf tools: <strong>Starter</strong> (~$40/user/mo, e.g. Apollo Basic, Smartlead, tl;dv free/pro), <strong>Growth</strong> (~$85/user/mo, e.g. Apollo Pro, Clay Starter, tl;dv Pro), and <strong>Scale</strong> (~$160/user/mo, e.g. ZoomInfo, Clay Explorer, dedicated mailboxes).
+              </p>
+            </div>
+
+            <div>
+              <div style={{ fontWeight: 700, color: 'var(--ink)', marginBottom: '4px' }}>
+                2. Admin Friction Reclaimed
+              </div>
+              <p style={{ margin: 0 }}>
+                Based on the <strong>Salesforce &quot;State of Sales&quot; Report</strong> and <strong>McKinsey Global Institute</strong> research showing B2B sales reps spend 65%–70% of their working hours on manual non-selling admin. Automating meeting notes, contact enrichment, and sequence staging conservatively eliminates ~2.2 hours of routine data friction per rep per active stage weekly.
+              </p>
+            </div>
+
+            <div>
+              <div style={{ fontWeight: 700, color: 'var(--ink)', marginBottom: '4px' }}>
+                3. Pipeline Capacity Multiplier
+              </div>
+              <p style={{ margin: 0 }}>
+                Grounded in <strong>The Bridge Group</strong> and <strong>Gartner (TOPO)</strong> outbound efficiency data. A sales rep equipped with automated data enrichment and AI meeting capture can research and engage 150–200 accounts weekly with high personalization, compared to 50–80 manually. This empowers existing reps to handle 2–3x more pipeline volume without adding headcount.
+              </p>
+            </div>
+          </div>
+
+          <div
+            style={{
+              marginTop: '16px',
+              padding: '10px 14px',
+              borderRadius: '8px',
+              background: 'rgba(37, 99, 235, 0.05)',
+              border: '1px solid rgba(37, 99, 235, 0.15)',
+              fontSize: '0.78125rem',
+              color: 'var(--ink)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+            }}
+          >
+            <span style={{ color: 'var(--primary)', fontWeight: 800 }}>ℹ</span>
+            <span>
+              <strong>Capacity &amp; Budget Model:</strong> This simulator models software licensing investments and administrative efficiency for capacity planning. It does not model employee replacement or headcount reduction.
+            </span>
+          </div>
+        </details>
+      </div>
     </section>
   );
 }
