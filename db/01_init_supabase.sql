@@ -81,10 +81,10 @@ create table tools (
                      setweight(to_tsvector('english', coalesce(tagline, '')), 'B') ||
                      setweight(to_tsvector('english', coalesce(description, '')), 'C')
                    ) stored,
-  -- a tool cannot go live without verification data
-  constraint published_needs_verification check (
-    status <> 'published' or (verified_at is not null and cardinality(source_urls) >= 1)
-  )
+  -- verification data is optional; site does not enforce ongoing audit promise
+  -- constraint published_needs_verification check (
+  --   status <> 'published' or (verified_at is not null and cardinality(source_urls) >= 1)
+  -- )
 );
 
 create index tools_stage_idx    on tools (stage_id) where status = 'published';

@@ -41,7 +41,7 @@ export default function ImprintPage() {
                 Website Operator
               </h2>
               <p className="font-semibold text-base text-[var(--color-text)]">
-                GPTify (GPTify.co)
+                GPTify.co
               </p>
               <p className="text-[var(--color-muted)] mt-1">
                 Pragmatic B2B AI Workflow Consultancy &amp; Systems Builder
@@ -53,7 +53,7 @@ export default function ImprintPage() {
                 Represented By
               </h3>
               <p className="text-[var(--color-text)] font-medium">
-                Shukhrat Iskandarov, Founder
+                GPTify.co Operations Team
               </p>
             </div>
 
@@ -62,7 +62,7 @@ export default function ImprintPage() {
                 Postal Address
               </h3>
               <p className="text-[var(--color-text)] leading-relaxed">
-                GPTify / Shukhrat Iskandarov<br />
+                GPTify.co<br />
                 Germany
               </p>
             </div>
@@ -73,11 +73,8 @@ export default function ImprintPage() {
               </h3>
               <p className="text-[var(--color-text)]">
                 Email:{' '}
-                <a href="mailto:hello@gptify.co" className="text-[var(--color-primary)] font-mono hover:underline">
-                  hello@gptify.co
-                </a>{' '}
-                / <a href="mailto:legal@gtmshelf.com" className="text-[var(--color-primary)] font-mono hover:underline">
-                  legal@gtmshelf.com
+                <a href="mailto:team@gptify.co" className="text-[var(--color-primary)] font-mono hover:underline">
+                  team@gptify.co
                 </a>
               </p>
               <p className="text-[var(--color-text)] mt-1">
@@ -93,7 +90,7 @@ export default function ImprintPage() {
                 Responsible for Editorial Content
               </h3>
               <p className="text-[var(--color-text)]">
-                Shukhrat Iskandarov
+                GPTify.co Editorial Team
               </p>
             </div>
           </section>

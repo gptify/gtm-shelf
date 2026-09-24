@@ -52,27 +52,10 @@ export async function PUT(req: NextRequest) {
     const newVerifiedAt = updates.verified_at !== undefined ? updates.verified_at : currentTool.verified_at;
     const newSources = updates.sources !== undefined ? updates.sources : currentTool.sources;
 
-    // Strict Enforcement of Acceptance Criterion 10 & DB constraint:
-    // "Cannot publish without verified_at and at least one source URL"
-    if (newStatus === 'published') {
-      if (!newVerifiedAt) {
-        return NextResponse.json(
-          {
-            error:
-              'Cannot publish tool: A tool requires verified_at and at least one source URL before it can be published.',
-          },
-          { status: 400 }
-        );
-      }
-      if (!newSources || newSources.length === 0 || !newSources.some((s: { url?: string }) => s.url?.trim())) {
-        return NextResponse.json(
-          {
-            error:
-              'Cannot publish tool: A tool requires verified_at and at least one source URL before it can be published.',
-          },
-          { status: 400 }
-        );
-      }
+    // Relaxed publishing: allow publishing without blocking on verified_at or sources
+    let finalVerifiedAt = newVerifiedAt;
+    if (newStatus === 'published' && !finalVerifiedAt) {
+      finalVerifiedAt = new Date().toISOString().split('T')[0];
     }
 
     // Apply updates
@@ -81,7 +64,7 @@ export async function PUT(req: NextRequest) {
       ...updates,
       id: currentTool.id,
       status: newStatus,
-      verified_at: newVerifiedAt,
+      verified_at: finalVerifiedAt,
       sources: newSources,
     };
 

@@ -168,7 +168,7 @@ export function ToolDrawer({
           )}
           {tool.verified_at && (
             <div>
-              <dt>Verified</dt>
+              <dt>Listed</dt>
               <dd>{tool.verified_at}</dd>
             </div>
           )}

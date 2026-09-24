@@ -38,7 +38,7 @@ export default function PrivacyPage() {
           <section className="space-y-3">
             <h2 className="text-lg font-bold">1. Who We Are</h2>
             <p className="text-[var(--color-muted)] leading-relaxed">
-              <strong>GTM Shelf</strong> (<a href="https://gtmshelf.com" className="text-[var(--color-primary)]">gtmshelf.com</a>) is operated by <strong>GPTify.co</strong> (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;). You can contact us regarding privacy inquiries at <a href="mailto:privacy@gtmshelf.com" className="font-mono text-[var(--color-primary)]">privacy@gtmshelf.com</a>.
+              <strong>GTM Shelf</strong> (<a href="https://gtmshelf.com" className="text-[var(--color-primary)]">gtmshelf.com</a>) is operated by <strong>GPTify.co</strong> (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;). You can contact us regarding privacy inquiries at <a href="mailto:team@gptify.co" className="font-mono text-[var(--color-primary)]">team@gptify.co</a>.
             </p>
           </section>
 
@@ -117,7 +117,7 @@ export default function PrivacyPage() {
           <section className="space-y-3">
             <h2 className="text-lg font-bold">5. Your Data Rights</h2>
             <p className="text-[var(--color-muted)] leading-relaxed">
-              Under GDPR, UK GDPR, and applicable privacy laws, you have the right to request access to the personal data we hold about you, request corrections or complete deletion, object to processing, or withdraw consent. To exercise your rights, email us at <a href="mailto:privacy@gtmshelf.com" className="font-mono text-[var(--color-primary)]">privacy@gtmshelf.com</a>.
+              Under GDPR, UK GDPR, and applicable privacy laws, you have the right to request access to the personal data we hold about you, request corrections or complete deletion, object to processing, or withdraw consent. To exercise your rights, email us at <a href="mailto:team@gptify.co" className="font-mono text-[var(--color-primary)]">team@gptify.co</a>.
             </p>
           </section>
         </div>

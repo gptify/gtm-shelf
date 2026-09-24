@@ -103,16 +103,16 @@ export default function AboutPage() {
           </section>
 
           <section className="space-y-4">
-            <h2 className="text-2xl font-bold tracking-tight">3. Verified Data & Audit Trail</h2>
+            <h2 className="text-2xl font-bold tracking-tight">3. Checked at Listing Time</h2>
             <p className="text-base text-[var(--color-muted)] leading-relaxed">
-              Every published tool on GTM Shelf has been manually reviewed and verified against vendor documentation. We enforce database-level guardrails: no tool can be published without an audit timestamp (<code className="text-xs font-mono">verified_at</code>) and at least one public source URL proving its pricing, features, and integrations. Listings are re-audited every 90 days.
+              Every tool profile on GTM Shelf is reviewed and checked once by our team at listing time to confirm core capabilities, integrations, and starting pricing tiers against official documentation. Because AI software products and pricing models evolve rapidly, listings represent a snapshot from the date they were added rather than an ongoing audit promise. We always recommend verifying current pricing and limits directly on the vendor&apos;s site.
             </p>
           </section>
 
           <section className="space-y-4">
             <h2 className="text-2xl font-bold tracking-tight">4. Who Runs GTM Shelf</h2>
             <p className="text-base text-[var(--color-muted)] leading-relaxed">
-              GTM Shelf is operated by <strong>GPTify</strong> (<strong>GPTify.co</strong>), a pragmatic B2B AI workflow consultancy and systems builder, and founded by <strong>Shukhrat Iskandarov</strong>.
+              GTM Shelf is operated by the team at <strong>GPTify.co</strong>, a pragmatic B2B AI workflow consultancy and systems builder.
             </p>
             <p className="text-base text-[var(--color-muted)] leading-relaxed">
               In our day-to-day client work auditing CRMs, designing outbound pipelines, and deploying AI workflows for sales teams, we needed an honest, fast, and unbloated reference for modern sales and marketing technology. When we couldn&apos;t find one, we built GTM Shelf for ourselves and made it freely available to the entire community.
@@ -124,7 +124,7 @@ export default function AboutPage() {
             <div className="space-y-1">
               <h3 className="text-xl font-bold">Looking for custom AI automations?</h3>
               <p className="text-sm text-[var(--color-muted)] max-w-xl">
-                When off-the-shelf tools don&apos;t fit your proprietary data or CRM workflows, our team at GPTify builds bespoke AI workflows and integrations.
+                When off-the-shelf tools don&apos;t fit your proprietary data or CRM workflows, our team at GPTify.co builds bespoke AI workflows and integrations.
               </p>
             </div>
             <Link
