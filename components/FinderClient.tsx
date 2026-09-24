@@ -142,6 +142,9 @@ export function FinderClient({ tools }: FinderClientProps) {
     setLeadMessage(null);
 
     try {
+      const results = finder.results(st);
+      const pickIds = results.picks ? results.picks.map((p: any) => p.tool.id) : [];
+
       const res = await fetch('/api/lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -149,6 +152,7 @@ export function FinderClient({ tools }: FinderClientProps) {
           email: leadEmail.trim(),
           source: 'finder',
           finder_answers: st.A,
+          pick_tool_ids: pickIds,
           consent: leadConsent,
         }),
       });

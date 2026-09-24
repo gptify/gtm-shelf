@@ -1,7 +1,8 @@
 import { createClient } from '@supabase/supabase-js';
-import { Stage, Category, Integration, ToolPublic, PricingModel } from '@/lib/types';
+import { Stage, Category, Integration, ToolPublic, PricingModel, Guide } from '@/lib/types';
 import taxonomy from '@/starter/content/taxonomy.json';
 import sampleTools from '@/starter/finder/fixtures/tools.json';
+import guidesData from '@/starter/content/guides.json';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -113,4 +114,76 @@ export async function getToolsByStageId(stageId: number): Promise<ToolPublic[]> 
 export async function getToolsByCategoryId(categoryId: number): Promise<ToolPublic[]> {
   const tools = await getTools();
   return tools.filter((t) => t.category_id === categoryId);
+}
+
+export function getGuides(): Guide[] {
+  return guidesData as unknown as Guide[];
+}
+
+export function getGuideBySlug(slug: string): Guide | undefined {
+  return (guidesData as unknown as Guide[]).find((g) => g.slug === slug);
+}
+
+export async function getToolsForGuide(guide: Guide): Promise<ToolPublic[]> {
+  const tools = await getTools();
+
+  if (guide.type === 'vs') {
+    const a = guide.a?.toLowerCase();
+    const b = guide.b?.toLowerCase();
+    return tools.filter(
+      (t) => t.name.toLowerCase() === a || t.name.toLowerCase() === b
+    );
+  }
+
+  if (!guide.filter) {
+    return tools;
+  }
+
+  return tools.filter((t) => {
+    // If also_include_tool_named matches, unconditionally include
+    if (
+      guide.filter?.also_include_tool_named &&
+      t.name.toLowerCase() === guide.filter.also_include_tool_named.toLowerCase()
+    ) {
+      return true;
+    }
+
+    // Category filter
+    if (
+      guide.filter?.category &&
+      t.category_name.toLowerCase() !== guide.filter.category.toLowerCase()
+    ) {
+      return false;
+    }
+
+    // Pricing filter
+    if (guide.filter?.pricing && guide.filter.pricing.length > 0) {
+      const matchPricing = guide.filter.pricing.some((p) => {
+        if (p === 'Free plan') return t.pricing_model === 'free_plan';
+        if (p === 'Paid') return t.pricing_model === 'paid';
+        if (p === 'Custom quote') return t.pricing_model === 'custom_quote';
+        return false;
+      });
+      if (!matchPricing) return false;
+    }
+
+    // Exclude pricing filter
+    if (guide.filter?.exclude_pricing && guide.filter.exclude_pricing.length > 0) {
+      for (const ep of guide.filter.exclude_pricing) {
+        if (ep === 'Custom quote' && t.pricing_model === 'custom_quote') return false;
+        if (ep === 'Paid' && t.pricing_model === 'paid') return false;
+        if (ep === 'Free plan' && t.pricing_model === 'free_plan') return false;
+      }
+    }
+
+    // Integration filter
+    if (guide.filter?.integration) {
+      const hasInt = t.integrations.some(
+        (i) => i.toLowerCase() === guide.filter?.integration?.toLowerCase()
+      );
+      if (!hasInt) return false;
+    }
+
+    return true;
+  });
 }

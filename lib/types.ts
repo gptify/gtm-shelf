@@ -48,3 +48,26 @@ export interface ToolPublic {
   verified_at?: string | null;
   integrations: string[];
 }
+
+export interface GuideFilter {
+  category?: string;
+  exclude_pricing?: string[];
+  pricing?: string[];
+  integration?: string;
+  also_include_tool_named?: string;
+}
+
+export interface Guide {
+  slug: string;
+  type: 'best' | 'vs';
+  title: string;
+  desc: string;
+  cat?: string;
+  intro?: string;
+  crit?: string;
+  choose?: string[];
+  filter?: GuideFilter;
+  a?: string;
+  b?: string;
+}
+

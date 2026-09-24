@@ -1,11 +1,12 @@
 import Link from 'next/link';
 import { Stage } from '@/lib/types';
+import { STAGES } from '@/lib/db/data';
 
 interface FooterProps {
-  stages: Stage[];
+  stages?: Stage[];
 }
 
-export function Footer({ stages }: FooterProps) {
+export function Footer({ stages = STAGES }: FooterProps) {
   return (
     <footer className="foot">
       <div className="wrap">
