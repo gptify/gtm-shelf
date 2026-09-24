@@ -16,10 +16,12 @@ export function Hero({ searchQuery, onSearchChange, children }: HeroProps) {
       <div className="hero-text">
         <div className="hero-intro">
           <h1 id="h1">
-            Pick the AI tool for the stage <span className="hl">where your funnel leaks.</span>
+            Pick the AI tool for<br className="desk-br" />{' '}
+            the stage <mark className="hl">where<br className="desk-br" />{' '}
+            your funnel leaks.</mark>
           </h1>
           <p className="lede">
-            A curated directory of AI tools built only for <strong>sales and marketing</strong>. Browse by funnel stage or answer a few questions to get three picks. Run by <strong>GPTify</strong>.
+            A hand-picked directory of AI tools built <strong>only for sales and marketing</strong>. Start with a <strong>funnel stage</strong>, search, or answer a few questions and get three picks.
           </p>
         </div>
 

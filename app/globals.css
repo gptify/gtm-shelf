@@ -108,8 +108,10 @@ h1{font:700 clamp(2.2rem,3.6vw,3rem)/1.08 var(--display);letter-spacing:-.025em;
 .allstages:hover{color:var(--brand)}
 @keyframes grow{from{clip-path:inset(0 50% 0 50% round 8px);opacity:0}to{clip-path:inset(0 round 8px);opacity:1}}
 
+mark{background:transparent;color:inherit}
 @media (min-width:861px){
   .fnav .btn-soft,#fsee{display:none!important}
+  .desk-br{display:inline}
 }
 @media (max-width:860px){
   .hero{grid-template-columns:1fr;gap:32px;align-items:start;padding-top:16px;padding-bottom:32px}
@@ -117,6 +119,7 @@ h1{font:700 clamp(2.2rem,3.6vw,3rem)/1.08 var(--display);letter-spacing:-.025em;
   .hero-action{margin-top:24px}
   .hero-funnel,.funnel-col{display:block;height:auto}
   h1{margin-top:0}
+  .desk-br{display:none}
 }
 
 /* browse */
