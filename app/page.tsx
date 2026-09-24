@@ -40,7 +40,7 @@ export default async function HomePage({ searchParams }: PageProps) {
         logo: 'https://gtmshelf.com/brand/png/gtm-shelf-icon-512.png',
         parentOrganization: {
           '@type': 'Organization',
-          name: 'GPTify',
+          name: 'GPTify.co',
           url: 'https://gptify.co',
         },
       },

@@ -473,7 +473,7 @@ export function FinderClient({ tools }: FinderClientProps) {
               : 'Nothing fits exactly?'}
           </h2>
           <p>
-            GPTify can build a custom AI tool or workflow for this. Your answers prefill the request, so you do not start from zero.
+            GPTify.co can build a custom AI tool or workflow for this. Your answers prefill the request, so you do not start from zero.
           </p>
           <Link
             className="btn btn-ghost"
@@ -482,7 +482,7 @@ export function FinderClient({ tools }: FinderClientProps) {
             Request a custom build
           </Link>
           <p className="fine" style={{ marginTop: '12px' }}>
-            GTM Shelf is run by GPTify. Custom builds are never ranked among the tools.
+            GTM Shelf is run by <a href="https://gptify.co" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'underline', color: 'inherit' }}>GPTify.co</a>. Custom builds are never ranked among the tools.
           </p>
         </div>
 

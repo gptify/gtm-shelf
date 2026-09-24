@@ -92,7 +92,7 @@ export default function AdvertisePage() {
               <span className="badge-pill" style={{ alignSelf: 'flex-start', background: 'var(--primary)', color: '#fff' }}>Most Popular</span>
               <h3 style={{ fontSize: '1.25rem', fontWeight: 700, margin: '12px 0 8px' }}>Newsletter + Shelf Bundle</h3>
               <p style={{ fontSize: '0.875rem', color: 'var(--muted)', flexGrow: 1 }}>
-                Combine a top-tier featured placement on GTM Shelf with a dedicated sponsor spotlight in the weekly GPTify AI GTM newsletter delivered to verified B2B operators.
+                Combine a top-tier featured placement on GTM Shelf with a dedicated sponsor spotlight in the weekly GPTify.co AI GTM newsletter delivered to verified B2B operators.
               </p>
               <div style={{ marginTop: '20px', paddingTop: '16px', borderTop: '1px solid var(--border)' }}>
                 <span style={{ fontSize: '1.25rem', fontWeight: 700 }}>Custom Package</span>

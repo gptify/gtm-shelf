@@ -12,7 +12,7 @@ export function Footer({ stages = STAGES }: FooterProps) {
       <div className="wrap">
         <div>
           <p>
-            <strong>GTM Shelf</strong> is an independent directory of AI tools for sales and marketing teams. Run by <strong>GPTify</strong>.
+            <strong>GTM Shelf</strong> is an independent directory of AI tools for sales and marketing teams. Run by <a href="https://gptify.co" target="_blank" rel="noopener noreferrer" style={{ fontWeight: 700, color: 'inherit', textDecoration: 'underline' }}>GPTify.co</a>.
           </p>
           <p style={{ marginTop: '8px', fontSize: '0.8125rem' }}>
             Rankings are editorial. Paid placements never affect finder results or organic order.

@@ -50,8 +50,8 @@ export default async function GuidePage({ params }: PageProps) {
     description: guide.desc,
     author: {
       '@type': 'Organization',
-      name: 'GPTify',
-      url: 'https://gtmshelf.com',
+      name: 'GPTify.co',
+      url: 'https://gptify.co',
     },
     publisher: {
       '@type': 'Organization',
@@ -329,7 +329,7 @@ export default async function GuidePage({ params }: PageProps) {
         <section className="guide-cta">
           <strong>Looking for custom AI automations?</strong>
           <p>
-            If off-the-shelf tools don&apos;t fit your sales stack, our team at GPTify builds bespoke workflow automations and integrations.
+            If off-the-shelf tools don&apos;t fit your sales stack, our team at GPTify.co builds bespoke workflow automations and integrations.
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '14px' }}>
             <Link href="/custom" className="btn btn-primary">

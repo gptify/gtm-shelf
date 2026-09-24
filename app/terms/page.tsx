@@ -63,9 +63,9 @@ export default function TermsPage() {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-lg font-bold">4. Custom AI Workflows by GPTify</h2>
+            <h2 className="text-lg font-bold">4. Custom AI Workflows by GPTify.co</h2>
             <p className="text-[var(--color-muted)] leading-relaxed">
-              GTM Shelf is operated by <strong>GPTify</strong> (<strong>GPTify.co</strong>), which designs and builds custom AI automations and workflows. Submitting a request through our <Link href="/custom" className="text-[var(--color-primary)] hover:underline">Custom Build form</Link> does not create a binding contract; any commercial engagement is agreed upon separately in a formal written scope of work.
+              GTM Shelf is operated by <strong>GPTify.co</strong>, which designs and builds custom AI automations and workflows. Submitting a request through our <Link href="/custom" className="text-[var(--color-primary)] hover:underline">Custom Build form</Link> does not create a binding contract; any commercial engagement is agreed upon separately in a formal written scope of work.
             </p>
           </section>
 

@@ -166,7 +166,7 @@ export function CustomBuildForm() {
         <div className="check">✓</div>
         <h2>Request Received!</h2>
         <p>
-          Thank you, <strong style={{ color: 'var(--ink)' }}>{formData.name}</strong>. Our team at GPTify will review your workflow requirements and reach out within 1 business day.
+          Thank you, <strong style={{ color: 'var(--ink)' }}>{formData.name}</strong>. Our team at GPTify.co will review your workflow requirements and reach out within 1 business day.
         </p>
         <div className="actions">
           <Link href="/" className="btn btn-primary">
@@ -374,7 +374,7 @@ export function CustomBuildForm() {
           {submitting ? 'Submitting request...' : 'Submit Custom Build Request →'}
         </button>
         <p style={{ textAlign: 'center', fontSize: '.8125rem', color: 'var(--muted)', marginTop: '12px' }}>
-          No spam, no vendor lists. Reviewed by GPTify engineers. Response within 1 business day.
+          No spam, no vendor lists. Reviewed by GPTify.co engineers. Response within 1 business day.
         </p>
       </div>
     </form>

@@ -38,7 +38,7 @@ export default function PrivacyPage() {
           <section className="space-y-3">
             <h2 className="text-lg font-bold">1. Who We Are</h2>
             <p className="text-[var(--color-muted)] leading-relaxed">
-              <strong>GTM Shelf</strong> (<a href="https://gtmshelf.com" className="text-[var(--color-primary)]">gtmshelf.com</a>) is operated by <strong>GPTify</strong> (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;). You can contact us regarding privacy inquiries at <a href="mailto:privacy@gtmshelf.com" className="font-mono text-[var(--color-primary)]">privacy@gtmshelf.com</a>.
+              <strong>GTM Shelf</strong> (<a href="https://gtmshelf.com" className="text-[var(--color-primary)]">gtmshelf.com</a>) is operated by <strong>GPTify.co</strong> (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;). You can contact us regarding privacy inquiries at <a href="mailto:privacy@gtmshelf.com" className="font-mono text-[var(--color-primary)]">privacy@gtmshelf.com</a>.
             </p>
           </section>
 
