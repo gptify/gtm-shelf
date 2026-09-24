@@ -128,12 +128,22 @@ export async function getToolsForGuide(guide: Guide): Promise<ToolPublic[]> {
   const tools = await getTools();
 
   if (guide.type === 'vs') {
-    const a = guide.a?.toLowerCase();
-    const b = guide.b?.toLowerCase();
-    return tools.filter(
-      (t) => t.name.toLowerCase() === a || t.name.toLowerCase() === b
-    );
+    const a = guide.a?.toLowerCase().replace(/\.ai$/i, '').trim();
+    const b = guide.b?.toLowerCase().replace(/\.ai$/i, '').trim();
+    return tools.filter((t) => {
+      const tName = t.name.toLowerCase().replace(/\.ai$/i, '').trim();
+      const tSlug = t.slug.toLowerCase().replace(/-ai$/i, '').trim();
+      return (
+        tName === a ||
+        tName === b ||
+        tSlug === a ||
+        tSlug === b ||
+        t.name.toLowerCase() === guide.a?.toLowerCase() ||
+        t.name.toLowerCase() === guide.b?.toLowerCase()
+      );
+    });
   }
+
 
   if (!guide.filter) {
     return tools;

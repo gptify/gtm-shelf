@@ -56,11 +56,15 @@ async function runTests() {
     console.log('Question 2 title:', q2Title);
     await clickChoice('Send outreach emails at scale');
 
-    // Answer 3: "Just me"
+    // Answer 3: adapt based on question asked
     await page.waitForSelector('#qh');
     const q3Title = await page.$eval('#qh', (el) => el.textContent?.trim());
     console.log('Question 3 title:', q3Title);
-    await clickChoice('Just me');
+    if (q3Title?.includes('spend')) {
+      await clickChoice('$50'); // e.g. "$50 to $200" or similar budget option
+    } else {
+      await clickChoice('Just me');
+    }
 
     // 3. Verify Results: Top picks must be lemlist, Instantly, Smartlead in order!
     console.log('3. Verifying Results (Acceptance criteria 7 & 18)...');
