@@ -1,0 +1,141 @@
+{
+ "stages": [
+  {
+   "id": 1,
+   "slug": "attract",
+   "name": "Attract",
+   "hint": "Content, SEO, ads, social"
+  },
+  {
+   "id": 2,
+   "slug": "prospect",
+   "name": "Prospect",
+   "hint": "Find and enrich leads"
+  },
+  {
+   "id": 3,
+   "slug": "engage",
+   "name": "Engage",
+   "hint": "Outreach, SDR agents, chat"
+  },
+  {
+   "id": 4,
+   "slug": "close",
+   "name": "Close",
+   "hint": "Calls, meetings, CRM"
+  },
+  {
+   "id": 5,
+   "slug": "grow",
+   "name": "Grow",
+   "hint": "Lifecycle and forecasting"
+  }
+ ],
+ "categories": [
+  {
+   "stage_id": 1,
+   "slug": "content-writing",
+   "name": "Content writing",
+   "sort": 1,
+   "phrase": "writing marketing content"
+  },
+  {
+   "stage_id": 1,
+   "slug": "seo",
+   "name": "SEO",
+   "sort": 2,
+   "phrase": "improving search rankings"
+  },
+  {
+   "stage_id": 1,
+   "slug": "ad-creative",
+   "name": "Ad creative",
+   "sort": 3,
+   "phrase": "making ad creative"
+  },
+  {
+   "stage_id": 1,
+   "slug": "social-media",
+   "name": "Social media",
+   "sort": 4,
+   "phrase": "managing social media"
+  },
+  {
+   "stage_id": 2,
+   "slug": "lead-data",
+   "name": "Lead data",
+   "sort": 1,
+   "phrase": "finding contact data"
+  },
+  {
+   "stage_id": 2,
+   "slug": "intent-signals",
+   "name": "Intent signals",
+   "sort": 2,
+   "phrase": "spotting buying intent"
+  },
+  {
+   "stage_id": 3,
+   "slug": "email-outreach",
+   "name": "Email outreach",
+   "sort": 1,
+   "phrase": "sending outreach emails"
+  },
+  {
+   "stage_id": 3,
+   "slug": "ai-sdr-agents",
+   "name": "AI SDR agents",
+   "sort": 2,
+   "phrase": "automated outbound with AI agents"
+  },
+  {
+   "stage_id": 3,
+   "slug": "chat-and-conversion",
+   "name": "Chat and conversion",
+   "sort": 3,
+   "phrase": "chatting with website visitors"
+  },
+  {
+   "stage_id": 4,
+   "slug": "call-intelligence",
+   "name": "Call intelligence",
+   "sort": 1,
+   "phrase": "analyzing sales calls"
+  },
+  {
+   "stage_id": 4,
+   "slug": "meeting-notes",
+   "name": "Meeting notes",
+   "sort": 2,
+   "phrase": "capturing meeting notes"
+  },
+  {
+   "stage_id": 4,
+   "slug": "crm",
+   "name": "CRM",
+   "sort": 3,
+   "phrase": "managing contacts and deals"
+  },
+  {
+   "stage_id": 5,
+   "slug": "email-and-lifecycle",
+   "name": "Email and lifecycle",
+   "sort": 1,
+   "phrase": "lifecycle email and messaging"
+  },
+  {
+   "stage_id": 5,
+   "slug": "revenue-forecasting",
+   "name": "Revenue forecasting",
+   "sort": 2,
+   "phrase": "forecasting revenue"
+  }
+ ],
+ "integrations": [
+  "HubSpot",
+  "Salesforce",
+  "Slack",
+  "Zapier",
+  "Google Workspace"
+ ]
+}

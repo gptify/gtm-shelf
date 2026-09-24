@@ -1,0 +1,27 @@
+-- Reference data: stages, categories, integrations. Safe to run once after schema.sql.
+begin;
+insert into stages (id, slug, name, hint, sort) values (1, 'attract', 'Attract', 'Content, SEO, ads, social', 1);
+insert into stages (id, slug, name, hint, sort) values (2, 'prospect', 'Prospect', 'Find and enrich leads', 2);
+insert into stages (id, slug, name, hint, sort) values (3, 'engage', 'Engage', 'Outreach, SDR agents, chat', 3);
+insert into stages (id, slug, name, hint, sort) values (4, 'close', 'Close', 'Calls, meetings, CRM', 4);
+insert into stages (id, slug, name, hint, sort) values (5, 'grow', 'Grow', 'Lifecycle and forecasting', 5);
+insert into categories (stage_id, slug, name, phrase, sort) values (1, 'content-writing', 'Content writing', 'writing marketing content', 1);
+insert into categories (stage_id, slug, name, phrase, sort) values (1, 'seo', 'SEO', 'improving search rankings', 2);
+insert into categories (stage_id, slug, name, phrase, sort) values (1, 'ad-creative', 'Ad creative', 'making ad creative', 3);
+insert into categories (stage_id, slug, name, phrase, sort) values (1, 'social-media', 'Social media', 'managing social media', 4);
+insert into categories (stage_id, slug, name, phrase, sort) values (2, 'lead-data', 'Lead data', 'finding contact data', 1);
+insert into categories (stage_id, slug, name, phrase, sort) values (2, 'intent-signals', 'Intent signals', 'spotting buying intent', 2);
+insert into categories (stage_id, slug, name, phrase, sort) values (3, 'email-outreach', 'Email outreach', 'sending outreach emails', 1);
+insert into categories (stage_id, slug, name, phrase, sort) values (3, 'ai-sdr-agents', 'AI SDR agents', 'automated outbound with AI agents', 2);
+insert into categories (stage_id, slug, name, phrase, sort) values (3, 'chat-and-conversion', 'Chat and conversion', 'chatting with website visitors', 3);
+insert into categories (stage_id, slug, name, phrase, sort) values (4, 'call-intelligence', 'Call intelligence', 'analyzing sales calls', 1);
+insert into categories (stage_id, slug, name, phrase, sort) values (4, 'meeting-notes', 'Meeting notes', 'capturing meeting notes', 2);
+insert into categories (stage_id, slug, name, phrase, sort) values (4, 'crm', 'CRM', 'managing contacts and deals', 3);
+insert into categories (stage_id, slug, name, phrase, sort) values (5, 'email-and-lifecycle', 'Email and lifecycle', 'lifecycle email and messaging', 1);
+insert into categories (stage_id, slug, name, phrase, sort) values (5, 'revenue-forecasting', 'Revenue forecasting', 'forecasting revenue', 2);
+insert into integrations (slug, name) values ('hubspot', 'HubSpot');
+insert into integrations (slug, name) values ('salesforce', 'Salesforce');
+insert into integrations (slug, name) values ('slack', 'Slack');
+insert into integrations (slug, name) values ('zapier', 'Zapier');
+insert into integrations (slug, name) values ('google-workspace', 'Google Workspace');
+commit;

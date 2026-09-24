@@ -1,0 +1,778 @@
+[
+ {
+  "id": "jasper",
+  "slug": "jasper",
+  "name": "Jasper",
+  "domain": "jasper.ai",
+  "stage": 1,
+  "cat": "Content writing",
+  "tagline": "Brand-aware writing for marketing teams",
+  "description": "Generates blog posts, ads, and email copy in a saved brand voice, with shared templates for teams.",
+  "price": "Paid",
+  "ints": [
+   "Zapier"
+  ],
+  "feat": true,
+  "best": "Content teams that need one voice across channels",
+  "setup": 1
+ },
+ {
+  "id": "copy-ai",
+  "slug": "copy-ai",
+  "name": "Copy.ai",
+  "domain": "copy.ai",
+  "stage": 1,
+  "cat": "Content writing",
+  "tagline": "Workflow automation for go-to-market copy",
+  "description": "Combines copy generation with workflows that research accounts and draft outreach in bulk.",
+  "price": "Free plan",
+  "ints": [
+   "HubSpot",
+   "Salesforce",
+   "Slack",
+   "Zapier"
+  ],
+  "feat": false,
+  "best": "Teams that want copy and prospect research in one place",
+  "setup": 2
+ },
+ {
+  "id": "writesonic",
+  "slug": "writesonic",
+  "name": "Writesonic",
+  "domain": "writesonic.com",
+  "stage": 1,
+  "cat": "Content writing",
+  "tagline": "Long-form articles with SEO guidance built in",
+  "description": "Drafts articles and landing pages and suggests keywords while you write.",
+  "price": "Free plan",
+  "ints": [
+   "Zapier"
+  ],
+  "feat": false,
+  "best": "Small teams publishing SEO content on a budget",
+  "setup": 1
+ },
+ {
+  "id": "surfer",
+  "slug": "surfer",
+  "name": "Surfer",
+  "domain": "surferseo.com",
+  "stage": 1,
+  "cat": "SEO",
+  "tagline": "Content scoring against pages that already rank",
+  "description": "Analyzes top search results for a keyword and tells writers which terms and structure to use.",
+  "price": "Paid",
+  "ints": [
+   "Google Workspace"
+  ],
+  "feat": false,
+  "best": "SEO writers optimizing new and existing articles",
+  "setup": 1
+ },
+ {
+  "id": "clearscope",
+  "slug": "clearscope",
+  "name": "Clearscope",
+  "domain": "clearscope.io",
+  "stage": 1,
+  "cat": "SEO",
+  "tagline": "Keyword-driven content grades for editors",
+  "description": "Grades drafts against a keyword and suggests related terms, inside Google Docs or its own editor.",
+  "price": "Paid",
+  "ints": [
+   "Google Workspace"
+  ],
+  "feat": false,
+  "best": "Editorial teams with a review process",
+  "setup": 1
+ },
+ {
+  "id": "semrush",
+  "slug": "semrush",
+  "name": "Semrush",
+  "domain": "semrush.com",
+  "stage": 1,
+  "cat": "SEO",
+  "tagline": "Keyword, competitor, and rank tracking suite",
+  "description": "An all-in-one SEO and marketing toolkit with AI features for content and keyword research.",
+  "price": "Paid",
+  "ints": [
+   "Google Workspace",
+   "Zapier"
+  ],
+  "feat": false,
+  "best": "Marketers who want research and tracking under one subscription",
+  "setup": 2
+ },
+ {
+  "id": "marketmuse",
+  "slug": "marketmuse",
+  "name": "MarketMuse",
+  "domain": "marketmuse.com",
+  "stage": 1,
+  "cat": "SEO",
+  "tagline": "Topic planning across your whole content library",
+  "description": "Audits what you have published and points to the topics you should cover next.",
+  "price": "Free plan",
+  "ints": [],
+  "feat": false,
+  "best": "Content strategists planning topic clusters",
+  "setup": 2
+ },
+ {
+  "id": "adcreative-ai",
+  "slug": "adcreative-ai",
+  "name": "AdCreative.ai",
+  "domain": "adcreative.ai",
+  "stage": 1,
+  "cat": "Ad creative",
+  "tagline": "Generates ad images and copy variants in bulk",
+  "description": "Produces banner and social ad variations from a brand kit and scores them for likely performance.",
+  "price": "Paid",
+  "ints": [],
+  "feat": false,
+  "best": "Performance marketers testing many creatives",
+  "setup": 1
+ },
+ {
+  "id": "madgicx",
+  "slug": "madgicx",
+  "name": "Madgicx",
+  "domain": "madgicx.com",
+  "stage": 1,
+  "cat": "Ad creative",
+  "tagline": "Meta ads optimization with AI recommendations",
+  "description": "Connects to your ad account to suggest audience and budget changes and to generate creatives.",
+  "price": "Paid",
+  "ints": [],
+  "feat": false,
+  "best": "E-commerce advertisers running Meta campaigns",
+  "setup": 2
+ },
+ {
+  "id": "canva",
+  "slug": "canva",
+  "name": "Canva",
+  "domain": "canva.com",
+  "stage": 1,
+  "cat": "Ad creative",
+  "tagline": "Design editor with AI image and layout tools",
+  "description": "Makes social graphics, presentations, and ad assets from prompts inside a familiar editor.",
+  "price": "Free plan",
+  "ints": [
+   "Slack",
+   "Google Workspace",
+   "HubSpot"
+  ],
+  "feat": false,
+  "best": "Anyone producing visual assets without a designer",
+  "setup": 1
+ },
+ {
+  "id": "buffer",
+  "slug": "buffer",
+  "name": "Buffer",
+  "domain": "buffer.com",
+  "stage": 1,
+  "cat": "Social media",
+  "tagline": "Post scheduling with an AI writing assistant",
+  "description": "Plans and schedules posts across channels and helps draft and reword captions.",
+  "price": "Free plan",
+  "ints": [
+   "Zapier"
+  ],
+  "feat": false,
+  "best": "Solo marketers and small brands",
+  "setup": 1
+ },
+ {
+  "id": "hootsuite",
+  "slug": "hootsuite",
+  "name": "Hootsuite",
+  "domain": "hootsuite.com",
+  "stage": 1,
+  "cat": "Social media",
+  "tagline": "Social publishing and listening for larger teams",
+  "description": "Handles scheduling, approvals, and monitoring, with AI help for captions and replies.",
+  "price": "Paid",
+  "ints": [
+   "Salesforce",
+   "Slack",
+   "HubSpot"
+  ],
+  "feat": false,
+  "best": "Teams that need approvals and reporting",
+  "setup": 2
+ },
+ {
+  "id": "clay",
+  "slug": "clay",
+  "name": "Clay",
+  "domain": "clay.com",
+  "stage": 2,
+  "cat": "Lead data",
+  "tagline": "Combine many data sources into one enriched list",
+  "description": "Pulls contact and company data from many providers and lets you add AI research steps to each row.",
+  "price": "Free plan",
+  "ints": [
+   "HubSpot",
+   "Salesforce",
+   "Slack",
+   "Zapier"
+  ],
+  "feat": true,
+  "best": "Outbound teams building custom prospect lists",
+  "setup": 3
+ },
+ {
+  "id": "apollo",
+  "slug": "apollo",
+  "name": "Apollo",
+  "domain": "apollo.io",
+  "stage": 2,
+  "cat": "Lead data",
+  "tagline": "Contact database with built-in sequencing",
+  "description": "Searches a large B2B contact database and lets you email and call prospects from the same tool.",
+  "price": "Free plan",
+  "ints": [
+   "HubSpot",
+   "Salesforce",
+   "Slack",
+   "Zapier",
+   "Google Workspace"
+  ],
+  "feat": false,
+  "best": "Small sales teams that want data and outreach together",
+  "setup": 1
+ },
+ {
+  "id": "zoominfo",
+  "slug": "zoominfo",
+  "name": "ZoomInfo",
+  "domain": "zoominfo.com",
+  "stage": 2,
+  "cat": "Lead data",
+  "tagline": "Enterprise B2B data and buying signals",
+  "description": "Company and contact data with signals about who is likely to buy, aimed at larger sales organizations.",
+  "price": "Custom quote",
+  "ints": [
+   "HubSpot",
+   "Salesforce",
+   "Slack"
+  ],
+  "feat": false,
+  "best": "Enterprise sales teams with large territories",
+  "setup": 2
+ },
+ {
+  "id": "lusha",
+  "slug": "lusha",
+  "name": "Lusha",
+  "domain": "lusha.com",
+  "stage": 2,
+  "cat": "Lead data",
+  "tagline": "Contact details in a browser extension",
+  "description": "Finds emails and phone numbers while you browse LinkedIn and company sites.",
+  "price": "Free plan",
+  "ints": [
+   "HubSpot",
+   "Salesforce",
+   "Slack",
+   "Zapier"
+  ],
+  "feat": false,
+  "best": "Reps who prospect manually on LinkedIn",
+  "setup": 1
+ },
+ {
+  "id": "cognism",
+  "slug": "cognism",
+  "name": "Cognism",
+  "domain": "cognism.com",
+  "stage": 2,
+  "cat": "Lead data",
+  "tagline": "B2B contact data with a European focus",
+  "description": "Provides phone-verified contacts with an emphasis on compliance for European markets.",
+  "price": "Custom quote",
+  "ints": [
+   "HubSpot",
+   "Salesforce",
+   "Slack"
+  ],
+  "feat": false,
+  "best": "Teams selling into Europe",
+  "setup": 2
+ },
+ {
+  "id": "seamless-ai",
+  "slug": "seamless-ai",
+  "name": "Seamless.AI",
+  "domain": "seamless.ai",
+  "stage": 2,
+  "cat": "Lead data",
+  "tagline": "Real-time contact search for prospecting",
+  "description": "Searches for contact details on demand and exports them to your CRM.",
+  "price": "Free plan",
+  "ints": [
+   "HubSpot",
+   "Salesforce",
+   "Zapier"
+  ],
+  "feat": false,
+  "best": "Reps who build lists on the fly",
+  "setup": 1
+ },
+ {
+  "id": "6sense",
+  "slug": "6sense",
+  "name": "6sense",
+  "domain": "6sense.com",
+  "stage": 2,
+  "cat": "Intent signals",
+  "tagline": "Account-level buying intent and predictions",
+  "description": "Tracks anonymous research activity to show which accounts are in a buying cycle.",
+  "price": "Custom quote",
+  "ints": [
+   "HubSpot",
+   "Salesforce",
+   "Slack"
+  ],
+  "feat": false,
+  "best": "Account-based marketing teams",
+  "setup": 3
+ },
+ {
+  "id": "instantly",
+  "slug": "instantly",
+  "name": "Instantly",
+  "domain": "instantly.ai",
+  "stage": 3,
+  "cat": "Email outreach",
+  "tagline": "High-volume cold email with inbox rotation",
+  "description": "Sends campaigns across many mailboxes with warm-up and reply tracking.",
+  "price": "Paid",
+  "ints": [
+   "HubSpot",
+   "Zapier"
+  ],
+  "feat": true,
+  "best": "Outbound teams sending at volume",
+  "setup": 2
+ },
+ {
+  "id": "smartlead",
+  "slug": "smartlead",
+  "name": "Smartlead",
+  "domain": "smartlead.ai",
+  "stage": 3,
+  "cat": "Email outreach",
+  "tagline": "Cold email infrastructure for agencies",
+  "description": "Manages many sending accounts and clients, with warm-up and a unified reply inbox.",
+  "price": "Paid",
+  "ints": [
+   "HubSpot",
+   "Zapier"
+  ],
+  "feat": false,
+  "best": "Agencies running outreach for several clients",
+  "setup": 2
+ },
+ {
+  "id": "lemlist",
+  "slug": "lemlist",
+  "name": "lemlist",
+  "domain": "lemlist.com",
+  "stage": 3,
+  "cat": "Email outreach",
+  "tagline": "Multichannel outreach with personalization",
+  "description": "Combines email, LinkedIn steps, and personalized images and video in one sequence builder.",
+  "price": "Paid",
+  "ints": [
+   "HubSpot",
+   "Salesforce",
+   "Slack",
+   "Zapier"
+  ],
+  "feat": false,
+  "best": "Teams that mix email and LinkedIn touches",
+  "setup": 1
+ },
+ {
+  "id": "outreach",
+  "slug": "outreach",
+  "name": "Outreach",
+  "domain": "outreach.io",
+  "stage": 3,
+  "cat": "Email outreach",
+  "tagline": "Sales engagement platform for larger teams",
+  "description": "Runs sequences, tracks deals, and uses AI to draft messages and flag deal risk.",
+  "price": "Custom quote",
+  "ints": [
+   "Salesforce",
+   "HubSpot",
+   "Slack",
+   "Google Workspace"
+  ],
+  "feat": false,
+  "best": "Mid-market and enterprise sales teams",
+  "setup": 3
+ },
+ {
+  "id": "salesloft",
+  "slug": "salesloft",
+  "name": "Salesloft",
+  "domain": "salesloft.com",
+  "stage": 3,
+  "cat": "Email outreach",
+  "tagline": "Sales engagement and pipeline workflow",
+  "description": "Coordinates calls, emails, and tasks for reps, with AI assistance for messaging and prioritization.",
+  "price": "Custom quote",
+  "ints": [
+   "Salesforce",
+   "HubSpot",
+   "Slack",
+   "Google Workspace"
+  ],
+  "feat": false,
+  "best": "Sales teams standardizing their outreach process",
+  "setup": 3
+ },
+ {
+  "id": "11x",
+  "slug": "11x",
+  "name": "11x",
+  "domain": "11x.ai",
+  "stage": 3,
+  "cat": "AI SDR agents",
+  "tagline": "Digital workers that prospect and follow up",
+  "description": "Agents that find leads, write outreach, and book meetings with little human input.",
+  "price": "Custom quote",
+  "ints": [
+   "HubSpot",
+   "Salesforce"
+  ],
+  "feat": false,
+  "best": "Teams testing autonomous outbound",
+  "setup": 2
+ },
+ {
+  "id": "artisan",
+  "slug": "artisan",
+  "name": "Artisan",
+  "domain": "artisan.co",
+  "stage": 3,
+  "cat": "AI SDR agents",
+  "tagline": "An AI outbound agent named Ava",
+  "description": "Automates lead research and outreach sequences from a single agent.",
+  "price": "Custom quote",
+  "ints": [
+   "HubSpot",
+   "Salesforce"
+  ],
+  "feat": false,
+  "best": "Startups without a dedicated SDR team",
+  "setup": 2
+ },
+ {
+  "id": "regie-ai",
+  "slug": "regie-ai",
+  "name": "Regie.ai",
+  "domain": "regie.ai",
+  "stage": 3,
+  "cat": "AI SDR agents",
+  "tagline": "AI-drafted outreach with human review",
+  "description": "Generates sequences and prospecting messages that reps can edit before sending.",
+  "price": "Custom quote",
+  "ints": [
+   "HubSpot",
+   "Salesforce"
+  ],
+  "feat": false,
+  "best": "Teams that want AI drafts but human control",
+  "setup": 2
+ },
+ {
+  "id": "intercom",
+  "slug": "intercom",
+  "name": "Intercom",
+  "domain": "intercom.com",
+  "stage": 3,
+  "cat": "Chat and conversion",
+  "tagline": "Support and sales chat with an AI agent",
+  "description": "Its AI agent answers customer questions and hands off to your team when needed.",
+  "price": "Paid",
+  "ints": [
+   "HubSpot",
+   "Salesforce",
+   "Slack",
+   "Zapier"
+  ],
+  "feat": false,
+  "best": "Product-led companies with a lot of inbound chat",
+  "setup": 2
+ },
+ {
+  "id": "qualified",
+  "slug": "qualified",
+  "name": "Qualified",
+  "domain": "qualified.com",
+  "stage": 3,
+  "cat": "Chat and conversion",
+  "tagline": "Website chat that routes high-intent visitors to reps",
+  "description": "Identifies valuable visitors and starts conversations or books meetings in real time.",
+  "price": "Custom quote",
+  "ints": [
+   "Salesforce",
+   "HubSpot",
+   "Slack"
+  ],
+  "feat": false,
+  "best": "B2B sites with a lot of high-value traffic",
+  "setup": 3
+ },
+ {
+  "id": "gong",
+  "slug": "gong",
+  "name": "Gong",
+  "domain": "gong.io",
+  "stage": 4,
+  "cat": "Call intelligence",
+  "tagline": "Records sales calls and shows what wins deals",
+  "description": "Transcribes and analyzes calls and emails to surface deal risks and coaching moments.",
+  "price": "Custom quote",
+  "ints": [
+   "Salesforce",
+   "HubSpot",
+   "Slack",
+   "Google Workspace"
+  ],
+  "feat": true,
+  "best": "Sales managers who coach from real conversations",
+  "setup": 2
+ },
+ {
+  "id": "fireflies",
+  "slug": "fireflies",
+  "name": "Fireflies",
+  "domain": "fireflies.ai",
+  "stage": 4,
+  "cat": "Meeting notes",
+  "tagline": "Meeting recorder with searchable transcripts",
+  "description": "Joins calls, writes summaries, and pushes notes to your CRM.",
+  "price": "Free plan",
+  "ints": [
+   "HubSpot",
+   "Salesforce",
+   "Slack",
+   "Zapier",
+   "Google Workspace"
+  ],
+  "feat": true,
+  "best": "Teams that want notes in the CRM without typing",
+  "setup": 1
+ },
+ {
+  "id": "fathom",
+  "slug": "fathom",
+  "name": "Fathom",
+  "domain": "fathom.video",
+  "stage": 4,
+  "cat": "Meeting notes",
+  "tagline": "Free AI note taker for video calls",
+  "description": "Records and summarizes calls and highlights key moments.",
+  "price": "Free plan",
+  "ints": [
+   "HubSpot",
+   "Salesforce",
+   "Slack",
+   "Zapier",
+   "Google Workspace"
+  ],
+  "feat": false,
+  "best": "Individual reps and small teams",
+  "setup": 1
+ },
+ {
+  "id": "otter",
+  "slug": "otter",
+  "name": "Otter",
+  "domain": "otter.ai",
+  "stage": 4,
+  "cat": "Meeting notes",
+  "tagline": "Live transcription and meeting summaries",
+  "description": "Transcribes conversations in real time and generates summaries and action items.",
+  "price": "Free plan",
+  "ints": [
+   "Slack",
+   "Zapier",
+   "Google Workspace"
+  ],
+  "feat": false,
+  "best": "Anyone who takes many calls and meetings",
+  "setup": 1
+ },
+ {
+  "id": "hubspot",
+  "slug": "hubspot",
+  "name": "HubSpot",
+  "domain": "hubspot.com",
+  "stage": 4,
+  "cat": "CRM",
+  "tagline": "CRM with AI assistants across marketing and sales",
+  "description": "Connects contacts, email, and deals, with AI tools for writing and reporting.",
+  "price": "Free plan",
+  "ints": [
+   "Slack",
+   "Zapier",
+   "Google Workspace",
+   "Salesforce"
+  ],
+  "feat": true,
+  "best": "Growing teams that want marketing and sales in one system",
+  "setup": 2
+ },
+ {
+  "id": "salesforce",
+  "slug": "salesforce",
+  "name": "Salesforce",
+  "domain": "salesforce.com",
+  "stage": 4,
+  "cat": "CRM",
+  "tagline": "Enterprise CRM with AI agents",
+  "description": "A configurable CRM platform with AI features for forecasting, service, and outreach.",
+  "price": "Paid",
+  "ints": [
+   "Slack",
+   "Google Workspace",
+   "Zapier"
+  ],
+  "feat": false,
+  "best": "Large organizations with complex processes",
+  "setup": 3
+ },
+ {
+  "id": "pipedrive",
+  "slug": "pipedrive",
+  "name": "Pipedrive",
+  "domain": "pipedrive.com",
+  "stage": 4,
+  "cat": "CRM",
+  "tagline": "Pipeline-focused CRM for small teams",
+  "description": "A visual deal pipeline with AI suggestions for next steps and email drafts.",
+  "price": "Paid",
+  "ints": [
+   "Slack",
+   "Zapier",
+   "Google Workspace"
+  ],
+  "feat": false,
+  "best": "Small sales teams that like a simple pipeline view",
+  "setup": 1
+ },
+ {
+  "id": "klaviyo",
+  "slug": "klaviyo",
+  "name": "Klaviyo",
+  "domain": "klaviyo.com",
+  "stage": 5,
+  "cat": "Email and lifecycle",
+  "tagline": "Email and SMS driven by customer behavior",
+  "description": "Sends messages based on purchase and browsing data with AI-assisted segmentation.",
+  "price": "Free plan",
+  "ints": [
+   "Zapier"
+  ],
+  "feat": false,
+  "best": "E-commerce brands",
+  "setup": 2
+ },
+ {
+  "id": "mailchimp",
+  "slug": "mailchimp",
+  "name": "Mailchimp",
+  "domain": "mailchimp.com",
+  "stage": 5,
+  "cat": "Email and lifecycle",
+  "tagline": "Email marketing with AI content tools",
+  "description": "Builds campaigns and automations with help for subject lines and copy.",
+  "price": "Free plan",
+  "ints": [
+   "Zapier"
+  ],
+  "feat": false,
+  "best": "Small businesses starting with email",
+  "setup": 1
+ },
+ {
+  "id": "activecampaign",
+  "slug": "activecampaign",
+  "name": "ActiveCampaign",
+  "domain": "activecampaign.com",
+  "stage": 5,
+  "cat": "Email and lifecycle",
+  "tagline": "Automation for email and CRM workflows",
+  "description": "Triggers messages from customer actions and scores contacts by engagement.",
+  "price": "Paid",
+  "ints": [
+   "Salesforce",
+   "Slack",
+   "Zapier"
+  ],
+  "feat": false,
+  "best": "Teams that automate nurture flows",
+  "setup": 2
+ },
+ {
+  "id": "persado",
+  "slug": "persado",
+  "name": "Persado",
+  "domain": "persado.com",
+  "stage": 5,
+  "cat": "Email and lifecycle",
+  "tagline": "AI-optimized marketing language for enterprises",
+  "description": "Generates and tests message variants to learn which wording drives response.",
+  "price": "Custom quote",
+  "ints": [],
+  "feat": false,
+  "best": "Large brands optimizing message performance",
+  "setup": 3
+ },
+ {
+  "id": "clari",
+  "slug": "clari",
+  "name": "Clari",
+  "domain": "clari.com",
+  "stage": 5,
+  "cat": "Revenue forecasting",
+  "tagline": "Forecasting and pipeline inspection",
+  "description": "Rolls up CRM and activity data into forecast calls and deal reviews.",
+  "price": "Custom quote",
+  "ints": [
+   "Salesforce",
+   "HubSpot",
+   "Slack"
+  ],
+  "feat": false,
+  "best": "Revenue leaders who run weekly forecast reviews",
+  "setup": 3
+ },
+ {
+  "id": "people-ai",
+  "slug": "people-ai",
+  "name": "People.ai",
+  "domain": "people.ai",
+  "stage": 5,
+  "cat": "Revenue forecasting",
+  "tagline": "Captures sales activity automatically",
+  "description": "Logs emails and meetings to your CRM and highlights deals that are stalling.",
+  "price": "Custom quote",
+  "ints": [
+   "Salesforce",
+   "Slack"
+  ],
+  "feat": false,
+  "best": "Teams with incomplete CRM data",
+  "setup": 3
+ }
+]

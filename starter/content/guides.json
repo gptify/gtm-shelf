@@ -1,0 +1,182 @@
+[
+ {
+  "slug": "best-ai-cold-email-tools-for-small-teams",
+  "type": "best",
+  "cat": "Email outreach",
+  "title": "Best AI cold email tools for small teams",
+  "desc": "Outreach platforms you can start using without an enterprise contract.",
+  "intro": "Cold email tools handle sending, follow-ups, and replies. For a small team the choice comes down to how many mailboxes you need, how much personalization you want, and what it costs to get started.",
+  "crit": "Category: Email outreach. Tools sold only by custom quote are left out.",
+  "choose": [
+   "Decide how many mailboxes you will send from. Some tools are built around rotating many inboxes.",
+   "Look for warm-up and reply tracking, since they affect whether your emails reach the inbox.",
+   "Check that replies and booked meetings sync to your CRM.",
+   "Match the setup effort to your team. A tool that takes a week to configure is a poor fit for one person."
+  ],
+  "filter": {
+   "category": "Email outreach",
+   "exclude_pricing": [
+    "Custom quote"
+   ]
+  }
+ },
+ {
+  "slug": "best-ai-meeting-note-takers-for-sales-calls",
+  "type": "best",
+  "cat": "Meeting notes",
+  "title": "Best AI meeting note takers for sales calls",
+  "desc": "Tools that record, transcribe, and summarize your calls.",
+  "intro": "A note taker frees reps from typing during calls. The useful differences are where the notes end up, how easy past calls are to search, and how recordings are handled.",
+  "crit": "Category: Meeting notes.",
+  "choose": [
+   "Check whether notes push to your CRM automatically.",
+   "Ask how recordings are stored and who can see them, and check the recording-consent rules where you sell.",
+   "Compare free plan limits before you commit.",
+   "Test summary quality on a real call, not a demo."
+  ],
+  "filter": {
+   "category": "Meeting notes"
+  }
+ },
+ {
+  "slug": "best-ai-tools-for-seo-content",
+  "type": "best",
+  "cat": "SEO",
+  "title": "Best AI tools for SEO content",
+  "desc": "Tools that guide keywords, structure, and topics for pages that rank.",
+  "intro": "SEO tools tell writers what to cover and how to structure it. Some focus on planning across a whole site, others on scoring a single draft.",
+  "crit": "Category: SEO.",
+  "choose": [
+   "Separate research tools (what to write about) from editing tools (how to write it).",
+   "Look for integrations with the editor your writers already use.",
+   "Treat scores as guidance, not a target. The page still has to be useful.",
+   "Check limits on reports or documents per month before you choose a plan."
+  ],
+  "filter": {
+   "category": "SEO"
+  }
+ },
+ {
+  "slug": "best-ai-lead-data-tools-for-outbound-prospecting",
+  "type": "best",
+  "cat": "Lead data",
+  "title": "Best AI lead data tools for outbound prospecting",
+  "desc": "Databases and enrichment tools for finding the right contacts.",
+  "intro": "Good outbound starts with accurate contacts. These tools range from large databases to workflow builders that combine several data sources.",
+  "crit": "Category: Lead data.",
+  "choose": [
+   "Check coverage in your target regions and industries before you pay.",
+   "Test email accuracy on a small sample list.",
+   "Look at compliance features if you sell into Europe.",
+   "Decide whether you need a database, an enrichment workflow, or both."
+  ],
+  "filter": {
+   "category": "Lead data"
+  }
+ },
+ {
+  "slug": "best-ai-sdr-agents",
+  "type": "best",
+  "cat": "AI SDR agents",
+  "title": "Best AI SDR agents",
+  "desc": "Tools that research leads and run outreach with little human input.",
+  "intro": "AI SDR agents aim to automate prospect research, messaging, and follow-up. Results depend heavily on your data and how much review you keep in the loop.",
+  "crit": "Category: AI SDR agents.",
+  "choose": [
+   "Decide how much review you want before messages are sent.",
+   "Ask what data the agent uses to personalize outreach.",
+   "Run a small pilot and compare replies with your team's own results.",
+   "Confirm the tool connects to your CRM so leads are not duplicated."
+  ],
+  "filter": {
+   "category": "AI SDR agents"
+  }
+ },
+ {
+  "slug": "best-ai-writing-tools-for-marketing-copy",
+  "type": "best",
+  "cat": "Content writing",
+  "title": "Best AI writing tools for marketing copy",
+  "desc": "Writing assistants for blogs, ads, and email.",
+  "intro": "Writing tools speed up first drafts. The best fit depends on whether you need brand voice controls, team workflows, or research built in.",
+  "crit": "Category: Content writing.",
+  "choose": [
+   "Look for brand voice controls so drafts sound like you.",
+   "Check whether templates and workflows fit how your team works.",
+   "Plan a human editing step. AI drafts still need review.",
+   "Compare plan limits on words, seats, and projects."
+  ],
+  "filter": {
+   "category": "Content writing"
+  }
+ },
+ {
+  "slug": "best-free-ai-tools-for-sales-and-marketing",
+  "type": "best",
+  "title": "Best free AI tools for sales and marketing",
+  "desc": "Tools with a free plan, so you can test before you pay.",
+  "intro": "A free plan lets you test a tool on real work. The limits matter more than the price, so read them before you build a process around one.",
+  "crit": "Pricing: tools that list a free plan.",
+  "choose": [
+   "Read the limits of each free plan: contacts, credits, or seats.",
+   "Watch for features locked behind paid tiers that you need.",
+   "Start with one stage of your funnel, not five tools at once.",
+   "Check whether you can export your data if you switch later."
+  ],
+  "filter": {
+   "pricing": [
+    "Free plan"
+   ]
+  }
+ },
+ {
+  "slug": "best-ai-tools-that-work-with-hubspot",
+  "type": "best",
+  "title": "Best AI tools that work with HubSpot",
+  "desc": "Tools that list a HubSpot integration.",
+  "intro": "If your records live in HubSpot, a tool that syncs with it saves manual work. The depth of the integration varies a lot between tools.",
+  "crit": "Works with: tools that list HubSpot.",
+  "choose": [
+   "Confirm which HubSpot objects sync: contacts, companies, or deals.",
+   "Check whether the integration needs a paid HubSpot tier.",
+   "Test the sync with a small batch first.",
+   "Look at two-way sync versus one-way push."
+  ],
+  "filter": {
+   "integration": "HubSpot",
+   "also_include_tool_named": "HubSpot"
+  }
+ },
+ {
+  "slug": "instantly-vs-smartlead",
+  "type": "vs",
+  "a": "Instantly",
+  "b": "Smartlead",
+  "title": "Instantly vs Smartlead",
+  "desc": "Two cold email platforms compared side by side."
+ },
+ {
+  "slug": "apollo-vs-zoominfo",
+  "type": "vs",
+  "a": "Apollo",
+  "b": "ZoomInfo",
+  "title": "Apollo vs ZoomInfo",
+  "desc": "Two B2B contact databases compared side by side."
+ },
+ {
+  "slug": "jasper-vs-copy-ai",
+  "type": "vs",
+  "a": "Jasper",
+  "b": "Copy.ai",
+  "title": "Jasper vs Copy.ai",
+  "desc": "Two AI writing tools compared side by side."
+ },
+ {
+  "slug": "fireflies-vs-fathom",
+  "type": "vs",
+  "a": "Fireflies",
+  "b": "Fathom",
+  "title": "Fireflies vs Fathom",
+  "desc": "Two AI meeting note takers compared side by side."
+ }
+]
