@@ -1034,32 +1034,24 @@ export function AiReadinessAssessment() {
               <div>
                 <div style={{ fontSize: '1.125rem', fontWeight: 800, marginBottom: '4px' }}>
                   {track === 'individual'
-                    ? 'Ready to build your practical AI skills?'
+                    ? 'Want to accelerate your AI workflow adoption?'
                     : 'Want an expert review of your organizational readiness?'}
                 </div>
                 <div style={{ fontSize: '0.875rem', color: '#c5cee0', lineHeight: 1.45 }}>
                   {track === 'individual'
-                    ? 'Explore GPTify training for prompting, sales, marketing and productive AI workflows.'
-                    : 'GPTify can help validate priorities, benchmark software, and create an actionable AI roadmap.'}
+                    ? 'Talk to us about tailored workflow training, prompting frameworks, and task automation.'
+                    : 'Talk to us to validate your priority gaps, audit your data readiness, and build your 90-day roadmap.'}
                 </div>
               </div>
 
               <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                {track === 'individual' ? (
-                  <a
-                    href="https://gptify.co/gptify-academy/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn btn-primary"
-                    style={{ fontSize: '0.875rem' }}
-                  >
-                    Explore GPTify Academy ↗
-                  </a>
-                ) : (
-                  <Link href="/custom" className="btn btn-primary" style={{ fontSize: '0.875rem' }}>
-                    Discuss AI Roadmap With GPTify →
-                  </Link>
-                )}
+                <a
+                  href="#talk-to-us"
+                  className="btn btn-primary"
+                  style={{ fontSize: '0.875rem' }}
+                >
+                  Talk to us ↓
+                </a>
               </div>
             </div>
 

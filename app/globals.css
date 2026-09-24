@@ -217,8 +217,13 @@ dialog::backdrop{background:rgba(10,12,30,.55)}
 .toast.show{opacity:1;translate:-50% 0}
 
 .foot{border-top:1px solid var(--line);padding-block:28px 40px;color:var(--muted);font-size:.9rem}
-.foot .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-between;align-items:center}
-.foot p{margin:0;max-width:44em}
+.foot .wrap{display:grid;grid-template-columns:1fr;gap:20px}
+@media (min-width: 900px){
+  .foot .wrap{grid-template-columns:minmax(320px, 1.35fr) minmax(320px, 1fr);gap:40px;align-items:start}
+}
+.foot p{margin:0;max-width:none;text-wrap:pretty}
+p, .lede{text-wrap:pretty}
+h1, h2, h3, h4{text-wrap:balance}
 
 /* navigation */
 .nav{display:flex;gap:4px}

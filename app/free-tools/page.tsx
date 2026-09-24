@@ -115,7 +115,7 @@ export default function FreeToolsPage() {
           <h1 style={{ margin: '12px 0 8px' }}>
             Free AI Calculators &amp; Revenue Utilities
           </h1>
-          <p className="lede" style={{ margin: '0 auto', maxWidth: '38em' }}>
+          <p className="lede" style={{ margin: '0 auto', maxWidth: '46em', textWrap: 'pretty' }}>
             Interactive decision-support tools built by the team at <a href="https://gptify.co" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--primary)', textDecoration: 'underline' }}>GPTify.co</a> to help revenue leaders plan software spend, evaluate operational readiness, and deploy reliable workflows.
           </p>
         </header>
@@ -266,15 +266,15 @@ export default function FreeToolsPage() {
           }}
         >
           <span className="badge-pill">Bespoke Enterprise Systems</span>
-          <h2 style={{ fontSize: '1.5rem', fontWeight: 800, margin: '12px 0 8px' }}>
+          <h2 style={{ fontSize: '1.5rem', fontWeight: 800, margin: '12px 0 8px', textWrap: 'balance' }}>
             Need Custom Internal Tooling or CRM Integrations?
           </h2>
-          <p style={{ fontSize: '0.9375rem', color: 'var(--muted)', lineHeight: 1.5, margin: '0 auto 24px', maxWidth: '38em' }}>
-            When public calculators and spreadsheets are not enough, our team at GPTify.co designs bespoke AI workflows, automated lead routing, and custom CRM integrations directly tailored to your proprietary stack.
+          <p style={{ fontSize: '0.9375rem', color: 'var(--muted)', lineHeight: 1.5, margin: '0 auto 24px', maxWidth: '44em', textWrap: 'pretty' }}>
+            When off-the-shelf calculators and public spreadsheets are not enough, our team designs bespoke AI workflows, automated lead routing, and custom CRM integrations directly tailored to your revenue stack.
           </p>
           <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', justifyContent: 'center' }}>
             <Link href="/custom" className="btn btn-primary" style={{ padding: '12px 24px', textDecoration: 'none' }}>
-              Request a Custom Build →
+              Talk to us →
             </Link>
             <Link href="/find" className="btn btn-ghost" style={{ padding: '12px 20px', textDecoration: 'none' }}>
               Find Off-the-Shelf Tools

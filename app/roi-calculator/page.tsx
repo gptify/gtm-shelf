@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { RoiCalculator } from '@/components/RoiCalculator';
+import { InlineEnquiryForm } from '@/components/InlineEnquiryForm';
 
 export const metadata: Metadata = {
   title: 'AI ROI Calculator — Model Financial Returns & Hours Reclaimed | GTM Shelf',
@@ -176,35 +177,20 @@ export default function RoiCalculatorPage() {
           </div>
 
           <div
+            id="talk-to-us"
             style={{
-              marginTop: '36px',
-              padding: '24px',
-              borderRadius: '12px',
-              background: 'linear-gradient(135deg, var(--brand-soft) 0%, var(--bg) 100%)',
-              border: '1px solid var(--line)',
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              flexWrap: 'wrap',
-              gap: '16px',
+              marginTop: '48px',
+              borderTop: '1px solid var(--line)',
+              paddingTop: '36px',
             }}
           >
-            <div>
-              <div style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--ink)', marginBottom: '4px' }}>
-                Need help auditing your revenue stack?
-              </div>
-              <div style={{ fontSize: '0.875rem', color: 'var(--muted)' }}>
-                GPTify.co helps B2B organizations design, benchmark, and deploy reliable AI workflows.
-              </div>
-            </div>
-            <div style={{ display: 'flex', gap: '10px' }}>
-              <Link href="/free-tools" className="btn btn-ghost" style={{ fontSize: '0.875rem' }}>
-                View All Free Tools
-              </Link>
-              <Link href="/custom" className="btn btn-primary" style={{ fontSize: '0.875rem' }}>
-                Talk to GPTify.co →
-              </Link>
-            </div>
+            <InlineEnquiryForm
+              title="Talk to us"
+              subtitle="Have questions about your workflow numbers, need an expert stack review, or want a custom AI automation? Send us your enquiry and we'll respond within 1 business day."
+              source="roi-calculator"
+              defaultMessage="Hi, I modeled our workflow on the AI ROI Calculator and would like to discuss our stack requirements."
+              buttonText="Send Enquiry →"
+            />
           </div>
         </section>
       </main>

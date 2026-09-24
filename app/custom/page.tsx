@@ -36,15 +36,15 @@ export default function CustomBuildPage() {
         </nav>
 
         {/* Header */}
-        <header className="page-center">
+        <header className="page-center" style={{ maxWidth: '820px' }}>
           <span className="badge-pill">
-            Bespoke GTM Automations
+            Bespoke GTM Automations &amp; Advisory
           </span>
           <h1 style={{ margin: '10px 0' }}>
-            Request a Custom AI Build
+            Talk to Us — Request a Custom Build or Stack Audit
           </h1>
-          <p className="lede" style={{ margin: '0 auto', maxWidth: '36em' }}>
-            Need an AI workflow connected directly to your proprietary CRM, custom outbound triggers, or internal database? Tell us what you need and our team at GPTify.co will review your stack.
+          <p className="lede" style={{ margin: '0 auto', maxWidth: '44em', textWrap: 'pretty' }}>
+            Need an AI workflow connected directly to your proprietary CRM, custom outbound triggers, or internal database? Tell us what you need and our team will review your stack within 1 business day.
           </p>
         </header>
 

@@ -824,10 +824,10 @@ export function RoiCalculator() {
             >
               <div>
                 <strong style={{ fontSize: '0.9375rem', color: 'var(--ink)', display: 'block', marginBottom: '4px' }}>
-                  Ready to implement this workflow?
+                  Want help implementing this workflow?
                 </strong>
                 <p style={{ margin: 0, fontSize: '0.8125rem', color: 'var(--muted)', lineHeight: 1.45 }}>
-                  Discover benchmarked AI software on GTM Shelf, or consult with GPTify.co for custom agentic workflow implementation.
+                  Discover benchmarked AI software on GTM Shelf, or send us an enquiry to model your custom workflow.
                 </p>
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
@@ -838,13 +838,13 @@ export function RoiCalculator() {
                 >
                   Browse Prospecting Tools →
                 </Link>
-                <Link
-                  href="/custom"
+                <a
+                  href="#talk-to-us"
                   className="btn btn-ghost"
                   style={{ fontSize: '0.8125rem', padding: '8px 14px' }}
                 >
-                  Custom AI Architecture
-                </Link>
+                  Talk to us ↓
+                </a>
               </div>
             </div>
           </div>

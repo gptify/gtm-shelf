@@ -11,15 +11,15 @@ export function Footer({ stages = STAGES }: FooterProps) {
     <footer className="foot">
       <div className="wrap">
         <div>
-          <p>
-            <strong>GTM Shelf</strong> is an independent directory of AI tools for sales and marketing teams. Run by <a href="https://gptify.co" target="_blank" rel="noopener noreferrer" style={{ fontWeight: 700, color: 'inherit', textDecoration: 'underline' }}>GPTify.co</a>.
+          <p style={{ lineHeight: 1.6 }}>
+            <strong>GTM Shelf</strong> is an independent directory of AI tools for sales and marketing teams. <span style={{ whiteSpace: 'nowrap' }}>Run by <a href="https://gptify.co" target="_blank" rel="noopener noreferrer" style={{ fontWeight: 700, color: 'inherit', textDecoration: 'underline' }}>GPTify.co</a>.</span>
           </p>
           <p style={{ marginTop: '8px', fontSize: '0.8125rem' }}>
             Rankings are editorial. Paid placements never affect finder results or organic order.
           </p>
         </div>
 
-        <nav style={{ display: 'flex', flexWrap: 'wrap', gap: '16px 24px', alignItems: 'center' }} aria-label="Footer navigation">
+        <nav style={{ display: 'flex', flexWrap: 'wrap', gap: '14px 20px', alignItems: 'center' }} aria-label="Footer navigation">
           {stages.map((s) => (
             <Link key={s.id} href={`/stage/${s.slug}`} style={{ color: 'inherit', textDecoration: 'none' }}>
               {s.name}
@@ -32,7 +32,7 @@ export function Footer({ stages = STAGES }: FooterProps) {
             Free Tools
           </Link>
           <Link href="/custom" style={{ color: 'inherit', textDecoration: 'none' }}>
-            Custom build
+            Talk to us
           </Link>
           <Link href="/advertise" style={{ color: 'inherit', textDecoration: 'none' }}>
             Advertise

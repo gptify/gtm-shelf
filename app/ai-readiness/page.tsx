@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { AiReadinessAssessment } from '@/components/AiReadinessAssessment';
+import { InlineEnquiryForm } from '@/components/InlineEnquiryForm';
 
 export const metadata: Metadata = {
   title: 'AI Readiness Assessment — Audit Capability & Maturity | GTM Shelf',
@@ -176,35 +177,20 @@ export default function AiReadinessPage() {
           </div>
 
           <div
+            id="talk-to-us"
             style={{
-              marginTop: '36px',
-              padding: '24px',
-              borderRadius: '12px',
-              background: 'linear-gradient(135deg, var(--brand-soft) 0%, var(--bg) 100%)',
-              border: '1px solid var(--line)',
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              flexWrap: 'wrap',
-              gap: '16px',
+              marginTop: '48px',
+              borderTop: '1px solid var(--line)',
+              paddingTop: '36px',
             }}
           >
-            <div>
-              <div style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--ink)', marginBottom: '4px' }}>
-                Need a guided AI maturity audit?
-              </div>
-              <div style={{ fontSize: '0.875rem', color: 'var(--muted)' }}>
-                GPTify.co partners with B2B leadership teams to benchmark systems and build production-ready workflows.
-              </div>
-            </div>
-            <div style={{ display: 'flex', gap: '10px' }}>
-              <Link href="/roi-calculator" className="btn btn-ghost" style={{ fontSize: '0.875rem' }}>
-                Calculate AI ROI
-              </Link>
-              <Link href="/custom" className="btn btn-primary" style={{ fontSize: '0.875rem' }}>
-                Discuss AI Roadmap →
-              </Link>
-            </div>
+            <InlineEnquiryForm
+              title="Talk to us"
+              subtitle="Want an expert review of your readiness diagnostic, a guided CRM data audit, or custom workflow design? Send us your enquiry and we'll respond within 1 business day."
+              source="ai-readiness"
+              defaultMessage="Hi, I took the AI Readiness Assessment and would like to discuss our diagnostic results and next steps."
+              buttonText="Send Enquiry →"
+            />
           </div>
         </section>
       </main>
