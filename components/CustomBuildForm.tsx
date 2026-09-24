@@ -1,42 +1,68 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 
-export function CustomBuildForm() {
+interface PrefillData {
+  goal: string;
+  need: string;
+  q: string;
+  crm: string;
+  team: string;
+}
+
+function QueryPrefill({
+  onPrefill,
+}: {
+  onPrefill: (data: {
+    what: string;
+    tools_used: string;
+    team_size: string;
+    hasPrefill: boolean;
+    meta: PrefillData;
+  }) => void;
+}) {
   const searchParams = useSearchParams();
 
-  // Prefill extraction
-  const prefillGoal = searchParams.get('goal') || '';
-  const prefillNeed = searchParams.get('need') || '';
-  const prefillQ = searchParams.get('q') || '';
-  const prefillCrm = searchParams.get('crm') || '';
-  const prefillTeam = searchParams.get('team') || '';
+  useEffect(() => {
+    const goal = searchParams.get('goal') || '';
+    const need = searchParams.get('need') || '';
+    const q = searchParams.get('q') || '';
+    const crm = searchParams.get('crm') || '';
+    const team = searchParams.get('team') || '';
 
-  const hasPrefill = Boolean(prefillGoal || prefillNeed || prefillQ || prefillCrm || prefillTeam);
+    const has = Boolean(goal || need || q || crm || team);
+    if (!has) return;
 
-  // Initial what construction
-  const initialWhat = (() => {
     const parts = [];
-    if (prefillNeed) parts.push(`Primary need: ${prefillNeed}`);
-    if (prefillGoal) parts.push(`Goal: ${prefillGoal}`);
-    if (prefillQ) parts.push(`Search keyword: ${prefillQ}`);
-    if (prefillCrm) parts.push(`Current CRM: ${prefillCrm}`);
-    return parts.length > 0 ? parts.join('\n') : '';
-  })();
+    if (need) parts.push(`Primary need: ${need}`);
+    if (goal) parts.push(`Goal: ${goal}`);
+    if (q) parts.push(`Search keyword: ${q}`);
+    if (crm) parts.push(`Current CRM: ${crm}`);
 
-  const initialTeamSize = (() => {
-    if (prefillTeam === 'solo') return 'Just me (1)';
-    if (prefillTeam === 'small') return 'Small team (2–10)';
-    if (prefillTeam === 'mid') return 'Growing team (11–50)';
-    return '';
-  })();
+    let teamSize = '';
+    if (team === 'solo') teamSize = 'Just me (1)';
+    if (team === 'small') teamSize = 'Small team (2–10)';
+    if (team === 'mid') teamSize = 'Growing team (11–50)';
 
+    onPrefill({
+      what: parts.join('\n'),
+      tools_used: crm ? `CRM: ${crm}` : '',
+      team_size: teamSize,
+      hasPrefill: true,
+      meta: { goal, need, q, crm, team },
+    });
+  }, [searchParams, onPrefill]);
+
+  return null;
+}
+
+export function CustomBuildForm() {
   const [formData, setFormData] = useState({
-    what: initialWhat,
-    tools_used: prefillCrm ? `CRM: ${prefillCrm}` : '',
-    team_size: initialTeamSize,
+    what: '',
+    tools_used: '',
+    team_size: '',
     budget: '',
     timing: '',
     language: 'English',
@@ -45,22 +71,29 @@ export function CustomBuildForm() {
     hp_field: '', // Honeypot
   });
 
-  const [prefillShown, setPrefillShown] = useState(hasPrefill);
+  const [prefillMeta, setPrefillMeta] = useState<PrefillData | null>(null);
+  const [prefillShown, setPrefillShown] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
 
-  useEffect(() => {
-    if (hasPrefill) {
-      setFormData((prev) => ({
-        ...prev,
-        what: prev.what || initialWhat,
-        tools_used: prev.tools_used || (prefillCrm ? `CRM: ${prefillCrm}` : ''),
-        team_size: prev.team_size || initialTeamSize,
-      }));
-    }
-  }, [hasPrefill, initialWhat, prefillCrm, initialTeamSize]);
+  function handlePrefillData(data: {
+    what: string;
+    tools_used: string;
+    team_size: string;
+    hasPrefill: boolean;
+    meta: PrefillData;
+  }) {
+    setFormData((prev) => ({
+      ...prev,
+      what: prev.what || data.what,
+      tools_used: prev.tools_used || data.tools_used,
+      team_size: prev.team_size || data.team_size,
+    }));
+    setPrefillMeta(data.meta);
+    setPrefillShown(true);
+  }
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -108,10 +141,8 @@ export function CustomBuildForm() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...formData,
-          source: hasPrefill ? (prefillQ ? 'search' : 'finder') : 'direct',
-          prefill: hasPrefill
-            ? { goal: prefillGoal, need: prefillNeed, q: prefillQ, crm: prefillCrm, team: prefillTeam }
-            : null,
+          source: prefillMeta ? (prefillMeta.q ? 'search' : 'finder') : 'direct',
+          prefill: prefillMeta || null,
         }),
       });
 
@@ -150,19 +181,25 @@ export function CustomBuildForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="form-box" noValidate>
-      {prefillShown && (
-        <div className="form-banner info">
-          <span>Prefilled from your finder answers. Edit anything you like.</span>
-          <button
-            type="button"
-            onClick={() => setPrefillShown(false)}
-            style={{ background: 'none', border: 'none', fontWeight: 'bold', cursor: 'pointer', color: 'inherit' }}
-          >
-            ✕
-          </button>
-        </div>
-      )}
+    <>
+      <Suspense fallback={null}>
+        <QueryPrefill onPrefill={handlePrefillData} />
+      </Suspense>
+
+      <form onSubmit={handleSubmit} className="form-box" noValidate>
+        {prefillShown && (
+          <div className="form-banner info">
+            <span>Prefilled from your finder answers. Edit anything you like.</span>
+            <button
+              type="button"
+              onClick={() => setPrefillShown(false)}
+              style={{ background: 'none', border: 'none', fontWeight: 'bold', cursor: 'pointer', color: 'inherit' }}
+            >
+              ✕
+            </button>
+          </div>
+        )}
+
 
       {errorMsg && (
         <div className="form-banner error">
@@ -341,5 +378,6 @@ export function CustomBuildForm() {
         </p>
       </div>
     </form>
+    </>
   );
 }

@@ -31,6 +31,9 @@ export function Footer({ stages = STAGES }: FooterProps) {
           <Link href="/custom" style={{ color: 'inherit', textDecoration: 'none' }}>
             Custom build
           </Link>
+          <Link href="/advertise" style={{ color: 'inherit', textDecoration: 'none' }}>
+            Advertise
+          </Link>
           <Link href="/about" style={{ color: 'inherit', textDecoration: 'none' }}>
             About
           </Link>

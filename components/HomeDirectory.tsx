@@ -14,6 +14,7 @@ import { ToolGrid } from '@/components/ToolGrid';
 import { ToolTable } from '@/components/ToolTable';
 import { ToolDrawer } from '@/components/ToolDrawer';
 import { SubmitModal } from '@/components/SubmitModal';
+import { NewsletterSignup } from '@/components/NewsletterSignup';
 import { Footer } from '@/components/Footer';
 
 interface HomeDirectoryProps {
@@ -430,6 +431,9 @@ export function HomeDirectory({
             </div>
           </div>
         </section>
+
+        {/* Newsletter Briefing Signup */}
+        <NewsletterSignup />
       </div>
 
       <Footer stages={stages} />

@@ -1,4 +1,3 @@
-import { Suspense } from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Header } from '@/components/Header';
@@ -49,16 +48,8 @@ export default function CustomBuildPage() {
           </p>
         </header>
 
-        {/* Form Container with Suspense for query parameter prefilling */}
-        <Suspense
-          fallback={
-            <div style={{ padding: '48px', textAlign: 'center', color: 'var(--muted)', fontSize: '.9375rem' }}>
-              Loading form...
-            </div>
-          }
-        >
-          <CustomBuildForm />
-        </Suspense>
+        {/* Form Container */}
+        <CustomBuildForm />
       </main>
 
       <Footer />

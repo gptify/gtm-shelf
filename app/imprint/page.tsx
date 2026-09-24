@@ -59,6 +59,16 @@ export default function ImprintPage() {
 
             <div className="pt-3 border-t border-[var(--color-border)]">
               <h3 className="font-bold text-xs uppercase tracking-wider text-[var(--color-muted)] mb-1">
+                Postal Address
+              </h3>
+              <p className="text-[var(--color-text)] leading-relaxed">
+                GPTify / Shukhrat Iskandarov<br />
+                Germany
+              </p>
+            </div>
+
+            <div className="pt-3 border-t border-[var(--color-border)]">
+              <h3 className="font-bold text-xs uppercase tracking-wider text-[var(--color-muted)] mb-1">
                 Contact Information
               </h3>
               <p className="text-[var(--color-text)]">
