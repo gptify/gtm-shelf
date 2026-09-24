@@ -38,8 +38,8 @@ const FREE_TOOLS: FreeTool[] = [
     description:
       'Model your AI software budget against pipeline throughput, administrative friction eliminated, and campaign velocity before purchasing commercial software licenses.',
     features: ['Manual data entry hours eliminated', 'Software budget vs. pipeline velocity', 'Tool stack payback period'],
-    url: 'https://gptify.co/ai-roi-calculator/?utm_source=gtmshelf&utm_medium=free-tools-hub&utm_campaign=roi-calc',
-    buttonText: 'Launch Calculator ↗',
+    url: '/roi-calculator',
+    buttonText: 'Launch Calculator →',
   },
   {
     id: 'ai-readiness-assessment',
@@ -47,10 +47,10 @@ const FREE_TOOLS: FreeTool[] = [
     eyebrow: 'Diagnostic Audit',
     badge: 'Diagnostic',
     description:
-      "Benchmark your team's workflow automation maturity, data hygiene, CRM readiness, and technical bandwidth across 5 strategic revenue dimensions.",
+      "Benchmark your team's workflow automation maturity, data hygiene, CRM readiness, and technical bandwidth across 6 strategic revenue dimensions.",
     features: ['5-minute executive survey', 'Instant maturity score (0–100)', 'Targeted gap analysis breakdown'],
-    url: 'https://gptify.co/ai-readiness-assessment/?utm_source=gtmshelf&utm_medium=free-tools-hub&utm_campaign=readiness',
-    buttonText: 'Take Assessment ↗',
+    url: '/ai-readiness',
+    buttonText: 'Take Assessment →',
   },
   {
     id: 'ai-policy-generator',
@@ -129,7 +129,7 @@ export default function FreeToolsPage() {
             Explore Dedicated Calculators &amp; Generators
           </h2>
           <p style={{ fontSize: '0.9375rem', color: 'var(--muted)', margin: 0 }}>
-            Deep-dive diagnostic tools and prompt vaults hosted on GPTify.co.
+            Interactive ROI calculators, diagnostic maturity audits, and prompt vaults.
           </p>
         </div>
 
@@ -209,22 +209,41 @@ export default function FreeToolsPage() {
                 </div>
 
                 <div style={{ paddingTop: '16px', borderTop: '1px solid var(--border)' }}>
-                  <a
-                    href={tool.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn btn-primary"
-                    style={{
-                      width: '100%',
-                      padding: '11px 16px',
-                      fontSize: '0.875rem',
-                      fontWeight: 600,
-                      textAlign: 'center',
-                      textDecoration: 'none',
-                    }}
-                  >
-                    {tool.buttonText}
-                  </a>
+                  {tool.url.startsWith('/') ? (
+                    <Link
+                      href={tool.url}
+                      className="btn btn-primary"
+                      style={{
+                        width: '100%',
+                        padding: '11px 16px',
+                        fontSize: '0.875rem',
+                        fontWeight: 600,
+                        textAlign: 'center',
+                        textDecoration: 'none',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      {tool.buttonText}
+                    </Link>
+                  ) : (
+                    <a
+                      href={tool.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-primary"
+                      style={{
+                        width: '100%',
+                        padding: '11px 16px',
+                        fontSize: '0.875rem',
+                        fontWeight: 600,
+                        textAlign: 'center',
+                        textDecoration: 'none',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      {tool.buttonText}
+                    </a>
+                  )}
                 </div>
               </div>
             ))}
