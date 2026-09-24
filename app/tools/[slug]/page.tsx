@@ -121,11 +121,22 @@ export default async function ToolPage({ params }: PageProps) {
         <Header />
 
         <main className="page" style={{ maxWidth: '800px' }}>
-          <nav className="crumbs" aria-label="Breadcrumb">
-            <Link href="/">Home</Link> &gt;{' '}
-            <Link href={`/stage/${stage.slug}`}>{stage.name}</Link> &gt;{' '}
-            <Link href={`/category/${tool.category_slug}`}>{tool.category_name}</Link> &gt;{' '}
-            <span>{tool.name}</span>
+          <nav aria-label="Breadcrumb">
+            <ol className="crumbs">
+              <li>
+                <Link href="/">Home</Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li>
+                <Link href={`/stage/${stage.slug}`}>{stage.name}</Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li>
+                <Link href={`/category/${tool.category_slug}`}>{tool.category_name}</Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li aria-current="page">{tool.name}</li>
+            </ol>
           </nav>
 
           <div style={{ display: 'flex', gap: '20px', alignItems: 'center', margin: '20px 0 24px' }}>

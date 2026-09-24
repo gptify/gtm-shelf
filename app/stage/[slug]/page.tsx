@@ -100,8 +100,14 @@ export default async function StagePage({ params }: PageProps) {
         <Header />
 
         <main className="page">
-          <nav className="crumbs" aria-label="Breadcrumb">
-            <Link href="/">Home</Link> &gt; <span>{stage.name}</span>
+          <nav aria-label="Breadcrumb">
+            <ol className="crumbs">
+              <li>
+                <Link href="/">Home</Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li aria-current="page">{stage.name}</li>
+            </ol>
           </nav>
 
           <h1 style={{ margin: '0 0 12px' }}>{`${stage.name} tools`}</h1>

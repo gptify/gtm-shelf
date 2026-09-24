@@ -13,34 +13,28 @@ export const metadata: Metadata = {
 
 export default function ImprintPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-[var(--color-bg)] text-[var(--color-text)]">
+    <div className="wrap">
       <Header />
 
-      <main className="flex-1 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
-        <nav aria-label="Breadcrumb" className="mb-6 text-sm text-[var(--color-muted)]">
-          <ol className="flex items-center space-x-2">
+      <main className="page prose-page" id="main-content">
+        <nav aria-label="Breadcrumb">
+          <ol className="crumbs">
             <li>
-              <Link href="/" className="hover:text-[var(--color-text)] transition-colors">
-                Home
-              </Link>
+              <Link href="/">Home</Link>
             </li>
             <li aria-hidden="true">/</li>
-            <li aria-current="page" className="text-[var(--color-text)] font-medium">
-              Imprint
-            </li>
+            <li aria-current="page">Imprint</li>
           </ol>
         </nav>
 
-        <header className="mb-10 border-b border-[var(--color-border)] pb-6">
-          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mb-2">
-            Imprint (Legal Notice)
-          </h1>
-          <p className="text-sm text-[var(--color-muted)]">
+        <header>
+          <h1>Imprint (Legal Notice)</h1>
+          <p className="lede">
             Information in accordance with statutory provider identification requirements.
           </p>
         </header>
 
-        <div className="prose dark:prose-invert max-w-none space-y-6 text-sm leading-relaxed text-[var(--color-text)]">
+        <div>
           <section className="p-6 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] space-y-4">
             <div>
               <h2 className="text-base font-bold uppercase tracking-wider text-[var(--color-muted)] text-xs mb-1">

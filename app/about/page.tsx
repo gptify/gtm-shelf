@@ -19,40 +19,34 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-[var(--color-bg)] text-[var(--color-text)]">
+    <div className="wrap">
       <Header />
 
-      <main className="flex-1 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
+      <main className="page prose-page" id="main-content">
         {/* Breadcrumb */}
-        <nav aria-label="Breadcrumb" className="mb-6 text-sm text-[var(--color-muted)]">
-          <ol className="flex items-center space-x-2">
+        <nav aria-label="Breadcrumb">
+          <ol className="crumbs">
             <li>
-              <Link href="/" className="hover:text-[var(--color-text)] transition-colors">
-                Home
-              </Link>
+              <Link href="/">Home</Link>
             </li>
             <li aria-hidden="true">/</li>
-            <li aria-current="page" className="text-[var(--color-text)] font-medium">
-              About
-            </li>
+            <li aria-current="page">About</li>
           </ol>
         </nav>
 
         {/* Hero */}
-        <header className="mb-12 border-b border-[var(--color-border)] pb-8">
-          <span className="text-xs font-semibold px-2.5 py-1 rounded bg-[var(--color-stage-engage-tint,#e8f0fe)] text-[var(--color-primary)]">
+        <header>
+          <span className="badge-pill">
             Our Mission & Editorial Code
           </span>
-          <h1 className="text-3xl sm:text-5xl font-bold tracking-tight mt-3 mb-4">
-            Why We Built GTM Shelf
-          </h1>
-          <p className="text-lg text-[var(--color-muted)] leading-relaxed max-w-2xl">
+          <h1>Why We Built GTM Shelf</h1>
+          <p className="lede">
             Choosing an AI tool for sales or marketing meant 40 open browser tabs, identical claims, hidden pricing, and pay-to-play rankings. We built GTM Shelf to change that.
           </p>
         </header>
 
         {/* Content */}
-        <article className="prose dark:prose-invert max-w-none space-y-10 text-[var(--color-text)] leading-relaxed">
+        <article>
           <section className="space-y-4">
             <h2 className="text-2xl font-bold tracking-tight">1. Funnel-First Organization</h2>
             <p className="text-base text-[var(--color-muted)] leading-relaxed">

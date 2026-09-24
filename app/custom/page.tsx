@@ -21,34 +21,30 @@ export const metadata: Metadata = {
 
 export default function CustomBuildPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-[var(--color-bg)] text-[var(--color-text)]">
+    <div className="wrap">
       <Header />
 
-      <main className="flex-1 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+      <main className="page" id="main-content">
         {/* Breadcrumb */}
-        <nav aria-label="Breadcrumb" className="mb-6 text-sm text-[var(--color-muted)]">
-          <ol className="flex items-center space-x-2">
+        <nav aria-label="Breadcrumb">
+          <ol className="crumbs">
             <li>
-              <Link href="/" className="hover:text-[var(--color-text)] transition-colors">
-                Home
-              </Link>
+              <Link href="/">Home</Link>
             </li>
             <li aria-hidden="true">/</li>
-            <li aria-current="page" className="text-[var(--color-text)] font-medium">
-              Custom Build
-            </li>
+            <li aria-current="page">Custom Build</li>
           </ol>
         </nav>
 
         {/* Header */}
-        <header className="text-center max-w-2xl mx-auto mb-10">
-          <span className="text-xs font-semibold px-2.5 py-1 rounded bg-[var(--color-stage-engage-tint,#e8f0fe)] text-[var(--color-primary)]">
+        <header className="page-center">
+          <span className="badge-pill">
             Bespoke GTM Automations
           </span>
-          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mt-3 mb-3">
+          <h1 style={{ margin: '10px 0' }}>
             Request a Custom AI Build
           </h1>
-          <p className="text-base text-[var(--color-muted)] leading-relaxed">
+          <p className="lede" style={{ margin: '0 auto', maxWidth: '36em' }}>
             Need an AI workflow connected directly to your proprietary CRM, custom outbound triggers, or internal database? Tell us what you need and our team at GPTify will review your stack.
           </p>
         </header>
@@ -56,7 +52,7 @@ export default function CustomBuildPage() {
         {/* Form Container with Suspense for query parameter prefilling */}
         <Suspense
           fallback={
-            <div className="p-12 text-center text-sm text-[var(--color-muted)]">
+            <div style={{ padding: '48px', textAlign: 'center', color: 'var(--muted)', fontSize: '.9375rem' }}>
               Loading form...
             </div>
           }

@@ -13,34 +13,28 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-[var(--color-bg)] text-[var(--color-text)]">
+    <div className="wrap">
       <Header />
 
-      <main className="flex-1 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
-        <nav aria-label="Breadcrumb" className="mb-6 text-sm text-[var(--color-muted)]">
-          <ol className="flex items-center space-x-2">
+      <main className="page prose-page" id="main-content">
+        <nav aria-label="Breadcrumb">
+          <ol className="crumbs">
             <li>
-              <Link href="/" className="hover:text-[var(--color-text)] transition-colors">
-                Home
-              </Link>
+              <Link href="/">Home</Link>
             </li>
             <li aria-hidden="true">/</li>
-            <li aria-current="page" className="text-[var(--color-text)] font-medium">
-              Privacy Policy
-            </li>
+            <li aria-current="page">Privacy Policy</li>
           </ol>
         </nav>
 
-        <header className="mb-10 border-b border-[var(--color-border)] pb-6">
-          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mb-2">
-            Privacy Policy
-          </h1>
-          <p className="text-sm text-[var(--color-muted)]">
-            Last updated: September 2026
+        <header>
+          <h1>Privacy Policy</h1>
+          <p className="lede">
+            Last updated: September 2026. How GTM Shelf protects your data and adheres to privacy principles.
           </p>
         </header>
 
-        <div className="prose dark:prose-invert max-w-none space-y-8 text-sm leading-relaxed text-[var(--color-text)]">
+        <div>
           <section className="space-y-3">
             <h2 className="text-lg font-bold">1. Who We Are</h2>
             <p className="text-[var(--color-muted)] leading-relaxed">

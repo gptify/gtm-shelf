@@ -96,10 +96,18 @@ export default async function CategoryPage({ params }: PageProps) {
         <Header />
 
         <main className="page">
-          <nav className="crumbs" aria-label="Breadcrumb">
-            <Link href="/">Home</Link> &gt;{' '}
-            <Link href={`/stage/${stage.slug}`}>{stage.name}</Link> &gt;{' '}
-            <span>{category.name}</span>
+          <nav aria-label="Breadcrumb">
+            <ol className="crumbs">
+              <li>
+                <Link href="/">Home</Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li>
+                <Link href={`/stage/${stage.slug}`}>{stage.name}</Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li aria-current="page">{category.name}</li>
+            </ol>
           </nav>
 
           <h1 style={{ margin: '0 0 12px' }}>{`Best AI tools for ${category.phrase}`}</h1>

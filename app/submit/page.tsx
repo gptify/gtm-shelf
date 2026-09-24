@@ -21,34 +21,30 @@ export const metadata: Metadata = {
 
 export default function SubmitPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-[var(--color-bg)] text-[var(--color-text)]">
+    <div className="wrap">
       <Header />
 
-      <main className="flex-1 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+      <main className="page" id="main-content">
         {/* Breadcrumb */}
-        <nav aria-label="Breadcrumb" className="mb-6 text-sm text-[var(--color-muted)]">
-          <ol className="flex items-center space-x-2">
+        <nav aria-label="Breadcrumb">
+          <ol className="crumbs">
             <li>
-              <Link href="/" className="hover:text-[var(--color-text)] transition-colors">
-                Home
-              </Link>
+              <Link href="/">Home</Link>
             </li>
             <li aria-hidden="true">/</li>
-            <li aria-current="page" className="text-[var(--color-text)] font-medium">
-              Submit Tool
-            </li>
+            <li aria-current="page">Submit Tool</li>
           </ol>
         </nav>
 
         {/* Header */}
-        <header className="text-center max-w-2xl mx-auto mb-10">
-          <span className="text-xs font-semibold px-2.5 py-1 rounded bg-[var(--color-stage-engage-tint,#e8f0fe)] text-[var(--color-primary)]">
-            Community & Vendor Directory
+        <header className="page-center">
+          <span className="badge-pill">
+            Community & Vendor Submissions
           </span>
-          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mt-3 mb-3">
+          <h1 style={{ margin: '10px 0' }}>
             Submit an AI Tool
           </h1>
-          <p className="text-base text-[var(--color-muted)] leading-relaxed">
+          <p className="lede" style={{ margin: '0 auto', maxWidth: '36em' }}>
             Know a great AI tool for sales or marketing that should be listed? Or represent a vendor? Submit it here for editorial review and fact-checking.
           </p>
         </header>

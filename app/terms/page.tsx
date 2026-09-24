@@ -13,34 +13,28 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-[var(--color-bg)] text-[var(--color-text)]">
+    <div className="wrap">
       <Header />
 
-      <main className="flex-1 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
-        <nav aria-label="Breadcrumb" className="mb-6 text-sm text-[var(--color-muted)]">
-          <ol className="flex items-center space-x-2">
+      <main className="page prose-page" id="main-content">
+        <nav aria-label="Breadcrumb">
+          <ol className="crumbs">
             <li>
-              <Link href="/" className="hover:text-[var(--color-text)] transition-colors">
-                Home
-              </Link>
+              <Link href="/">Home</Link>
             </li>
             <li aria-hidden="true">/</li>
-            <li aria-current="page" className="text-[var(--color-text)] font-medium">
-              Terms of Use
-            </li>
+            <li aria-current="page">Terms of Use</li>
           </ol>
         </nav>
 
-        <header className="mb-10 border-b border-[var(--color-border)] pb-6">
-          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mb-2">
-            Terms of Use
-          </h1>
-          <p className="text-sm text-[var(--color-muted)]">
-            Last updated: September 2026
+        <header>
+          <h1>Terms of Use</h1>
+          <p className="lede">
+            Last updated: September 2026. Terms and conditions governing the use of GTM Shelf.
           </p>
         </header>
 
-        <div className="prose dark:prose-invert max-w-none space-y-8 text-sm leading-relaxed text-[var(--color-text)]">
+        <div>
           <section className="space-y-3">
             <h2 className="text-lg font-bold">1. Agreement to Terms</h2>
             <p className="text-[var(--color-muted)] leading-relaxed">

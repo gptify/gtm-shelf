@@ -131,25 +131,17 @@ export function CustomBuildForm() {
 
   if (submitted) {
     return (
-      <div className="p-8 sm:p-10 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] text-center max-w-xl mx-auto shadow-sm">
-        <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-[var(--color-stage-prospect-tint,#e6f4ea)] text-[var(--color-success,#137333)] flex items-center justify-center text-2xl font-bold">
-          ✓
-        </div>
-        <h2 className="text-2xl font-bold mb-2">Request Received!</h2>
-        <p className="text-[var(--color-muted)] leading-relaxed mb-6">
-          Thank you, <span className="font-semibold text-[var(--color-text)]">{formData.name}</span>. Our team at GPTify will review your workflow requirements and reach out within 1 business day.
+      <div className="form-success">
+        <div className="check">✓</div>
+        <h2>Request Received!</h2>
+        <p>
+          Thank you, <strong style={{ color: 'var(--ink)' }}>{formData.name}</strong>. Our team at GPTify will review your workflow requirements and reach out within 1 business day.
         </p>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-          <Link
-            href="/"
-            className="w-full sm:w-auto px-5 py-2.5 rounded-lg bg-[var(--color-primary)] text-white text-sm font-semibold hover:opacity-95 transition-opacity"
-          >
+        <div className="actions">
+          <Link href="/" className="btn btn-primary">
             ← Back to Directory
           </Link>
-          <Link
-            href="/find"
-            className="w-full sm:w-auto px-5 py-2.5 rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] text-sm font-medium hover:bg-[var(--color-surface-2)] transition-colors"
-          >
+          <Link href="/find" className="btn btn-ghost">
             Try the Tool Finder
           </Link>
         </div>
@@ -158,18 +150,14 @@ export function CustomBuildForm() {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="space-y-6 bg-[var(--color-surface)] p-6 sm:p-8 rounded-2xl border border-[var(--color-border)] shadow-sm max-w-2xl mx-auto"
-      noValidate
-    >
+    <form onSubmit={handleSubmit} className="form-box" noValidate>
       {prefillShown && (
-        <div className="p-4 rounded-xl bg-[var(--color-stage-engage-tint,#e8f0fe)] border border-[var(--color-primary)]/20 text-xs text-[var(--color-primary)] flex items-center justify-between">
+        <div className="form-banner info">
           <span>Prefilled from your finder answers. Edit anything you like.</span>
           <button
             type="button"
             onClick={() => setPrefillShown(false)}
-            className="font-bold hover:underline ml-2"
+            style={{ background: 'none', border: 'none', fontWeight: 'bold', cursor: 'pointer', color: 'inherit' }}
           >
             ✕
           </button>
@@ -177,12 +165,12 @@ export function CustomBuildForm() {
       )}
 
       {errorMsg && (
-        <div className="p-4 rounded-xl bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-900 text-sm text-red-600 dark:text-red-400">
-          {errorMsg}
+        <div className="form-banner error">
+          <span>{errorMsg}</span>
         </div>
       )}
 
-      {/* Honeypot field (hidden from real users) */}
+      {/* Honeypot field */}
       <div style={{ display: 'none' }} aria-hidden="true">
         <label htmlFor="hp_field">Leave this empty</label>
         <input
@@ -197,13 +185,13 @@ export function CustomBuildForm() {
       </div>
 
       {/* What it should do */}
-      <div>
-        <label htmlFor="what" className="block text-sm font-semibold mb-1.5">
-          What should the AI workflow or tool do? <span className="text-red-500">*</span>
+      <div className="field">
+        <label htmlFor="what">
+          What should the AI workflow or tool do? <span style={{ color: 'var(--danger)' }}>*</span>
         </label>
-        <p className="text-xs text-[var(--color-muted)] mb-2">
+        <span className="hint">
           Describe the manual bottleneck, the sales/marketing task, and desired outcome (15–800 characters).
-        </p>
+        </span>
         <textarea
           id="what"
           name="what"
@@ -212,26 +200,18 @@ export function CustomBuildForm() {
           value={formData.what}
           onChange={handleChange}
           aria-describedby={fieldErrors.what ? 'what-error' : 'what-hint'}
-          className={`w-full p-3 rounded-lg border bg-[var(--color-bg)] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] ${
-            fieldErrors.what ? 'border-red-500 ring-1 ring-red-500' : 'border-[var(--color-border)]'
-          }`}
+          className={fieldErrors.what ? 'err' : ''}
           placeholder="e.g. Automatically enrich inbound demo requests with company tech stack data, verify work emails, and draft personalized SDR intro sequences into HubSpot."
         />
-        <div className="flex justify-between items-center mt-1">
-          <span id="what-hint" className="text-xs text-[var(--color-muted)]">
-            {formData.what.length} / 800 characters
-          </span>
-          {fieldErrors.what && (
-            <span id="what-error" className="text-xs text-red-500 font-medium">
-              {fieldErrors.what}
-            </span>
-          )}
+        <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '4px' }}>
+          <span className="hint">{formData.what.length} / 800 characters</span>
+          {fieldErrors.what && <span className="err">{fieldErrors.what}</span>}
         </div>
       </div>
 
       {/* Tools used */}
-      <div>
-        <label htmlFor="tools_used" className="block text-sm font-semibold mb-1.5">
+      <div className="field">
+        <label htmlFor="tools_used">
           Current tools in your stack (optional)
         </label>
         <input
@@ -240,23 +220,19 @@ export function CustomBuildForm() {
           name="tools_used"
           value={formData.tools_used}
           onChange={handleChange}
-          className="w-full p-2.5 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
           placeholder="e.g. HubSpot, Apollo, Slack, Google Workspace"
         />
       </div>
 
       {/* Team Size & Budget */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div>
-          <label htmlFor="team_size" className="block text-sm font-semibold mb-1.5">
-            Team size
-          </label>
+      <div className="two">
+        <div className="field">
+          <label htmlFor="team_size">Team size</label>
           <select
             id="team_size"
             name="team_size"
             value={formData.team_size}
             onChange={handleChange}
-            className="w-full p-2.5 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
           >
             <option value="">Select team size</option>
             <option value="Just me (1)">Just me (1)</option>
@@ -267,16 +243,13 @@ export function CustomBuildForm() {
           </select>
         </div>
 
-        <div>
-          <label htmlFor="budget" className="block text-sm font-semibold mb-1.5">
-            Project budget
-          </label>
+        <div className="field">
+          <label htmlFor="budget">Project budget</label>
           <select
             id="budget"
             name="budget"
             value={formData.budget}
             onChange={handleChange}
-            className="w-full p-2.5 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
           >
             <option value="">Select budget range</option>
             <option value="Under $2,000">Under $2,000</option>
@@ -288,17 +261,14 @@ export function CustomBuildForm() {
       </div>
 
       {/* Timing & Language */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div>
-          <label htmlFor="timing" className="block text-sm font-semibold mb-1.5">
-            When do you need this?
-          </label>
+      <div className="two">
+        <div className="field">
+          <label htmlFor="timing">When do you need this?</label>
           <select
             id="timing"
             name="timing"
             value={formData.timing}
             onChange={handleChange}
-            className="w-full p-2.5 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
           >
             <option value="">Select timing</option>
             <option value="Immediately">Immediately (within 2 weeks)</option>
@@ -308,28 +278,25 @@ export function CustomBuildForm() {
           </select>
         </div>
 
-        <div>
-          <label htmlFor="language" className="block text-sm font-semibold mb-1.5">
-            Communication language
-          </label>
+        <div className="field">
+          <label htmlFor="language">Communication language</label>
           <select
             id="language"
             name="language"
             value={formData.language}
             onChange={handleChange}
-            className="w-full p-2.5 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
           >
             <option value="English">English</option>
-            <option value="Uzbek">O'zbek tili</option>
+            <option value="Uzbek">O&apos;zbek tili</option>
           </select>
         </div>
       </div>
 
       {/* Contact Info: Name & Email */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 border-t border-[var(--color-border)]">
-        <div>
-          <label htmlFor="name" className="block text-sm font-semibold mb-1.5">
-            Your name <span className="text-red-500">*</span>
+      <div className="two" style={{ paddingTop: '8px', borderTop: '1px solid var(--line)' }}>
+        <div className="field">
+          <label htmlFor="name">
+            Your name <span style={{ color: 'var(--danger)' }}>*</span>
           </label>
           <input
             type="text"
@@ -337,22 +304,15 @@ export function CustomBuildForm() {
             name="name"
             value={formData.name}
             onChange={handleChange}
-            aria-describedby={fieldErrors.name ? 'name-error' : undefined}
-            className={`w-full p-2.5 rounded-lg border bg-[var(--color-bg)] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] ${
-              fieldErrors.name ? 'border-red-500 ring-1 ring-red-500' : 'border-[var(--color-border)]'
-            }`}
+            className={fieldErrors.name ? 'err' : ''}
             placeholder="e.g. Alex Smith"
           />
-          {fieldErrors.name && (
-            <span id="name-error" className="block mt-1 text-xs text-red-500 font-medium">
-              {fieldErrors.name}
-            </span>
-          )}
+          {fieldErrors.name && <span className="err">{fieldErrors.name}</span>}
         </div>
 
-        <div>
-          <label htmlFor="email" className="block text-sm font-semibold mb-1.5">
-            Work email <span className="text-red-500">*</span>
+        <div className="field">
+          <label htmlFor="email">
+            Work email <span style={{ color: 'var(--danger)' }}>*</span>
           </label>
           <input
             type="email"
@@ -360,29 +320,23 @@ export function CustomBuildForm() {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            aria-describedby={fieldErrors.email ? 'email-error' : undefined}
-            className={`w-full p-2.5 rounded-lg border bg-[var(--color-bg)] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] ${
-              fieldErrors.email ? 'border-red-500 ring-1 ring-red-500' : 'border-[var(--color-border)]'
-            }`}
+            className={fieldErrors.email ? 'err' : ''}
             placeholder="alex@company.com"
           />
-          {fieldErrors.email && (
-            <span id="email-error" className="block mt-1 text-xs text-red-500 font-medium">
-              {fieldErrors.email}
-            </span>
-          )}
+          {fieldErrors.email && <span className="err">{fieldErrors.email}</span>}
         </div>
       </div>
 
-      <div className="pt-4">
+      <div>
         <button
           type="submit"
           disabled={submitting}
-          className="w-full py-3 px-6 rounded-lg bg-[var(--color-primary)] text-white font-semibold text-sm hover:opacity-95 transition-opacity disabled:opacity-50 shadow-sm"
+          className="btn btn-primary"
+          style={{ width: '100%', padding: '12px 24px', fontSize: '1rem' }}
         >
           {submitting ? 'Submitting request...' : 'Submit Custom Build Request →'}
         </button>
-        <p className="text-center text-xs text-[var(--color-muted)] mt-3">
+        <p style={{ textAlign: 'center', fontSize: '.8125rem', color: 'var(--muted)', marginTop: '12px' }}>
           No spam, no vendor lists. Reviewed by GPTify engineers. Response within 1 business day.
         </p>
       </div>

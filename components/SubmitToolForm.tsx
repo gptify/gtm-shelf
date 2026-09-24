@@ -109,19 +109,14 @@ export function SubmitToolForm({ stages, categories }: SubmitToolFormProps) {
 
   if (submitted) {
     return (
-      <div className="p-8 sm:p-10 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] text-center max-w-xl mx-auto shadow-sm">
-        <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-[var(--color-stage-prospect-tint,#e6f4ea)] text-[var(--color-success,#137333)] flex items-center justify-center text-2xl font-bold">
-          ✓
-        </div>
-        <h2 className="text-2xl font-bold mb-2">Tool Submitted!</h2>
-        <p className="text-[var(--color-muted)] leading-relaxed mb-6">
-          Thank you for submitting <span className="font-semibold text-[var(--color-text)]">{name}</span>. Our editorial team reviews every listing against vendor documentation before publication.
+      <div className="form-success">
+        <div className="check">✓</div>
+        <h2>Tool Submitted!</h2>
+        <p>
+          Thank you for submitting <strong style={{ color: 'var(--ink)' }}>{name}</strong>. Our editorial team reviews every listing against vendor documentation before publication.
         </p>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-          <Link
-            href="/"
-            className="w-full sm:w-auto px-5 py-2.5 rounded-lg bg-[var(--color-primary)] text-white text-sm font-semibold hover:opacity-95 transition-opacity"
-          >
+        <div className="actions">
+          <Link href="/" className="btn btn-primary">
             ← Back to Directory
           </Link>
           <button
@@ -133,7 +128,7 @@ export function SubmitToolForm({ stages, categories }: SubmitToolFormProps) {
               setDescription('');
               setSubmitted(false);
             }}
-            className="w-full sm:w-auto px-5 py-2.5 rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] text-sm font-medium hover:bg-[var(--color-surface-2)] transition-colors"
+            className="btn btn-ghost"
           >
             Submit Another Tool
           </button>
@@ -143,14 +138,10 @@ export function SubmitToolForm({ stages, categories }: SubmitToolFormProps) {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="space-y-6 bg-[var(--color-surface)] p-6 sm:p-8 rounded-2xl border border-[var(--color-border)] shadow-sm max-w-2xl mx-auto"
-      noValidate
-    >
+    <form onSubmit={handleSubmit} className="form-box" noValidate>
       {serverError && (
-        <div className="p-4 rounded-xl bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-900 text-sm text-red-600 dark:text-red-400">
-          {serverError}
+        <div className="form-banner error">
+          <span>{serverError}</span>
         </div>
       )}
 
@@ -167,60 +158,49 @@ export function SubmitToolForm({ stages, categories }: SubmitToolFormProps) {
         />
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div>
-          <label htmlFor="tool_name" className="block text-sm font-semibold mb-1.5">
-            Tool name <span className="text-red-500">*</span>
+      <div className="two">
+        <div className="field">
+          <label htmlFor="tool_name">
+            Tool name <span style={{ color: 'var(--danger)' }}>*</span>
           </label>
           <input
             id="tool_name"
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className={`w-full p-2.5 rounded-lg border bg-[var(--color-bg)] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] ${
-              errors.name ? 'border-red-500 ring-1 ring-red-500' : 'border-[var(--color-border)]'
-            }`}
+            className={errors.name ? 'err' : ''}
             placeholder="e.g. Clay"
+            aria-invalid={Boolean(errors.name)}
           />
-          {errors.name && (
-            <span className="block mt-1 text-xs text-red-500 font-medium">
-              {errors.name}
-            </span>
-          )}
+          {errors.name && <span className="err">{errors.name}</span>}
         </div>
 
-        <div>
-          <label htmlFor="website_url" className="block text-sm font-semibold mb-1.5">
-            Website URL <span className="text-red-500">*</span>
+        <div className="field">
+          <label htmlFor="website_url">
+            Website URL <span style={{ color: 'var(--danger)' }}>*</span>
           </label>
           <input
             id="website_url"
             type="url"
             value={url}
             onChange={(e) => setUrl(e.target.value)}
-            className={`w-full p-2.5 rounded-lg border bg-[var(--color-bg)] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] ${
-              errors.url ? 'border-red-500 ring-1 ring-red-500' : 'border-[var(--color-border)]'
-            }`}
+            className={errors.url ? 'err' : ''}
             placeholder="https://example.com"
+            aria-invalid={Boolean(errors.url)}
           />
-          {errors.url && (
-            <span className="block mt-1 text-xs text-red-500 font-medium">
-              {errors.url}
-            </span>
-          )}
+          {errors.url && <span className="err">{errors.url}</span>}
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div>
-          <label htmlFor="stage_select" className="block text-sm font-semibold mb-1.5">
-            Funnel stage <span className="text-red-500">*</span>
+      <div className="two">
+        <div className="field">
+          <label htmlFor="stage_select">
+            Funnel stage <span style={{ color: 'var(--danger)' }}>*</span>
           </label>
           <select
             id="stage_select"
             value={stageId}
             onChange={(e) => setStageId(Number(e.target.value))}
-            className="w-full p-2.5 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
           >
             {stages.map((s) => (
               <option key={s.id} value={s.id}>
@@ -230,15 +210,14 @@ export function SubmitToolForm({ stages, categories }: SubmitToolFormProps) {
           </select>
         </div>
 
-        <div>
-          <label htmlFor="category_select" className="block text-sm font-semibold mb-1.5">
-            Category <span className="text-red-500">*</span>
+        <div className="field">
+          <label htmlFor="category_select">
+            Category <span style={{ color: 'var(--danger)' }}>*</span>
           </label>
           <select
             id="category_select"
             value={categoryName}
             onChange={(e) => setCategoryName(e.target.value)}
-            className="w-full p-2.5 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
           >
             {availableCategories.map((c) => (
               <option key={c.id} value={c.name}>
@@ -249,15 +228,14 @@ export function SubmitToolForm({ stages, categories }: SubmitToolFormProps) {
         </div>
       </div>
 
-      <div>
-        <label htmlFor="pricing_model" className="block text-sm font-semibold mb-1.5">
-          Pricing model <span className="text-red-500">*</span>
+      <div className="field">
+        <label htmlFor="pricing_model">
+          Pricing model <span style={{ color: 'var(--danger)' }}>*</span>
         </label>
         <select
           id="pricing_model"
           value={pricing}
           onChange={(e) => setPricing(e.target.value)}
-          className="w-full p-2.5 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
         >
           <option value="Free plan">Free plan (has a meaningful free tier)</option>
           <option value="Paid">Paid (starts with a fixed monthly or annual price)</option>
@@ -265,9 +243,9 @@ export function SubmitToolForm({ stages, categories }: SubmitToolFormProps) {
         </select>
       </div>
 
-      <div>
-        <label htmlFor="tagline" className="block text-sm font-semibold mb-1.5">
-          One-line summary (tagline) <span className="text-red-500">*</span>
+      <div className="field">
+        <label htmlFor="tagline">
+          One-line summary (tagline) <span style={{ color: 'var(--danger)' }}>*</span>
         </label>
         <input
           id="tagline"
@@ -275,25 +253,18 @@ export function SubmitToolForm({ stages, categories }: SubmitToolFormProps) {
           maxLength={90}
           value={tagline}
           onChange={(e) => setTagline(e.target.value)}
-          className={`w-full p-2.5 rounded-lg border bg-[var(--color-bg)] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] ${
-            errors.tagline ? 'border-red-500 ring-1 ring-red-500' : 'border-[var(--color-border)]'
-          }`}
+          className={errors.tagline ? 'err' : ''}
           placeholder="e.g. Scale 1:1 outbound personalization using AI research"
+          aria-invalid={Boolean(errors.tagline)}
         />
-        <div className="flex justify-between items-center mt-1">
-          <span className="text-xs text-[var(--color-muted)]">
-            {tagline.length} / 90 characters
-          </span>
-          {errors.tagline && (
-            <span className="text-xs text-red-500 font-medium">
-              {errors.tagline}
-            </span>
-          )}
+        <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '4px' }}>
+          <span className="hint">{tagline.length} / 90 characters</span>
+          {errors.tagline && <span className="err">{errors.tagline}</span>}
         </div>
       </div>
 
-      <div>
-        <label htmlFor="description" className="block text-sm font-semibold mb-1.5">
+      <div className="field">
+        <label htmlFor="description">
           Description (optional)
         </label>
         <textarea
@@ -301,57 +272,52 @@ export function SubmitToolForm({ stages, categories }: SubmitToolFormProps) {
           rows={3}
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          className="w-full p-2.5 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
           placeholder="Key features, standout differentiators, and who gets the most value from it."
         />
       </div>
 
-      <div className="pt-2 border-t border-[var(--color-border)]">
-        <label htmlFor="contact_email" className="block text-sm font-semibold mb-1.5">
-          Your contact email <span className="text-red-500">*</span>
+      <div className="field" style={{ paddingTop: '8px', borderTop: '1px solid var(--line)' }}>
+        <label htmlFor="contact_email">
+          Your contact email <span style={{ color: 'var(--danger)' }}>*</span>
         </label>
         <input
           id="contact_email"
           type="email"
           value={contactEmail}
           onChange={(e) => setContactEmail(e.target.value)}
-          className={`w-full p-2.5 rounded-lg border bg-[var(--color-bg)] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] ${
-            errors.contactEmail ? 'border-red-500 ring-1 ring-red-500' : 'border-[var(--color-border)]'
-          }`}
+          className={errors.contactEmail ? 'err' : ''}
           placeholder="you@example.com"
+          aria-invalid={Boolean(errors.contactEmail)}
         />
-        {errors.contactEmail && (
-          <span className="block mt-1 text-xs text-red-500 font-medium">
-            {errors.contactEmail}
-          </span>
-        )}
-        <p className="text-xs text-[var(--color-muted)] mt-1">
+        {errors.contactEmail && <span className="err">{errors.contactEmail}</span>}
+        <span className="hint">
           Used only to verify the listing or ask clarifying questions. Never published or shared.
-        </p>
+        </span>
       </div>
 
-      <div className="flex items-center gap-2.5">
+      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', margin: '14px 0 20px' }}>
         <input
           type="checkbox"
           id="is_vendor"
           checked={isVendor}
           onChange={(e) => setIsVendor(e.target.checked)}
-          className="rounded border-[var(--color-border)] text-[var(--color-primary)] focus:ring-[var(--color-primary)] h-4 w-4"
+          style={{ width: '18px', height: '18px', accentColor: 'var(--brand)' }}
         />
-        <label htmlFor="is_vendor" className="text-sm">
+        <label htmlFor="is_vendor" style={{ fontSize: '.9375rem', cursor: 'pointer' }}>
           I represent this vendor / maker team
         </label>
       </div>
 
-      <div className="pt-2">
+      <div>
         <button
           type="submit"
           disabled={submitting}
-          className="w-full py-3 px-6 rounded-lg bg-[var(--color-primary)] text-white font-semibold text-sm hover:opacity-95 transition-opacity disabled:opacity-50 shadow-sm"
+          className="btn btn-primary"
+          style={{ width: '100%', padding: '12px 24px', fontSize: '1rem' }}
         >
           {submitting ? 'Submitting tool...' : 'Submit Tool for Review →'}
         </button>
-        <p className="text-center text-xs text-[var(--color-muted)] mt-3">
+        <p style={{ textAlign: 'center', fontSize: '.8125rem', color: 'var(--muted)', marginTop: '12px' }}>
           Submissions are reviewed by our team and checked against source documentation before being published.
         </p>
       </div>
