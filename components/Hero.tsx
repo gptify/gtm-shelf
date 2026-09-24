@@ -13,7 +13,7 @@ export function Hero({ searchQuery, onSearchChange, children }: HeroProps) {
 
   return (
     <section className="hero">
-      <div>
+      <div className="hero-text">
         <h1>
           Pick the AI tool for the stage <span className="hl">where your funnel leaks.</span>
         </h1>

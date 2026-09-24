@@ -53,7 +53,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .wrap{max-width:1200px;margin:0 auto;padding-inline:clamp(16px,4vw,32px)}
 
 /* header */
-.top{display:flex;align-items:center;justify-content:space-between;padding-block:12px}
+.top{display:flex;align-items:center;justify-content:space-between;padding-block:clamp(14px,1.8vw,18px)}
 .brand{display:flex;align-items:center;gap:10px;font:500 1.25rem var(--display);letter-spacing:-.025em;color:inherit;text-decoration:none}
 .brand b{font-weight:800}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid transparent;border-radius:999px;padding:9px 16px;font-weight:600;text-decoration:none;line-height:1.2;font-size:.9375rem}
@@ -62,14 +62,15 @@ button{font:inherit;color:inherit;cursor:pointer}
 .btn-ghost:hover{border-color:var(--brand)}
 
 /* hero */
-.hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(28px,4.5vw,60px);align-items:start;padding-top:clamp(14px,2.2vw,24px);padding-bottom:clamp(38px,4.5vw,56px)}
-h1{font:700 clamp(1.85rem,3.4vw,2.75rem)/1.08 var(--display);letter-spacing:-.025em;margin:0 0 12px;text-wrap:balance}
-.lede{color:var(--muted);font-size:1.05rem;max-width:34em;margin:0 0 18px;line-height:1.45}
+.hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(28px,4.5vw,60px);align-items:start;padding-top:clamp(32px,4vw,52px);padding-bottom:clamp(38px,4.5vw,56px)}
+.hero-text{padding-top:clamp(14px,2vw,24px)}
+h1{font:700 clamp(1.85rem,3.4vw,2.75rem)/1.08 var(--display);letter-spacing:-.025em;margin:0 0 14px;text-wrap:balance}
+.lede{color:var(--muted);font-size:1.05rem;max-width:34em;margin:0 0 clamp(24px,3vw,32px);line-height:1.45}
 .search{position:relative}
 .search input{width:100%;padding:13px 18px 13px 48px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);font:500 1rem var(--body)}
 .search input::placeholder{color:var(--muted)}
 .search svg{position:absolute;left:16px;top:50%;translate:0 -50%;color:var(--muted);pointer-events:none}
-.try{margin:10px 0 0;color:var(--muted);font-size:.875rem;display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center}
+.try{margin:14px 0 0;color:var(--muted);font-size:.875rem;display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center}
 .try button{border:1px solid var(--line);background:transparent;border-radius:999px;padding:3px 12px;font-size:.8125rem}
 .try button:hover{border-color:var(--brand)}
 
@@ -78,7 +79,7 @@ h1{font:700 clamp(1.85rem,3.4vw,2.75rem)/1.08 var(--display);letter-spacing:-.02
 .fhelp{margin:0 0 10px;color:var(--muted);font-size:.84375rem}
 .hl{background:linear-gradient(transparent 58%,color-mix(in srgb,var(--accent) var(--hlmix),transparent) 58%);color:inherit;padding:0 .08em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 .lede strong{color:var(--ink);font-weight:600}
-.ctaline{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-top:16px}
+.ctaline{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-top:22px}
 .ctaline .btn{padding:7px 14px;color:var(--ink);font-size:.875rem}
 .stage.seen:not([aria-pressed="true"]){background:var(--brand-soft);border-color:transparent}
 .stage.nudge{animation:grow .7s cubic-bezier(.2,.7,.2,1) backwards,nudge 1.3s ease-out 2.2s 1;animation-delay:calc(var(--i) * 90ms),2.2s}
@@ -101,13 +102,14 @@ h1{font:700 clamp(1.85rem,3.4vw,2.75rem)/1.08 var(--display);letter-spacing:-.02
 @keyframes grow{from{clip-path:inset(0 50% 0 50% round 8px);opacity:0}to{clip-path:inset(0 round 8px);opacity:1}}
 
 @media (max-height:850px) and (min-width:861px){
-  .top{padding-block:8px}
-  .hero{padding-top:8px;padding-bottom:34px;gap:32px;align-items:start}
-  h1{font-size:clamp(1.6rem,2.5vw,2.25rem);margin-bottom:8px}
-  .lede{font-size:.95rem;margin-bottom:12px;line-height:1.4}
-  .search input{padding:11px 14px 11px 44px;font-size:.95rem}
-  .try{margin-top:6px;font-size:.8125rem}
-  .ctaline{margin-top:10px}
+  .top{padding-block:14px}
+  .hero{padding-top:28px;padding-bottom:34px;gap:36px;align-items:start}
+  .hero-text{padding-top:14px}
+  h1{font-size:clamp(1.6rem,2.5vw,2.25rem);margin-bottom:12px}
+  .lede{font-size:.95rem;margin-bottom:24px;line-height:1.45}
+  .search input{padding:12px 16px 12px 46px;font-size:.95rem}
+  .try{margin-top:12px;font-size:.8125rem}
+  .ctaline{margin-top:20px}
   .stage{padding:7px 13px;column-gap:10px}
   .stage .name{font-size:.9375rem}
   .stage .hint{font-size:.775rem}
