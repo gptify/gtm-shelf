@@ -28,6 +28,9 @@ export function Footer({ stages = STAGES }: FooterProps) {
           <Link href="/guides" style={{ color: 'inherit', textDecoration: 'none' }}>
             Guides
           </Link>
+          <Link href="/free-tools" style={{ color: 'inherit', textDecoration: 'none' }}>
+            Free Tools
+          </Link>
           <Link href="/custom" style={{ color: 'inherit', textDecoration: 'none' }}>
             Custom build
           </Link>

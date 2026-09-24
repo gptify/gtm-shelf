@@ -41,6 +41,9 @@ export function Header({ onOpenSubmit }: HeaderProps) {
         <Link href="/find" aria-current={pathname === '/find' ? 'page' : undefined}>
           Find my tools
         </Link>
+        <Link href="/free-tools" aria-current={pathname === '/free-tools' ? 'page' : undefined}>
+          Free Tools
+        </Link>
       </nav>
 
       {onOpenSubmit ? (
