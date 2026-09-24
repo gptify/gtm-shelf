@@ -131,3 +131,22 @@ export async function unsubscribeLead(tokenOrEmail: string): Promise<boolean> {
 
   return found;
 }
+
+export async function getLeads(): Promise<LeadRecord[]> {
+  if (supabase) {
+    try {
+      const { data, error } = await supabase
+        .from('leads')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (!error && data) {
+        return data as LeadRecord[];
+      }
+    } catch (err) {
+      console.error('Supabase getLeads error:', err);
+    }
+  }
+
+  return Array.from(localLeadStore.values());
+}
