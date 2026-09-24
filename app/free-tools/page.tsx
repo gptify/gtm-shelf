@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { StackCostSimulator } from '@/components/StackCostSimulator';
 
 export const metadata: Metadata = {
   title: 'Free AI Calculators & Tools for Revenue Teams — GTM Shelf',
@@ -35,8 +36,8 @@ const FREE_TOOLS: FreeTool[] = [
     eyebrow: 'Financial Modelling',
     badge: 'Popular',
     description:
-      'Estimate the net annual cost savings, hours reclaimed per rep, and payback period before committing budget to commercial AI software licenses.',
-    features: ['Hours saved per rep calculation', 'Software license cost vs. labor ROI', 'Payback period timeline'],
+      'Model your AI software budget against pipeline throughput, administrative friction eliminated, and campaign velocity before purchasing commercial software licenses.',
+    features: ['Manual data entry hours eliminated', 'Software budget vs. pipeline velocity', 'Tool stack payback period'],
     url: 'https://gptify.co/ai-roi-calculator/?utm_source=gtmshelf&utm_medium=free-tools-hub&utm_campaign=roi-calc',
     buttonText: 'Launch Calculator ↗',
   },
@@ -115,12 +116,25 @@ export default function FreeToolsPage() {
             Free AI Calculators &amp; Revenue Utilities
           </h1>
           <p className="lede" style={{ margin: '0 auto', maxWidth: '38em' }}>
-            Interactive decision-support tools built by the team at <a href="https://gptify.co" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--primary)', textDecoration: 'underline' }}>GPTify.co</a> to help revenue leaders justify software spend, evaluate operational readiness, and deploy reliable workflows.
+            Interactive decision-support tools built by the team at <a href="https://gptify.co" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--primary)', textDecoration: 'underline' }}>GPTify.co</a> to help revenue leaders plan software spend, evaluate operational readiness, and deploy reliable workflows.
           </p>
         </header>
 
+        {/* Live Interactive Stack Budget & Capacity Simulator */}
+        <StackCostSimulator />
+
+        {/* Free Utilities Grid Header */}
+        <div style={{ textAlign: 'center', margin: '48px 0 24px' }}>
+          <h2 style={{ fontSize: '1.5rem', fontWeight: 800, margin: '0 0 8px', letterSpacing: '-0.02em' }}>
+            Explore Dedicated Calculators &amp; Generators
+          </h2>
+          <p style={{ fontSize: '0.9375rem', color: 'var(--muted)', margin: 0 }}>
+            Deep-dive diagnostic tools and prompt vaults hosted on GPTify.co.
+          </p>
+        </div>
+
         {/* Free Utilities Grid */}
-        <section style={{ margin: '48px 0' }} aria-label="Free tools directory">
+        <section style={{ margin: '0 0 48px' }} aria-label="Free tools directory">
           <div
             style={{
               display: 'grid',
