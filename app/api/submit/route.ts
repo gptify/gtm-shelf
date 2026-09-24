@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase, getTools, CATEGORIES } from '@/lib/db/data';
 import { hashIp, checkRateLimit } from '@/lib/security';
+import { sendToolSubmissionEmail } from '@/lib/email';
 
 export async function POST(req: NextRequest) {
   try {
@@ -99,7 +100,7 @@ export async function POST(req: NextRequest) {
     // Store in Supabase if available
     if (supabase) {
       try {
-        await supabase.from('submissions').insert([
+        const { error: insertError } = await supabase.from('submissions').insert([
           {
             name: cleanName,
             website_url: cleanUrl,
@@ -114,10 +115,24 @@ export async function POST(req: NextRequest) {
             ip_hash: ipHash,
           },
         ]);
+        if (insertError) {
+          console.error('Supabase submission insert error:', insertError);
+        }
       } catch (err) {
         console.error('Supabase submission insert error:', err);
       }
     }
+
+    // Dispatch email notification to team@gptify.co / gptify.co@gmail.com
+    sendToolSubmissionEmail({
+      name: cleanName,
+      website_url: cleanUrl,
+      tagline: cleanTagline,
+      pricing_model: normalizedPricing,
+      contact_email: cleanEmail,
+      category_name,
+      is_vendor: Boolean(is_vendor),
+    }).catch((err) => console.error('Tool submission email dispatch failed:', err));
 
     return NextResponse.json({
       success: true,

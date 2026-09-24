@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase } from '@/lib/db/data';
 import { hashIp, checkRateLimit } from '@/lib/security';
+import { sendEnquiryEmail } from '@/lib/email';
 
 export async function POST(req: NextRequest) {
   try {
@@ -99,6 +100,17 @@ export async function POST(req: NextRequest) {
         console.error('Failed to store custom request in database:', err);
       }
     }
+
+    // Dispatch email notification to team@gptify.co / gptify.co@gmail.com
+    sendEnquiryEmail({
+      name: cleanName,
+      email: cleanEmail,
+      what: cleanWhat,
+      source: source || 'direct',
+      tools_used,
+      team_size,
+      budget,
+    }).catch((err) => console.error('Enquiry email dispatch failed:', err));
 
     return NextResponse.json({
       success: true,
