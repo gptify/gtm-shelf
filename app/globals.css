@@ -1,3 +1,6 @@
+@tailwind components;
+@tailwind utilities;
+
 /* Extracted from reference/gtm-shelf-prototype.html. Design tokens are at the top (:root and the dark-mode blocks). */
 :root{
   --bg:#F2F3F8; --surface:#FFFFFF; --ink:#15172B; --muted:#5B5F7A; --line:#D9DCEA;
