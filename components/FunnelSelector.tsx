@@ -49,44 +49,46 @@ export function FunnelSelector({
   const nextStage = stages.find((s) => s.id === nextStageId) || stages[0];
 
   return (
-    <div>
-      <p className="fq">Where does your funnel leak?</p>
-      <p className="fhelp">Click a stage to narrow the shelf, or browse the full list below.</p>
+    <div className="funnel-col">
+      <div className="funnel-top">
+        <p className="fq" id="fq">Where in the funnel do you need help?</p>
+        <p className="fhelp" id="fhelp">Choose a stage to narrow the shelf.</p>
 
-      <div className="funnel" id="funnel" role="group" aria-label="Funnel stages">
-        {stages.map((stage, idx) => {
-          const isSelected = selectedStage === stage.id;
-          const isVisited = visitedStages.has(stage.id);
-          const count = stageCounts[stage.id] ?? 0;
-          const isZero = count === 0 && !isSelected;
-          const isNudge = stage.id === 2 && !hasInteracted;
+        <div className="funnel" id="funnel" role="group" aria-labelledby="fq">
+          {stages.map((stage, idx) => {
+            const isSelected = selectedStage === stage.id;
+            const isVisited = visitedStages.has(stage.id);
+            const count = stageCounts[stage.id] ?? 0;
+            const isZero = count === 0 && !isSelected;
+            const isNudge = stage.id === 2 && !hasInteracted;
 
-          const wDesktop = WIDTHS[idx][0];
-          const wMobile = WIDTHS[idx][1];
+            const wDesktop = WIDTHS[idx][0];
+            const wMobile = WIDTHS[idx][1];
 
-          return (
-            <button
-              key={stage.id}
-              type="button"
-              className={`stage ${isSelected ? '' : isVisited ? 'seen' : ''} ${isZero ? 'zero' : ''} ${isNudge ? 'nudge' : ''}`}
-              style={
-                {
-                  '--i': idx,
-                  '--w': `${wDesktop}%`,
-                  '--wm': `${wMobile}%`,
-                } as React.CSSProperties
-              }
-              aria-pressed={isSelected}
-              aria-label={`${stage.name}, ${count} tools`}
-              onClick={() => handleStageClick(stage.id)}
-            >
-              <span className="num">{stage.id}</span>
-              <span className="name">{stage.name}</span>
-              <span className="hint">{stage.hint}</span>
-              <span className="count">{count}</span>
-            </button>
-          );
-        })}
+            return (
+              <button
+                key={stage.id}
+                type="button"
+                className={`stage ${isSelected ? '' : isVisited ? 'seen' : ''} ${isZero ? 'zero' : ''} ${isNudge ? 'nudge' : ''}`}
+                style={
+                  {
+                    '--i': idx,
+                    '--w': `${wDesktop}%`,
+                    '--wm': `${wMobile}%`,
+                  } as React.CSSProperties
+                }
+                aria-pressed={isSelected}
+                aria-label={`${stage.name}, ${count} tools`}
+                onClick={() => handleStageClick(stage.id)}
+              >
+                <span className="num">{stage.id}</span>
+                <span className="name">{stage.name}</span>
+                <span className="hint">{stage.hint}</span>
+                <span className="count">{count}</span>
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       <div className="fnav">
@@ -94,6 +96,7 @@ export function FunnelSelector({
           <button
             type="button"
             className="btn btn-soft"
+            id="fsee"
             onClick={onScrollToTools}
           >
             See the {stageCounts[currentStage.id] ?? 0} {currentStage.name} tools
@@ -103,6 +106,7 @@ export function FunnelSelector({
         <button
           type="button"
           className="btn btn-ghost"
+          id="fnext"
           onClick={() => {
             setHasInteracted(true);
             onSelectStage(nextStageId);
@@ -114,20 +118,21 @@ export function FunnelSelector({
             ? `Back to ${nextStage.name}`
             : `Next stage: ${nextStage.name}`}
         </button>
-      </div>
 
-      {selectedStage > 0 && (
-        <button
-          type="button"
-          className="allstages"
-          onClick={() => {
-            setHasInteracted(true);
-            onSelectStage(0);
-          }}
-        >
-          Show all stages
-        </button>
-      )}
+        {selectedStage > 0 && (
+          <button
+            type="button"
+            className="allstages"
+            id="allstages"
+            onClick={() => {
+              setHasInteracted(true);
+              onSelectStage(0);
+            }}
+          >
+            Show all stages
+          </button>
+        )}
+      </div>
     </div>
   );
 }
