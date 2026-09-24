@@ -66,10 +66,17 @@ export async function POST(req: NextRequest) {
     const validLanguages = ['English', 'Uzbek'];
     const chosenLanguage = validLanguages.includes(language) ? language : 'English';
 
+    // Postgres enum request_source: ('finder', 'search', 'guide', 'direct')
+    const validSources = ['finder', 'search', 'guide', 'direct'];
+    const normalizedSource = validSources.includes(source) ? source : 'direct';
+
+    // If source was a specific page (e.g. roi-calculator, ai-readiness), preserve in prefill metadata
+    const detailedPrefill = prefill || (source && !validSources.includes(source) ? { origin: source } : null);
+
     // Store in Supabase if configured
     if (supabase) {
       try {
-        await supabase.from('custom_requests').insert([
+        const { error: insertError } = await supabase.from('custom_requests').insert([
           {
             name: cleanName,
             email: cleanEmail,
@@ -79,12 +86,15 @@ export async function POST(req: NextRequest) {
             budget: budget ? String(budget).slice(0, 50) : null,
             timing: timing ? String(timing).slice(0, 50) : null,
             language: chosenLanguage,
-            source,
-            prefill: prefill || null,
+            source: normalizedSource,
+            prefill: detailedPrefill,
             ip_hash: ipHash,
             status: 'new',
           },
         ]);
+        if (insertError) {
+          console.error('Supabase custom_request insert error:', insertError);
+        }
       } catch (err) {
         console.error('Failed to store custom request in database:', err);
       }
