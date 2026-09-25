@@ -37,6 +37,14 @@ export function Footer({ stages = STAGES }: FooterProps) {
           <Link href="/advertise" style={{ color: 'inherit', textDecoration: 'none' }}>
             Advertise
           </Link>
+          <a
+            href="https://gptify.co/newsletter-and-resources-2/?utm_source=gtmshelf&utm_medium=footer&utm_campaign=newsletter"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: 'inherit', textDecoration: 'none' }}
+          >
+            Newsletter ↗
+          </a>
           <Link href="/about" style={{ color: 'inherit', textDecoration: 'none' }}>
             About
           </Link>

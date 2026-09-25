@@ -522,7 +522,7 @@ export function FinderClient({ tools }: FinderClientProps) {
               style={{ width: '16px', height: '16px', margin: 0 }}
             />
             <label htmlFor="lead-consent" className="fine">
-              Send me weekly updates on new AI tools for sales and marketing (optional).
+              Also subscribe me to <strong>AI Insights for Sales &amp; Marketing</strong>, sent weekly by GPTify.co.
             </label>
           </div>
 
@@ -532,7 +532,7 @@ export function FinderClient({ tools }: FinderClientProps) {
             </p>
           )}
           <p className="fine">
-            Double opt-in: we will send a confirmation link first. You can unsubscribe at any time.
+            Double opt-in: we will send a confirmation link first. You can unsubscribe at any time. Or join directly on <a href="https://gptify.co/newsletter-and-resources-2/?utm_source=gtmshelf&utm_medium=finder-results&utm_campaign=newsletter" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'underline', color: 'inherit' }}>GPTify.co ↗</a>
           </p>
         </div>
       </main>

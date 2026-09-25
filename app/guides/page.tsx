@@ -40,12 +40,45 @@ export default function GuidesIndexPage() {
         </nav>
 
         {/* Page Hero */}
-        <header style={{ marginBottom: '32px' }}>
+        <header style={{ marginBottom: '28px' }}>
           <h1>Guides & Comparisons</h1>
           <p className="lede">
             Short, pragmatic buyer guides and side-by-side breakdowns to help you choose the right AI tools for your funnel without vendor fluff. Not sure where to start? <Link href="/find" style={{ color: 'var(--brand)', fontWeight: 600 }}>Try the Tool Finder</Link>.
           </p>
         </header>
+
+        {/* Featured Glossary Banner */}
+        <div
+          style={{
+            marginBottom: '36px',
+            padding: '20px 24px',
+            borderRadius: '14px',
+            background: 'var(--surface)',
+            border: '1px solid var(--border)',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+            gap: '16px',
+          }}
+        >
+          <div>
+            <span className="badge-pill" style={{ marginBottom: '6px', display: 'inline-block' }}>Reference</span>
+            <h3 style={{ fontSize: '1.125rem', fontWeight: 800, margin: '2px 0 4px' }}>
+              B2B Sales &amp; Marketing AI Glossary
+            </h3>
+            <p style={{ fontSize: '0.875rem', color: 'var(--muted)', margin: 0 }}>
+              21 essential modern revenue and AI concepts defined with operational use cases and directory links.
+            </p>
+          </div>
+          <Link
+            href="/guides/glossary"
+            className="btn btn-primary"
+            style={{ padding: '8px 16px', fontSize: '0.875rem', whiteSpace: 'nowrap' }}
+          >
+            Explore Glossary →
+          </Link>
+        </div>
 
         {/* Section 1: Best-of Guides */}
         <section aria-labelledby="best-guides-heading" style={{ marginBottom: '40px' }}>

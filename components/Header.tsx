@@ -49,13 +49,13 @@ export function Header({ onOpenSubmit }: HeaderProps) {
       {onOpenSubmit ? (
         <button
           type="button"
-          className="btn btn-primary"
+          className="btn btn-ghost"
           onClick={onOpenSubmit}
         >
           Submit a tool
         </button>
       ) : (
-        <Link href="/submit" className="btn btn-primary">
+        <Link href="/submit" className="btn btn-ghost">
           Submit a tool
         </Link>
       )}

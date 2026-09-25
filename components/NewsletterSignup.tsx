@@ -2,12 +2,19 @@
 
 import { useState } from 'react';
 
-export function NewsletterSignup() {
+interface NewsletterSignupProps {
+  placement?: 'homepage' | 'guide' | 'finder' | 'footer';
+}
+
+export function NewsletterSignup({ placement = 'homepage' }: NewsletterSignupProps) {
   const [email, setEmail] = useState('');
   const [consent, setConsent] = useState(false);
   const [hpField, setHpField] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [message, setMessage] = useState<{ text: string; type: 'success' | 'error' } | null>(null);
+
+  const utmMedium = placement === 'guide' ? 'guide-footer' : placement === 'finder' ? 'finder-results' : placement === 'footer' ? 'footer' : 'homepage';
+  const directLink = `https://gptify.co/newsletter-and-resources-2/?utm_source=gtmshelf&utm_medium=${utmMedium}&utm_campaign=newsletter`;
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -32,7 +39,7 @@ export function NewsletterSignup() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           email: cleanEmail,
-          source: 'homepage_newsletter',
+          source: `newsletter_${placement}`,
           hp_field: hpField,
         }),
       });
@@ -59,6 +66,120 @@ export function NewsletterSignup() {
     }
   }
 
+  // Compact layout for Guide footer or Finder results
+  if (placement === 'guide' || placement === 'finder') {
+    return (
+      <section
+        style={{
+          margin: '40px auto 20px',
+          padding: '28px 24px',
+          border: '1px solid var(--border)',
+          borderRadius: '16px',
+          background: 'var(--surface)',
+          maxWidth: '780px',
+        }}
+        aria-labelledby={`nl-heading-${placement}`}
+      >
+        <span className="badge-pill" style={{ marginBottom: '10px', display: 'inline-block' }}>
+          Weekly AI Briefing
+        </span>
+        <h2 id={`nl-heading-${placement}`} style={{ fontSize: '1.25rem', fontWeight: 800, margin: '0 0 8px', letterSpacing: '-0.02em' }}>
+          Get AI Insights for Sales &amp; Marketing
+        </h2>
+        <p style={{ fontSize: '0.875rem', color: 'var(--muted)', lineHeight: 1.5, margin: '0 0 16px' }}>
+          Sent weekly by <strong>GPTify.co</strong>. Pragmatic B2B workflows, vetted sales tech stacks, and prompt breakdowns without the fluff.
+        </p>
+
+        <form onSubmit={handleSubmit} noValidate>
+          <div style={{ display: 'none' }} aria-hidden="true">
+            <input
+              type="text"
+              name="hp_field"
+              tabIndex={-1}
+              autoComplete="off"
+              value={hpField}
+              onChange={(e) => setHpField(e.target.value)}
+            />
+          </div>
+
+          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+            <input
+              type="email"
+              placeholder="Enter your work email..."
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              style={{
+                flex: '1 1 220px',
+                padding: '10px 14px',
+                fontSize: '0.875rem',
+                borderRadius: '8px',
+                border: '1px solid var(--border)',
+                background: 'var(--bg)',
+                color: 'var(--ink)',
+                outline: 'none',
+              }}
+              required
+            />
+            <button
+              type="submit"
+              disabled={submitting}
+              className="btn btn-primary"
+              style={{ padding: '10px 18px', fontSize: '0.875rem', fontWeight: 600, whiteSpace: 'nowrap' }}
+            >
+              {submitting ? 'Subscribing...' : 'Subscribe Free →'}
+            </button>
+          </div>
+
+          <label
+            style={{
+              display: 'flex',
+              alignItems: 'flex-start',
+              gap: '8px',
+              fontSize: '0.75rem',
+              color: 'var(--muted)',
+              marginTop: '10px',
+              cursor: 'pointer',
+              lineHeight: 1.4,
+            }}
+          >
+            <input
+              type="checkbox"
+              checked={consent}
+              onChange={(e) => setConsent(e.target.checked)}
+              style={{ marginTop: '2px', accentColor: 'var(--primary)' }}
+              required
+            />
+            <span>
+              I agree to receive the weekly briefing from GPTify.co. Double opt-in: we will send a confirmation link first.
+            </span>
+          </label>
+
+          {message && (
+            <div
+              style={{
+                marginTop: '12px',
+                padding: '8px 12px',
+                borderRadius: '6px',
+                fontSize: '0.8125rem',
+                backgroundColor: message.type === 'success' ? 'rgba(16, 185, 129, 0.1)' : 'rgba(239, 68, 68, 0.1)',
+                color: message.type === 'success' ? '#059669' : '#dc2626',
+                border: `1px solid ${message.type === 'success' ? 'rgba(16, 185, 129, 0.2)' : 'rgba(239, 68, 68, 0.2)'}`,
+              }}
+              role="status"
+            >
+              {message.text}
+            </div>
+          )}
+        </form>
+
+        <div style={{ marginTop: '14px', fontSize: '0.75rem', color: 'var(--muted)' }}>
+          Or subscribe directly on <a href={directLink} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--primary)', textDecoration: 'underline' }}>GPTify.co ↗</a>
+        </div>
+      </section>
+    );
+  }
+
+  // Full Dual-Card Layout for Homepage
   return (
     <section
       style={{
@@ -74,7 +195,7 @@ export function NewsletterSignup() {
           gap: '24px',
         }}
       >
-        {/* Card 1: Email Newsletter (Similar to gptify.co) */}
+        {/* Card 1: Email Newsletter */}
         <div
           style={{
             padding: '32px 28px',
@@ -94,14 +215,13 @@ export function NewsletterSignup() {
               id="newsletter-section-heading"
               style={{ fontSize: '1.4rem', fontWeight: 800, margin: '0 0 10px', letterSpacing: '-0.02em' }}
             >
-              Stay Ahead of the AI Revolution
+              Get AI Insights for Sales &amp; Marketing
             </h2>
             <p style={{ fontSize: '0.9rem', color: 'var(--muted)', lineHeight: 1.5, margin: '0 0 20px' }}>
-              Get practical AI workflows, vetted B2B sales stacks, and prompt breakdowns delivered to your inbox every week. No fluff, just operational mechanics.
+              Sent weekly by <strong>GPTify.co</strong>. Get practical AI workflows, vetted B2B sales stacks, and prompt breakdowns delivered to your inbox every week. No fluff, just operational mechanics.
             </p>
 
             <form onSubmit={handleSubmit} noValidate>
-              {/* Honeypot field */}
               <div style={{ display: 'none' }} aria-hidden="true">
                 <input
                   type="text"
@@ -162,7 +282,7 @@ export function NewsletterSignup() {
                   required
                 />
                 <span>
-                  I agree to receive weekly AI intel. Double opt-in: we will send a confirmation link first. Unsubscribe anytime.
+                  I agree to receive the weekly briefing from GPTify.co. Double opt-in: we will send a confirmation link first. Unsubscribe anytime.
                 </span>
               </label>
 
@@ -202,11 +322,15 @@ export function NewsletterSignup() {
           >
             <span>✓ Zero spam</span>
             <span>✓ 1-click unsubscribe</span>
-            <span>✓ Curated by GPTify.co</span>
+            <span>
+              <a href={directLink} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>
+                Join via GPTify.co ↗
+              </a>
+            </span>
           </div>
         </div>
 
-        {/* Card 2: LinkedIn Edition (Directly mirroring gptify.co community block) */}
+        {/* Card 2: LinkedIn Edition */}
         <div
           style={{
             padding: '32px 28px',
@@ -238,7 +362,6 @@ export function NewsletterSignup() {
               Prefer reading on LinkedIn? Read our bi-weekly edition and connect with 30,000+ B2B revenue leaders, AI practitioners, and growth engineers.
             </p>
 
-            {/* Social Proof Counters */}
             <div
               style={{
                 display: 'grid',

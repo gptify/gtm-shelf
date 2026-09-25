@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { getGuides, getGuideBySlug, getToolsForGuide } from '@/lib/db/data';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { NewsletterSignup } from '@/components/NewsletterSignup';
 import { hue, initial, pricingLabel, setupLabel } from '@/lib/utils';
 import { ToolPublic } from '@/lib/types';
 
@@ -340,6 +341,9 @@ export default async function GuidePage({ params }: PageProps) {
             </Link>
           </div>
         </section>
+
+        {/* Weekly Newsletter Briefing */}
+        <NewsletterSignup placement="guide" />
       </main>
 
       <Footer />

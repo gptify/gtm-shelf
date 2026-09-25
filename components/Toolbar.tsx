@@ -72,6 +72,8 @@ export function Toolbar({
           id="savedtoggle"
           aria-pressed={isSavedActive}
           onClick={onToggleSaved}
+          title="Save tools to compare later"
+          aria-label={`Saved tools (${savedCount}) — Save tools to compare later`}
         >
           Saved ({savedCount})
         </button>
