@@ -35,30 +35,45 @@ export function Header({ onOpenSubmit }: HeaderProps) {
         <Link href="/" aria-current={pathname === '/' ? 'page' : undefined}>
           Tools
         </Link>
+        <Link href="/stacks" aria-current={pathname.startsWith('/stacks') ? 'page' : undefined}>
+          Stacks
+        </Link>
         <Link href="/guides" aria-current={pathname.startsWith('/guides') ? 'page' : undefined}>
           Guides
-        </Link>
-        <Link href="/find" aria-current={pathname === '/find' ? 'page' : undefined}>
-          Find my tools
         </Link>
         <Link href="/free-tools" aria-current={pathname === '/free-tools' ? 'page' : undefined}>
           Free Tools
         </Link>
       </nav>
 
-      {onOpenSubmit ? (
-        <button
-          type="button"
-          className="btn btn-ghost"
-          onClick={onOpenSubmit}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <Link
+          href="/find"
+          className="btn btn-primary"
+          style={{ padding: '8px 16px', fontSize: '0.875rem' }}
         >
-          Submit a tool
-        </button>
-      ) : (
-        <Link href="/submit" className="btn btn-ghost">
-          Submit a tool
+          Build My Stack
         </Link>
-      )}
+
+        {onOpenSubmit ? (
+          <button
+            type="button"
+            className="btn btn-ghost"
+            onClick={onOpenSubmit}
+            style={{ padding: '8px 14px', fontSize: '0.875rem' }}
+          >
+            Submit
+          </button>
+        ) : (
+          <Link
+            href="/submit"
+            className="btn btn-ghost"
+            style={{ padding: '8px 14px', fontSize: '0.875rem' }}
+          >
+            Submit
+          </Link>
+        )}
+      </div>
     </header>
   );
 }

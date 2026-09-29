@@ -2,6 +2,8 @@ import { MetadataRoute } from 'next';
 import { getTools, STAGES, CATEGORIES } from '@/lib/db/data';
 import guidesData from '@/starter/content/guides.json';
 
+import { getAllStacks } from '@/lib/stacks';
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://gtmshelf.com';
   const now = new Date();
@@ -9,6 +11,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes: MetadataRoute.Sitemap = [
     '',
     '/find',
+    '/stacks',
     '/custom',
     '/submit',
     '/guides',
@@ -24,7 +27,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url: `${baseUrl}${route}`,
     lastModified: now,
     changeFrequency: 'weekly',
-    priority: route === '' ? 1.0 : 0.8,
+    priority: route === '' ? 1.0 : (route === '/stacks' ? 0.9 : 0.8),
+  }));
+
+  const stackRoutes: MetadataRoute.Sitemap = getAllStacks().map((stack) => ({
+    url: `${baseUrl}/stacks/${stack.slug}`,
+    lastModified: now,
+    changeFrequency: 'weekly',
+    priority: 0.85,
   }));
 
   const stageRoutes: MetadataRoute.Sitemap = STAGES.map((s) => ({
@@ -58,6 +68,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [
     ...staticRoutes,
+    ...stackRoutes,
     ...stageRoutes,
     ...categoryRoutes,
     ...toolRoutes,

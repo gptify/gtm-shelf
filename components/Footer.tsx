@@ -25,6 +25,9 @@ export function Footer({ stages = STAGES }: FooterProps) {
               {s.name}
             </Link>
           ))}
+          <Link href="/stacks" style={{ color: 'inherit', textDecoration: 'none' }}>
+            Stacks
+          </Link>
           <Link href="/guides" style={{ color: 'inherit', textDecoration: 'none' }}>
             Guides
           </Link>

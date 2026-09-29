@@ -1,0 +1,404 @@
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import Link from 'next/link';
+import { Header } from '@/components/Header';
+import { Footer } from '@/components/Footer';
+import { NewsletterSignup } from '@/components/NewsletterSignup';
+import { getStackBySlug, getAllStacks } from '@/lib/stacks';
+
+interface StackPageProps {
+  params: {
+    slug: string;
+  };
+}
+
+export function generateStaticParams() {
+  return getAllStacks().map((stack) => ({
+    slug: stack.slug,
+  }));
+}
+
+export function generateMetadata({ params }: StackPageProps): Metadata {
+  const stack = getStackBySlug(params.slug);
+  if (!stack) {
+    return { title: 'Stack Not Found • GTM Shelf' };
+  }
+
+  return {
+    title: `${stack.title} • GTM Architecture Blueprint`,
+    description: `${stack.subtitle} Estimated cost: ${stack.monthlyCostEstimate}. Compare workflow steps, tools, and alternatives.`,
+    openGraph: {
+      title: `${stack.title} • GTM Architecture Blueprint`,
+      description: stack.subtitle,
+      url: `https://gtmshelf.com/stacks/${stack.slug}`,
+    },
+  };
+}
+
+export default function StackDetailPage({ params }: StackPageProps) {
+  const stack = getStackBySlug(params.slug);
+
+  if (!stack) {
+    notFound();
+  }
+
+  return (
+    <>
+      <div className="wrap" id="main-content">
+        <Header />
+
+        <main style={{ paddingBottom: '60px' }}>
+          {/* Breadcrumbs */}
+          <nav aria-label="Breadcrumb" style={{ padding: '24px 0 12px', fontSize: '0.875rem', color: 'var(--muted)' }}>
+            <Link href="/" style={{ color: 'var(--muted)', textDecoration: 'none' }}>Home</Link>
+            <span style={{ margin: '0 8px' }}>/</span>
+            <Link href="/stacks" style={{ color: 'var(--muted)', textDecoration: 'none' }}>Stacks</Link>
+            <span style={{ margin: '0 8px' }}>/</span>
+            <span style={{ color: 'var(--ink)', fontWeight: 500 }}>{stack.title}</span>
+          </nav>
+
+          {/* Hero Header */}
+          <section style={{ padding: '20px 0 36px', borderBottom: '1px solid var(--line)' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', alignItems: 'center', marginBottom: '14px' }}>
+              <span
+                style={{
+                  font: '600 0.75rem var(--body)',
+                  background: 'var(--brand-soft)',
+                  color: 'var(--brand)',
+                  border: '1px solid var(--line)',
+                  padding: '3px 12px',
+                  borderRadius: '999px',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.05em',
+                }}
+              >
+                {stack.category}
+              </span>
+              <span
+                style={{
+                  font: '600 0.75rem var(--body)',
+                  background: '#10B98118',
+                  color: '#059669',
+                  border: '1px solid #10B98130',
+                  padding: '3px 12px',
+                  borderRadius: '999px',
+                }}
+              >
+                {stack.badge}
+              </span>
+            </div>
+
+            <h1
+              style={{
+                font: '800 clamp(2.2rem, 5vw, 3.4rem)/1.1 var(--display)',
+                letterSpacing: '-0.025em',
+                margin: '0 0 16px',
+                color: 'var(--ink)',
+              }}
+            >
+              {stack.title}
+            </h1>
+
+            <p style={{ font: '400 1.25rem/1.5 var(--body)', color: 'var(--muted)', margin: '0 0 28px', maxWidth: '780px' }}>
+              {stack.subtitle}
+            </p>
+
+            {/* Key Metrics Bar */}
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+                gap: '16px',
+                background: 'var(--surface)',
+                border: '1px solid var(--line)',
+                borderRadius: '16px',
+                padding: '20px 24px',
+              }}
+            >
+              <div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--muted)', textTransform: 'uppercase', fontWeight: 600 }}>Est. Monthly Cost</div>
+                <div style={{ font: '700 1.25rem var(--display)', color: 'var(--brand)', marginTop: '4px' }}>{stack.monthlyCostEstimate}</div>
+              </div>
+              <div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--muted)', textTransform: 'uppercase', fontWeight: 600 }}>Target Team</div>
+                <div style={{ font: '600 0.9375rem var(--body)', color: 'var(--ink)', marginTop: '4px' }}>{stack.targetTeam}</div>
+              </div>
+              <div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--muted)', textTransform: 'uppercase', fontWeight: 600 }}>Setup Time</div>
+                <div style={{ font: '600 0.9375rem var(--body)', color: 'var(--ink)', marginTop: '4px' }}>{stack.setupTime}</div>
+              </div>
+              <div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--muted)', textTransform: 'uppercase', fontWeight: 600 }}>Annual Advantage</div>
+                <div style={{ font: '600 0.9375rem var(--body)', color: '#059669', marginTop: '4px' }}>{stack.annualSavingsEstimate}</div>
+              </div>
+            </div>
+          </section>
+
+          {/* Architectural Overview */}
+          <section style={{ padding: '40px 0', borderBottom: '1px solid var(--line)' }}>
+            <h2 style={{ font: '700 1.625rem var(--display)', margin: '0 0 20px', color: 'var(--ink)' }}>
+              Architectural Logic & Strategy
+            </h2>
+            <div style={{ maxWidth: '820px', display: 'flex', flexDirection: 'column', gap: '16px', font: '400 1.0625rem/1.7 var(--body)', color: 'var(--ink)' }}>
+              {stack.description.map((paragraph, idx) => (
+                <p key={idx} style={{ margin: 0, color: 'var(--muted)' }}>
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+          </section>
+
+          {/* Visual Workflow Pipeline */}
+          <section style={{ padding: '40px 0', borderBottom: '1px solid var(--line)' }}>
+            <h2 style={{ font: '700 1.625rem var(--display)', margin: '0 0 8px', color: 'var(--ink)' }}>
+              End-to-End Workflow Pipeline
+            </h2>
+            <p style={{ font: '400 1rem var(--body)', color: 'var(--muted)', margin: '0 0 28px' }}>
+              How data and prospects flow sequentially through this stack architecture.
+            </p>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px' }}>
+              {stack.workflowPipeline.map((step) => (
+                <div
+                  key={step.step}
+                  style={{
+                    background: 'var(--surface)',
+                    border: '1px solid var(--line)',
+                    borderRadius: '14px',
+                    padding: '20px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    position: 'relative',
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '12px' }}>
+                    <span
+                      style={{
+                        width: '28px',
+                        height: '28px',
+                        borderRadius: '50%',
+                        background: 'var(--brand)',
+                        color: 'var(--brand-ink)',
+                        display: 'grid',
+                        placeItems: 'center',
+                        fontWeight: 700,
+                        fontSize: '0.875rem',
+                      }}
+                    >
+                      {step.step}
+                    </span>
+                    <span style={{ font: '700 0.9375rem var(--display)', color: 'var(--ink)' }}>
+                      {step.name}
+                    </span>
+                  </div>
+
+                  <p style={{ font: '400 0.875rem/1.5 var(--body)', color: 'var(--muted)', margin: '0 0 16px', flexGrow: 1 }}>
+                    {step.description}
+                  </p>
+
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                    {step.toolSlugs.map((slug) => {
+                      const toolMatch = stack.tools.find((t) => t.toolSlug === slug);
+                      return (
+                        <span
+                          key={slug}
+                          style={{
+                            fontSize: '0.75rem',
+                            fontWeight: 600,
+                            padding: '3px 8px',
+                            borderRadius: '6px',
+                            background: 'var(--bg)',
+                            border: '1px solid var(--line)',
+                            color: 'var(--ink)',
+                          }}
+                        >
+                          {toolMatch?.toolName || slug}
+                        </span>
+                      );
+                    })}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* The Stack Tools Breakdown */}
+          <section style={{ padding: '40px 0', borderBottom: '1px solid var(--line)' }}>
+            <h2 style={{ font: '700 1.625rem var(--display)', margin: '0 0 8px', color: 'var(--ink)' }}>
+              Core Tools in This Stack
+            </h2>
+            <p style={{ font: '400 1rem var(--body)', color: 'var(--muted)', margin: '0 0 28px' }}>
+              Why each tool was selected and the legacy cost it eliminates.
+            </p>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px' }}>
+              {stack.tools.map((item) => (
+                <div
+                  key={item.toolSlug}
+                  style={{
+                    background: 'var(--surface)',
+                    border: '1px solid var(--line)',
+                    borderRadius: '16px',
+                    padding: '24px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                  }}
+                >
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '12px', marginBottom: '8px' }}>
+                    <h3 style={{ font: '700 1.25rem var(--display)', margin: 0 }}>
+                      <Link href={`/tools/${item.toolSlug}`} style={{ color: 'var(--ink)', textDecoration: 'none' }}>
+                        {item.toolName} ↗
+                      </Link>
+                    </h3>
+                    <span
+                      style={{
+                        fontSize: '0.75rem',
+                        fontWeight: 600,
+                        padding: '2px 8px',
+                        borderRadius: '4px',
+                        background: 'var(--brand-soft)',
+                        color: 'var(--brand)',
+                        border: '1px solid var(--line)',
+                      }}
+                    >
+                      {item.categoryName}
+                    </span>
+                  </div>
+
+                  <div style={{ font: '600 0.875rem var(--body)', color: 'var(--brand)', marginBottom: '14px' }}>
+                    Role: {item.role}
+                  </div>
+
+                  <p style={{ font: '400 0.9375rem/1.5 var(--body)', color: 'var(--muted)', margin: '0 0 16px', flexGrow: 1 }}>
+                    {item.whyChosen}
+                  </p>
+
+                  <div
+                    style={{
+                      borderTop: '1px solid var(--line)',
+                      paddingTop: '14px',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: '8px',
+                      fontSize: '0.8125rem',
+                    }}
+                  >
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                      <span style={{ color: 'var(--muted)' }}>Est. Cost:</span>
+                      <strong style={{ color: 'var(--ink)' }}>{item.estimatedCost}</strong>
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                      <span style={{ color: 'var(--muted)' }}>Replaces:</span>
+                      <span style={{ color: '#059669', fontWeight: 500 }}>{item.replaces}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Trade-offs & Alternatives Grid */}
+          <section style={{ padding: '40px 0', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '28px' }}>
+            {/* Trade-offs */}
+            <div
+              style={{
+                background: 'var(--surface)',
+                border: '1px solid var(--line)',
+                borderRadius: '16px',
+                padding: '28px',
+              }}
+            >
+              <h2 style={{ font: '700 1.25rem var(--display)', margin: '0 0 8px', color: 'var(--ink)' }}>
+                Trade-offs & Considerations
+              </h2>
+              <p style={{ font: '400 0.875rem var(--body)', color: 'var(--muted)', margin: '0 0 20px' }}>
+                Honest limitations and practical operational mitigations.
+              </p>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                {stack.tradeoffs.map((t, idx) => (
+                  <div key={idx} style={{ padding: '12px 14px', borderRadius: '10px', background: 'var(--bg)', border: '1px solid var(--line)' }}>
+                    <div style={{ fontWeight: 600, fontSize: '0.875rem', color: 'var(--ink)', marginBottom: '4px' }}>
+                      ⚠️ {t.point}
+                    </div>
+                    <div style={{ fontSize: '0.8125rem', color: 'var(--muted)', lineHeight: 1.5 }}>
+                      <strong>Mitigation:</strong> {t.mitigation}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Alternatives */}
+            <div
+              style={{
+                background: 'var(--surface)',
+                border: '1px solid var(--line)',
+                borderRadius: '16px',
+                padding: '28px',
+              }}
+            >
+              <h2 style={{ font: '700 1.25rem var(--display)', margin: '0 0 8px', color: 'var(--ink)' }}>
+                Recommended Swaps & Variants
+              </h2>
+              <p style={{ font: '400 0.875rem var(--body)', color: 'var(--muted)', margin: '0 0 20px' }}>
+                When your specific constraints call for an alternative tool.
+              </p>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                {stack.alternatives.map((alt, idx) => (
+                  <div key={idx} style={{ padding: '12px 14px', borderRadius: '10px', background: 'var(--bg)', border: '1px solid var(--line)' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
+                      <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--muted)', fontWeight: 600 }}>
+                        {alt.role}
+                      </span>
+                      <Link href={`/tools/${alt.alternativeSlug}`} style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'var(--brand)' }}>
+                        {alt.alternativeName} ↗
+                      </Link>
+                    </div>
+                    <div style={{ fontSize: '0.8125rem', color: 'var(--muted)', lineHeight: 1.5 }}>
+                      {alt.reason}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Bottom Action Section */}
+          <section
+            style={{
+              marginTop: '20px',
+              padding: '36px clamp(20px, 4vw, 44px)',
+              background: 'linear-gradient(135deg, var(--surface) 0%, var(--brand-soft) 100%)',
+              border: '1px solid var(--line)',
+              borderRadius: '20px',
+              textAlign: 'center',
+            }}
+          >
+            <h2 style={{ font: '800 1.75rem var(--display)', margin: '0 0 10px', color: 'var(--ink)' }}>
+              Ready to Implement This Architecture?
+            </h2>
+            <p style={{ font: '400 1rem var(--body)', color: 'var(--muted)', margin: '0 auto 24px', maxWidth: '600px' }}>
+              Simulate exact seat costs and annual ROI, or run our 30-second Stack Finder to verify compatibility with your existing CRM.
+            </p>
+            <div style={{ display: 'flex', gap: '14px', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <Link href="/roi-calculator" className="btn btn-primary" style={{ padding: '12px 24px' }}>
+                Calculate ROI in Simulator
+              </Link>
+              <Link href="/find" className="btn btn-ghost" style={{ padding: '12px 24px' }}>
+                Build My Custom Stack
+              </Link>
+              <Link href="/stacks" className="btn btn-ghost" style={{ padding: '12px 20px' }}>
+                ← All Stacks
+              </Link>
+            </div>
+          </section>
+        </main>
+
+        <NewsletterSignup />
+        <Footer />
+      </div>
+    </>
+  );
+}

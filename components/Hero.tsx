@@ -17,15 +17,14 @@ export function Hero({ searchQuery, onSearchChange, children }: HeroProps) {
         <div className="hero-intro">
           <div className="trust-pill" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '0.8125rem', fontWeight: 600, color: 'var(--muted)', background: 'var(--brand-soft)', border: '1px solid var(--line)', padding: '4px 12px', borderRadius: '999px', marginBottom: '14px' }}>
             <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--brand)', display: 'inline-block' }}></span>
-            44 tools across 5 funnel stages, updated regularly
+            50 vetted tools across 5 funnel stages • Zero vendor bias
           </div>
           <h1 id="h1">
-            Pick the AI tool for<br className="desk-br" />{' '}
-            the stage <mark className="hl">where<br className="desk-br" />{' '}
-            your funnel leaks.</mark>
+            Find the right <mark className="hl">AI stack</mark><br className="desk-br" />{' '}
+            for your GTM team.
           </h1>
           <p className="lede">
-            A hand-picked directory of AI tools built <strong>only for sales and marketing</strong>. Start with a <strong>funnel stage</strong>, search, or answer a few questions and get three picks.
+            Compare vetted AI tools for sales and marketing by workflow, pricing, integrations and funnel stage. Discover battle-tested stacks or build a tailored architecture.
           </p>
         </div>
 
@@ -59,7 +58,13 @@ export function Hero({ searchQuery, onSearchChange, children }: HeroProps) {
           </div>
 
           <p className="ctaline">
-            <span>Not sure where to start?</span> <Link href="/find" className="btn btn-ghost">Find my tools</Link>
+            <span>Discover stacks:</span>{' '}
+            <Link href="/find" className="btn btn-primary" style={{ padding: '6px 14px', fontSize: '0.875rem' }}>
+              Build My Stack
+            </Link>
+            <Link href="/stacks" className="btn btn-ghost" style={{ padding: '6px 14px', fontSize: '0.875rem' }}>
+              Explore Stacks
+            </Link>
           </p>
         </div>
       </div>

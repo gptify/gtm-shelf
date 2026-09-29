@@ -340,7 +340,7 @@ export function HomeDirectory({
           />
         </Hero>
 
-        <section className="browse">
+        <section className="browse" id="tools-section">
           <Filters
             stages={stages}
             categories={categories}
