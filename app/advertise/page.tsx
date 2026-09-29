@@ -204,10 +204,10 @@ export default function AdvertisePage() {
                   Premium Listing
                 </h3>
                 <div style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--ink)', marginBottom: '4px' }}>
-                  $149 <span style={{ fontSize: '0.875rem', fontWeight: 500, color: 'var(--muted)' }}>/ month</span>
+                  $149 <span style={{ fontSize: '0.875rem', fontWeight: 500, color: 'var(--muted)' }}>one-time / annual</span>
                 </div>
                 <div style={{ fontSize: '0.75rem', color: 'var(--muted)', marginBottom: '16px' }}>
-                  or $1,490/year (2 months free)
+                  One-time or annual payment • No monthly recurring subscription traps
                 </div>
                 <p style={{ fontSize: '0.875rem', color: 'var(--muted)', lineHeight: 1.5, marginBottom: '20px' }}>
                   A richer profile built to turn directory visitors into qualified pipeline and demo bookings.
@@ -239,11 +239,11 @@ export default function AdvertisePage() {
 
               <div style={{ marginTop: '28px', paddingTop: '20px', borderTop: '1px solid var(--border)' }}>
                 <a
-                  href="mailto:team@gptify.co?subject=GTM%20Shelf%20Premium%20Listing%20Inquiry&body=Hi%20team,%0A%0AWe%20would%20like%20to%20upgrade%20our%20listing%20to%20Premium%20($149/mo).%0A%0ATool%20Name:%20%0AWebsite:%20%0ADemo%20URL:%20%0A%0AThanks!"
+                  href="mailto:team@gptify.co?subject=GTM%20Shelf%20Premium%20Listing%20Inquiry%20($149)&body=Hi%20team,%0A%0AWe%20would%20like%20to%20upgrade%20our%20listing%20to%20Premium%20($149%20one-time/annual).%0A%0ATool%20Name:%20%0AWebsite:%20%0ADemo%20URL:%20%0A%0AThanks!"
                   className="btn btn-primary"
                   style={{ width: '100%', textAlign: 'center', padding: '10px 16px', display: 'block', textDecoration: 'none' }}
                 >
-                  Upgrade to Premium →
+                  Upgrade to Premium ($149) →
                 </a>
               </div>
             </div>
@@ -268,10 +268,10 @@ export default function AdvertisePage() {
                   Sponsored Slot &amp; Launch
                 </h3>
                 <div style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--ink)', marginBottom: '4px' }}>
-                  $299 <span style={{ fontSize: '0.875rem', fontWeight: 500, color: 'var(--muted)' }}>one-off</span>
+                  $299 <span style={{ fontSize: '0.875rem', fontWeight: 500, color: 'var(--muted)' }}>one-time</span>
                 </div>
                 <div style={{ fontSize: '0.75rem', color: 'var(--muted)', marginBottom: '16px' }}>
-                  or monthly sponsorship packages
+                  One-time launch package • Permanent presence across guides &amp; directory
                 </div>
                 <p style={{ fontSize: '0.875rem', color: 'var(--muted)', lineHeight: 1.5, marginBottom: '20px' }}>
                   Prominent, transparently labeled placements across directory rows, guide pages, and newsletter.
