@@ -1,4 +1,4 @@
-import sampleTools from '@/starter/finder/fixtures/tools.json';
+import sampleTools from '@/data/tools.json';
 import taxonomy from '@/starter/content/taxonomy.json';
 import guidesData from '@/starter/content/guides.json';
 import { ToolStatus, PricingModel, Guide } from '@/lib/types';

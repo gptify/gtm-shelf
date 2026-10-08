@@ -1,7 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 import { Stage, Category, Integration, ToolPublic, PricingModel, Guide } from '@/lib/types';
 import taxonomy from '@/starter/content/taxonomy.json';
-import sampleTools from '@/starter/finder/fixtures/tools.json';
+import sampleTools from '@/data/tools.json';
 import guidesData from '@/starter/content/guides.json';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;

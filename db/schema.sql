@@ -80,7 +80,7 @@ create table tools (
                      setweight(to_tsvector('english', coalesce(name, '')), 'A') ||
                      setweight(to_tsvector('english', coalesce(tagline, '')), 'B') ||
                      setweight(to_tsvector('english', coalesce(description, '')), 'C')
-                   ) stored,
+                   ) stored
   -- verification data is optional; site does not enforce ongoing audit promise
   -- constraint published_needs_verification check (
   --   status <> 'published' or (verified_at is not null and cardinality(source_urls) >= 1)
