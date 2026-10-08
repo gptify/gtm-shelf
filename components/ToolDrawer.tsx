@@ -200,6 +200,43 @@ export function ToolDrawer({
           </button>
         </div>
 
+        <div
+          style={{
+            margin: '16px 0 24px',
+            padding: '14px 16px',
+            borderRadius: '12px',
+            background: 'var(--brand-soft)',
+            border: '1px solid var(--line)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: '12px',
+          }}
+        >
+          <div style={{ fontSize: '0.8125rem', color: 'var(--ink)', lineHeight: 1.4 }}>
+            Need help integrating <strong>{tool.name}</strong> into your CRM workflow?
+          </div>
+          <a
+            href={`/custom?q=${encodeURIComponent(tool.name)}`}
+            style={{
+              fontSize: '0.8125rem',
+              fontWeight: 600,
+              color: 'var(--brand)',
+              textDecoration: 'none',
+              whiteSpace: 'nowrap',
+              padding: '6px 12px',
+              borderRadius: '999px',
+              background: 'var(--surface)',
+              border: '1px solid var(--line)',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '4px',
+            }}
+          >
+            Ask GPTify ↗
+          </a>
+        </div>
+
         {similarTools.length > 0 && (
           <div>
             <h3>Similar tools</h3>

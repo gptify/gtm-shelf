@@ -318,10 +318,15 @@ export default function StackDetailPage({ params }: StackPageProps) {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 {stack.tradeoffs.map((t, idx) => (
                   <div key={idx} style={{ padding: '12px 14px', borderRadius: '10px', background: 'var(--bg)', border: '1px solid var(--line)' }}>
-                    <div style={{ fontWeight: 600, fontSize: '0.875rem', color: 'var(--ink)', marginBottom: '4px' }}>
-                      ⚠️ {t.point}
+                    <div style={{ fontWeight: 600, fontSize: '0.875rem', color: 'var(--ink)', marginBottom: '4px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D97706" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ flexShrink: 0 }}>
+                        <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+                        <line x1="12" y1="9" x2="12" y2="13" />
+                        <line x1="12" y1="17" x2="12.01" y2="17" />
+                      </svg>
+                      <span>{t.point}</span>
                     </div>
-                    <div style={{ fontSize: '0.8125rem', color: 'var(--muted)', lineHeight: 1.5 }}>
+                    <div style={{ fontSize: '0.8125rem', color: 'var(--muted)', lineHeight: 1.5, paddingLeft: '24px' }}>
                       <strong>Mitigation:</strong> {t.mitigation}
                     </div>
                   </div>
@@ -339,7 +344,7 @@ export default function StackDetailPage({ params }: StackPageProps) {
               }}
             >
               <h2 style={{ font: '700 1.25rem var(--display)', margin: '0 0 8px', color: 'var(--ink)' }}>
-                Recommended Swaps & Variants
+                Recommended Swaps &amp; Variants
               </h2>
               <p style={{ font: '400 0.875rem var(--body)', color: 'var(--muted)', margin: '0 0 20px' }}>
                 When your specific constraints call for an alternative tool.
@@ -365,10 +370,10 @@ export default function StackDetailPage({ params }: StackPageProps) {
             </div>
           </section>
 
-          {/* Bottom Action Section */}
+          {/* Bottom Action Section: B2B Implementation & Simulator */}
           <section
             style={{
-              marginTop: '20px',
+              marginTop: '28px',
               padding: '36px clamp(20px, 4vw, 44px)',
               background: 'linear-gradient(135deg, var(--surface) 0%, var(--brand-soft) 100%)',
               border: '1px solid var(--line)',
@@ -376,22 +381,52 @@ export default function StackDetailPage({ params }: StackPageProps) {
               textAlign: 'center',
             }}
           >
-            <h2 style={{ font: '800 1.75rem var(--display)', margin: '0 0 10px', color: 'var(--ink)' }}>
-              Ready to Implement This Architecture?
-            </h2>
-            <p style={{ font: '400 1rem var(--body)', color: 'var(--muted)', margin: '0 auto 24px', maxWidth: '600px' }}>
-              Simulate exact seat costs and annual ROI, or run our 30-second Stack Finder to verify compatibility with your existing CRM.
-            </p>
-            <div style={{ display: 'flex', gap: '14px', justifyContent: 'center', flexWrap: 'wrap' }}>
-              <Link href="/roi-calculator" className="btn btn-primary" style={{ padding: '12px 24px' }}>
-                Calculate ROI in Simulator
-              </Link>
-              <Link href="/find" className="btn btn-ghost" style={{ padding: '12px 24px' }}>
-                Build My Custom Stack
-              </Link>
-              <Link href="/stacks" className="btn btn-ghost" style={{ padding: '12px 20px' }}>
-                ← All Stacks
-              </Link>
+            <div style={{ maxWidth: '640px', margin: '0 auto' }}>
+              <span
+                style={{
+                  display: 'inline-block',
+                  font: '600 0.75rem var(--body)',
+                  background: 'var(--surface)',
+                  color: 'var(--brand)',
+                  border: '1px solid var(--line)',
+                  padding: '3px 12px',
+                  borderRadius: '999px',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.05em',
+                  marginBottom: '12px',
+                }}
+              >
+                Bespoke Implementation
+              </span>
+              <h2 style={{ font: '800 clamp(1.6rem, 3.5vw, 2.1rem)/1.15 var(--display)', margin: '0 0 12px', color: 'var(--ink)' }}>
+                Need This Architecture Deployed for Your Team?
+              </h2>
+              <p style={{ font: '400 1rem/1.6 var(--body)', color: 'var(--muted)', margin: '0 auto 24px', maxWidth: '580px' }}>
+                Off-the-shelf tools don&apos;t connect themselves. At <strong>GPTify</strong>, we audit your current CRM, configure enrichment waterfalls, and deploy this workflow within 1–2 weeks.
+              </p>
+              <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
+                <Link
+                  href={`/custom?stack=${encodeURIComponent(stack.title)}`}
+                  className="btn btn-primary"
+                  style={{ padding: '12px 24px', fontSize: '0.9375rem' }}
+                >
+                  Request Stack Audit &amp; Implementation →
+                </Link>
+                <Link
+                  href="/roi-calculator"
+                  className="btn btn-ghost"
+                  style={{ padding: '12px 20px', fontSize: '0.9375rem', background: 'var(--surface)' }}
+                >
+                  Simulate Seat Costs
+                </Link>
+                <Link
+                  href="/stacks"
+                  className="btn btn-ghost"
+                  style={{ padding: '12px 18px', fontSize: '0.9375rem' }}
+                >
+                  ← All Stacks
+                </Link>
+              </div>
             </div>
           </section>
         </main>

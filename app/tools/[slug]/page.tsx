@@ -235,6 +235,32 @@ export default async function ToolPage({ params }: PageProps) {
             </Link>
           </div>
 
+          <div
+            style={{
+              margin: '32px 0',
+              padding: '22px 26px',
+              borderRadius: '16px',
+              background: 'var(--surface)',
+              border: '1px solid var(--line)',
+              borderLeft: '4px solid var(--brand)',
+              boxShadow: '0 4px 16px rgba(0, 0, 0, 0.02)',
+            }}
+          >
+            <div style={{ font: '700 1.0625rem var(--display)', color: 'var(--ink)', marginBottom: '6px' }}>
+              Want to deploy {tool.name} without integration friction?
+            </div>
+            <p style={{ fontSize: '0.875rem', color: 'var(--muted)', margin: '0 0 16px', lineHeight: 1.5 }}>
+              Connecting {tool.name} to your proprietary CRM, data enrichment waterfalls, or automated outbound sequences requires reliable architecture. Let GPTify audit your stack and build the integration.
+            </p>
+            <Link
+              href={`/custom?q=${encodeURIComponent(tool.name)}`}
+              className="btn btn-ghost"
+              style={{ padding: '8px 18px', fontSize: '0.875rem', borderColor: 'var(--brand)', color: 'var(--brand)', fontWeight: 600 }}
+            >
+              Request Stack Integration Review →
+            </Link>
+          </div>
+
           {similarTools.length > 0 && (
             <div style={{ marginTop: '48px', borderTop: '1.5px solid var(--ink)', paddingTop: '24px' }}>
               <h2 style={{ font: '700 1.25rem var(--display)', marginBottom: '16px' }}>
