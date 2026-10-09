@@ -3,6 +3,7 @@
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
+import { trackEvent } from '@/lib/analytics';
 
 interface PrefillData {
   goal: string;
@@ -10,6 +11,8 @@ interface PrefillData {
   q: string;
   crm: string;
   team: string;
+  stack?: string;
+  budget?: string;
 }
 
 function QueryPrefill({
@@ -19,6 +22,7 @@ function QueryPrefill({
     what: string;
     tools_used: string;
     team_size: string;
+    budget: string;
     hasPrefill: boolean;
     meta: PrefillData;
   }) => void;
@@ -30,28 +34,39 @@ function QueryPrefill({
     const need = searchParams.get('need') || '';
     const q = searchParams.get('q') || '';
     const crm = searchParams.get('crm') || '';
-    const team = searchParams.get('team') || '';
+    const team = searchParams.get('team') || searchParams.get('size') || '';
+    const stack = searchParams.get('stack') || '';
+    const rawBudget = searchParams.get('budget') || '';
 
-    const has = Boolean(goal || need || q || crm || team);
+    const has = Boolean(goal || need || q || crm || team || stack || rawBudget);
     if (!has) return;
 
     const parts = [];
+    if (stack) parts.push(`Architecture Blueprint: ${stack}`);
     if (need) parts.push(`Primary need: ${need}`);
-    if (goal) parts.push(`Goal: ${goal}`);
-    if (q) parts.push(`Search keyword: ${q}`);
-    if (crm) parts.push(`Current CRM: ${crm}`);
+    if (goal) parts.push(`Stage/Goal: ${goal}`);
+    if (q) parts.push(`Requested tool/topic: ${q}`);
+    if (crm && crm !== 'none') parts.push(`Current CRM: ${crm}`);
 
     let teamSize = '';
     if (team === 'solo') teamSize = 'Just me (1)';
-    if (team === 'small') teamSize = 'Small team (2–10)';
-    if (team === 'mid') teamSize = 'Growing team (11–50)';
+    else if (team === 'small') teamSize = 'Small team (2–10)';
+    else if (team === 'mid') teamSize = 'Growing team (11–50)';
+    else if (team === 'large') teamSize = 'Enterprise (200+)';
+    else if (team) teamSize = team;
+
+    let budget = '';
+    if (rawBudget === 'low') budget = 'Under $2,000';
+    else if (rawBudget === 'mid') budget = '$2,000 – $5,000';
+    else if (rawBudget === 'high') budget = '$5,000 – $15,000';
 
     onPrefill({
       what: parts.join('\n'),
-      tools_used: crm ? `CRM: ${crm}` : '',
+      tools_used: crm && crm !== 'none' ? `CRM: ${crm}` : '',
       team_size: teamSize,
+      budget: budget,
       hasPrefill: true,
-      meta: { goal, need, q, crm, team },
+      meta: { goal, need, q, crm, team, stack, budget: rawBudget },
     });
   }, [searchParams, onPrefill]);
 
@@ -82,6 +97,7 @@ export function CustomBuildForm() {
     what: string;
     tools_used: string;
     team_size: string;
+    budget: string;
     hasPrefill: boolean;
     meta: PrefillData;
   }) {
@@ -90,6 +106,7 @@ export function CustomBuildForm() {
       what: prev.what || data.what,
       tools_used: prev.tools_used || data.tools_used,
       team_size: prev.team_size || data.team_size,
+      budget: prev.budget || data.budget || '',
     }));
     setPrefillMeta(data.meta);
     setPrefillShown(true);
@@ -151,6 +168,7 @@ export function CustomBuildForm() {
         throw new Error(data.error || 'Failed to submit request.');
       }
 
+      trackEvent('custom_request');
       setSubmitted(true);
     } catch (err: unknown) {
       const error = err as Error;

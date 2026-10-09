@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { ToolPublic } from '@/lib/types';
 import { hue, initial, pricingLabel, setupLabel } from '@/lib/utils';
+import { trackEvent } from '@/lib/analytics';
 
 interface ToolDrawerProps {
   tool: ToolPublic | null;
@@ -35,6 +36,7 @@ export function ToolDrawer({
       previousFocusRef.current = document.activeElement as HTMLElement;
       if (!dialog.open) {
         dialog.showModal();
+        trackEvent('tool_detail_open', { tool: tool.name });
       }
       setTimeout(() => {
         titleRef.current?.focus();
@@ -184,9 +186,9 @@ export function ToolDrawer({
         <div className="dw-actions">
           <a
             className="btn btn-primary"
-            href={tool.website_url}
+            href={`/out/${tool.slug}`}
             target="_blank"
-            rel="noopener noreferrer"
+            rel={tool.affiliate_url ? 'sponsored noopener noreferrer' : 'nofollow noopener noreferrer'}
           >
             Visit {tool.domain}
           </a>

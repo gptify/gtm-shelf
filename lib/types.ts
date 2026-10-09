@@ -46,6 +46,7 @@ export interface ToolPublic {
   sponsored: boolean;
   logo_path?: string | null;
   verified_at?: string | null;
+  affiliate_url?: string | null;
   integrations: string[];
 }
 

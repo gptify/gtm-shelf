@@ -67,6 +67,7 @@ function mapSampleTools(): ToolPublic[] {
       sponsored: false,
       logo_path: null,
       verified_at: null,
+      affiliate_url: (t as any).affiliate_url || null,
       integrations: t.ints,
     };
   });

@@ -96,6 +96,49 @@ export function HomeDirectory({
     }
   }, []);
 
+  // Synchronize state with URL search parameters (AC 4)
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const params = new URLSearchParams();
+    if (searchQuery.trim()) {
+      params.set('q', searchQuery.trim());
+    }
+    if (selectedStage !== 1) {
+      params.set('stage', String(selectedStage));
+    }
+    if (selectedCategories.size > 0) {
+      params.set('category', Array.from(selectedCategories).join(','));
+    }
+    if (selectedPricing.size > 0) {
+      params.set('pricing', Array.from(selectedPricing).join(','));
+    }
+    if (selectedIntegrations.size > 0) {
+      params.set('integrations', Array.from(selectedIntegrations).join(','));
+    }
+    if (viewMode !== 'list') {
+      params.set('view', viewMode);
+    }
+    if (sortBy !== 'featured') {
+      params.set('sort', sortBy);
+    }
+
+    const qs = params.toString();
+    const newUrl = qs ? `/?${qs}` : '/';
+    const currentUrl = window.location.pathname + window.location.search;
+    if (currentUrl !== newUrl) {
+      window.history.replaceState(null, '', newUrl);
+    }
+  }, [
+    searchQuery,
+    selectedStage,
+    selectedCategories,
+    selectedPricing,
+    selectedIntegrations,
+    viewMode,
+    sortBy,
+  ]);
+
   // Persist saved tools
   const handleToggleSave = useCallback((toolName: string) => {
     setSavedTools((prev) => {

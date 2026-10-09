@@ -26,6 +26,6 @@ export async function GET(req: NextRequest, { params }: RouteProps) {
     }
   }
 
-  const destination = tool.website_url;
+  const destination = tool.affiliate_url || tool.website_url;
   return NextResponse.redirect(destination, 302);
 }

@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { Stage, Category } from '@/lib/types';
+import { trackEvent } from '@/lib/analytics';
 
 interface SubmitModalProps {
   isOpen: boolean;
@@ -112,6 +113,7 @@ export function SubmitModal({
       });
 
       // Even if offline/local, notify user cleanly
+      trackEvent('submit_tool', { tool: name.trim() });
       onSubmitted(name.trim());
       onClose();
       setName('');

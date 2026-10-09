@@ -223,7 +223,7 @@ export default async function ToolPage({ params }: PageProps) {
               className="btn btn-primary"
               href={`/out/${tool.slug}`}
               target="_blank"
-              rel="nofollow noopener noreferrer"
+              rel={tool.affiliate_url ? 'sponsored noopener noreferrer' : 'nofollow noopener noreferrer'}
             >
               Visit {tool.domain}
             </a>
@@ -234,6 +234,11 @@ export default async function ToolPage({ params }: PageProps) {
               Need a custom integration?
             </Link>
           </div>
+          {tool.affiliate_url && (
+            <p className="fine" style={{ marginTop: '-20px', marginBottom: '24px', fontSize: '0.8125rem', color: 'var(--muted)' }}>
+              Disclosure: We may earn a partner commission when you sign up through this link, at no additional cost to you.
+            </p>
+          )}
 
           <div
             style={{

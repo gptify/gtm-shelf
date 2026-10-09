@@ -6,6 +6,7 @@ import { ToolPublic } from '@/lib/types';
 import { createFinder, QUESTIONS, NEED, CATP, STAGES } from '@/lib/finder/finder.mjs';
 import { ToolDrawer } from '@/components/ToolDrawer';
 import { pricingLabel, hue, initial } from '@/lib/utils';
+import { trackEvent } from '@/lib/analytics';
 
 interface FinderClientProps {
   tools: ToolPublic[];
@@ -97,6 +98,9 @@ export function FinderClient({ tools }: FinderClientProps) {
   // Handle answering
   const handleAnswer = (value: any) => {
     if (!currentQId) return;
+    if (st.order.length === 0) {
+      trackEvent('finder_started');
+    }
     setHistory((prev) => [...prev, st]);
     const nextSt = finder.answer(st, currentQId, value);
     setSt(nextSt);
@@ -104,6 +108,7 @@ export function FinderClient({ tools }: FinderClientProps) {
     // If next question is null, finder completed: log run
     const nextQ = finder.nextQuestion(nextSt);
     if (!nextQ) {
+      trackEvent('finder_completed', { questions: nextSt.order.length });
       const res = finder.results(nextSt);
       const topIds = res.picks.map((p: any) => p.tool.id);
       fetch('/api/finder-run', {
@@ -478,6 +483,7 @@ export function FinderClient({ tools }: FinderClientProps) {
           <Link
             className="btn btn-ghost"
             href={`/custom?${customPrefillParams}`}
+            onClick={() => trackEvent('finder_custom_click')}
           >
             Request a custom build
           </Link>

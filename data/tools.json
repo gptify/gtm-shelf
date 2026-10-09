@@ -99,7 +99,8 @@
   "ints": [],
   "feat": false,
   "best": "Performance marketers testing many creatives",
-  "setup": 1
+  "setup": 1,
+  "affiliate_url": "https://free-trial.adcreative.ai/jb870cr6hwhe"
  },
  {
   "id": "madgicx",
@@ -226,7 +227,8 @@
   ],
   "feat": false,
   "best": "Outbound reps who rely on phone numbers",
-  "setup": 1
+  "setup": 1,
+  "affiliate_url": "https://get.seamless.ai/wxur32uh7xzb"
  },
  {
   "id": "6sense",
@@ -283,7 +285,8 @@
   ],
   "feat": true,
   "best": "Outbound teams prioritizing email deliverability",
-  "setup": 2
+  "setup": 2,
+  "affiliate_url": "https://get.lemlist.com/9wfnrv5mceyj"
  },
  {
   "id": "instantly",
@@ -300,7 +303,8 @@
   ],
   "feat": false,
   "best": "Agencies and high-volume cold email senders",
-  "setup": 2
+  "setup": 2,
+  "affiliate_url": "https://refer.instantly.ai/7pwwq1hkoudw"
  },
  {
   "id": "smartlead",
@@ -600,7 +604,8 @@
   ],
   "feat": false,
   "best": "Small sales teams that want data and outreach together",
-  "setup": 1
+  "setup": 1,
+  "affiliate_url": "https://get.apollo.io/yy5q6cfw7xi5"
  },
  {
   "id": "bombora",
@@ -920,5 +925,164 @@
   "feat": false,
   "best": "Growth agencies and outbound teams needing to scale LinkedIn outreach without getting accounts restricted.",
   "setup": 1
+ },
+ {
+  "id": "meetgeek",
+  "slug": "meetgeek",
+  "name": "MeetGeek",
+  "domain": "meetgeek.ai",
+  "stage": 4,
+  "cat": "Meeting notes",
+  "tagline": "AI meeting assistant that records, transcribes, and summarizes calls",
+  "description": "Automatically records, transcribes, and produces AI summaries from Zoom, Teams, and Google Meet with key highlights synced directly to your CRM.",
+  "price": "Free plan",
+  "ints": [
+   "HubSpot",
+   "Slack",
+   "Zapier",
+   "Google Workspace"
+  ],
+  "feat": true,
+  "best": "Sales and customer success teams wanting automated call summaries",
+  "setup": 1,
+  "affiliate_url": "https://get.meetgeek.ai/uy8dxc8l9prm"
+ },
+ {
+  "id": "manychat",
+  "slug": "manychat",
+  "name": "Manychat",
+  "domain": "manychat.com",
+  "stage": 3,
+  "cat": "Chat and conversion",
+  "tagline": "Interactive chat automations for Instagram, WhatsApp, and website leads",
+  "description": "Engages inbound leads instantly on social and messaging channels, qualifies prospects, and routes warm opportunities directly into your pipeline.",
+  "price": "Free plan",
+  "ints": [
+   "HubSpot",
+   "Zapier",
+   "Google Workspace"
+  ],
+  "feat": true,
+  "best": "Growth marketers running omnichannel social chat funnels",
+  "setup": 2,
+  "affiliate_url": "https://manychat.partnerlinks.io/gopygbhk9cau"
+ },
+ {
+  "id": "gamma",
+  "slug": "gamma",
+  "name": "Gamma",
+  "domain": "gamma.app",
+  "stage": 1,
+  "cat": "Content writing",
+  "tagline": "AI presentation and document builder for high-converting sales collateral",
+  "description": "Generates visually engaging sales presentations, proposals, and briefs in minutes with polished layouts, interactive analytics, and responsive designs.",
+  "price": "Free plan",
+  "ints": [
+   "Slack",
+   "Google Workspace"
+  ],
+  "feat": true,
+  "best": "Founders and sales reps creating custom client proposals fast",
+  "setup": 1,
+  "affiliate_url": "https://try.gamma.app/phx9znt88tpu"
+ },
+ {
+  "id": "descript",
+  "slug": "descript",
+  "name": "Descript",
+  "domain": "descript.com",
+  "stage": 1,
+  "cat": "Content writing",
+  "tagline": "AI video and podcast editor that makes editing as simple as a doc",
+  "description": "Transcribes video and audio automatically so you can edit footage by editing the text transcript, remove filler words in one click, and clone voices.",
+  "price": "Free plan",
+  "ints": [
+   "Zapier",
+   "Google Workspace"
+  ],
+  "feat": false,
+  "best": "B2B content creators repurposing podcast and video recordings",
+  "setup": 2,
+  "affiliate_url": "https://get.descript.com/turigheoz1eq"
+ },
+ {
+  "id": "beautiful-ai",
+  "slug": "beautiful-ai",
+  "name": "Beautiful.ai",
+  "domain": "beautiful.ai",
+  "stage": 1,
+  "cat": "Content writing",
+  "tagline": "AI presentation software with smart formatting designed for sales decks",
+  "description": "Applies design rules in real-time to pitch decks and executive proposals, adjusting margins and typography automatically as you add content.",
+  "price": "Paid",
+  "ints": [
+   "Slack",
+   "Google Workspace"
+  ],
+  "feat": false,
+  "best": "Sales teams needing consistent on-brand presentation decks",
+  "setup": 1,
+  "affiliate_url": "https://beautifulai.partnerlinks.io/rvvr8zuu35ig"
+ },
+ {
+  "id": "mindstudio",
+  "slug": "mindstudio",
+  "name": "MindStudio",
+  "domain": "mindstudio.ai",
+  "stage": 3,
+  "cat": "AI SDR agents",
+  "tagline": "No-code builder to create and deploy bespoke AI agents and workflows",
+  "description": "Build enterprise AI agents and custom internal assistants without coding, combining multi-model LLMs with vector memory and external API integrations.",
+  "price": "Free plan",
+  "ints": [
+   "Zapier",
+   "Slack",
+   "Google Workspace"
+  ],
+  "feat": true,
+  "best": "Operations leaders deploying proprietary B2B AI workflows",
+  "setup": 2,
+  "affiliate_url": "https://get.mindstudio.ai/1eqeupsiig0i"
+ },
+ {
+  "id": "lindy",
+  "slug": "lindy",
+  "name": "Lindy",
+  "domain": "lindy.ai",
+  "stage": 3,
+  "cat": "AI SDR agents",
+  "tagline": "Autonomous AI employees for prospecting, email triage, and lead follow-up",
+  "description": "Creates autonomous digital teammates that manage your inbox, follow up on inbound leads, draft personalized emails, and handle routine CRM tasks.",
+  "price": "Free plan",
+  "ints": [
+   "HubSpot",
+   "Salesforce",
+   "Slack",
+   "Zapier",
+   "Google Workspace"
+  ],
+  "feat": true,
+  "best": "Busy revenue leaders looking to delegate recurring prospecting workflows",
+  "setup": 2,
+  "affiliate_url": "https://try.lindy.ai/9jnuq63xr11e"
+ },
+ {
+  "id": "calilio",
+  "slug": "calilio",
+  "name": "Calilio",
+  "domain": "calilio.com",
+  "stage": 4,
+  "cat": "Call intelligence",
+  "tagline": "Cloud VoIP phone system with real-time AI call summaries and sentiment",
+  "description": "Modern B2B phone system with virtual numbers, AI-powered live call transcription, automated conversation summaries, and team performance metrics.",
+  "price": "Paid",
+  "ints": [
+   "HubSpot",
+   "Zapier"
+  ],
+  "feat": false,
+  "best": "Inside sales teams needing intelligent telephony with CRM sync",
+  "setup": 2,
+  "affiliate_url": "https://try.calilio.com/yvlkop2jok4w"
  }
 ]

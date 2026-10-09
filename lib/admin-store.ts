@@ -32,6 +32,7 @@ export interface AdminTool {
   logo_path?: string | null;
   verified_at?: string | null;
   verified_by?: string | null;
+  affiliate_url?: string | null;
   status: ToolStatus;
   integrations: string[];
   sources: ToolSource[];
@@ -101,6 +102,7 @@ function initTools(): AdminTool[] {
       logo_path: null,
       verified_at: null, // Note: sample tools are unverified draft tools per brief
       verified_by: null,
+      affiliate_url: (t as any).affiliate_url || null,
       status: 'draft',
       integrations: t.ints,
       sources: [],
