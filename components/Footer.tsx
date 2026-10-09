@@ -15,7 +15,7 @@ export function Footer({ stages = STAGES }: FooterProps) {
             <strong>GTM Shelf</strong> is an independent directory of AI tools for sales and marketing teams. <span style={{ whiteSpace: 'nowrap' }}>Run by <a href="https://gptify.co" target="_blank" rel="noopener noreferrer" style={{ fontWeight: 700, color: 'inherit', textDecoration: 'underline' }}>GPTify.co</a>.</span>
           </p>
           <p style={{ marginTop: '8px', fontSize: '0.8125rem' }}>
-            Rankings are editorial. Paid placements never affect finder results or organic order.
+            Rankings are editorial. Paid placements never affect finder results or organic order. Some links may be affiliate links; GTMShelf may earn a commission from qualifying purchases at no additional cost to you. Commercial relationships do not determine our independent recommendations.
           </p>
         </div>
 
@@ -25,6 +25,9 @@ export function Footer({ stages = STAGES }: FooterProps) {
               {s.name}
             </Link>
           ))}
+          <Link href="/build-my-stack" style={{ color: 'inherit', textDecoration: 'none' }}>
+            Build My Stack
+          </Link>
           <Link href="/stacks" style={{ color: 'inherit', textDecoration: 'none' }}>
             Stacks
           </Link>
@@ -33,6 +36,12 @@ export function Footer({ stages = STAGES }: FooterProps) {
           </Link>
           <Link href="/free-tools" style={{ color: 'inherit', textDecoration: 'none' }}>
             Free Tools
+          </Link>
+          <Link href="/partners" style={{ color: 'inherit', textDecoration: 'none' }}>
+            Partners
+          </Link>
+          <Link href="/gptify" style={{ color: 'inherit', textDecoration: 'none' }}>
+            GPTify Readers
           </Link>
           <Link href="/custom" style={{ color: 'inherit', textDecoration: 'none' }}>
             Talk to us

@@ -158,6 +158,38 @@ export default async function CategoryPage({ params }: PageProps) {
               ))}
             </ul>
           </div>
+
+          {/* Contextual Conversion CTA */}
+          <div
+            style={{
+              marginTop: '48px',
+              padding: '24px 28px',
+              background: 'var(--surface)',
+              border: '1px solid var(--line)',
+              borderRadius: '12px',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+              gap: '16px',
+            }}
+          >
+            <div>
+              <h3 style={{ fontSize: '1.125rem', fontWeight: 700, margin: '0 0 4px', color: 'var(--ink)' }}>
+                Not sure which tools fit together?
+              </h3>
+              <p style={{ fontSize: '0.875rem', color: 'var(--muted)', margin: 0 }}>
+                Build your tailored GTM stack based on your CRM, team size, and monthly software budget.
+              </p>
+            </div>
+            <Link
+              href="/build-my-stack"
+              className="btn btn-primary"
+              style={{ padding: '10px 20px', fontSize: '0.875rem', fontWeight: 600, textDecoration: 'none' }}
+            >
+              Build My GTM Stack →
+            </Link>
+          </div>
         </main>
       </div>
 

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createLead } from '@/lib/leads';
 import { hashIp, checkRateLimit } from '@/lib/security';
+import { sendLeadNotificationEmail } from '@/lib/email';
 
 export async function POST(req: NextRequest) {
   try {
@@ -43,6 +44,14 @@ export async function POST(req: NextRequest) {
       pick_tool_ids,
       consent_text: consentText,
     });
+
+    // Dispatch email alert to gptify.co@gmail.com
+    await sendLeadNotificationEmail({
+      email: cleanEmail,
+      source,
+      finder_answers,
+      pick_tool_ids,
+    }).catch((err) => console.error('Lead email notification failed:', err));
 
     return NextResponse.json({
       success: true,

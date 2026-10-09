@@ -10,8 +10,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const staticRoutes: MetadataRoute.Sitemap = [
     '',
+    '/build-my-stack',
     '/find',
     '/stacks',
+    '/gptify',
+    '/partners',
     '/custom',
     '/submit',
     '/guides',

@@ -3,9 +3,9 @@ import { Resend } from 'resend';
 const resendApiKey = process.env.RESEND_API_KEY;
 const resend = resendApiKey ? new Resend(resendApiKey) : null;
 
-// Primary recipient: team@gptify.co, with gptify.co@gmail.com as backup/CC
-const NOTIFICATION_TO = process.env.NOTIFICATION_EMAIL || 'team@gptify.co';
-const NOTIFICATION_CC = process.env.NOTIFICATION_EMAIL_CC || 'gptify.co@gmail.com';
+// Primary recipient: gptify.co@gmail.com
+const NOTIFICATION_TO = process.env.NOTIFICATION_EMAIL || 'gptify.co@gmail.com';
+const NOTIFICATION_CC = process.env.NOTIFICATION_EMAIL_CC || '';
 // Default to onboarding@resend.dev so Resend sends immediately; set FROM_EMAIL once gtmshelf.com is verified in Resend DNS
 const FROM_EMAIL = process.env.FROM_EMAIL || 'GTM Shelf Alerts <onboarding@resend.dev>';
 
@@ -210,3 +210,79 @@ export async function sendToolSubmissionEmail(params: ToolSubmissionNotification
     return { success: false, error: err };
   }
 }
+
+export async function sendLeadNotificationEmail(params: {
+  email: string;
+  source: string;
+  finder_answers?: unknown;
+  pick_tool_ids?: string[];
+}) {
+  if (!resend) {
+    console.warn('[Email Alert] RESEND_API_KEY is not set. Lead saved to database, but email not dispatched to gptify.co@gmail.com.');
+    return { success: false, reason: 'NO_API_KEY' };
+  }
+
+  const subject = `[GTM Shelf Lead] New subscriber: ${params.email} (${params.source})`;
+  const configString = params.finder_answers ? JSON.stringify(params.finder_answers, null, 2) : '';
+
+  const html = `
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <meta charset="utf-8">
+        <style>
+          body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #15172B; background: #f8fafc; padding: 24px; }
+          .container { max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; padding: 32px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+          .badge { display: inline-block; padding: 4px 10px; border-radius: 999px; background: #dcfce7; color: #15803d; font-size: 12px; font-weight: 700; text-transform: uppercase; margin-bottom: 12px; }
+          h2 { margin: 0 0 16px; font-size: 20px; color: #15172B; }
+          .field { margin-bottom: 14px; }
+          .label { font-size: 12px; font-weight: 700; color: #64748b; text-transform: uppercase; margin-bottom: 4px; }
+          .val { font-size: 15px; color: #1e293b; background: #f1f5f9; padding: 10px 14px; border-radius: 8px; word-break: break-word; }
+          pre { background: #f1f5f9; padding: 10px; border-radius: 6px; font-size: 12px; overflow-x: auto; margin: 0; }
+          .footer { margin-top: 28px; padding-top: 16px; border-top: 1px solid #e2e8f0; font-size: 12px; color: #94a3b8; }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <span class="badge">New Lead Capture</span>
+          <h2>New Lead on GTM Shelf</h2>
+
+          <div class="field">
+            <div class="label">Lead Email</div>
+            <div class="val"><strong><a href="mailto:${params.email}" style="color: #2F45E0;">${params.email}</a></strong></div>
+          </div>
+
+          <div class="field">
+            <div class="label">Source Form</div>
+            <div class="val">${params.source}</div>
+          </div>
+
+          ${configString ? `
+          <div class="field">
+            <div class="label">Selected Stack / Configuration</div>
+            <div class="val"><pre>${configString}</pre></div>
+          </div>` : ''}
+
+          <div class="footer">
+            Sent to ${NOTIFICATION_TO}. Saved in database.
+          </div>
+        </div>
+      </body>
+    </html>
+  `;
+
+  try {
+    const result = await resend.emails.send({
+      from: FROM_EMAIL,
+      to: [NOTIFICATION_TO],
+      replyTo: params.email,
+      subject,
+      html,
+    });
+    return { success: true, data: result };
+  } catch (err) {
+    console.error('[Lead Email Alert Error]', err);
+    return { success: false, error: err };
+  }
+}
+

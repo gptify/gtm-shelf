@@ -102,3 +102,27 @@ export async function sendTelegramToolSubmission(params: TelegramToolSubmissionP
 
   return sendTelegramMessage(lines.join('\n'));
 }
+
+export async function sendTelegramLeadNotification(params: {
+  email: string;
+  source: string;
+  finder_answers?: unknown;
+}): Promise<boolean> {
+  const lines: string[] = [
+    '📬 <b>Yangi Lead / Newsletter Obunachisi (GTM Shelf)</b>\n',
+    `📧 <b>Email:</b> <code>${escapeHtml(params.email)}</code>`,
+    `📍 <b>Manba:</b> <code>${escapeHtml(params.source)}</code>`,
+  ];
+
+  if (params.finder_answers) {
+    try {
+      lines.push(`⚙️ <b>Sozlamalar:</b> <pre>${escapeHtml(JSON.stringify(params.finder_answers, null, 2).slice(0, 500))}</pre>`);
+    } catch {
+      // ignore
+    }
+  }
+
+  lines.push('\n👉 <a href="https://www.gtmshelf.com/admin/leads">Admin Panelda Ko\'rish</a>');
+
+  return sendTelegramMessage(lines.join('\n'));
+}

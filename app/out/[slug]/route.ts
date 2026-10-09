@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getToolBySlug, supabase } from '@/lib/db/data';
+import { getOutboundLinkInfo } from '@/lib/affiliates';
 
 interface RouteProps {
   params: { slug: string };
@@ -11,13 +12,15 @@ export async function GET(req: NextRequest, { params }: RouteProps) {
     return NextResponse.redirect(new URL('/', req.url));
   }
 
+  const outbound = getOutboundLinkInfo(tool.slug, tool.website_url);
+
   // Record outbound click event in background if Supabase is connected
   if (supabase) {
     try {
       await supabase.from('tool_events').insert([
         {
           tool_id: tool.id,
-          kind: 'visit',
+          kind: outbound.isAffiliate ? 'affiliate_click' : 'vendor_click',
           source: req.nextUrl.searchParams.get('source') || 'direct',
         },
       ]);
@@ -26,6 +29,6 @@ export async function GET(req: NextRequest, { params }: RouteProps) {
     }
   }
 
-  const destination = tool.affiliate_url || tool.website_url;
-  return NextResponse.redirect(destination, 302);
+  return NextResponse.redirect(outbound.targetUrl, 302);
 }
+

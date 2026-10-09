@@ -328,16 +328,16 @@ export default async function GuidePage({ params }: PageProps) {
 
         {/* Bottom CTA */}
         <section className="guide-cta">
-          <strong>Looking for custom AI automations?</strong>
+          <strong>Not sure which tools fit together? Build your GTM stack.</strong>
           <p>
-            If off-the-shelf tools don&apos;t fit your sales stack, our team at GPTify.co builds bespoke workflow automations and integrations.
+            Configure a complete, multi-tool AI stack aligned with your CRM, team size, and monthly software budget.
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '14px' }}>
-            <Link href="/custom" className="btn btn-primary">
-              Request Custom Build
+            <Link href="/build-my-stack" className="btn btn-primary">
+              Build My GTM Stack →
             </Link>
-            <Link href="/find" className="btn btn-ghost">
-              Try Finder
+            <Link href="/custom" className="btn btn-ghost">
+              Request Custom Build
             </Link>
           </div>
         </section>

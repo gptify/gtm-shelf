@@ -5,6 +5,7 @@ import { getTools, getToolBySlug, STAGES } from '@/lib/db/data';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { hue, initial, pricingLabel, setupLabel } from '@/lib/utils';
+import { getOutboundLinkInfo, STANDARD_AFFILIATE_DISCLOSURE } from '@/lib/affiliates';
 
 interface PageProps {
   params: { slug: string };
@@ -58,6 +59,7 @@ export default async function ToolPage({ params }: PageProps) {
   const similarTools = [...similarCategory, ...similarStage].slice(0, 3);
 
   const stage = STAGES.find((s) => s.id === tool.stage_id) || STAGES[0];
+  const outbound = getOutboundLinkInfo(tool.slug, tool.website_url);
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -152,7 +154,7 @@ export default async function ToolPage({ params }: PageProps) {
               <a
                 href={`/out/${tool.slug}`}
                 target="_blank"
-                rel="nofollow noopener noreferrer"
+                rel={outbound.rel}
                 className="site"
                 style={{ fontSize: '1.0625rem' }}
               >
@@ -223,7 +225,7 @@ export default async function ToolPage({ params }: PageProps) {
               className="btn btn-primary"
               href={`/out/${tool.slug}`}
               target="_blank"
-              rel={tool.affiliate_url ? 'sponsored noopener noreferrer' : 'nofollow noopener noreferrer'}
+              rel={outbound.rel}
             >
               Visit {tool.domain}
             </a>
@@ -234,9 +236,9 @@ export default async function ToolPage({ params }: PageProps) {
               Need a custom integration?
             </Link>
           </div>
-          {tool.affiliate_url && (
+          {outbound.disclosureRequired && (
             <p className="fine" style={{ marginTop: '-20px', marginBottom: '24px', fontSize: '0.8125rem', color: 'var(--muted)' }}>
-              Disclosure: We may earn a partner commission when you sign up through this link, at no additional cost to you.
+              {STANDARD_AFFILIATE_DISCLOSURE}
             </p>
           )}
 
@@ -304,6 +306,38 @@ export default async function ToolPage({ params }: PageProps) {
               </ul>
             </div>
           )}
+
+          {/* Contextual Conversion CTA to Build My Stack */}
+          <div
+            style={{
+              marginTop: '48px',
+              padding: '24px 28px',
+              background: 'var(--surface)',
+              border: '1px solid var(--line)',
+              borderRadius: '12px',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+              gap: '16px',
+            }}
+          >
+            <div>
+              <h3 style={{ fontSize: '1.125rem', fontWeight: 700, margin: '0 0 4px', color: 'var(--ink)' }}>
+                Not sure how {tool.name} fits into your overall stack?
+              </h3>
+              <p style={{ fontSize: '0.875rem', color: 'var(--muted)', margin: 0 }}>
+                Build your complete GTM stack and discover complementary tools configured for your CRM and budget.
+              </p>
+            </div>
+            <Link
+              href={`/build-my-stack?existing=${encodeURIComponent(tool.name)}`}
+              className="btn btn-primary"
+              style={{ padding: '10px 20px', fontSize: '0.875rem', fontWeight: 600, textDecoration: 'none' }}
+            >
+              Build My GTM Stack →
+            </Link>
+          </div>
         </main>
       </div>
 

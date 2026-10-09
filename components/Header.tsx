@@ -35,20 +35,26 @@ export function Header({ onOpenSubmit }: HeaderProps) {
         <Link href="/" aria-current={pathname === '/' ? 'page' : undefined}>
           Tools
         </Link>
+        <Link href="/build-my-stack" aria-current={pathname === '/build-my-stack' ? 'page' : undefined}>
+          Build Stack
+        </Link>
         <Link href="/stacks" aria-current={pathname.startsWith('/stacks') ? 'page' : undefined}>
           Stacks
         </Link>
         <Link href="/guides" aria-current={pathname.startsWith('/guides') ? 'page' : undefined}>
           Guides
         </Link>
-        <Link href="/free-tools" aria-current={pathname === '/free-tools' ? 'page' : undefined}>
-          Free Tools
+        <Link href="/partners" aria-current={pathname === '/partners' ? 'page' : undefined}>
+          Partners
+        </Link>
+        <Link href="/gptify" aria-current={pathname === '/gptify' ? 'page' : undefined}>
+          GPTify
         </Link>
       </nav>
 
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
         <Link
-          href="/find"
+          href="/build-my-stack"
           className="btn btn-primary"
           style={{ padding: '8px 16px', fontSize: '0.875rem' }}
         >
