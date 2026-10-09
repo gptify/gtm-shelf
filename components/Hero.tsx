@@ -15,21 +15,9 @@ export function Hero({ searchQuery, onSearchChange, children }: HeroProps) {
     <section className="hero" aria-labelledby="h1">
       <div className="hero-text">
         <div className="hero-intro">
-          <div className="trust-pill" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '0.8125rem', fontWeight: 600, color: 'var(--muted)', background: 'var(--brand-soft)', border: '1px solid var(--line)', padding: '5px 14px', borderRadius: '999px', marginBottom: '14px', flexWrap: 'wrap' }}>
+          <div className="trust-pill" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '0.8125rem', fontWeight: 600, color: 'var(--muted)', background: 'var(--brand-soft)', border: '1px solid var(--line)', padding: '4px 12px', borderRadius: '999px', marginBottom: '14px' }}>
             <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--brand)', display: 'inline-block' }}></span>
-            <span>50+ vetted tools</span>
-            <span>•</span>
-            <Link href="/build-my-stack" style={{ color: 'var(--brand)', textDecoration: 'underline' }}>
-              Build Stack
-            </Link>
-            <span>•</span>
-            <Link href="/partners" style={{ color: 'inherit', textDecoration: 'underline' }}>
-              For Vendors
-            </Link>
-            <span>•</span>
-            <Link href="/gptify" style={{ color: 'inherit', textDecoration: 'underline' }}>
-              GPTify Hub
-            </Link>
+            50+ vetted tools across 5 funnel stages • Zero vendor bias
           </div>
           <h1 id="h1">
             Discover the right <mark className="hl">AI tools</mark>.<br className="desk-br" />{' '}

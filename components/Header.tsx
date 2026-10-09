@@ -47,9 +47,6 @@ export function Header({ onOpenSubmit }: HeaderProps) {
         <Link href="/partners" aria-current={pathname === '/partners' ? 'page' : undefined}>
           Partners
         </Link>
-        <Link href="/gptify" aria-current={pathname === '/gptify' ? 'page' : undefined}>
-          GPTify
-        </Link>
       </nav>
 
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
