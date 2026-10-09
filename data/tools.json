@@ -41,7 +41,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://www.copy.ai/prices",
     "billing_basis": "per_seat_monthly",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "surfer",
@@ -81,7 +83,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://surferseo.com/pricing/",
     "billing_basis": "flat_monthly",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "clearscope",
@@ -120,7 +124,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://www.clearscope.io/pricing",
     "billing_basis": "flat_monthly",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": false,
+    "status": "inactive"
   },
   {
     "id": "semrush",
@@ -157,7 +163,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://www.semrush.com/prices/",
     "billing_basis": "per_user_monthly",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "marketmuse",
@@ -195,7 +203,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://www.marketmuse.com/pricing/",
     "billing_basis": "flat_monthly",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": false,
+    "status": "inactive"
   },
   {
     "id": "adcreative-ai",
@@ -233,7 +243,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://adcreative.ai/pricing",
     "billing_basis": "credit_tier",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "madgicx",
@@ -270,7 +282,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://madgicx.com/pricing",
     "billing_basis": "ad_spend_tier",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": false,
+    "status": "inactive"
   },
   {
     "id": "canva",
@@ -307,7 +321,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://www.canva.com/pricing/",
     "billing_basis": "per_user_monthly",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "buffer",
@@ -344,7 +360,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://buffer.com/pricing",
     "billing_basis": "per_channel_monthly",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "jasper",
@@ -383,7 +401,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://www.jasper.ai/pricing",
     "billing_basis": "per_user_monthly",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "writesonic",
@@ -422,7 +442,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://writesonic.com/pricing",
     "billing_basis": "per_user_monthly",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": false,
+    "status": "inactive"
   },
   {
     "id": "hootsuite",
@@ -462,7 +484,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://www.hootsuite.com/plans",
     "billing_basis": "per_user_monthly",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "gamma",
@@ -500,7 +524,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://gamma.app/pricing",
     "billing_basis": "per_user_monthly",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "descript",
@@ -537,7 +563,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://www.descript.com/pricing",
     "billing_basis": "per_user_monthly",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "beautiful-ai",
@@ -575,7 +603,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://www.beautiful.ai/pricing",
     "billing_basis": "per_user_monthly",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": false,
+    "status": "inactive"
   },
   {
     "id": "clay",
@@ -618,7 +648,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://www.clay.com/pricing",
     "billing_basis": "credit_tier",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "apollo",
@@ -662,7 +694,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://www.apollo.io/pricing",
     "billing_basis": "per_user_monthly",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "zoominfo",
@@ -704,7 +738,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://www.zoominfo.com/pricing",
     "billing_basis": "custom_contract",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "lusha",
@@ -744,7 +780,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://www.lusha.com/pricing/",
     "billing_basis": "per_user_monthly",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": false,
+    "status": "inactive"
   },
   {
     "id": "cognism",
@@ -784,7 +822,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://www.cognism.com/pricing",
     "billing_basis": "custom_contract",
-    "geographic_coverage": "emea_focused"
+    "geographic_coverage": "emea_focused",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "seamless-ai",
@@ -824,7 +864,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://seamless.ai/pricing",
     "billing_basis": "custom_contract",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": false,
+    "status": "inactive"
   },
   {
     "id": "hunter",
@@ -866,7 +908,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://hunter.io/pricing",
     "billing_basis": "credit_tier",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "dropcontact",
@@ -909,7 +953,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://www.dropcontact.com/pricing",
     "billing_basis": "credit_tier",
-    "geographic_coverage": "emea_focused"
+    "geographic_coverage": "emea_focused",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "findymail",
@@ -947,7 +993,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://findymail.com/#pricing",
     "billing_basis": "credit_tier",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "6sense",
@@ -989,7 +1037,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://6sense.com/pricing/",
     "billing_basis": "custom_contract",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "demandbase",
@@ -1030,7 +1080,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://www.demandbase.com/pricing/",
     "billing_basis": "custom_contract",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "bombora",
@@ -1070,7 +1122,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://bombora.com/",
     "billing_basis": "custom_contract",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": false,
+    "status": "inactive"
   },
   {
     "id": "rb2b",
@@ -1112,7 +1166,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://www.rb2b.com/pricing",
     "billing_basis": "profile_quota",
-    "geographic_coverage": "us_only"
+    "geographic_coverage": "us_only",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "warmly",
@@ -1156,7 +1212,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://warmly.ai/pricing",
     "billing_basis": "flat_monthly",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": false,
+    "status": "inactive"
   },
   {
     "id": "koala",
@@ -1197,7 +1255,9 @@
     "source_url": "https://getkoala.com",
     "billing_basis": "free",
     "geographic_coverage": "global",
-    "alternatives_note": "Koala was acquired by Cursor in July 2025 and fully shut down on September 30, 2025. Modern active alternatives include RB2B (free person-level LinkedIn visitor alerts to Slack for US traffic), Warmly (autonomous orchestration), and 6sense."
+    "alternatives_note": "Koala was acquired by Cursor in July 2025 and fully shut down on September 30, 2025. Modern active alternatives include RB2B (free person-level LinkedIn visitor alerts to Slack for US traffic), Warmly (autonomous orchestration), and 6sense.",
+    "is_public": false,
+    "status": "discontinued"
   },
   {
     "id": "lemlist",
@@ -1238,7 +1298,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://www.lemlist.com/pricing",
     "billing_basis": "per_user_monthly",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "instantly",
@@ -1278,7 +1340,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://instantly.ai/pricing",
     "billing_basis": "flat_monthly",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "smartlead",
@@ -1320,7 +1384,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://smartlead.ai/pricing",
     "billing_basis": "flat_monthly",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "heyreach",
@@ -1359,7 +1425,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://heyreach.io/pricing",
     "billing_basis": "per_sender_monthly",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "artisan",
@@ -1400,7 +1468,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://artisan.co/pricing",
     "billing_basis": "flat_monthly",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "11x",
@@ -1440,7 +1510,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://11x.ai/",
     "billing_basis": "custom_contract",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "cubeo-ai",
@@ -1482,7 +1554,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://cubeo.ai/",
     "billing_basis": "custom_contract",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "regie-ai",
@@ -1524,7 +1598,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://www.regie.ai/pricing",
     "billing_basis": "credits_and_enterprise_contract",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "mindstudio",
@@ -1565,7 +1641,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://www.mindstudio.ai/pricing",
     "billing_basis": "flat_monthly",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": false,
+    "status": "inactive"
   },
   {
     "id": "lindy",
@@ -1606,7 +1684,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://www.lindy.ai/pricing",
     "billing_basis": "credit_tier",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": false,
+    "status": "inactive"
   },
   {
     "id": "qualified",
@@ -1646,7 +1726,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://www.qualified.com/pricing",
     "billing_basis": "custom_contract",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "intercom",
@@ -1689,7 +1771,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://www.intercom.com/pricing",
     "billing_basis": "per_user_monthly",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "manychat",
@@ -1730,7 +1814,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://manychat.com/pricing",
     "billing_basis": "contact_tier",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "drift",
@@ -1770,7 +1856,9 @@
     "source_url": "https://drift.com",
     "billing_basis": "custom_contract",
     "geographic_coverage": "global",
-    "alternatives_note": "Clari + Salesloft announced the gradual sunset of standalone Drift in March 2026, partnering with 1mind as the designated successor. For new purchases, evaluate 1mind, Qualified, or Intercom Fin."
+    "alternatives_note": "Clari + Salesloft announced the gradual sunset of standalone Drift in March 2026, partnering with 1mind as the designated successor. For new purchases, evaluate 1mind, Qualified, or Intercom Fin.",
+    "is_public": false,
+    "status": "sunsetting"
   },
   {
     "id": "1mind",
@@ -1813,7 +1901,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://1mind.com",
     "billing_basis": "custom_contract",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": false,
+    "status": "inactive"
   },
   {
     "id": "gong",
@@ -1856,7 +1946,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://www.gong.io/pricing/",
     "billing_basis": "custom_contract",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "chorus",
@@ -1896,7 +1988,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://www.zoominfo.com/products/chorus",
     "billing_basis": "custom_contract",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": false,
+    "status": "inactive"
   },
   {
     "id": "calilio",
@@ -1932,7 +2026,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://www.calilio.com/pricing",
     "billing_basis": "per_user_monthly",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": false,
+    "status": "inactive"
   },
   {
     "id": "fathom",
@@ -1976,7 +2072,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://fathom.video/pricing",
     "billing_basis": "per_user_monthly",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "tl-dv",
@@ -2018,7 +2116,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://tldv.io/pricing/",
     "billing_basis": "per_user_monthly",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": false,
+    "status": "inactive"
   },
   {
     "id": "meetgeek",
@@ -2059,7 +2159,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://meetgeek.ai/pricing",
     "billing_basis": "per_user_monthly",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "fireflies-ai",
@@ -2100,7 +2202,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://fireflies.ai/pricing",
     "billing_basis": "per_user_monthly",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "calendly",
@@ -2141,7 +2245,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://calendly.com/pricing",
     "billing_basis": "per_user_monthly",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "hubspot-sales-hub",
@@ -2187,7 +2293,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://www.hubspot.com/pricing/sales",
     "billing_basis": "per_user_monthly",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "salesforce-sales-cloud",
@@ -2227,7 +2335,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://www.salesforce.com/editions-pricing/sales-cloud/",
     "billing_basis": "per_user_monthly",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "pipedrive",
@@ -2270,7 +2380,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://www.pipedrive.com/pricing",
     "billing_basis": "per_user_monthly",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "close-crm",
@@ -2312,7 +2424,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://www.close.com/pricing",
     "billing_basis": "per_user_monthly",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "attio",
@@ -2353,7 +2467,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://attio.com/pricing",
     "billing_basis": "per_user_monthly",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "folk",
@@ -2391,7 +2507,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://www.folk.app/pricing",
     "billing_basis": "per_user_monthly",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": false,
+    "status": "inactive"
   },
   {
     "id": "pandadoc",
@@ -2430,7 +2548,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://www.pandadoc.com/pricing/",
     "billing_basis": "per_user_monthly",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "n8n",
@@ -2474,7 +2594,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://n8n.io/pricing/",
     "billing_basis": "execution_tier",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "make",
@@ -2517,7 +2639,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://www.make.com/en/pricing",
     "billing_basis": "credit_tier",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "zapier",
@@ -2559,7 +2683,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://zapier.com/pricing",
     "billing_basis": "task_tier",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "customer-io",
@@ -2599,7 +2725,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://customer.io/pricing/",
     "billing_basis": "profile_tier",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "klaviyo",
@@ -2637,7 +2765,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://www.klaviyo.com/pricing",
     "billing_basis": "contact_tier",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "userlist",
@@ -2674,7 +2804,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://userlist.com/pricing/",
     "billing_basis": "profile_tier",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": false,
+    "status": "inactive"
   },
   {
     "id": "vitally",
@@ -2715,7 +2847,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://www.vitally.io/pricing",
     "billing_basis": "custom_contract",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "churnzero",
@@ -2755,7 +2889,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://churnzero.com/pricing/",
     "billing_basis": "custom_contract",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "clari",
@@ -2796,7 +2932,9 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://www.clari.com/pricing/",
     "billing_basis": "custom_contract",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "boostup",
@@ -2835,6 +2973,8 @@
     "pricing_verified_at": "October 2026",
     "source_url": "https://boostup.ai/pricing/",
     "billing_basis": "custom_contract",
-    "geographic_coverage": "global"
+    "geographic_coverage": "global",
+    "is_public": false,
+    "status": "inactive"
   }
 ]

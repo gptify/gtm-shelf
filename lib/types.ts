@@ -65,6 +65,8 @@ export interface ToolPublic {
   source_url?: string;
   billing_basis?: string;
   geographic_coverage?: string;
+  is_public?: boolean;
+  status?: string;
 }
 
 export interface GuideFilter {

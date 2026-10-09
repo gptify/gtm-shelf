@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { getTools, getToolBySlug, STAGES } from '@/lib/db/data';
+import { getTools, getAllTools, getToolBySlug, STAGES } from '@/lib/db/data';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { hue, initial, pricingLabel, setupLabel } from '@/lib/utils';
@@ -12,7 +12,7 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  const tools = await getTools();
+  const tools = await getAllTools();
   return tools.map((t) => ({ slug: t.slug }));
 }
 

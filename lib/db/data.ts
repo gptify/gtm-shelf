@@ -82,11 +82,16 @@ function mapSampleTools(): ToolPublic[] {
       source_url: t.source_url || `https://${t.domain}`,
       billing_basis: t.billing_basis || 'per_user_monthly',
       geographic_coverage: t.geographic_coverage || 'global',
+      is_public: t.is_public !== false,
+      status: t.status || 'active',
     };
   });
 }
 
-export async function getTools(): Promise<ToolPublic[]> {
+/**
+ * Returns all tools including archived/inactive candidates (useful for dedicated comparisons/admin)
+ */
+export async function getAllTools(): Promise<ToolPublic[]> {
   if (supabase) {
     try {
       const { data, error } = await supabase
@@ -103,8 +108,15 @@ export async function getTools(): Promise<ToolPublic[]> {
     }
   }
 
-  // Staging / local fallback (using the 42 sample draft tools)
   return mapSampleTools();
+}
+
+/**
+ * Returns the exactly 50 active, curated public tools for the directory, builder, and stage pages
+ */
+export async function getTools(): Promise<ToolPublic[]> {
+  const all = await getAllTools();
+  return all.filter((t) => t.is_public !== false && t.status === 'active');
 }
 
 export function getStageBySlug(slug: string): Stage | undefined {
@@ -116,7 +128,7 @@ export function getCategoryBySlug(slug: string): Category | undefined {
 }
 
 export async function getToolBySlug(slug: string): Promise<ToolPublic | undefined> {
-  const tools = await getTools();
+  const tools = await getAllTools();
   return tools.find((t) => t.slug === slug);
 }
 
