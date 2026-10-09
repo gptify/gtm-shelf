@@ -36,7 +36,22 @@ export function Header({ onOpenSubmit }: HeaderProps) {
           Tools
         </Link>
         <Link href="/use-cases" aria-current={pathname.startsWith('/use-cases') ? 'page' : undefined}>
-          Use Cases
+          Use Cases{' '}
+          <span
+            style={{
+              fontSize: '0.625rem',
+              fontWeight: 700,
+              background: 'var(--brand)',
+              color: 'var(--brand-ink)',
+              padding: '1px 5px',
+              borderRadius: '999px',
+              verticalAlign: 'middle',
+              display: 'inline-block',
+              lineHeight: 1.2,
+            }}
+          >
+            NEW
+          </span>
         </Link>
         <Link href="/build-my-stack" aria-current={pathname === '/build-my-stack' ? 'page' : undefined}>
           Build Stack

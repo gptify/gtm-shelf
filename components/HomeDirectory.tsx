@@ -383,6 +383,156 @@ export function HomeDirectory({
           />
         </Hero>
 
+        {/* Spotlight: GTM Use-Case Library */}
+        <section
+          style={{
+            margin: '0 0 36px',
+            background: 'var(--surface)',
+            border: '1px solid var(--line)',
+            borderRadius: '16px',
+            padding: '24px 28px',
+            boxShadow: '0 1px 3px rgba(0,0,0,0.03)',
+          }}
+        >
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: '20px',
+              flexWrap: 'wrap',
+              marginBottom: '16px',
+            }}
+          >
+            <div style={{ maxWidth: '680px' }}>
+              <div
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  padding: '3px 10px',
+                  borderRadius: '6px',
+                  background: 'var(--brand-soft)',
+                  color: 'var(--brand)',
+                  fontSize: '0.75rem',
+                  fontWeight: 700,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.05em',
+                  marginBottom: '8px',
+                }}
+              >
+                NEW • Operational Playbooks
+              </div>
+              <h2
+                style={{
+                  font: '700 1.25rem/1.3 var(--display)',
+                  color: 'var(--ink)',
+                  margin: '0 0 6px',
+                  letterSpacing: '-0.015em',
+                }}
+              >
+                Start From Your Problem: Browse 18 Battle-Tested GTM Use Cases
+              </h2>
+              <p
+                style={{
+                  font: '400 0.9375rem/1.6 var(--body)',
+                  color: 'var(--muted)',
+                  margin: 0,
+                }}
+              >
+                Explore step-by-step blueprints for multi-vendor waterfall enrichment, automated meeting booking, domain deliverability guardrails, and autonomous CRM sync.
+              </p>
+            </div>
+
+            <div>
+              <Link
+                href="/use-cases"
+                className="btn btn-primary"
+                style={{
+                  padding: '10px 20px',
+                  fontSize: '0.9375rem',
+                  fontWeight: 600,
+                  textDecoration: 'none',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                Explore All 18 Blueprints →
+              </Link>
+            </div>
+          </div>
+
+          {/* Quick links to top use cases */}
+          <div
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: '8px',
+              alignItems: 'center',
+              paddingTop: '14px',
+              borderTop: '1px solid var(--line)',
+              fontSize: '0.8125rem',
+            }}
+          >
+            <span style={{ color: 'var(--muted)', fontWeight: 600 }}>Popular workflows:</span>
+            <Link
+              href="/use-cases/crm-enrichment-waterfall"
+              style={{
+                color: 'var(--ink)',
+                background: 'var(--bg)',
+                padding: '4px 10px',
+                borderRadius: '6px',
+                textDecoration: 'none',
+                border: '1px solid var(--line)',
+                fontWeight: 500,
+              }}
+            >
+              Waterfall Email Enrichment
+            </Link>
+            <Link
+              href="/use-cases/signal-based-prospecting"
+              style={{
+                color: 'var(--ink)',
+                background: 'var(--bg)',
+                padding: '4px 10px',
+                borderRadius: '6px',
+                textDecoration: 'none',
+                border: '1px solid var(--line)',
+                fontWeight: 500,
+              }}
+            >
+              Signal-Based Prospecting
+            </Link>
+            <Link
+              href="/use-cases/call-recording-crm-sync"
+              style={{
+                color: 'var(--ink)',
+                background: 'var(--bg)',
+                padding: '4px 10px',
+                borderRadius: '6px',
+                textDecoration: 'none',
+                border: '1px solid var(--line)',
+                fontWeight: 500,
+              }}
+            >
+              Meeting Notes to CRM Sync
+            </Link>
+            <Link
+              href="/use-cases/high-intent-deanonymization"
+              style={{
+                color: 'var(--ink)',
+                background: 'var(--bg)',
+                padding: '4px 10px',
+                borderRadius: '6px',
+                textDecoration: 'none',
+                border: '1px solid var(--line)',
+                fontWeight: 500,
+              }}
+            >
+              Website Visitor De-anonymization
+            </Link>
+          </div>
+        </section>
+
         <section className="browse" id="tools-section">
           <Filters
             stages={stages}

@@ -35,6 +35,13 @@ export function Hero({ searchQuery, onSearchChange, children }: HeroProps) {
             >
               Build My GTM Stack →
             </Link>
+            <Link
+              href="/use-cases"
+              className="btn btn-ghost"
+              style={{ padding: '10px 20px', fontSize: '1rem', fontWeight: 600, textDecoration: 'none' }}
+            >
+              Explore 18 Use Cases ↗
+            </Link>
             <button
               type="button"
               className="btn btn-ghost"
@@ -44,7 +51,7 @@ export function Hero({ searchQuery, onSearchChange, children }: HeroProps) {
               }}
               style={{ padding: '10px 20px', fontSize: '1rem', fontWeight: 500, cursor: 'pointer' }}
             >
-              Explore GTM Tools
+              Browse 50 Tools
             </button>
           </div>
         </div>

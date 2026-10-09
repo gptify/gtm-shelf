@@ -6,6 +6,7 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { hue, initial, pricingLabel, setupLabel } from '@/lib/utils';
 import { getOutboundLinkInfo, STANDARD_AFFILIATE_DISCLOSURE } from '@/lib/affiliates';
+import { getUseCasesForTool } from '@/lib/use-cases';
 
 interface PageProps {
   params: { slug: string };
@@ -57,6 +58,7 @@ export default async function ToolPage({ params }: PageProps) {
       t.category_id !== tool.category_id
   );
   const similarTools = [...similarCategory, ...similarStage].slice(0, 3);
+  const toolUseCases = getUseCasesForTool(tool.slug);
 
   const stage = STAGES.find((s) => s.id === tool.stage_id) || STAGES[0];
   const outbound = getOutboundLinkInfo(tool.slug, tool.website_url);
@@ -317,6 +319,67 @@ export default async function ToolPage({ params }: PageProps) {
               Request Stack Integration Review →
             </Link>
           </div>
+
+          {toolUseCases.length > 0 && (
+            <div
+              style={{
+                marginTop: '40px',
+                background: 'var(--surface)',
+                border: '1px solid var(--line)',
+                borderRadius: '12px',
+                padding: '24px',
+              }}
+            >
+              <div
+                style={{
+                  fontSize: '0.75rem',
+                  fontWeight: 700,
+                  textTransform: 'uppercase',
+                  color: 'var(--brand)',
+                  letterSpacing: '0.05em',
+                  marginBottom: '6px',
+                }}
+              >
+                Featured In Operational Blueprints
+              </div>
+              <h2 style={{ font: '700 1.25rem var(--display)', margin: '0 0 14px', color: 'var(--ink)' }}>
+                How Top Revenue Teams Deploy {tool.name}
+              </h2>
+              <div
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+                  gap: '12px',
+                }}
+              >
+                {toolUseCases.map((uc) => (
+                  <Link
+                    key={uc.id}
+                    href={`/use-cases/${uc.slug}`}
+                    style={{
+                      display: 'block',
+                      padding: '14px',
+                      background: 'var(--bg)',
+                      border: '1px solid var(--line)',
+                      borderRadius: '8px',
+                      textDecoration: 'none',
+                      color: 'inherit',
+                    }}
+                  >
+                    <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--brand)', marginBottom: '4px' }}>
+                      {uc.bucket}
+                    </div>
+                    <div style={{ fontSize: '0.9375rem', fontWeight: 700, color: 'var(--ink)', marginBottom: '4px' }}>
+                      {uc.title}
+                    </div>
+                    <div style={{ fontSize: '0.8125rem', color: 'var(--muted)', lineHeight: 1.4 }}>
+                      {uc.short_summary}
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
 
           {similarTools.length > 0 && (
             <div style={{ marginTop: '48px', borderTop: '1.5px solid var(--ink)', paddingTop: '24px' }}>
