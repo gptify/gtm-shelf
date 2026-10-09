@@ -220,15 +220,15 @@ export const GTM_STACKS: GTMStack[] = [
     summary: 'A low-admin commercial operations stack that surfaces high-intent website accounts, automatically records discovery calls with structured action items, and generates interactive proposals.',
     description: [
       'Early-stage founders cannot afford several hours each week logging call notes, manually advancing deal stages, and maintaining complex enterprise CRM schemas. Early commercial motions require agile tooling that automates administrative capture in the background.',
-      'This stack combines Koala for deanonymizing accounts visiting key website pages with Folk for lightweight, high-speed contact and pipeline management. When prospects schedule discussions, Fathom captures meeting transcripts, generates AI action items, and syncs key takeaways directly into deal records.',
+      'This stack combines RB2B for deanonymizing buyer profiles visiting key website pages with Folk for lightweight, high-speed contact and pipeline management. When prospects schedule discussions, Fathom captures meeting transcripts, generates AI action items, and syncs key takeaways directly into deal records.',
       'When moving to close, PandaDoc supports customized sales quotes and legally binding e-signatures from desktop or mobile devices.'
     ],
     workflowPipeline: [
       {
         step: 1,
         name: 'Website Visitor Deanonymization',
-        description: 'Detect high-intent accounts browsing your pricing or documentation pages before they fill out a form.',
-        toolSlugs: ['koala']
+        description: 'Detect high-intent accounts and individual LinkedIn profiles browsing your pricing or documentation pages before they fill out a form.',
+        toolSlugs: ['rb2b']
       },
       {
         step: 2,
@@ -251,15 +251,15 @@ export const GTM_STACKS: GTMStack[] = [
     ],
     tools: [
       {
-        toolSlug: 'koala',
-        toolName: 'Koala',
-        role: 'Intent-Driven Visitor Deanonymization',
-        whyChosen: 'Identifies accounts visiting key website pages and delivers instant Slack notifications with enriched buyer context.',
-        estimatedCost: 'Free tier / $250/mo (Professional)',
-        planRequirement: 'Free Tier (up to 250 identified accounts) / Professional Tier',
-        seatBasis: 'Domain traffic and identified account quota',
-        integrations: ['Slack', 'HubSpot', 'Salesforce', 'Segment'],
-        replaces: 'Complex enterprise IP deanonymization suites',
+        toolSlug: 'rb2b',
+        toolName: 'RB2B',
+        role: 'Person-Level Website Visitor Identification',
+        whyChosen: 'Identifies individual US website visitors from LinkedIn and sends instant Slack notifications with verified profile links for immediate founder outreach.',
+        estimatedCost: 'Free tier / $99/mo (Pro)',
+        planRequirement: 'Free Tier (100 profiles/mo) or Pro Tier',
+        seatBasis: 'Monthly profile identification quota',
+        integrations: ['Slack', 'HubSpot', 'Zapier'],
+        replaces: 'Legacy IP-only deanonymization suites (e.g. Koala)',
         categoryName: 'Intent signals'
       },
       {
@@ -317,8 +317,8 @@ export const GTM_STACKS: GTMStack[] = [
         mitigation: 'Optimized for 1–10 person teams. When scaling to specialized sales teams (SDRs, AEs, AMs), migrate data into HubSpot or Salesforce.'
       },
       {
-        point: 'Koala free tier limits monthly identified accounts',
-        mitigation: 'Evaluate traffic conversion on the 250 identified account tier before upgrading to higher monthly visitor quotas.'
+        point: 'RB2B free tier provides 100 profiles/mo and is focused primarily on US visitor traffic',
+        mitigation: 'Prioritize founder outreach to high-intent pricing page visitors. For international visitor traffic, supplement with Warmly or 6sense.'
       }
     ],
     alternatives: [

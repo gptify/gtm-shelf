@@ -24,6 +24,10 @@ export interface Integration {
   name: string;
 }
 
+export type ToolClassification = 'core' | 'specialist' | 'review' | 'discontinued' | 'sunsetting';
+export type ToolLifecycle = 'active' | 'sunsetting' | 'discontinued';
+export type GtmBucket = 'Inbound' | 'Outbound' | 'Lead Capture' | 'Data & Orchestration' | 'Agentic Operations';
+
 export interface ToolPublic {
   id: string;
   slug: string;
@@ -48,6 +52,16 @@ export interface ToolPublic {
   verified_at?: string | null;
   affiliate_url?: string | null;
   integrations: string[];
+  classification?: ToolClassification;
+  lifecycle_status?: ToolLifecycle;
+  primary_jtbd?: string;
+  secondary_capabilities?: string[];
+  buyer_segment?: string;
+  gtm_buckets?: GtmBucket[];
+  overlapping_tools?: string[];
+  min_plan?: string;
+  pricing_verified_at?: string;
+  alternatives_note?: string | null;
 }
 
 export interface GuideFilter {

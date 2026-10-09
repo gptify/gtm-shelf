@@ -57,6 +57,16 @@ export function ToolGrid({
               </button>
               {tool.featured && <span className="badge">Featured</span>}
               {tool.sponsored && <span className="badge">Sponsored</span>}
+              {tool.lifecycle_status === 'discontinued' && (
+                <span className="badge" style={{ background: '#fee2e2', color: '#991b1b', borderColor: '#fca5a5' }}>
+                  Discontinued
+                </span>
+              )}
+              {tool.lifecycle_status === 'sunsetting' && (
+                <span className="badge" style={{ background: '#fef3c7', color: '#92400e', borderColor: '#fcd34d' }}>
+                  Sunsetting
+                </span>
+              )}
             </h3>
 
             <p className="tag">{tool.tagline}</p>

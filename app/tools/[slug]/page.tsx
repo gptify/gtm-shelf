@@ -166,6 +166,20 @@ export default async function ToolPage({ params }: PageProps) {
           <p className="dw-tag" style={{ fontSize: '1.25rem', marginBottom: '16px' }}>
             {tool.tagline}
           </p>
+
+          {tool.lifecycle_status === 'discontinued' && (
+            <div style={{ padding: '16px 20px', background: '#fef2f2', border: '1px solid #fecaca', borderRadius: '10px', margin: '20px 0', color: '#991b1b', fontSize: '0.9375rem', lineHeight: 1.5 }}>
+              <strong style={{ display: 'block', marginBottom: '4px' }}>⚠️ Product Discontinued</strong>
+              {tool.alternatives_note || 'This product is no longer active and has been shut down. Excluded from active stack recommendations.'}
+            </div>
+          )}
+          {tool.lifecycle_status === 'sunsetting' && (
+            <div style={{ padding: '16px 20px', background: '#fffbeb', border: '1px solid #fde68a', borderRadius: '10px', margin: '20px 0', color: '#92400e', fontSize: '0.9375rem', lineHeight: 1.5 }}>
+              <strong style={{ display: 'block', marginBottom: '4px' }}>⚠️ Product Sunsetting</strong>
+              {tool.alternatives_note || 'This product is in sunset transition. Not recommended for new deployments.'}
+            </div>
+          )}
+
           <p className="lede" style={{ marginBottom: '32px' }}>
             {tool.description}
           </p>
@@ -187,6 +201,24 @@ export default async function ToolPage({ params }: PageProps) {
                 </Link>
               </dd>
             </div>
+            {tool.primary_jtbd && (
+              <div>
+                <dt>Primary Job (JTBD)</dt>
+                <dd>{tool.primary_jtbd}</dd>
+              </div>
+            )}
+            {tool.gtm_buckets && tool.gtm_buckets.length > 0 && (
+              <div>
+                <dt>GTM Buckets</dt>
+                <dd>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginTop: '4px' }}>
+                    {tool.gtm_buckets.map((b) => (
+                      <span key={b} className="chip">{b}</span>
+                    ))}
+                  </div>
+                </dd>
+              </div>
+            )}
             <div>
               <dt>Pricing</dt>
               <dd>
@@ -198,6 +230,12 @@ export default async function ToolPage({ params }: PageProps) {
                 )}
               </dd>
             </div>
+            {tool.min_plan && (
+              <div>
+                <dt>Minimum Plan</dt>
+                <dd>{tool.min_plan}</dd>
+              </div>
+            )}
             {tool.setup_effort && (
               <div>
                 <dt>Setup effort</dt>
@@ -218,6 +256,18 @@ export default async function ToolPage({ params }: PageProps) {
                 <dd>{tool.best_for}</dd>
               </div>
             )}
+            {tool.overlapping_tools && tool.overlapping_tools.length > 0 && (
+              <div>
+                <dt>Overlaps with</dt>
+                <dd style={{ textTransform: 'capitalize' }}>
+                  {tool.overlapping_tools.join(', ')}
+                </dd>
+              </div>
+            )}
+            <div>
+              <dt>Verified</dt>
+              <dd>{tool.pricing_verified_at || 'October 2026'}</dd>
+            </div>
           </dl>
 
           <div className="dw-actions" style={{ marginBlock: '32px' }}>

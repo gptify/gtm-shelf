@@ -139,6 +139,18 @@ export function ToolDrawer({
         </div>
 
         <p className="dw-tag">{tool.tagline}</p>
+
+        {tool.lifecycle_status === 'discontinued' && (
+          <div style={{ padding: '12px 16px', background: '#fef2f2', border: '1px solid #fecaca', borderRadius: '8px', margin: '14px 0', color: '#991b1b', fontSize: '0.875rem', lineHeight: 1.5 }}>
+            <strong>⚠️ Product Discontinued:</strong> {tool.alternatives_note || 'This product is no longer active. Excluded from new stack recommendations.'}
+          </div>
+        )}
+        {tool.lifecycle_status === 'sunsetting' && (
+          <div style={{ padding: '12px 16px', background: '#fffbeb', border: '1px solid #fde68a', borderRadius: '8px', margin: '14px 0', color: '#92400e', fontSize: '0.875rem', lineHeight: 1.5 }}>
+            <strong>⚠️ Sunsetting Product:</strong> {tool.alternatives_note || 'This product is in sunset transition. Not recommended for new purchases.'}
+          </div>
+        )}
+
         <p>{tool.description}</p>
 
         <dl className="facts">
@@ -152,6 +164,24 @@ export function ToolDrawer({
             <dt>Category</dt>
             <dd>{tool.category_name}</dd>
           </div>
+          {tool.primary_jtbd && (
+            <div>
+              <dt>Primary Job (JTBD)</dt>
+              <dd>{tool.primary_jtbd}</dd>
+            </div>
+          )}
+          {tool.gtm_buckets && tool.gtm_buckets.length > 0 && (
+            <div>
+              <dt>GTM Buckets</dt>
+              <dd>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px', marginTop: '3px' }}>
+                  {tool.gtm_buckets.map((b) => (
+                    <span key={b} className="chip" style={{ fontSize: '0.75rem', padding: '2px 6px' }}>{b}</span>
+                  ))}
+                </div>
+              </dd>
+            </div>
+          )}
           <div>
             <dt>Pricing</dt>
             <dd>
@@ -163,6 +193,12 @@ export function ToolDrawer({
               )}
             </dd>
           </div>
+          {tool.min_plan && (
+            <div>
+              <dt>Minimum Plan</dt>
+              <dd>{tool.min_plan}</dd>
+            </div>
+          )}
           {tool.setup_effort && (
             <div>
               <dt>Setup</dt>
@@ -183,12 +219,18 @@ export function ToolDrawer({
               <dd>{tool.best_for}</dd>
             </div>
           )}
-          {tool.verified_at && (
+          {tool.overlapping_tools && tool.overlapping_tools.length > 0 && (
             <div>
-              <dt>Listed</dt>
-              <dd>{tool.verified_at}</dd>
+              <dt>Overlaps with</dt>
+              <dd style={{ textTransform: 'capitalize' }}>
+                {tool.overlapping_tools.join(', ')}
+              </dd>
             </div>
           )}
+          <div>
+            <dt>Verified</dt>
+            <dd>{tool.pricing_verified_at || tool.verified_at || 'October 2026'}</dd>
+          </div>
         </dl>
 
         <div className="dw-actions">

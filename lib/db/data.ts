@@ -43,7 +43,7 @@ function mapPricing(price: string): PricingModel {
 }
 
 function mapSampleTools(): ToolPublic[] {
-  return sampleTools.map((t) => {
+  return (sampleTools as any[]).map((t) => {
     const stage = STAGES.find((s) => s.id === t.stage) || STAGES[0];
     const category = CATEGORIES.find((c) => c.name === t.cat) || CATEGORIES[0];
     return {
@@ -61,14 +61,24 @@ function mapSampleTools(): ToolPublic[] {
       category_name: category.name,
       category_slug: category.slug,
       pricing_model: mapPricing(t.price),
-      price_note: t.price,
+      price_note: t.price_note || t.price,
       setup_effort: (t.setup || 1) as 1 | 2 | 3,
       featured: Boolean(t.feat),
       sponsored: false,
       logo_path: null,
-      verified_at: null,
+      verified_at: t.pricing_verified_at || 'October 2026',
       affiliate_url: (t as any).affiliate_url || null,
-      integrations: t.ints,
+      integrations: t.ints || [],
+      classification: t.classification || 'specialist',
+      lifecycle_status: t.lifecycle_status || 'active',
+      primary_jtbd: t.primary_jtbd || t.tagline,
+      secondary_capabilities: t.secondary_capabilities || [],
+      buyer_segment: t.buyer_segment || 'All Teams',
+      gtm_buckets: t.gtm_buckets || [],
+      overlapping_tools: t.overlapping_tools || [],
+      min_plan: t.min_plan || t.price_note || t.price,
+      pricing_verified_at: t.pricing_verified_at || 'October 2026',
+      alternatives_note: t.alternatives_note || null,
     };
   });
 }

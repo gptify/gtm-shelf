@@ -24,31 +24,31 @@ const BUCKET_DEFINITIONS: { id: CapabilityBucket; label: string; desc: string; s
     id: 'inbound',
     label: 'Inbound',
     desc: 'Content generation, organic SEO, ad creative, and social media syndication.',
-    sampleCategories: ['Content writing', 'SEO', 'Ad creative', 'Social media'],
+    sampleCategories: ['Content writing', 'GTM AI workflows', 'SEO', 'Ad creative', 'Social media'],
   },
   {
     id: 'outbound',
     label: 'Outbound',
     desc: 'Cold email sequencing, verified contact data, and multi-channel prospecting.',
-    sampleCategories: ['Email outreach', 'Lead data', 'AI SDR agents'],
+    sampleCategories: ['Email outreach', 'LinkedIn outreach', 'Lead data', 'AI SDR agents'],
   },
   {
     id: 'lead_capture',
     label: 'Lead Capture',
     desc: 'Conversational chat conversion, website visitor intent, and automated meeting booking.',
-    sampleCategories: ['Chat and conversion', 'Intent signals'],
+    sampleCategories: ['Chat and conversion', 'Intent signals', 'Meeting notes'],
   },
   {
     id: 'data_orchestration',
     label: 'Data & Orchestration',
     desc: 'CRM hygiene, waterfall enrichment, automated pipeline data, and lifecycle sync.',
-    sampleCategories: ['CRM', 'Revenue forecasting', 'Email and lifecycle'],
+    sampleCategories: ['CRM', 'Workflow automation', 'Revenue forecasting', 'Customer success', 'Document automation', 'Email and lifecycle'],
   },
   {
     id: 'agentic_ops',
     label: 'Agentic Operations',
     desc: 'Autonomous call transcription, AI meeting assistants, and deal co-pilots.',
-    sampleCategories: ['Call intelligence', 'Meeting notes', 'AI SDR agents'],
+    sampleCategories: ['Call intelligence', 'Meeting notes', 'AI SDR agents', 'Workflow automation'],
   },
 ];
 
@@ -210,18 +210,58 @@ export function BuildMyStackClient({ tools, initialParams = {} }: BuildMyStackCl
 
     effectiveBuckets.forEach((bucketId) => {
       const bucketDef = BUCKET_DEFINITIONS.find((b) => b.id === bucketId)!;
-      // Filter tools matching bucket categories
-      const candidateTools = tools.filter((t) => bucketDef.sampleCategories.includes(t.category_name));
+      // Filter tools matching bucket categories and strictly exclude discontinued/sunsetting products
+      const candidateTools = tools.filter((t) => {
+        if (t.lifecycle_status === 'discontinued' || t.lifecycle_status === 'sunsetting') return false;
+        if (t.classification === 'discontinued' || t.classification === 'sunsetting') return false;
+        if (t.id === 'koala' || t.id === 'drift') return false;
 
-      // Prioritize tools that integrate with chosen CRM and respect budget
+        const matchesBucket =
+          t.gtm_buckets && t.gtm_buckets.length > 0
+            ? t.gtm_buckets.some((b) => b.toLowerCase().replace(/[^a-z]/g, '') === bucketId.replace(/[^a-z]/g, ''))
+            : false;
+
+        return matchesBucket || bucketDef.sampleCategories.includes(t.category_name);
+      });
+
+      // Score tools based on CRM compatibility, budget alignment, team size, and complexity
       const scored = candidateTools.map((t) => {
         let score = 0;
-        if (t.featured) score += 3;
+        // Core architecture stability
+        if (t.classification === 'core') score += 4;
+
+        // Native CRM compatibility (High weight)
         if (selectedCrm !== 'None / Other' && t.integrations.some((i) => i.toLowerCase().includes(selectedCrm.toLowerCase().split(' ')[0]))) {
-          score += 5;
+          score += 8;
         }
-        if (selectedBudget === 'free' && t.pricing_model === 'free_plan') score += 10;
-        if (selectedBudget === 'starter' && t.pricing_model !== 'custom_quote') score += 4;
+
+        // Budget alignment
+        if (selectedBudget === 'free') {
+          if (t.pricing_model === 'free_plan') score += 15;
+          if (t.pricing_model === 'custom_quote') score -= 25;
+          if (t.pricing_model === 'paid') score -= 10;
+        } else if (selectedBudget === 'starter') {
+          if (t.pricing_model === 'free_plan') score += 8;
+          if (t.pricing_model === 'paid') score += 8;
+          if (t.pricing_model === 'custom_quote') score -= 15;
+          if (t.setup_effort === 1) score += 3;
+        } else if (selectedBudget === 'growth') {
+          if (t.pricing_model === 'paid') score += 8;
+          if (t.pricing_model === 'free_plan') score += 3;
+        } else if (selectedBudget === 'scale' || selectedBudget === 'enterprise') {
+          if (t.pricing_model === 'custom_quote') score += 10;
+          if (t.pricing_model === 'paid') score += 6;
+          if (t.setup_effort === 3) score += 4;
+        }
+
+        // Team size & operational complexity alignment
+        if (selectedTeamSize === '1' || selectedTeamSize === '2-5') {
+          if (t.setup_effort === 1) score += 4;
+        } else if (selectedTeamSize === '21-50' || selectedTeamSize === '50+') {
+          if (t.classification === 'core') score += 4;
+          if (t.integrations.includes('Salesforce')) score += 3;
+        }
+
         return { tool: t, score };
       });
 
@@ -234,13 +274,15 @@ export function BuildMyStackClient({ tools, initialParams = {} }: BuildMyStackCl
           selectedCrm !== 'None / Other' &&
           tool.integrations.some((i) => i.toLowerCase().includes(selectedCrm.toLowerCase().split(' ')[0]));
 
-        let priceText = 'Estimated: $49 – $99 / mo';
-        let priceType: 'verified' | 'estimated' = 'estimated';
+        let priceText = tool.min_plan ? `Verified: ${tool.min_plan}` : tool.price_note ? `Verified: ${tool.price_note}` : 'Estimated: $49 – $99 / mo';
+        let priceType: 'verified' | 'estimated' = tool.min_plan || tool.price_note ? 'verified' : 'estimated';
+
         if (tool.pricing_model === 'free_plan') {
-          priceText = 'Verified: Free tier available';
+          priceText = tool.min_plan ? `Verified: ${tool.min_plan}` : 'Verified: Free tier available';
           priceType = 'verified';
         } else if (tool.pricing_model === 'custom_quote') {
-          priceText = 'Estimated: Custom quote ($500+ / mo)';
+          priceText = tool.min_plan ? `Verified: ${tool.min_plan}` : 'Verified: Custom quote / enterprise contract';
+          priceType = 'verified';
         } else {
           totalEstMin += 49;
           totalEstMax += 99;
@@ -271,17 +313,33 @@ export function BuildMyStackClient({ tools, initialParams = {} }: BuildMyStackCl
       }
     });
 
-    // Detect potential software overlap
-    const toolNames = bucketPicks.flatMap((b) => b.tools.map((t) => t.tool.name));
+    // Detect potential software overlaps and provide replacement guidance
+    const toolIds = bucketPicks.flatMap((b) => b.tools.map((t) => t.tool.id.toLowerCase()));
     const overlaps: string[] = [];
-    if (toolNames.includes('Apollo.io') && (toolNames.includes('Instantly') || toolNames.includes('lemlist'))) {
+
+    if (toolIds.includes('apollo') && (toolIds.includes('instantly') || toolIds.includes('smartlead') || toolIds.includes('lemlist'))) {
       overlaps.push(
-        'Dual Email Engine: Apollo.io and Instantly/lemlist both support email sending. Recommended best practice: use Apollo strictly for prospect data sourcing, and route cold deliverability through dedicated inboxes in Instantly to preserve primary domain reputation.'
+        'Dual Outbound Sending Engines: Apollo includes native email sequencing. If you do not require specialized high-volume multi-inbox rotation, you can run sequences directly in Apollo to avoid dual subscription fees. Alternatively, use Apollo strictly for B2B data search and route sending through dedicated secondary domains in Instantly/Smartlead.'
       );
     }
-    if (toolNames.includes('Clay') && toolNames.includes('Apollo.io')) {
+    if (toolIds.includes('clay') && toolIds.includes('apollo')) {
       overlaps.push(
-        'Enrichment Layering: Clay connects to Apollo as one of its data providers. Use Apollo for foundational search and Clay for waterfall multi-source enrichment.'
+        'Enrichment Layering: Clay connects to Apollo as one of its data waterfall providers. Recommended pattern: use Apollo for initial search filtering, and Clay for multi-source waterfall enrichment and AI personalization.'
+      );
+    }
+    if (toolIds.includes('make') && toolIds.includes('zapier')) {
+      overlaps.push(
+        'Redundant Orchestration Tools: Both Make and Zapier serve as core integration backbones. Standardize on Make (more cost-effective for complex logic) or Zapier (broader pre-built catalog) to avoid paying two monthly subscription tiers.'
+      );
+    }
+    if ((toolIds.includes('fathom') && toolIds.includes('tl-dv')) || (toolIds.includes('fathom') && toolIds.includes('meetgeek'))) {
+      overlaps.push(
+        'Meeting Recorder Overlap: Multiple AI meeting transcription tools detected in your stack. Consolidate your revenue team onto a single recorder to eliminate duplicate per-seat licensing.'
+      );
+    }
+    if (toolIds.includes('hubspot-sales-hub') && (toolIds.includes('pipedrive') || toolIds.includes('close-crm') || toolIds.includes('salesforce-sales-cloud'))) {
+      overlaps.push(
+        'Multiple Primary CRMs: You have selected more than one primary CRM. Standardize on one central customer database to prevent fragmented customer records and pipeline attribution errors.'
       );
     }
 
