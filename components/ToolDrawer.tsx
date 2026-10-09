@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 import { ToolPublic } from '@/lib/types';
 import { hue, initial, pricingLabel, setupLabel } from '@/lib/utils';
 import { trackEvent } from '@/lib/analytics';
+import { getOutboundLinkInfo } from '@/lib/affiliates';
 
 interface ToolDrawerProps {
   tool: ToolPublic | null;
@@ -36,6 +37,7 @@ export function ToolDrawer({
       previousFocusRef.current = document.activeElement as HTMLElement;
       if (!dialog.open) {
         dialog.showModal();
+        trackEvent('tool_viewed', { tool: tool.name, slug: tool.slug });
         trackEvent('tool_detail_open', { tool: tool.name });
       }
       setTimeout(() => {
@@ -119,14 +121,20 @@ export function ToolDrawer({
             <h2 id="dw-title" ref={titleRef} tabIndex={-1}>
               {tool.name}
             </h2>
-            <a
-              className="site"
-              href={tool.website_url}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {tool.domain}
-            </a>
+            {(() => {
+              const outbound = getOutboundLinkInfo(tool.slug, tool.website_url);
+              return (
+                <a
+                  className="site"
+                  href={outbound.targetUrl}
+                  target="_blank"
+                  rel={outbound.rel}
+                  onClick={() => trackEvent(outbound.isAffiliate ? 'affiliate_clicked' : 'vendor_clicked', { tool: tool.slug })}
+                >
+                  {tool.domain}
+                </a>
+              );
+            })()}
           </div>
         </div>
 

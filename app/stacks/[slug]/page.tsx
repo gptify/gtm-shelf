@@ -27,6 +27,9 @@ export function generateMetadata({ params }: StackPageProps): Metadata {
   return {
     title: `${stack.title} • GTM Architecture Blueprint`,
     description: `${stack.subtitle} Estimated cost: ${stack.monthlyCostEstimate}. Compare workflow steps, tools, and alternatives.`,
+    alternates: {
+      canonical: `/stacks/${stack.slug}`,
+    },
     openGraph: {
       title: `${stack.title} • GTM Architecture Blueprint`,
       description: stack.subtitle,
@@ -85,6 +88,18 @@ export default function StackDetailPage({ params }: StackPageProps) {
                 }}
               >
                 {stack.badge}
+              </span>
+              <span
+                style={{
+                  font: '600 0.75rem var(--body)',
+                  background: 'var(--surface)',
+                  color: 'var(--muted)',
+                  border: '1px solid var(--line)',
+                  padding: '3px 12px',
+                  borderRadius: '999px',
+                }}
+              >
+                Verified as of {stack.verifiedDate}
               </span>
             </div>
 
@@ -283,19 +298,70 @@ export default function StackDetailPage({ params }: StackPageProps) {
                       fontSize: '0.8125rem',
                     }}
                   >
-                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', gap: '8px' }}>
                       <span style={{ color: 'var(--muted)' }}>Est. Cost:</span>
                       <strong style={{ color: 'var(--ink)' }}>{item.estimatedCost}</strong>
                     </div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', gap: '8px' }}>
+                      <span style={{ color: 'var(--muted)' }}>Plan Tier:</span>
+                      <span style={{ color: 'var(--ink)', fontWeight: 500, textAlign: 'right' }}>{item.planRequirement}</span>
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', gap: '8px' }}>
+                      <span style={{ color: 'var(--muted)' }}>Seat Basis:</span>
+                      <span style={{ color: 'var(--ink)', fontWeight: 500, textAlign: 'right' }}>{item.seatBasis}</span>
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', gap: '8px' }}>
+                      <span style={{ color: 'var(--muted)' }}>Integrations:</span>
+                      <span style={{ color: 'var(--muted)', textAlign: 'right' }}>{item.integrations.join(', ')}</span>
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', gap: '8px', borderTop: '1px dashed var(--line)', paddingTop: '6px', marginTop: '2px' }}>
                       <span style={{ color: 'var(--muted)' }}>Replaces:</span>
-                      <span style={{ color: '#059669', fontWeight: 500 }}>{item.replaces}</span>
+                      <span style={{ color: '#059669', fontWeight: 500, textAlign: 'right' }}>{item.replaces}</span>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
           </section>
+
+          {/* Infrastructure & Additional Operating Costs Breakdown */}
+          {stack.infrastructureCosts && stack.infrastructureCosts.length > 0 && (
+            <section style={{ padding: '36px 0', borderBottom: '1px solid var(--line)' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: '12px', marginBottom: '8px' }}>
+                <h2 style={{ font: '700 1.5rem var(--display)', margin: 0, color: 'var(--ink)' }}>
+                  Infrastructure &amp; Additional Operating Costs
+                </h2>
+                <span style={{ fontSize: '0.8125rem', color: 'var(--muted)', fontWeight: 500 }}>
+                  Prerequisite auxiliary costs to run this architecture reliably
+                </span>
+              </div>
+              <p style={{ font: '400 0.9375rem var(--body)', color: 'var(--muted)', margin: '0 0 20px' }}>
+                Software subscriptions rarely operate in isolation. Budget for these additional infrastructure components to ensure deliverability and data integrity.
+              </p>
+
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px' }}>
+                {stack.infrastructureCosts.map((infra, idx) => (
+                  <div
+                    key={idx}
+                    style={{
+                      background: 'var(--surface)',
+                      border: '1px solid var(--line)',
+                      borderRadius: '12px',
+                      padding: '16px 20px',
+                    }}
+                  >
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '6px' }}>
+                      <strong style={{ fontSize: '0.875rem', color: 'var(--ink)' }}>{infra.item}</strong>
+                      <span style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'var(--brand)' }}>{infra.cost}</span>
+                    </div>
+                    <p style={{ fontSize: '0.8125rem', color: 'var(--muted)', margin: 0, lineHeight: 1.45 }}>
+                      {infra.note}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
 
           {/* Trade-offs & Alternatives Grid */}
           <section style={{ padding: '40px 0', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '28px' }}>
@@ -402,7 +468,7 @@ export default function StackDetailPage({ params }: StackPageProps) {
                 Need This Architecture Deployed for Your Team?
               </h2>
               <p style={{ font: '400 1rem/1.6 var(--body)', color: 'var(--muted)', margin: '0 auto 24px', maxWidth: '580px' }}>
-                Off-the-shelf tools don&apos;t connect themselves. At <strong>GPTify</strong>, we audit your current CRM, configure enrichment waterfalls, and deploy this workflow within 1–2 weeks.
+                Off-the-shelf tools don&apos;t connect themselves. At <strong>GPTify</strong>, we audit your current CRM, map custom properties, configure enrichment waterfalls, and validate sync reliability.
               </p>
               <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
                 <Link

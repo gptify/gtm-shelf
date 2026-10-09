@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import { supabase, getTools, CATEGORIES } from '@/lib/db/data';
 import { hashIp, checkRateLimit } from '@/lib/security';
 import { sendToolSubmissionEmail } from '@/lib/email';
-import { sendTelegramToolSubmission } from '@/lib/telegram';
 
 export async function POST(req: NextRequest) {
   try {
@@ -124,18 +123,7 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    // Dispatch Telegram notification
-    sendTelegramToolSubmission({
-      name: cleanName,
-      website_url: cleanUrl,
-      tagline: cleanTagline,
-      pricing_model: normalizedPricing,
-      contact_email: cleanEmail,
-      category_name,
-      is_vendor: Boolean(is_vendor),
-    }).catch((err) => console.error('Tool submission Telegram dispatch failed:', err));
-
-    // Dispatch email notification to team@gptify.co / gptify.co@gmail.com
+    // Dispatch email notification to gptify.co@gmail.com
     sendToolSubmissionEmail({
       name: cleanName,
       website_url: cleanUrl,

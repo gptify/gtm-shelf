@@ -359,7 +359,7 @@ export function NewsletterSignup({ placement = 'homepage' }: NewsletterSignupPro
               Join Our LinkedIn Community
             </h2>
             <p style={{ fontSize: '0.9rem', color: 'var(--muted)', lineHeight: 1.5, margin: '0 0 20px' }}>
-              Prefer reading on LinkedIn? Read our bi-weekly edition and connect with 30,000+ B2B revenue leaders, AI practitioners, and growth engineers.
+              Prefer reading on LinkedIn? Read our weekly edition and connect with 30,000+ B2B revenue leaders, AI practitioners, and growth engineers.
             </p>
 
             <div

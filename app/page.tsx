@@ -1,5 +1,15 @@
+import type { Metadata } from 'next';
 import { getTools, STAGES, CATEGORIES, INTEGRATIONS } from '@/lib/db/data';
 import { HomeDirectory } from '@/components/HomeDirectory';
+
+export const metadata: Metadata = {
+  title: 'GTM Shelf: Discover AI Tools for Sales and Marketing',
+  description:
+    'A curated directory of AI tools built for sales and marketing. Browse by funnel stage, build your GTM stack, or compare tools.',
+  alternates: {
+    canonical: '/',
+  },
+};
 
 export const revalidate = 3600; // hourly revalidation fallback
 

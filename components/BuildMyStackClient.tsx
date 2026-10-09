@@ -379,7 +379,7 @@ export function BuildMyStackClient({ tools, initialParams = {} }: BuildMyStackCl
           <div>
             <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--muted)', fontWeight: 600 }}>Active Capabilities</span>
             <div style={{ fontWeight: 700, fontSize: '1.125rem', marginTop: '4px', color: 'var(--ink)' }}>
-              {selectedBuckets.size} buckets selected
+              {stackRecommendation.bucketPicks.length} {stackRecommendation.bucketPicks.length === 1 ? 'capability' : 'capabilities'} configured
             </div>
           </div>
           <div>
@@ -486,7 +486,13 @@ export function BuildMyStackClient({ tools, initialParams = {} }: BuildMyStackCl
                           rel={outbound.rel}
                           className="btn btn-primary"
                           style={{ flex: 1, padding: '7px 12px', fontSize: '0.8125rem', textAlign: 'center', textDecoration: 'none' }}
-                          onClick={() => trackEvent('vendor_clicked', { tool_id: tool.id, is_affiliate: outbound.isAffiliate })}
+                          onClick={() => {
+                            if (outbound.isAffiliate) {
+                              trackEvent('affiliate_clicked', { tool_id: tool.id, tool: tool.slug });
+                            } else {
+                              trackEvent('vendor_clicked', { tool_id: tool.id, tool: tool.slug });
+                            }
+                          }}
                         >
                           Visit {tool.domain}
                         </a>
@@ -654,12 +660,18 @@ export function BuildMyStackClient({ tools, initialParams = {} }: BuildMyStackCl
               );
             })}
           </div>
-          <div className="qnav" style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <div className="qnav" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <button type="button" className="btn btn-ghost" onClick={() => setStep(1)}>
               Back
             </button>
-            <button type="button" className="btn btn-primary" onClick={() => setStep(3)}>
-              Continue ({selectedBuckets.size} selected) →
+            <button
+              type="button"
+              className="btn btn-primary"
+              disabled={selectedBuckets.size === 0}
+              onClick={() => setStep(3)}
+              style={selectedBuckets.size === 0 ? { opacity: 0.5, cursor: 'not-allowed' } : {}}
+            >
+              {selectedBuckets.size === 0 ? 'Select at least 1 capability' : `Continue (${selectedBuckets.size} selected) →`}
             </button>
           </div>
         </>

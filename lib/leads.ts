@@ -15,8 +15,12 @@ export interface LeadRecord {
   created_at: string;
 }
 
-// In-memory token store for local dev / staging fallback
-const localLeadStore = new Map<string, LeadRecord>();
+// In-memory token store for local dev / staging fallback (persists across Next.js bundles)
+const globalLeads = globalThis as unknown as { __localLeadStore?: Map<string, LeadRecord> };
+if (!globalLeads.__localLeadStore) {
+  globalLeads.__localLeadStore = new Map<string, LeadRecord>();
+}
+const localLeadStore = globalLeads.__localLeadStore;
 
 export function generateToken(): string {
   return crypto.randomBytes(24).toString('hex');

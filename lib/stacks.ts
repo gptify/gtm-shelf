@@ -4,6 +4,9 @@ export interface StackToolItem {
   role: string;
   whyChosen: string;
   estimatedCost: string;
+  planRequirement: string;
+  seatBasis: string;
+  integrations: string[];
   replaces: string;
   categoryName: string;
 }
@@ -27,6 +30,12 @@ export interface StackAlternative {
   reason: string;
 }
 
+export interface InfrastructureCostItem {
+  item: string;
+  cost: string;
+  note: string;
+}
+
 export interface GTMStack {
   id: string;
   slug: string;
@@ -38,10 +47,12 @@ export interface GTMStack {
   monthlyCostEstimate: string;
   annualSavingsEstimate: string;
   setupTime: string;
+  verifiedDate: string;
   summary: string;
   description: string[];
   workflowPipeline: StackWorkflowStep[];
   tools: StackToolItem[];
+  infrastructureCosts: InfrastructureCostItem[];
   tradeoffs: StackTradeoff[];
   alternatives: StackAlternative[];
   featured: boolean;
@@ -52,18 +63,19 @@ export const GTM_STACKS: GTMStack[] = [
     id: 'modern-outbound-stack',
     slug: 'modern-outbound-stack-under-500',
     title: 'The $500/mo Modern Outbound Stack',
-    badge: 'Most Popular for SDR Teams',
-    subtitle: 'Full outbound pipeline generation engine with AI enrichment and safe multichannel delivery for high-velocity teams under $500/mo.',
+    badge: 'Architectural Blueprint',
+    subtitle: 'Modular outbound pipeline generation architecture with AI waterfall enrichment and multi-inbox rotation under $500/mo base software cost.',
     category: 'Outbound & Prospecting',
     targetTeam: '1–3 SDRs, B2B founders, or growth agencies',
-    monthlyCostEstimate: '$424 – $474 / mo',
-    annualSavingsEstimate: '$18,000+ / yr vs. ZoomInfo + SalesLoft',
-    setupTime: '2–3 days',
-    summary: 'A modular, high-deliverability outbound engine that decouples data sourcing from deliverability. Avoid multi-thousand dollar annual lock-ins while getting superior enrichment depth.',
+    monthlyCostEstimate: '$424 – $474 / mo (Base Software)',
+    annualSavingsEstimate: 'Lower entry commitment vs. enterprise annual minimums',
+    setupTime: '3–5 business days (including DNS warmup)',
+    verifiedDate: 'October 2026',
+    summary: 'A modular outbound engine that decouples prospect sourcing, data enrichment, and email deliverability. Avoid multi-thousand dollar annual lock-ins while maintaining granular deliverability control.',
     description: [
-      'Legacy sales stacks force organizations into rigid annual contracts with ZoomInfo, SalesLoft, or Outreach that easily cost $15,000 to $30,000 per year before sending a single email. In contrast, the modern outbound architecture decouples raw prospect data, table enrichment, and sending infrastructure.',
-      'By pairing Apollo for raw discovery with Clay for waterfall enrichment, you verify emails across multiple data providers rather than relying on a single stale vendor. Instantly handles dedicated secondary domain rotation to protect your primary domain reputation, while HeyReach scales multi-account LinkedIn touchpoints without risking account bans.',
-      'The result is a resilient outbound system that can generate 40–80 qualified meetings per month with under $500 in total software overhead.'
+      'Enterprise sales platforms frequently bundle data and sending infrastructure into multi-seat annual contracts (such as ZoomInfo or legacy sales engagement suites) with substantial upfront commitments. The modern outbound architecture decouples raw prospect discovery, table enrichment, and sending infrastructure.',
+      'By pairing Apollo for raw discovery with Clay for waterfall enrichment, you query multiple data providers to maximize verified work email coverage before triggering outreach. Instantly handles dedicated secondary domain rotation to protect primary domain reputation, while HeyReach automates multi-profile LinkedIn touchpoints.',
+      'This architecture provides verified contact coverage and scalable inbox rotation under $500/mo in core software licenses. Final pipeline and meeting generation rates will naturally vary based on ICP alignment, offer resonance, copy quality, and market responsiveness.'
     ],
     workflowPipeline: [
       {
@@ -96,18 +108,24 @@ export const GTM_STACKS: GTMStack[] = [
         toolSlug: 'apollo',
         toolName: 'Apollo.io',
         role: 'Raw B2B Lead Sourcing & Intent Data',
-        whyChosen: 'Massive database of 275M+ contacts with built-in intent signals at an accessible entry price point.',
+        whyChosen: 'Extensive database of 275M+ business contacts with built-in intent signals at an accessible entry price point.',
         estimatedCost: '$99 / user / mo',
-        replaces: 'ZoomInfo ($15,000/yr minimum)',
+        planRequirement: 'Basic ($49) or Professional ($99) Tier',
+        seatBasis: 'Per paid user seat / month',
+        integrations: ['HubSpot', 'Salesforce', 'Zapier', 'CSV Export'],
+        replaces: 'Single-source enterprise databases with annual lock-in',
         categoryName: 'Lead data'
       },
       {
         toolSlug: 'clay',
         toolName: 'Clay',
         role: 'Waterfall Enrichment & AI Research',
-        whyChosen: 'Chains 50+ data providers in real time so you only pay for verified emails; writes custom AI research snippets.',
+        whyChosen: 'Chains 50+ data providers in sequence so you only pay for verified emails; generates custom AI research snippets.',
         estimatedCost: '$149 / mo (Explorer Plan)',
-        replaces: 'Manual SDR research & expensive custom scrapers',
+        planRequirement: 'Explorer Tier (2,000 credits/mo included)',
+        seatBasis: 'Workspace fee + credit usage',
+        integrations: ['HubSpot', 'Salesforce', 'Apollo', 'Webhook', 'HTTP API'],
+        replaces: 'Manual SDR prospect research & one-off scraping scripts',
         categoryName: 'Lead data'
       },
       {
@@ -116,27 +134,59 @@ export const GTM_STACKS: GTMStack[] = [
         role: 'Cold Email Warmup & Unlimited Senders',
         whyChosen: 'Flat-fee pricing with unlimited email account connections, automated deliverability monitoring, and unibox management.',
         estimatedCost: '$97 / mo (Hypergrowth)',
-        replaces: 'SalesLoft / Outreach ($125+/seat/mo with inbox limits)',
+        planRequirement: 'Hypergrowth Tier',
+        seatBasis: 'Flat monthly workspace fee (unlimited email senders)',
+        integrations: ['Webhooks', 'Zapier', 'HubSpot (via webhook)'],
+        replaces: 'Seat-limited sales engagement tools ($120+/rep/mo)',
         categoryName: 'Email outreach'
       },
       {
         toolSlug: 'heyreach',
         toolName: 'HeyReach',
-        role: 'Safe Multi-Account LinkedIn Automation',
-        whyChosen: 'Allows rotating multiple LinkedIn profiles within unified campaigns to safely scale social touchpoints.',
+        role: 'Multi-Account LinkedIn Automation',
+        whyChosen: 'Rotates campaign activity across multiple sender profiles to distribute social touchpoints. Note: all third-party social automation carries inherent platform risk; teams must follow conservative daily limits.',
         estimatedCost: '$79 / mo',
-        replaces: 'Single-account manual LinkedIn prospecting',
+        planRequirement: 'Standard Plan (up to 3 LinkedIn accounts)',
+        seatBasis: 'Account slot subscription',
+        integrations: ['HubSpot', 'Webhooks', 'Zapier'],
+        replaces: 'Manual single-profile social prospecting',
         categoryName: 'Email outreach'
+      }
+    ],
+    infrastructureCosts: [
+      {
+        item: '2–3 Secondary Sending Domains',
+        cost: '$10 – $12 / domain / yr',
+        note: 'Crucial for isolating cold outreach and protecting primary root domain reputation.'
+      },
+      {
+        item: 'Dedicated Mailbox Licenses (Google / MS 365)',
+        cost: '$6 / mailbox / mo',
+        note: 'Recommended 4–8 dedicated sender mailboxes (~$24–$48/mo additional overhead).'
+      },
+      {
+        item: 'DNS Authentication (SPF, DKIM, DMARC)',
+        cost: '$0',
+        note: 'Configured directly in your domain registrar DNS records prior to warmup.'
+      },
+      {
+        item: 'Clay Credit Overages (Optional)',
+        cost: 'Variable by volume',
+        note: 'Applicable only when monthly prospect enrichment exceeds 2,000 rows.'
       }
     ],
     tradeoffs: [
       {
-        point: 'Requires secondary domain setup',
-        mitigation: 'Purchase 2–3 dedicated sending domains on Google Workspace or Outlook and warm up for 14 days before launching.'
+        point: 'Requires dedicated secondary domain setup and warmup',
+        mitigation: 'Purchase 2–3 dedicated sending domains on Google Workspace or Microsoft 365, configure DNS records, and warm up for 14 days before launching campaigns.'
       },
       {
-        point: 'Clay credit consumption needs monitoring',
+        point: 'Clay credit consumption needs active monitoring',
         mitigation: 'Implement condition filters in Clay so credits are only spent on contacts that pass strict ICP criteria.'
+      },
+      {
+        point: 'Social automation carries platform terms-of-service considerations',
+        mitigation: 'Keep daily LinkedIn connection requests within conservative thresholds (15–20 per sender profile) and use randomized delay intervals.'
       }
     ],
     alternatives: [
@@ -159,36 +209,37 @@ export const GTM_STACKS: GTMStack[] = [
     id: 'founder-led-sales-stack',
     slug: 'founder-led-sales-stack',
     title: 'The Founder-Led B2B Sales Stack',
-    badge: 'Best for 0 to 1 Startups',
-    subtitle: 'Zero-admin sales stack designed for founders closing their first 50 customers without getting bogged down in CRM busywork.',
+    badge: '0-to-1 Commercial Motion',
+    subtitle: 'Streamlined sales operations stack designed for founders closing their initial customer cohorts without CRM configuration complexity.',
     category: 'Founder-Led Sales',
     targetTeam: 'Technical founders, early CEOs, and 1–2 person commercial teams',
     monthlyCostEstimate: '$67 – $317 / mo',
-    annualSavingsEstimate: 'Saves 12+ hours per week of manual data entry',
-    setupTime: '1 afternoon',
-    summary: 'A frictionless sales operations stack that captures high-intent website visitors, auto-records meetings with AI action items, and turns calls into signed contracts with minimal effort.',
+    annualSavingsEstimate: 'Automates call summary generation and CRM note logging',
+    setupTime: '1–2 business days',
+    verifiedDate: 'October 2026',
+    summary: 'A low-admin commercial operations stack that surfaces high-intent website accounts, automatically records discovery calls with structured action items, and generates interactive proposals.',
     description: [
-      'Early-stage founders cannot afford to spend 2 hours a day logging call notes, manually updating deal stages, and copying fields into complex CRMs like Salesforce. You need software that works for you in the background while you focus on pitch delivery and customer discovery.',
-      'This stack combines Koala for deanonymizing companies visiting your website with Folk for lightweight, high-speed relationship management. When a prospective buyer books a demo, Fathom sits in on the call, auto-generates structured notes, and syncs key pain points directly into your CRM.',
-      'Once a verbal commitment is secured, PandaDoc enables instant quote generation with interactive CPQ calculations and legally binding e-signatures from any device.'
+      'Early-stage founders cannot afford several hours each week logging call notes, manually advancing deal stages, and maintaining complex enterprise CRM schemas. Early commercial motions require agile tooling that automates administrative capture in the background.',
+      'This stack combines Koala for deanonymizing accounts visiting key website pages with Folk for lightweight, high-speed contact and pipeline management. When prospects schedule discussions, Fathom captures meeting transcripts, generates AI action items, and syncs key takeaways directly into deal records.',
+      'When moving to close, PandaDoc supports customized sales quotes and legally binding e-signatures from desktop or mobile devices.'
     ],
     workflowPipeline: [
       {
         step: 1,
         name: 'Website Visitor Deanonymization',
-        description: 'Detect high-intent accounts browsing your pricing or docs before they even fill out a form.',
+        description: 'Detect high-intent accounts browsing your pricing or documentation pages before they fill out a form.',
         toolSlugs: ['koala']
       },
       {
         step: 2,
         name: 'Lightweight Relationship Tracking',
-        description: 'Track deals, investors, and advisor relationships in a clean Notion-like CRM interface.',
+        description: 'Track deals, investors, and advisor relationships in a clean, high-speed CRM interface.',
         toolSlugs: ['folk']
       },
       {
         step: 3,
         name: 'Automated Call Recording & Action Items',
-        description: 'Record discovery demos with zero bot lag, generate executive summaries, and sync next steps to the deal record.',
+        description: 'Record discovery demos, generate executive summaries, and sync next steps to the deal record.',
         toolSlugs: ['fathom']
       },
       {
@@ -203,47 +254,71 @@ export const GTM_STACKS: GTMStack[] = [
         toolSlug: 'koala',
         toolName: 'Koala',
         role: 'Intent-Driven Visitor Deanonymization',
-        whyChosen: 'Identifies anonymous companies visiting your website and sends instant Slack notifications with enriched buyer context.',
+        whyChosen: 'Identifies accounts visiting key website pages and delivers instant Slack notifications with enriched buyer context.',
         estimatedCost: 'Free tier / $250/mo (Professional)',
-        replaces: 'Clearbit Reveal ($12,000/yr)',
+        planRequirement: 'Free Tier (up to 250 identified accounts) / Professional Tier',
+        seatBasis: 'Domain traffic and identified account quota',
+        integrations: ['Slack', 'HubSpot', 'Salesforce', 'Segment'],
+        replaces: 'Complex enterprise IP deanonymization suites',
         categoryName: 'Intent signals'
       },
       {
         toolSlug: 'folk',
         toolName: 'Folk CRM',
         role: 'Lightweight Modern Deal & Contact CRM',
-        whyChosen: 'Combines Notion simplicity with dedicated pipeline workflows, contact deduplication, and automated LinkedIn sync.',
+        whyChosen: 'Combines intuitive visual pipeline workflows with contact deduplication and Chrome-extension based contact syncing.',
         estimatedCost: '$24 / user / mo',
-        replaces: 'Complex, bloated enterprise CRM instances',
+        planRequirement: 'Standard Plan',
+        seatBasis: 'Per user / month ($24/seat)',
+        integrations: ['Gmail', 'Google Calendar', 'LinkedIn (Extension)', 'Zapier'],
+        replaces: 'Heavyweight enterprise CRM configurations',
         categoryName: 'CRM'
       },
       {
         toolSlug: 'fathom',
         toolName: 'Fathom',
         role: 'AI Notetaker & Call Intelligence',
-        whyChosen: 'Completely free for solo use (or $24/mo team) with best-in-class meeting transcription accuracy and zero awkward bot latency.',
+        whyChosen: 'Free for individual users ($24/mo per user for Team Edition) with fast transcription and structured AI summary sync directly into CRM deals.',
         estimatedCost: 'Free / $24 / user / mo',
-        replaces: 'Gong ($1,400/user/yr + platform fees)',
+        planRequirement: 'Free for Individuals / Team Edition ($24/user/mo)',
+        seatBasis: 'Per user / month',
+        integrations: ['HubSpot', 'Salesforce', 'Close', 'Google Meet', 'Zoom'],
+        replaces: 'Manual sales call note-taking and manual CRM updates',
         categoryName: 'Meeting notes'
       },
       {
         toolSlug: 'pandadoc',
         toolName: 'PandaDoc',
         role: 'Proposals, Quotes & E-Signatures',
-        whyChosen: 'Pre-built proposal templates, dynamic quote pricing tables, and legal e-signatures in one unified dashboard.',
-        estimatedCost: 'Free / $19 / user / mo',
-        replaces: 'DocuSign ($40/mo) + manual PDF generation',
+        whyChosen: 'Pre-built proposal templates, dynamic quote pricing tables, and binding e-signatures in one unified dashboard.',
+        estimatedCost: '$19 – $49 / user / mo',
+        planRequirement: 'Essentials Plan ($19/mo) / Business ($49/mo)',
+        seatBasis: 'Per user / month',
+        integrations: ['HubSpot', 'Zapier', 'Stripe'],
+        replaces: 'Manual PDF proposal preparation and separate e-sign tools',
         categoryName: 'CRM'
+      }
+    ],
+    infrastructureCosts: [
+      {
+        item: 'Workspace Video Conferencing (Zoom / Google Meet)',
+        cost: 'Free / $13 – $15 / mo',
+        note: 'Standard host account for hosting client demos.'
+      },
+      {
+        item: 'Domain Business Email',
+        cost: '$6 / user / mo',
+        note: 'Google Workspace or Microsoft 365 standard business mailbox.'
       }
     ],
     tradeoffs: [
       {
-        point: 'Folk is not suited for 50+ sales rep organizations',
-        mitigation: 'Ideal for 1–10 person teams. When scaling beyond 10 dedicated reps, migrate to HubSpot or Attio.'
+        point: 'Folk is designed for lean pipelines rather than complex enterprise hierarchies',
+        mitigation: 'Optimized for 1–10 person teams. When scaling to specialized sales teams (SDRs, AEs, AMs), migrate data into HubSpot or Salesforce.'
       },
       {
-        point: 'Koala free tier limits monthly visitors',
-        mitigation: 'Start on the generous 250 deanonymized account free tier, then upgrade once pipeline revenue justifies it.'
+        point: 'Koala free tier limits monthly identified accounts',
+        mitigation: 'Evaluate traffic conversion on the 250 identified account tier before upgrading to higher monthly visitor quotas.'
       }
     ],
     alternatives: [
@@ -266,18 +341,19 @@ export const GTM_STACKS: GTMStack[] = [
     id: 'hubspot-ai-native-stack',
     slug: 'hubspot-ai-native-stack',
     title: 'The HubSpot AI-Native Stack',
-    badge: 'Best for Scaleups on HubSpot',
-    subtitle: 'Supercharge your HubSpot CRM with modern AI enrichment, multichannel social outreach, and proactive customer retention.',
+    badge: 'HubSpot Scaleup Architecture',
+    subtitle: 'Augment your HubSpot instance with multi-source waterfall data enrichment, multichannel outreach, and customer retention telemetry.',
     category: 'HubSpot Ecosystem',
     targetTeam: 'Mid-market B2B teams (10–100 employees) built around HubSpot',
-    monthlyCostEstimate: '$590 – $680 / mo base',
-    annualSavingsEstimate: '$30,000+ saved vs. moving to Salesforce enterprise',
-    setupTime: '3–5 days',
-    summary: 'A unified revenue architecture that keeps HubSpot as your single source of truth while unlocking modern AI waterfall enrichment and automated retention alerts.',
+    monthlyCostEstimate: '$590 – $680 / mo base software',
+    annualSavingsEstimate: 'Avoids complex enterprise CRM migration and consultant overhead',
+    setupTime: '1–2 weeks for field mapping and workflow validation',
+    verifiedDate: 'October 2026',
+    summary: 'A unified revenue architecture that preserves HubSpot as your central system of record while integrating multi-provider AI waterfall enrichment and automated CS health monitoring.',
     description: [
-      'Many growing B2B companies consider abandoning HubSpot for Salesforce simply to gain access to complex data pipelines and enterprise revenue intelligence. That migration typically costs $50,000+ in consultant fees and months of downtime.',
-      'The modern alternative is an AI-native layer surrounding your existing HubSpot instance. By syncing Clay directly into HubSpot custom properties, your sales reps get 50+ data sources without leaving their CRM views.',
-      'Add HeyReach for multi-account LinkedIn sequencing and Vitally for customer success health scores, and you get an enterprise-grade revenue engine at a fraction of the implementation complexity.'
+      'Growing B2B organizations often consider migrating from HubSpot to alternative platforms when needing multi-source data enrichment or advanced revenue analytics. However, full CRM migrations frequently introduce substantial consultant expenses, pipeline disruption, and lengthy implementation timelines.',
+      'An effective alternative is deploying an AI-native enrichment and engagement layer around your existing HubSpot instance. By configuring Clay to sync directly with HubSpot custom contact and company properties, revenue teams gain access to dozens of data vendors without leaving standard CRM views.',
+      'Adding HeyReach for coordinated LinkedIn messaging and Vitally for customer health telemetry creates a comprehensive revenue engine while keeping operational workflows familiar.'
     ],
     workflowPipeline: [
       {
@@ -312,25 +388,34 @@ export const GTM_STACKS: GTMStack[] = [
         role: 'Core CRM & Revenue Execution Hub',
         whyChosen: 'Native Breeze AI features, seamless UI adoption, and world-class API ecosystem for mid-market teams.',
         estimatedCost: '$90 – $150 / user / mo',
-        replaces: 'Salesforce Sales Cloud + 3rd party sync connectors',
+        planRequirement: 'Sales Hub Professional ($90–$100/seat/mo) or Enterprise',
+        seatBasis: 'Per paid sales seat / month',
+        integrations: ['Native HubSpot App Marketplace', 'REST API', 'Webhooks'],
+        replaces: 'Disparate point CRM tools with disconnected data',
         categoryName: 'CRM'
       },
       {
         toolSlug: 'clay',
         toolName: 'Clay',
         role: 'Two-Way HubSpot Data Enrichment',
-        whyChosen: 'Automatically refreshes stale CRM records and enriches newly created inbound leads in real time.',
-        estimatedCost: '$149 / mo',
-        replaces: 'ZoomInfo Enrich ($10,000/yr add-on)',
+        whyChosen: 'Automatically refreshes stale CRM records and enriches newly created inbound leads across 50+ data sources in real time.',
+        estimatedCost: '$149 – $349 / mo',
+        planRequirement: 'Explorer / Pro Tier',
+        seatBasis: 'Workspace subscription + credit usage',
+        integrations: ['HubSpot native two-way sync', 'Salesforce', 'Webhooks'],
+        replaces: 'Single-vendor CRM enrichment add-ons',
         categoryName: 'Lead data'
       },
       {
         toolSlug: 'heyreach',
         toolName: 'HeyReach',
-        role: 'LinkedIn Prospecting Synced to HubSpot',
-        whyChosen: 'Connects sales reps LinkedIn outreach directly to HubSpot contact records without manual CSV uploads.',
+        role: 'Multi-Account LinkedIn Automation',
+        whyChosen: 'Connects sales reps LinkedIn outreach directly to HubSpot contact records with bi-directional activity logging. Follows conservative daily sending limits.',
         estimatedCost: '$79 / mo',
-        replaces: 'Manual social selling workflows',
+        planRequirement: 'Standard Plan',
+        seatBasis: 'Account slot subscription',
+        integrations: ['HubSpot native integration', 'Webhooks'],
+        replaces: 'Manual social selling copy-pasting',
         categoryName: 'Email outreach'
       },
       {
@@ -339,18 +424,33 @@ export const GTM_STACKS: GTMStack[] = [
         role: 'Customer Health Scoring & CS Automation',
         whyChosen: 'Bi-directional HubSpot sync connects post-sale customer onboarding, health scores, and renewal tracking.',
         estimatedCost: '$299 / mo base',
-        replaces: 'Gainsight ($25,000/yr enterprise contracts)',
+        planRequirement: 'Base Tier (varies by tracked ARR/customer count)',
+        seatBasis: 'Base platform fee + user seats',
+        integrations: ['HubSpot native two-way sync', 'Segment', 'Mixpanel', 'Slack'],
+        replaces: 'Spreadsheet-based customer retention tracking',
         categoryName: 'Email and lifecycle'
+      }
+    ],
+    infrastructureCosts: [
+      {
+        item: 'HubSpot API & Custom Properties',
+        cost: 'Included with HubSpot Professional',
+        note: 'Standard API limits apply per subscription tier.'
+      },
+      {
+        item: 'Webhook Orchestration (Make / Zapier if needed)',
+        cost: '$20 – $50 / mo',
+        note: 'Optional for bespoke custom endpoint triggers.'
       }
     ],
     tradeoffs: [
       {
-        point: 'Requires webhook and API configuration in Clay',
-        mitigation: 'Use Clay pre-built HubSpot templates to set up the two-way sync in under 30 minutes.'
+        point: 'Two-way CRM syncing requires disciplined property mapping',
+        mitigation: 'Define exact property naming standards and test field sync behavior in a HubSpot sandbox or test view prior to bulk enrichment runs.'
       },
       {
-        point: 'Vitally requires clean customer identification keys',
-        mitigation: 'Ensure every HubSpot company record contains either a domain name or internal company ID.'
+        point: 'Vitally requires clean unique customer identifier keys',
+        mitigation: 'Ensure every HubSpot company record maintains a verified company domain or unique account ID.'
       }
     ],
     alternatives: [
@@ -367,18 +467,19 @@ export const GTM_STACKS: GTMStack[] = [
     id: 'modern-retention-expansion-stack',
     slug: 'modern-retention-expansion-stack',
     title: 'The Modern Retention & Expansion Stack',
-    badge: 'Net Revenue Retention (NRR)',
-    subtitle: 'Turn reactive customer success firefighting into proactive churn prevention and account expansion with automated AI alerts.',
+    badge: 'Customer Success & NRR',
+    subtitle: 'Transform reactive churn firefighting into proactive account health monitoring and milestone-driven lifecycle messaging.',
     category: 'Customer Success & Growth',
     targetTeam: 'CS leaders, account managers, and growth product managers',
-    monthlyCostEstimate: '$423 – $650 / mo',
-    annualSavingsEstimate: 'Reduces preventable churn by 15–25%',
-    setupTime: '3–5 days',
-    summary: 'A proactive retention engine that unifies product telemetry, executive check-in summaries, and automated lifecycle messaging to maximize Net Revenue Retention.',
+    monthlyCostEstimate: '$423 – $650 / mo base software',
+    annualSavingsEstimate: 'Surfaces proactive health risks and declining usage signals before renewals',
+    setupTime: '1–2 weeks for telemetry mapping and lifecycle triggers',
+    verifiedDate: 'October 2026',
+    summary: 'A proactive retention architecture combining product telemetry, call intelligence, and automated lifecycle communication to surface account risks and expansion opportunities.',
     description: [
-      'Customer churn is rarely a surprise on renewal day—it begins weeks or months earlier when user activity declines, key champions leave, or support tickets escalate without resolution.',
-      'This retention stack bridges the gap between raw product telemetry and high-touch account management. Vitally unifies account health scores, while Fathom records customer quarterly business reviews (QBRs) and surfaces unaddressed objections.',
-      'When user activity dips below critical thresholds, Customer.io automatically fires personalized re-engagement campaigns to users, prompting them to unlock maximum product value before churn occurs.'
+      'Customer churn rarely occurs without warning—it typically follows weeks of declining login frequency, departure of key internal champions, or unresolved operational bottlenecks.',
+      'This retention stack bridges the gap between raw product usage data and relationship management. Vitally aggregates telemetry into composite account health scores, while Fathom records quarterly business reviews (QBRs) and highlights unaddressed customer objections.',
+      'When product milestones are missed or key feature adoption stalls, Customer.io triggers targeted lifecycle communication to guide users back into core value workflows before account risk compounds.'
     ],
     workflowPipeline: [
       {
@@ -413,7 +514,10 @@ export const GTM_STACKS: GTMStack[] = [
         role: 'Unified Customer 360 & Health Scoring',
         whyChosen: 'Real-time account health scoring, intuitive CS playbooks, and modern integrations with Segment, Mixpanel, and CRMs.',
         estimatedCost: '$299 / mo base',
-        replaces: 'Gainsight / Totango ($20k+ implementations)',
+        planRequirement: 'Starter / Growth Plan',
+        seatBasis: 'Base tier + CS user seats',
+        integrations: ['HubSpot', 'Salesforce', 'Segment', 'Mixpanel'],
+        replaces: 'Disparate renewal tracking spreadsheets',
         categoryName: 'Email and lifecycle'
       },
       {
@@ -422,7 +526,10 @@ export const GTM_STACKS: GTMStack[] = [
         role: 'Customer Success AI & Churn Prevention',
         whyChosen: 'Predictive churn intelligence with native Customer Success AI that drafts tailored renewal strategies.',
         estimatedCost: 'Custom quote',
-        replaces: 'Spreadsheet-based renewal tracking',
+        planRequirement: 'Custom quote based on customer count',
+        seatBasis: 'Platform license',
+        integrations: ['Salesforce', 'HubSpot', 'Pendo'],
+        replaces: 'Manual renewal risk checklists',
         categoryName: 'Revenue forecasting'
       },
       {
@@ -431,7 +538,10 @@ export const GTM_STACKS: GTMStack[] = [
         role: 'CS Meeting Notes & Objection Tracking',
         whyChosen: 'Transcribes customer meetings, highlights churn risks and customer complaints, and updates CRM deal notes.',
         estimatedCost: '$24 / user / mo',
-        replaces: 'Manual CS call note taking',
+        planRequirement: 'Team Edition ($24/seat/mo)',
+        seatBasis: 'Per user / month',
+        integrations: ['HubSpot', 'Salesforce', 'Zoom', 'Google Meet'],
+        replaces: 'Manual CS call summary documentation',
         categoryName: 'Meeting notes'
       },
       {
@@ -440,8 +550,23 @@ export const GTM_STACKS: GTMStack[] = [
         role: 'Behavior-Driven Lifecycle Engagement',
         whyChosen: 'Powerful event-driven automation engine that sends targeted emails when user milestones are missed.',
         estimatedCost: '$100 / mo base',
-        replaces: 'Generic batch-and-blast marketing newsletters',
+        planRequirement: 'Essentials Plan (starts at 5,000 profiles)',
+        seatBasis: 'Profile / monthly active user tier',
+        integrations: ['Segment', 'RudderStack', 'Webhooks', 'Zapier'],
+        replaces: 'Non-contextual batch email newsletters',
         categoryName: 'Email and lifecycle'
+      }
+    ],
+    infrastructureCosts: [
+      {
+        item: 'Product Telemetry Pipeline (Segment / RudderStack)',
+        cost: 'Free tier / usage-based',
+        note: 'Transmits product events to Vitally and Customer.io.'
+      },
+      {
+        item: 'Custom Transactional Email Domain',
+        cost: '$10 – $15 / domain / yr',
+        note: 'Configured with SPF, DKIM, and DMARC for lifecycle deliverability.'
       }
     ],
     tradeoffs: [

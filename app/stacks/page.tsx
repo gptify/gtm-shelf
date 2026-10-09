@@ -8,6 +8,9 @@ import { getAllStacks } from '@/lib/stacks';
 export const metadata: Metadata = {
   title: 'GTM Stacks • Curated AI Stacks for B2B Sales and Marketing',
   description: 'Discover battle-tested AI stacks for outbound sales, founder-led prospecting, HubSpot native teams, and retention. Compare costs, workflows, and integrations.',
+  alternates: {
+    canonical: '/stacks',
+  },
   openGraph: {
     title: 'GTM Stacks • Curated AI Stacks for B2B Sales and Marketing',
     description: 'Discover battle-tested AI stacks for outbound sales, founder-led prospecting, HubSpot native teams, and retention.',
@@ -61,8 +64,8 @@ export default function StacksPage() {
             </p>
 
             <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
-              <Link href="/find" className="btn btn-primary" style={{ padding: '12px 24px', fontSize: '1rem' }}>
-                Build My Custom Stack →
+              <Link href="/build-my-stack" className="btn btn-primary" style={{ padding: '12px 24px', fontSize: '1rem' }}>
+                Build My GTM Stack →
               </Link>
               <Link href="/roi-calculator" className="btn btn-ghost" style={{ padding: '12px 24px', fontSize: '1rem' }}>
                 Stack Cost Simulator
@@ -103,18 +106,33 @@ export default function StacksPage() {
                   >
                     {stack.category}
                   </span>
-                  <span
-                    style={{
-                      font: '600 0.75rem var(--body)',
-                      background: '#10B98118',
-                      color: '#059669',
-                      border: '1px solid #10B98130',
-                      padding: '3px 10px',
-                      borderRadius: '999px',
-                    }}
-                  >
-                    {stack.badge}
-                  </span>
+                  <div style={{ display: 'flex', gap: '6px', alignItems: 'center', flexWrap: 'wrap' }}>
+                    <span
+                      style={{
+                        font: '600 0.75rem var(--body)',
+                        background: '#10B98118',
+                        color: '#059669',
+                        border: '1px solid #10B98130',
+                        padding: '3px 10px',
+                        borderRadius: '999px',
+                      }}
+                    >
+                      {stack.badge}
+                    </span>
+                    <span
+                      style={{
+                        fontSize: '0.6875rem',
+                        color: 'var(--muted)',
+                        background: 'var(--surface)',
+                        border: '1px solid var(--line)',
+                        padding: '2px 8px',
+                        borderRadius: '999px',
+                        fontWeight: 500,
+                      }}
+                    >
+                      {stack.verifiedDate}
+                    </span>
+                  </div>
                 </div>
 
                 {/* Stack Title */}
