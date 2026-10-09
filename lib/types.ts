@@ -62,6 +62,9 @@ export interface ToolPublic {
   min_plan?: string;
   pricing_verified_at?: string;
   alternatives_note?: string | null;
+  source_url?: string;
+  billing_basis?: string;
+  geographic_coverage?: string;
 }
 
 export interface GuideFilter {

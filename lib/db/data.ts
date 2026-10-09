@@ -79,6 +79,9 @@ function mapSampleTools(): ToolPublic[] {
       min_plan: t.min_plan || t.price_note || t.price,
       pricing_verified_at: t.pricing_verified_at || 'October 2026',
       alternatives_note: t.alternatives_note || null,
+      source_url: t.source_url || `https://${t.domain}`,
+      billing_basis: t.billing_basis || 'per_user_monthly',
+      geographic_coverage: t.geographic_coverage || 'global',
     };
   });
 }

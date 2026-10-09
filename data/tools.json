@@ -7,9 +7,9 @@
     "stage": 1,
     "cat": "GTM AI workflows",
     "tagline": "GTM workflow automation platform combining prospect research with outreach copy",
-    "description": "Copy.ai automates repetitive go-to-market workflows, enriching target accounts, drafting tailored cold emails in bulk, and synchronizing intelligence to CRMs.",
+    "description": "Copy.ai automates repetitive go-to-market workflows, enriching target accounts, drafting tailored cold outreach in bulk, and synchronizing intelligence to CRMs.",
     "price": "Free plan",
-    "price_note": "Free tier available (2,000 words); Starter from $36/mo (billed annually, checked October 2026)",
+    "price_note": "Free tier (2,000 words); Starter from $36/mo billed annually ($49/mo monthly)",
     "ints": [
       "HubSpot",
       "Salesforce",
@@ -21,7 +21,7 @@
     "setup": 2,
     "classification": "core",
     "lifecycle_status": "active",
-    "primary_jtbd": "Bulk GTM research and personalized email drafting workflows",
+    "primary_jtbd": "Bulk GTM prospect research and personalized outreach copy generation",
     "secondary_capabilities": [
       "Marketing copywriting",
       "CRM data push",
@@ -37,8 +37,11 @@
       "jasper",
       "regie-ai"
     ],
-    "min_plan": "Free tier / Starter ($36/mo)",
-    "pricing_verified_at": "October 2026"
+    "min_plan": "Free tier / Starter ($36/mo annual / $49/mo monthly)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://www.copy.ai/prices",
+    "billing_basis": "per_seat_monthly",
+    "geographic_coverage": "global"
   },
   {
     "id": "surfer",
@@ -50,7 +53,7 @@
     "tagline": "Content intelligence and on-page SERP optimization engine",
     "description": "Surfer analyzes top search engine results to provide actionable content guidelines, keyword density recommendations, and internal linking suggestions.",
     "price": "Paid",
-    "price_note": "Essential from $89/mo (checked October 2026)",
+    "price_note": "Essential from $89/mo billed annually ($119/mo monthly)",
     "ints": [
       "Google Workspace",
       "WordPress"
@@ -66,7 +69,7 @@
       "Content audit",
       "SERP analyzer"
     ],
-    "buyer_segment": "Marketing teams & SEO agencies",
+    "buyer_segment": "Content marketing teams & SEO agencies",
     "gtm_buckets": [
       "Inbound"
     ],
@@ -74,8 +77,11 @@
       "clearscope",
       "marketmuse"
     ],
-    "min_plan": "Essential ($89/mo)",
-    "pricing_verified_at": "October 2026"
+    "min_plan": "Essential ($89/mo annual / $119/mo monthly)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://surferseo.com/pricing/",
+    "billing_basis": "flat_monthly",
+    "geographic_coverage": "global"
   },
   {
     "id": "clearscope",
@@ -87,7 +93,7 @@
     "tagline": "Enterprise content optimization and SEO grading platform",
     "description": "Clearscope uses search intent analysis to guide content creators on relevant topics, search terms, and readability standards that perform on Google.",
     "price": "Paid",
-    "price_note": "Essentials from $189/mo (checked October 2026)",
+    "price_note": "Essentials from $189/mo (includes 20 content reports/mo)",
     "ints": [
       "Google Workspace",
       "WordPress"
@@ -111,7 +117,10 @@
       "marketmuse"
     ],
     "min_plan": "Essentials ($189/mo)",
-    "pricing_verified_at": "October 2026"
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://www.clearscope.io/pricing",
+    "billing_basis": "flat_monthly",
+    "geographic_coverage": "global"
   },
   {
     "id": "semrush",
@@ -123,7 +132,7 @@
     "tagline": "All-in-one search marketing, competitor analysis, and keyword intelligence suite",
     "description": "Semrush offers comprehensive tools for keyword research, competitive domain benchmarking, backlink audits, and technical SEO monitoring.",
     "price": "Paid",
-    "price_note": "Pro from $139.95/mo ($117.33/mo billed annually, checked October 2026)",
+    "price_note": "Pro from $117.33/mo billed annually ($139.95/mo monthly)",
     "ints": [
       "Google Workspace",
       "Zapier"
@@ -144,8 +153,11 @@
       "Inbound"
     ],
     "overlapping_tools": [],
-    "min_plan": "Pro ($139.95/mo)",
-    "pricing_verified_at": "October 2026"
+    "min_plan": "Pro ($117.33/mo annual / $139.95/mo monthly)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://www.semrush.com/prices/",
+    "billing_basis": "per_user_monthly",
+    "geographic_coverage": "global"
   },
   {
     "id": "marketmuse",
@@ -157,7 +169,7 @@
     "tagline": "AI content strategy platform and semantic topic modeling",
     "description": "MarketMuse analyzes entire content domains to uncover topic gaps, cluster opportunities, and strategic content plans based on competitive authority.",
     "price": "Free plan",
-    "price_note": "Free tier (10 queries/mo); Standard from $149/mo (checked October 2026)",
+    "price_note": "Free tier (10 queries/mo); Standard from $149/mo",
     "ints": [
       "Google Workspace"
     ],
@@ -180,7 +192,10 @@
       "clearscope"
     ],
     "min_plan": "Free tier / Standard ($149/mo)",
-    "pricing_verified_at": "October 2026"
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://www.marketmuse.com/pricing/",
+    "billing_basis": "flat_monthly",
+    "geographic_coverage": "global"
   },
   {
     "id": "adcreative-ai",
@@ -192,7 +207,7 @@
     "tagline": "Generates ad visuals and copy variants optimized for performance",
     "description": "AdCreative.ai produces branded ad banners, social posts, and ad copy variants formatted for Meta, Google, and LinkedIn ad platforms.",
     "price": "Paid",
-    "price_note": "Starter from $29/mo (checked October 2026)",
+    "price_note": "Starter from $29/mo billed annually ($39/mo monthly for 10 credits)",
     "ints": [
       "Zapier"
     ],
@@ -214,8 +229,11 @@
       "madgicx",
       "canva"
     ],
-    "min_plan": "Starter ($29/mo)",
-    "pricing_verified_at": "October 2026"
+    "min_plan": "Starter ($29/mo annual / $39/mo monthly)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://adcreative.ai/pricing",
+    "billing_basis": "credit_tier",
+    "geographic_coverage": "global"
   },
   {
     "id": "madgicx",
@@ -224,15 +242,15 @@
     "domain": "madgicx.com",
     "stage": 1,
     "cat": "Ad creative",
-    "tagline": "AI omnichannel ad management and creative analytics platform",
+    "tagline": "Omnichannel ad management and creative analytics platform",
     "description": "Madgicx provides automated ad bidding, creative performance dashboards, audience discovery, and budget optimization for Meta and Google Ads.",
     "price": "Paid",
-    "price_note": "Starts at $29 to $55/mo based on ad spend (checked October 2026)",
+    "price_note": "Starts at $29/mo based on monthly ad spend",
     "ints": [
       "Zapier"
     ],
     "feat": false,
-    "best": "E-commerce and B2B paid media managers seeking automated budget and audience rules",
+    "best": "Paid media managers seeking automated budget and audience rules",
     "setup": 2,
     "classification": "specialist",
     "lifecycle_status": "active",
@@ -248,8 +266,11 @@
     "overlapping_tools": [
       "adcreative-ai"
     ],
-    "min_plan": "All-in-One ($29/mo+ based on ad spend)",
-    "pricing_verified_at": "October 2026"
+    "min_plan": "All-in-One (Starts at $29/mo based on ad spend)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://madgicx.com/pricing",
+    "billing_basis": "ad_spend_tier",
+    "geographic_coverage": "global"
   },
   {
     "id": "canva",
@@ -261,7 +282,7 @@
     "tagline": "Visual communication and collaborative design platform",
     "description": "Canva empowers marketing and sales teams to create presentations, social graphics, documents, and promotional assets without specialized design training.",
     "price": "Free plan",
-    "price_note": "Free tier available; Pro from $15/mo or $120/yr (checked October 2026)",
+    "price_note": "Free tier available; Pro from $10/mo billed annually ($120/yr) or $15/mo monthly",
     "ints": [
       "Slack",
       "Google Workspace"
@@ -282,8 +303,11 @@
       "Inbound"
     ],
     "overlapping_tools": [],
-    "min_plan": "Free tier / Pro ($15/mo)",
-    "pricing_verified_at": "October 2026"
+    "min_plan": "Free tier / Pro ($10/mo annual / $15/mo monthly)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://www.canva.com/pricing/",
+    "billing_basis": "per_user_monthly",
+    "geographic_coverage": "global"
   },
   {
     "id": "buffer",
@@ -293,9 +317,9 @@
     "stage": 1,
     "cat": "Social media",
     "tagline": "Social media publishing, scheduling, and analytics platform",
-    "description": "Buffer streamlines multi-channel social posting across LinkedIn, X/Twitter, Instagram, and Mastodon with intuitive queueing and performance insights.",
+    "description": "Buffer streamlines multi-channel social posting across LinkedIn, X/Twitter, Instagram, and Threads with intuitive queueing and performance insights.",
     "price": "Free plan",
-    "price_note": "Free tier (up to 3 channels); Essentials from $6/channel/mo (checked October 2026)",
+    "price_note": "Free tier (up to 3 channels); Essentials from $5/channel/mo billed annually ($6/channel/mo monthly)",
     "ints": [
       "Zapier"
     ],
@@ -316,8 +340,11 @@
     "overlapping_tools": [
       "hootsuite"
     ],
-    "min_plan": "Free tier / Essentials ($6/channel/mo)",
-    "pricing_verified_at": "October 2026"
+    "min_plan": "Free tier / Essentials ($5/channel/mo annual / $6/channel/mo monthly)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://buffer.com/pricing",
+    "billing_basis": "per_channel_monthly",
+    "geographic_coverage": "global"
   },
   {
     "id": "jasper",
@@ -329,7 +356,7 @@
     "tagline": "AI marketing copilot for enterprise brand voice and content campaigns",
     "description": "Jasper assists marketing departments in drafting blogs, emails, and campaign briefs aligned with defined company voice and style guidelines.",
     "price": "Paid",
-    "price_note": "Creator from $39/mo ($49/mo billed monthly, checked October 2026)",
+    "price_note": "Creator from $39/mo billed annually ($49/mo monthly); Pro from $59/user/mo billed annually ($69/mo monthly)",
     "ints": [
       "Google Workspace",
       "Zapier"
@@ -352,8 +379,11 @@
       "copy-ai",
       "writesonic"
     ],
-    "min_plan": "Creator ($39/mo)",
-    "pricing_verified_at": "October 2026"
+    "min_plan": "Creator ($39/mo annual / $49/mo monthly)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://www.jasper.ai/pricing",
+    "billing_basis": "per_user_monthly",
+    "geographic_coverage": "global"
   },
   {
     "id": "writesonic",
@@ -363,9 +393,9 @@
     "stage": 1,
     "cat": "Content writing",
     "tagline": "AI writing tool and SEO-focused article generator",
-    "description": "Writesonic provides article generation, ad copy templates, and Chatsonic conversational assistance powered by web search data.",
+    "description": "Writesonic provides article generation, ad copy templates, and Chatsonic conversational assistance powered by search data.",
     "price": "Free plan",
-    "price_note": "Free tier (25 credits); Individual from $16/mo ($20/mo monthly, checked October 2026)",
+    "price_note": "Free tier (25 one-time credits); Individual from $16/mo billed annually ($20/mo monthly)",
     "ints": [
       "Zapier",
       "WordPress"
@@ -388,8 +418,11 @@
       "jasper",
       "copy-ai"
     ],
-    "min_plan": "Free tier / Individual ($16/mo)",
-    "pricing_verified_at": "October 2026"
+    "min_plan": "Free tier / Individual ($16/mo annual / $20/mo monthly)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://writesonic.com/pricing",
+    "billing_basis": "per_user_monthly",
+    "geographic_coverage": "global"
   },
   {
     "id": "hootsuite",
@@ -401,7 +434,7 @@
     "tagline": "Enterprise social media management, listening, and compliance suite",
     "description": "Hootsuite enables large marketing teams to plan social calendars, monitor brand sentiment, delegate customer service tickets, and measure ROI across networks.",
     "price": "Paid",
-    "price_note": "Professional from $99/mo (1 user, 10 accounts, checked October 2026)",
+    "price_note": "Professional from $99/mo billed annually (1 user, 10 social accounts)",
     "ints": [
       "Salesforce",
       "Slack",
@@ -425,8 +458,11 @@
     "overlapping_tools": [
       "buffer"
     ],
-    "min_plan": "Professional ($99/mo)",
-    "pricing_verified_at": "October 2026"
+    "min_plan": "Professional ($99/mo billed annually)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://www.hootsuite.com/plans",
+    "billing_basis": "per_user_monthly",
+    "geographic_coverage": "global"
   },
   {
     "id": "gamma",
@@ -438,7 +474,7 @@
     "tagline": "AI-powered presentation, document, and webpage generator",
     "description": "Gamma turns prompts or outlines into formatted decks, docs, and interactive web pages with responsive card layouts and embedded media.",
     "price": "Free plan",
-    "price_note": "Free tier (400 credits); Plus from $8/user/mo ($10/mo monthly, checked October 2026)",
+    "price_note": "Free tier (400 credits); Plus from $8/user/mo billed annually ($10/user/mo monthly)",
     "ints": [
       "Google Workspace"
     ],
@@ -460,8 +496,11 @@
     "overlapping_tools": [
       "beautiful-ai"
     ],
-    "min_plan": "Free tier / Plus ($8/user/mo)",
-    "pricing_verified_at": "October 2026"
+    "min_plan": "Free tier / Plus ($8/user/mo annual / $10/user/mo monthly)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://gamma.app/pricing",
+    "billing_basis": "per_user_monthly",
+    "geographic_coverage": "global"
   },
   {
     "id": "descript",
@@ -473,7 +512,7 @@
     "tagline": "Text-based audio and video editing platform for marketing teams",
     "description": "Descript enables creators to edit video and podcast recordings like a text document, with automated transcription, filler word removal, and AI voice cloning.",
     "price": "Free plan",
-    "price_note": "Free tier (1 hr/mo); Hobbyist from $12/user/mo ($19/mo monthly, checked October 2026)",
+    "price_note": "Free tier (1 hr/mo); Hobbyist from $12/user/mo billed annually ($19/user/mo monthly)",
     "ints": [
       "Slack",
       "Zapier"
@@ -487,15 +526,18 @@
     "secondary_capabilities": [
       "Studio sound enhancement",
       "Screen recording",
-      "AI green screen"
+      "AI voice cloning"
     ],
     "buyer_segment": "Content creators and marketing teams",
     "gtm_buckets": [
       "Inbound"
     ],
     "overlapping_tools": [],
-    "min_plan": "Free tier / Hobbyist ($12/user/mo)",
-    "pricing_verified_at": "October 2026"
+    "min_plan": "Free tier / Hobbyist ($12/user/mo annual / $19/user/mo monthly)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://www.descript.com/pricing",
+    "billing_basis": "per_user_monthly",
+    "geographic_coverage": "global"
   },
   {
     "id": "beautiful-ai",
@@ -507,7 +549,7 @@
     "tagline": "Smart presentation software with automated slide design rules",
     "description": "Beautiful.ai uses intelligent design constraints to automatically format slide typography, margins, and data charts into professional pitch decks.",
     "price": "Paid",
-    "price_note": "Pro from $12/mo (billed annually as $144/yr, checked October 2026)",
+    "price_note": "Pro from $12/mo billed annually ($144/yr); Team from $40/user/mo billed annually ($50/user/mo monthly)",
     "ints": [
       "Slack",
       "Google Workspace"
@@ -529,8 +571,11 @@
     "overlapping_tools": [
       "gamma"
     ],
-    "min_plan": "Pro ($12/mo billed annually)",
-    "pricing_verified_at": "October 2026"
+    "min_plan": "Pro ($12/mo billed annually / $144/yr)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://www.beautiful.ai/pricing",
+    "billing_basis": "per_user_monthly",
+    "geographic_coverage": "global"
   },
   {
     "id": "clay",
@@ -542,7 +587,7 @@
     "tagline": "Waterfall data enrichment and automated outbound prospecting engine",
     "description": "Clay chains together 50+ data providers to verify emails, find mobile numbers, synthesize company insights via AI, and feed personalized lists into outreach engines.",
     "price": "Free plan",
-    "price_note": "Free tier (100 credits); Starter from $149/mo (2,000 credits, checked October 2026)",
+    "price_note": "Free tier (100 credits); Starter from $149/mo (2,000 credits/mo); Explorer from $349/mo",
     "ints": [
       "HubSpot",
       "Salesforce",
@@ -550,7 +595,7 @@
       "Zapier"
     ],
     "feat": true,
-    "best": "Growth engineers and modern outbound teams wanting maximum contact coverage without multiple standalone subscriptions",
+    "best": "Growth engineers and modern outbound teams wanting multi-vendor contact coverage without individual API subscriptions",
     "setup": 3,
     "classification": "core",
     "lifecycle_status": "active",
@@ -570,7 +615,10 @@
       "zoominfo"
     ],
     "min_plan": "Free tier / Starter ($149/mo)",
-    "pricing_verified_at": "October 2026"
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://www.clay.com/pricing",
+    "billing_basis": "credit_tier",
+    "geographic_coverage": "global"
   },
   {
     "id": "apollo",
@@ -579,10 +627,10 @@
     "domain": "apollo.io",
     "stage": 2,
     "cat": "Lead data",
-    "tagline": "Comprehensive B2B contact database with native sales engagement and dialer",
+    "tagline": "B2B contact database with native sales engagement and dialer",
     "description": "Apollo provides access to 275M+ verified buyer profiles, direct phone numbers, email search, sequence automation, and inbound conversation intelligence.",
     "price": "Free plan",
-    "price_note": "Free tier (limited credits); Basic from $49/seat/mo ($59 monthly, checked October 2026)",
+    "price_note": "Free tier (10,000 email credits/yr); Basic from $49/seat/mo billed annually ($59/mo monthly); Professional from $79/seat/mo",
     "ints": [
       "HubSpot",
       "Salesforce",
@@ -593,7 +641,7 @@
     "setup": 1,
     "classification": "core",
     "lifecycle_status": "active",
-    "primary_jtbd": "B2B contact search, verified email/phone lookups, and basic outbound sequences",
+    "primary_jtbd": "B2B contact search, verified email/phone lookups, and native outbound email sequences",
     "secondary_capabilities": [
       "Chrome extension",
       "Built-in dialer",
@@ -610,8 +658,11 @@
       "instantly",
       "smartlead"
     ],
-    "min_plan": "Free tier / Basic ($49/seat/mo)",
-    "pricing_verified_at": "October 2026"
+    "min_plan": "Free tier / Basic ($49/seat/mo annual / $59/mo monthly)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://www.apollo.io/pricing",
+    "billing_basis": "per_user_monthly",
+    "geographic_coverage": "global"
   },
   {
     "id": "zoominfo",
@@ -623,7 +674,7 @@
     "tagline": "Enterprise B2B intelligence, company hierarchy, and verified contact database",
     "description": "ZoomInfo maintains extensive business contact coverage, organizational org charts, technographic data, and enterprise intent signals.",
     "price": "Custom quote",
-    "price_note": "Custom quote (annual contracts typically starting at $15,000+, checked October 2026)",
+    "price_note": "Custom quote (Pricing upon request; contact sales)",
     "ints": [
       "HubSpot",
       "Salesforce",
@@ -649,8 +700,11 @@
       "apollo",
       "cognism"
     ],
-    "min_plan": "Custom quote ($15k+/yr)",
-    "pricing_verified_at": "October 2026"
+    "min_plan": "Custom quote",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://www.zoominfo.com/pricing",
+    "billing_basis": "custom_contract",
+    "geographic_coverage": "global"
   },
   {
     "id": "lusha",
@@ -662,7 +716,7 @@
     "tagline": "Direct mobile phone numbers and verified B2B email finder extension",
     "description": "Lusha helps sales reps instantly find direct dials and contact info on LinkedIn profiles or company domains and sync them into CRM records.",
     "price": "Free plan",
-    "price_note": "Free tier (5 credits/mo); Pro from $36/user/mo ($49 monthly, checked October 2026)",
+    "price_note": "Free tier (5 credits/mo); Pro from $36/user/mo billed annually ($49/user/mo monthly for 40 credits)",
     "ints": [
       "HubSpot",
       "Salesforce",
@@ -686,8 +740,11 @@
       "apollo",
       "cognism"
     ],
-    "min_plan": "Free tier / Pro ($36/user/mo)",
-    "pricing_verified_at": "October 2026"
+    "min_plan": "Free tier / Pro ($36/user/mo annual / $49/user/mo monthly)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://www.lusha.com/pricing/",
+    "billing_basis": "per_user_monthly",
+    "geographic_coverage": "global"
   },
   {
     "id": "cognism",
@@ -696,21 +753,21 @@
     "domain": "cognism.com",
     "stage": 2,
     "cat": "Lead data",
-    "tagline": "Phone-verified B2B contact data with premium European and EMEA coverage",
-    "description": "Cognism delivers GDPR-compliant B2B contact data with phone-verified Diamond Data numbers, international mobile coverage, and intent signals.",
+    "tagline": "Phone-verified B2B contact data with European compliance controls and international mobile coverage",
+    "description": "Cognism delivers B2B contact data with phone-verified Diamond Data numbers and compliance controls for European and international outreach.",
     "price": "Custom quote",
-    "price_note": "Custom quote (annual contracts typically $10,000-$20,000+, checked October 2026)",
+    "price_note": "Custom quote (Pricing upon request; contact sales)",
     "ints": [
       "HubSpot",
       "Salesforce",
       "Zapier"
     ],
     "feat": false,
-    "best": "Outbound sales teams targeting European and international accounts where GDPR compliance is vital",
+    "best": "Outbound sales teams targeting European and international accounts requiring compliant phone verification",
     "setup": 1,
     "classification": "specialist",
     "lifecycle_status": "active",
-    "primary_jtbd": "GDPR-compliant international mobile number verification",
+    "primary_jtbd": "International mobile number verification and European contact discovery",
     "secondary_capabilities": [
       "Bombora intent data integration",
       "Chrome extension"
@@ -723,8 +780,11 @@
       "zoominfo",
       "apollo"
     ],
-    "min_plan": "Custom quote ($10k+/yr)",
-    "pricing_verified_at": "October 2026"
+    "min_plan": "Custom quote",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://www.cognism.com/pricing",
+    "billing_basis": "custom_contract",
+    "geographic_coverage": "emea_focused"
   },
   {
     "id": "seamless-ai",
@@ -736,7 +796,7 @@
     "tagline": "Real-time search engine for B2B buyer emails and cell phone numbers",
     "description": "Seamless.AI searches open web data in real-time to find contact information for prospective buyers across major industries.",
     "price": "Free plan",
-    "price_note": "Free tier (50 credits); Pro tier custom quote / annual contract (checked October 2026)",
+    "price_note": "Free tier (50 credits); Pro tier custom quote / annual contract",
     "ints": [
       "HubSpot",
       "Salesforce",
@@ -761,7 +821,133 @@
       "lusha"
     ],
     "min_plan": "Free tier / Pro (Custom quote)",
-    "pricing_verified_at": "October 2026"
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://seamless.ai/pricing",
+    "billing_basis": "custom_contract",
+    "geographic_coverage": "global"
+  },
+  {
+    "id": "hunter",
+    "slug": "hunter",
+    "name": "Hunter",
+    "domain": "hunter.io",
+    "stage": 2,
+    "cat": "Lead data",
+    "tagline": "Domain search, email discovery, and verification for outbound outreach",
+    "description": "Hunter uncovers verified professional email addresses behind any domain name, verifies deliverability, and includes a simple cold email sender.",
+    "price": "Free plan",
+    "price_note": "Free tier (25 searches/mo); Starter from $34/mo billed annually ($49/mo monthly for 500 searches)",
+    "ints": [
+      "HubSpot",
+      "Salesforce",
+      "Zapier",
+      "Google Workspace"
+    ],
+    "feat": false,
+    "best": "Outbound sales reps and marketers needing quick domain lookups and email validation",
+    "setup": 1,
+    "classification": "core",
+    "lifecycle_status": "active",
+    "primary_jtbd": "Domain email pattern discovery and email address deliverability verification",
+    "secondary_capabilities": [
+      "Chrome extension",
+      "Cold email campaigns",
+      "Bulk email verifier"
+    ],
+    "buyer_segment": "Sales reps, recruiters, and outbound marketers",
+    "gtm_buckets": [
+      "Outbound"
+    ],
+    "overlapping_tools": [
+      "apollo",
+      "findymail"
+    ],
+    "min_plan": "Free tier / Starter ($34/mo annual / $49/mo monthly)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://hunter.io/pricing",
+    "billing_basis": "credit_tier",
+    "geographic_coverage": "global"
+  },
+  {
+    "id": "dropcontact",
+    "slug": "dropcontact",
+    "name": "Dropcontact",
+    "domain": "dropcontact.com",
+    "stage": 2,
+    "cat": "Lead data",
+    "tagline": "Algorithmic B2B email enrichment and CRM deduplication with privacy-by-design principles",
+    "description": "Dropcontact cleans, deduplicates, and enriches contact records using proprietary algorithms without storing static databases, engineered with GDPR privacy-by-design standards.",
+    "price": "Paid",
+    "price_note": "Email enrichment starts at €24/mo (~$26/mo for 1,000 credits); CRM integration plans from €38/mo",
+    "ints": [
+      "HubSpot",
+      "Salesforce",
+      "Pipedrive",
+      "Zapier"
+    ],
+    "feat": false,
+    "best": "European and international B2B teams requiring privacy-by-design standards and automated CRM data hygiene",
+    "setup": 1,
+    "classification": "specialist",
+    "lifecycle_status": "active",
+    "primary_jtbd": "Automated CRM contact enrichment, deduplication, and algorithmic email search",
+    "secondary_capabilities": [
+      "Native CRM sync",
+      "First name capitalization fix",
+      "Direct dial discovery"
+    ],
+    "buyer_segment": "European B2B companies & RevOps managers",
+    "gtm_buckets": [
+      "Outbound",
+      "Data & Orchestration"
+    ],
+    "overlapping_tools": [
+      "clay",
+      "apollo"
+    ],
+    "min_plan": "€24/mo (~$26/mo for 1k credits)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://www.dropcontact.com/pricing",
+    "billing_basis": "credit_tier",
+    "geographic_coverage": "emea_focused"
+  },
+  {
+    "id": "findymail",
+    "slug": "findymail",
+    "name": "Findymail",
+    "domain": "findymail.com",
+    "stage": 2,
+    "cat": "Lead data",
+    "tagline": "High-accuracy B2B email finder and automated list scraper with built-in cleaning",
+    "description": "Findymail scrapes and finds verified B2B email addresses from LinkedIn Sales Navigator and Apollo, filtering out invalid and risky addresses automatically.",
+    "price": "Paid",
+    "price_note": "Starts at $49/mo (1,000 verified credits); Pro from $99/mo (2,500 credits)",
+    "ints": [
+      "Zapier"
+    ],
+    "feat": false,
+    "best": "Outbound growth teams seeking low-bounce-rate email waterfalls for cold campaigns",
+    "setup": 1,
+    "classification": "specialist",
+    "lifecycle_status": "active",
+    "primary_jtbd": "High-accuracy B2B email extraction and verification from LinkedIn and Apollo",
+    "secondary_capabilities": [
+      "Automated list export",
+      "Clean contact formatting"
+    ],
+    "buyer_segment": "Cold outbound specialists & growth agencies",
+    "gtm_buckets": [
+      "Outbound"
+    ],
+    "overlapping_tools": [
+      "hunter",
+      "clay"
+    ],
+    "min_plan": "$49/mo (1,000 credits)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://findymail.com/#pricing",
+    "billing_basis": "credit_tier",
+    "geographic_coverage": "global"
   },
   {
     "id": "6sense",
@@ -773,7 +959,7 @@
     "tagline": "Account-based orchestration platform with predictive AI buying signals",
     "description": "6sense analyzes anonymous web research and Dark Funnel behavior to identify accounts in-market, predict buying stages, and trigger orchestrated campaigns.",
     "price": "Custom quote",
-    "price_note": "Custom quote (enterprise contracts starting at $25,000-$50,000+/yr, checked October 2026)",
+    "price_note": "Custom quote (Pricing upon request; contact sales)",
     "ints": [
       "HubSpot",
       "Salesforce",
@@ -799,8 +985,11 @@
       "demandbase",
       "bombora"
     ],
-    "min_plan": "Custom quote ($25k+/yr)",
-    "pricing_verified_at": "October 2026"
+    "min_plan": "Custom quote",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://6sense.com/pricing/",
+    "billing_basis": "custom_contract",
+    "geographic_coverage": "global"
   },
   {
     "id": "demandbase",
@@ -812,7 +1001,7 @@
     "tagline": "Account-based marketing, advertising, and intent data platform",
     "description": "Demandbase unites proprietary intent signals, third-party B2B data, and targeted account advertising into an enterprise go-to-market command center.",
     "price": "Custom quote",
-    "price_note": "Custom quote (enterprise contracts, checked October 2026)",
+    "price_note": "Custom quote (Pricing upon request; contact sales)",
     "ints": [
       "HubSpot",
       "Salesforce",
@@ -838,7 +1027,10 @@
       "6sense"
     ],
     "min_plan": "Custom quote",
-    "pricing_verified_at": "October 2026"
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://www.demandbase.com/pricing/",
+    "billing_basis": "custom_contract",
+    "geographic_coverage": "global"
   },
   {
     "id": "bombora",
@@ -850,7 +1042,7 @@
     "tagline": "B2B Company Surge intent data derived from cooperative publisher networks",
     "description": "Bombora monitors consumption surges on 5,000+ business websites to identify when organizations research specific B2B software categories and topics.",
     "price": "Custom quote",
-    "price_note": "Custom quote (enterprise data subscriptions typically $25,000+/yr, checked October 2026)",
+    "price_note": "Custom quote (Pricing upon request; contact sales)",
     "ints": [
       "HubSpot",
       "Salesforce"
@@ -874,8 +1066,97 @@
       "6sense",
       "demandbase"
     ],
-    "min_plan": "Custom quote ($25k+/yr)",
-    "pricing_verified_at": "October 2026"
+    "min_plan": "Custom quote",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://bombora.com/",
+    "billing_basis": "custom_contract",
+    "geographic_coverage": "global"
+  },
+  {
+    "id": "rb2b",
+    "slug": "rb2b",
+    "name": "RB2B",
+    "domain": "rb2b.com",
+    "stage": 2,
+    "cat": "Intent signals",
+    "tagline": "Person-level website visitor identification delivering US LinkedIn profiles to Slack",
+    "description": "RB2B identifies individual US website visitors and pushes their LinkedIn profiles to Slack. Note: Operates exclusively on a US consumer identity graph and does not resolve European/international traffic under GDPR.",
+    "price": "Free plan",
+    "price_note": "Free tier (100 identified US profiles/mo); Pro tier from $99/mo",
+    "ints": [
+      "Slack",
+      "HubSpot",
+      "Zapier"
+    ],
+    "feat": true,
+    "best": "B2B sales teams targeting US website visitors (US identity graph only; not suitable for EU/GDPR traffic)",
+    "setup": 1,
+    "classification": "specialist",
+    "lifecycle_status": "active",
+    "primary_jtbd": "Individual person-level US website visitor identification and Slack notifications",
+    "secondary_capabilities": [
+      "LinkedIn profile resolution",
+      "Webhook integrations",
+      "HubSpot sync"
+    ],
+    "buyer_segment": "B2B startups and sales teams targeting US traffic only",
+    "gtm_buckets": [
+      "Lead Capture",
+      "Inbound"
+    ],
+    "overlapping_tools": [
+      "warmly",
+      "6sense"
+    ],
+    "min_plan": "Free tier (100 US profiles/mo) / Pro ($99/mo)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://www.rb2b.com/pricing",
+    "billing_basis": "profile_quota",
+    "geographic_coverage": "us_only"
+  },
+  {
+    "id": "warmly",
+    "slug": "warmly",
+    "name": "Warmly",
+    "domain": "warmly.ai",
+    "stage": 2,
+    "cat": "Intent signals",
+    "tagline": "Autonomous website visitor deanonymization, intent tracking, and instant pipeline orchestration",
+    "description": "Warmly reveals accounts browsing your site, enriches buying committee contacts, and dynamically triggers video/chat popups or automated SDR outreach.",
+    "price": "Free plan",
+    "price_note": "Free tier (up to 500 company reveals/mo); Starter from $400/mo; Custom enterprise",
+    "ints": [
+      "HubSpot",
+      "Salesforce",
+      "Slack",
+      "Zapier"
+    ],
+    "feat": false,
+    "best": "Growth-stage B2B companies looking to convert website traffic into outbound pipeline before visitors bounce",
+    "setup": 2,
+    "classification": "specialist",
+    "lifecycle_status": "active",
+    "primary_jtbd": "Autonomous website visitor deanonymization and instant live meeting orchestration",
+    "secondary_capabilities": [
+      "Automated email follow-up",
+      "Live video chat widgets",
+      "Buying committee enrichment"
+    ],
+    "buyer_segment": "B2B growth teams & mid-market sales",
+    "gtm_buckets": [
+      "Lead Capture",
+      "Inbound",
+      "Agentic Operations"
+    ],
+    "overlapping_tools": [
+      "rb2b",
+      "qualified"
+    ],
+    "min_plan": "Free tier / Starter ($400/mo)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://warmly.ai/pricing",
+    "billing_basis": "flat_monthly",
+    "geographic_coverage": "global"
   },
   {
     "id": "koala",
@@ -895,7 +1176,7 @@
       "Zapier"
     ],
     "feat": false,
-    "best": "Archived for reference only. Teams seeking modern visitor deanonymization should evaluate RB2B or Warmly.",
+    "best": "Archived for reference only. Teams seeking modern visitor deanonymization should evaluate RB2B (US) or Warmly (Global).",
     "setup": 1,
     "classification": "discontinued",
     "lifecycle_status": "discontinued",
@@ -913,7 +1194,10 @@
     ],
     "min_plan": "Discontinued (No active commercial plans)",
     "pricing_verified_at": "October 2026",
-    "alternatives_note": "Koala was acquired by Cursor in July 2025 and fully shut down on September 30, 2025. Modern active alternatives include RB2B (free person-level LinkedIn visitor alerts to Slack), Warmly (autonomous orchestration), and 6sense."
+    "source_url": "https://getkoala.com",
+    "billing_basis": "free",
+    "geographic_coverage": "global",
+    "alternatives_note": "Koala was acquired by Cursor in July 2025 and fully shut down on September 30, 2025. Modern active alternatives include RB2B (free person-level LinkedIn visitor alerts to Slack for US traffic), Warmly (autonomous orchestration), and 6sense."
   },
   {
     "id": "lemlist",
@@ -925,7 +1209,7 @@
     "tagline": "Multi-channel outbound engagement platform with image personalization and warmup",
     "description": "lemlist pairs personalized cold email sequences with LinkedIn action steps, dynamic image/video personalization, and lemwarm deliverability monitoring.",
     "price": "Paid",
-    "price_note": "Standard from $39/seat/mo ($59/seat/mo for multichannel, checked October 2026)",
+    "price_note": "Email Starter from $32/seat/mo billed annually ($39/mo monthly); Multichannel from $49/seat/mo ($59/mo monthly)",
     "ints": [
       "HubSpot",
       "Salesforce",
@@ -950,8 +1234,11 @@
       "instantly",
       "smartlead"
     ],
-    "min_plan": "Standard ($39/seat/mo)",
-    "pricing_verified_at": "October 2026"
+    "min_plan": "Email Starter ($32/seat/mo annual / $39/seat/mo monthly)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://www.lemlist.com/pricing",
+    "billing_basis": "per_user_monthly",
+    "geographic_coverage": "global"
   },
   {
     "id": "instantly",
@@ -963,7 +1250,7 @@
     "tagline": "Scalable cold email sending with unlimited mailbox connections and warmup",
     "description": "Instantly enables high-volume outbound campaigns with automated sender warmup, multi-inbox rotation, lead database access, and unified inbox management.",
     "price": "Paid",
-    "price_note": "Growth plan from $37/mo (5,000 active leads, unlimited warmup, checked October 2026)",
+    "price_note": "Growth plan from $30/mo billed annually ($37/mo monthly for 5,000 active leads); Hypergrowth from $78/mo billed annually ($97/mo monthly)",
     "ints": [
       "Zapier",
       "HubSpot"
@@ -987,8 +1274,11 @@
       "smartlead",
       "lemlist"
     ],
-    "min_plan": "Growth ($37/mo)",
-    "pricing_verified_at": "October 2026"
+    "min_plan": "Growth ($30/mo annual / $37/mo monthly)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://instantly.ai/pricing",
+    "billing_basis": "flat_monthly",
+    "geographic_coverage": "global"
   },
   {
     "id": "smartlead",
@@ -1000,7 +1290,7 @@
     "tagline": "API-driven cold email infrastructure with multi-inbox rotation and client portals",
     "description": "Smartlead distributes outbound campaigns across unlimited mailboxes, maintains email reputation with warmups, and provides white-label portals for agencies.",
     "price": "Paid",
-    "price_note": "Basic plan from $39/mo (2,000 active leads, unlimited mailboxes, checked October 2026)",
+    "price_note": "Basic plan from $33/mo billed annually ($39/mo monthly for 2,000 active leads); Pro from $79/mo billed annually ($94/mo monthly)",
     "ints": [
       "HubSpot",
       "Zapier",
@@ -1026,8 +1316,11 @@
       "instantly",
       "lemlist"
     ],
-    "min_plan": "Basic ($39/mo)",
-    "pricing_verified_at": "October 2026"
+    "min_plan": "Basic ($33/mo annual / $39/mo monthly)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://smartlead.ai/pricing",
+    "billing_basis": "flat_monthly",
+    "geographic_coverage": "global"
   },
   {
     "id": "heyreach",
@@ -1039,7 +1332,7 @@
     "tagline": "Multi-account LinkedIn outreach with proxy rotation and unified sender inbox",
     "description": "HeyReach connects multiple LinkedIn accounts into synchronized outbound campaigns with smart proxy rotation, centralized inbox management, and CRM activity sync.",
     "price": "Paid",
-    "price_note": "Starts at $79/mo (1 sender account) or $199/mo (agency tier, checked October 2026)",
+    "price_note": "Starts at $65/mo billed annually ($79/mo monthly for 1 sender account); Agency from $165/mo billed annually ($199/mo monthly)",
     "ints": [
       "HubSpot",
       "Zapier"
@@ -1062,8 +1355,11 @@
     "overlapping_tools": [
       "lemlist"
     ],
-    "min_plan": "Starter ($79/mo)",
-    "pricing_verified_at": "October 2026"
+    "min_plan": "Starter ($65/mo annual / $79/mo monthly)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://heyreach.io/pricing",
+    "billing_basis": "per_sender_monthly",
+    "geographic_coverage": "global"
   },
   {
     "id": "artisan",
@@ -1075,7 +1371,7 @@
     "tagline": "AI sales development software featuring digital agent Ava for outbound research",
     "description": "Artisan provides Ava, an AI SDR software assistant that researches prospective accounts, writes personalized emails, and runs multi-step campaigns.",
     "price": "Paid",
-    "price_note": "Paid tiers starting from ~$249-$500/mo (checked October 2026)",
+    "price_note": "Paid tiers starting from ~$249-$500/mo depending on lead volume and mailbox slots",
     "ints": [
       "Salesforce",
       "HubSpot",
@@ -1101,7 +1397,10 @@
       "regie-ai"
     ],
     "min_plan": "Starter (~$249/mo)",
-    "pricing_verified_at": "October 2026"
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://artisan.co/pricing",
+    "billing_basis": "flat_monthly",
+    "geographic_coverage": "global"
   },
   {
     "id": "11x",
@@ -1113,7 +1412,7 @@
     "tagline": "Autonomous digital workers for inbound qualification and outbound prospecting",
     "description": "11x develops digital workers (Alice and Jordan) engineered to manage end-to-end outbound prospecting, phone outreach, and inbound lead qualification.",
     "price": "Custom quote",
-    "price_note": "Custom quote (enterprise agreements typically $3,000+/mo, checked October 2026)",
+    "price_note": "Custom quote (Pricing upon request; contact sales)",
     "ints": [
       "Salesforce",
       "HubSpot"
@@ -1137,8 +1436,11 @@
       "artisan",
       "regie-ai"
     ],
-    "min_plan": "Custom quote ($3,000+/mo)",
-    "pricing_verified_at": "October 2026"
+    "min_plan": "Custom quote",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://11x.ai/",
+    "billing_basis": "custom_contract",
+    "geographic_coverage": "global"
   },
   {
     "id": "cubeo-ai",
@@ -1150,7 +1452,7 @@
     "tagline": "Custom B2B autonomous AI agents and workflow orchestration",
     "description": "Cubeo.ai builds and integrates customized autonomous AI workflows for B2B sales teams, customer data processing, and revenue operations.",
     "price": "Custom quote",
-    "price_note": "Custom quote / Enterprise onboarding (checked October 2026)",
+    "price_note": "Custom quote (Pricing upon request; contact sales)",
     "ints": [
       "HubSpot",
       "Salesforce",
@@ -1177,7 +1479,10 @@
       "mindstudio"
     ],
     "min_plan": "Custom quote",
-    "pricing_verified_at": "October 2026"
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://cubeo.ai/",
+    "billing_basis": "custom_contract",
+    "geographic_coverage": "global"
   },
   {
     "id": "regie-ai",
@@ -1186,25 +1491,25 @@
     "domain": "regie.ai",
     "stage": 3,
     "cat": "AI SDR agents",
-    "tagline": "AI-assisted sales engagement platform for account research and sequence drafting",
-    "description": "Regie.ai acts as a force multiplier for sales development teams, automating prospect research and multi-channel sequence drafting while keeping human reps in the loop.",
+    "tagline": "AI sales platform offering RegieGO for individual reps and RegieOne for enterprise SEPs",
+    "description": "Regie.ai provides RegieGO as a self-serve agentic workspace for individual prospecting, while RegieOne serves as an enterprise sales engagement platform (SEP) requiring annual contract commitment.",
     "price": "Paid",
-    "price_note": "Free tier (250 credits); Pro from $49/mo ($41 annual); Team $150/seat/mo; Enterprise custom quote (checked October 2026)",
+    "price_note": "RegieGO starts at $49/mo (self-serve); RegieOne enterprise platform requires custom quote",
     "ints": [
       "HubSpot",
       "Salesforce",
       "Slack"
     ],
     "feat": false,
-    "best": "Mid-market sales development teams wanting AI-assisted prospecting without eliminating human review",
+    "best": "Sales teams wanting AI-assisted prospecting; RegieGO for individual sellers, RegieOne for enterprise revops",
     "setup": 2,
     "classification": "specialist",
     "lifecycle_status": "active",
-    "primary_jtbd": "AI-augmented prospecting, sequence drafting, and personalization for human reps",
+    "primary_jtbd": "AI-assisted prospecting, sequence drafting, and multichannel execution",
     "secondary_capabilities": [
-      "Content management",
       "Power dialer integration",
-      "Prospect data enrichment"
+      "Prospect data enrichment",
+      "CRM auto-sync"
     ],
     "buyer_segment": "Sales development teams & mid-market sales managers",
     "gtm_buckets": [
@@ -1215,8 +1520,11 @@
       "copy-ai",
       "artisan"
     ],
-    "min_plan": "Free tier / Pro ($49/mo)",
-    "pricing_verified_at": "October 2026"
+    "min_plan": "RegieGO Pro ($49/mo; 5k credits/mo) / RegieOne (Custom quote)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://www.regie.ai/pricing",
+    "billing_basis": "credits_and_enterprise_contract",
+    "geographic_coverage": "global"
   },
   {
     "id": "mindstudio",
@@ -1228,7 +1536,7 @@
     "tagline": "No-code builder to create and deploy bespoke AI agents and enterprise workflows",
     "description": "MindStudio allows teams to build enterprise AI applications and assistants without coding, combining multi-model LLMs with vector memory and external API integrations.",
     "price": "Free plan",
-    "price_note": "Free tier (development); Starter from $20/mo; Pro from $60/mo (checked October 2026)",
+    "price_note": "Free tier (development); Starter from $20/mo; Pro from $60/mo",
     "ints": [
       "Slack",
       "Zapier"
@@ -1254,7 +1562,10 @@
       "cubeo-ai"
     ],
     "min_plan": "Free tier / Starter ($20/mo)",
-    "pricing_verified_at": "October 2026"
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://www.mindstudio.ai/pricing",
+    "billing_basis": "flat_monthly",
+    "geographic_coverage": "global"
   },
   {
     "id": "lindy",
@@ -1266,7 +1577,7 @@
     "tagline": "Autonomous AI employees for prospecting, email triage, and lead follow-up",
     "description": "Lindy creates autonomous digital teammates that manage your inbox, follow up on inbound leads, draft personalized emails, and handle routine CRM tasks.",
     "price": "Free plan",
-    "price_note": "Free tier (300 credits); Pro from $49/mo (3,000 credits, checked October 2026)",
+    "price_note": "Free tier (300 credits); Pro from $49/mo (3,000 credits)",
     "ints": [
       "Slack",
       "Google Workspace",
@@ -1292,7 +1603,10 @@
       "artisan"
     ],
     "min_plan": "Free tier / Pro ($49/mo)",
-    "pricing_verified_at": "October 2026"
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://www.lindy.ai/pricing",
+    "billing_basis": "credit_tier",
+    "geographic_coverage": "global"
   },
   {
     "id": "qualified",
@@ -1304,7 +1618,7 @@
     "tagline": "Conversational sales and pipeline generation platform built for Salesforce",
     "description": "Qualified identifies target accounts on your website and instantly connects high-intent visitors with sales reps via live chat, voice calls, and automated meeting scheduling.",
     "price": "Custom quote",
-    "price_note": "Custom quote (enterprise pricing typically starting at $3,000+/mo, checked October 2026)",
+    "price_note": "Custom quote (Pricing upon request; contact sales)",
     "ints": [
       "Salesforce",
       "Slack"
@@ -1328,8 +1642,11 @@
       "intercom",
       "1mind"
     ],
-    "min_plan": "Custom quote ($3,000+/mo)",
-    "pricing_verified_at": "October 2026"
+    "min_plan": "Custom quote",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://www.qualified.com/pricing",
+    "billing_basis": "custom_contract",
+    "geographic_coverage": "global"
   },
   {
     "id": "intercom",
@@ -1341,7 +1658,7 @@
     "tagline": "AI-first customer service and inbound sales engagement platform",
     "description": "Intercom powers website messaging, product tours, and customer support with Fin AI, resolving user queries automatically and routing qualified buyers to sales.",
     "price": "Paid",
-    "price_note": "Essential from $39/seat/mo + $0.99 per Fin AI resolution (checked October 2026)",
+    "price_note": "Essential from $39/seat/mo billed annually ($0.99 per Fin AI resolution)",
     "ints": [
       "HubSpot",
       "Salesforce",
@@ -1369,7 +1686,10 @@
       "manychat"
     ],
     "min_plan": "Essential ($39/seat/mo)",
-    "pricing_verified_at": "October 2026"
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://www.intercom.com/pricing",
+    "billing_basis": "per_user_monthly",
+    "geographic_coverage": "global"
   },
   {
     "id": "manychat",
@@ -1381,7 +1701,7 @@
     "tagline": "Automated conversational marketing for Instagram DMs, WhatsApp, and Messenger",
     "description": "Manychat captures leads and automates conversations across social direct messaging channels, converting post comments and story mentions into qualified email leads.",
     "price": "Free plan",
-    "price_note": "Free tier (up to 1,000 contacts); Pro from $15/mo (checked October 2026)",
+    "price_note": "Free tier (up to 1,000 contacts); Pro from $15/mo (up to 500 contacts, scales with volume)",
     "ints": [
       "HubSpot",
       "Zapier",
@@ -1407,7 +1727,10 @@
       "intercom"
     ],
     "min_plan": "Free tier / Pro ($15/mo)",
-    "pricing_verified_at": "October 2026"
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://manychat.com/pricing",
+    "billing_basis": "contact_tier",
+    "geographic_coverage": "global"
   },
   {
     "id": "drift",
@@ -1444,7 +1767,53 @@
     ],
     "min_plan": "Sunsetting (No new standalone sales)",
     "pricing_verified_at": "October 2026",
+    "source_url": "https://drift.com",
+    "billing_basis": "custom_contract",
+    "geographic_coverage": "global",
     "alternatives_note": "Clari + Salesloft announced the gradual sunset of standalone Drift in March 2026, partnering with 1mind as the designated successor. For new purchases, evaluate 1mind, Qualified, or Intercom Fin."
+  },
+  {
+    "id": "1mind",
+    "slug": "1mind",
+    "name": "1mind",
+    "domain": "1mind.com",
+    "stage": 3,
+    "cat": "Chat and conversion",
+    "tagline": "Autonomous AI buyer engagement platform and interactive product demonstrations",
+    "description": "1mind deploys autonomous AI agents for interactive buyer demonstrations and inbound qualification. Purchasing requires contacting sales; pricing is not publicly disclosed.",
+    "price": "Custom quote",
+    "price_note": "Contact sales / pricing not publicly disclosed",
+    "ints": [
+      "Salesforce",
+      "HubSpot",
+      "Slack"
+    ],
+    "feat": false,
+    "best": "Enterprise sales teams transitioning from legacy chatbots (like Drift) seeking autonomous AI demonstrations",
+    "setup": 2,
+    "classification": "specialist",
+    "lifecycle_status": "active",
+    "primary_jtbd": "Autonomous inbound AI buyer conversations and interactive product walkthroughs",
+    "secondary_capabilities": [
+      "Real-time objection handling",
+      "Automated meeting qualification",
+      "CRM deal creation"
+    ],
+    "buyer_segment": "Mid-market & Enterprise sales teams transitioning from legacy chatbots",
+    "gtm_buckets": [
+      "Inbound",
+      "Lead Capture",
+      "Agentic Operations"
+    ],
+    "overlapping_tools": [
+      "qualified",
+      "intercom"
+    ],
+    "min_plan": "Contact sales (Pricing upon request)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://1mind.com",
+    "billing_basis": "custom_contract",
+    "geographic_coverage": "global"
   },
   {
     "id": "gong",
@@ -1456,7 +1825,7 @@
     "tagline": "Revenue intelligence and conversation analytics platform",
     "description": "Gong captures and analyzes customer interactions across video calls, phone conversations, and emails to provide deal visibility, coaching metrics, and pipeline forecasts.",
     "price": "Custom quote",
-    "price_note": "Custom quote (typically $1,200-$1,600/rep/yr plus base platform fee, checked October 2026)",
+    "price_note": "Custom quote (Pricing upon request; contact sales)",
     "ints": [
       "Salesforce",
       "HubSpot",
@@ -1467,7 +1836,7 @@
     "setup": 3,
     "classification": "core",
     "lifecycle_status": "active",
-    "primary_jtbd": "Deal pipeline risk detection, rep call coaching, and revenue intelligence",
+    "primary_jtbd": "Deal pipeline risk detection, rep call coaching, and revenue data capture",
     "secondary_capabilities": [
       "Competitor mention tracking",
       "Deal board warnings",
@@ -1483,8 +1852,11 @@
       "fathom",
       "tl-dv"
     ],
-    "min_plan": "Custom quote ($1,200+/rep/yr)",
-    "pricing_verified_at": "October 2026"
+    "min_plan": "Custom quote",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://www.gong.io/pricing/",
+    "billing_basis": "custom_contract",
+    "geographic_coverage": "global"
   },
   {
     "id": "chorus",
@@ -1496,7 +1868,7 @@
     "tagline": "Conversation intelligence and sales call coaching integrated into ZoomInfo",
     "description": "Chorus by ZoomInfo records and transcribes sales calls, pinpointing moments of buyer hesitation, competitor mentions, and pricing discussions.",
     "price": "Custom quote",
-    "price_note": "Custom quote via ZoomInfo enterprise licensing (checked October 2026)",
+    "price_note": "Custom quote (Pricing upon request via ZoomInfo; contact sales)",
     "ints": [
       "Salesforce",
       "HubSpot",
@@ -1520,8 +1892,11 @@
       "gong",
       "fathom"
     ],
-    "min_plan": "Custom quote (via ZoomInfo)",
-    "pricing_verified_at": "October 2026"
+    "min_plan": "Custom quote",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://www.zoominfo.com/products/chorus",
+    "billing_basis": "custom_contract",
+    "geographic_coverage": "global"
   },
   {
     "id": "calilio",
@@ -1533,7 +1908,7 @@
     "tagline": "Cloud business phone system with VoIP and AI conversation analytics",
     "description": "Calilio provides international business phone numbers, virtual PBX calling, automated SMS, and AI-powered call transcription for distributed teams.",
     "price": "Paid",
-    "price_note": "Basic from $12/user/mo; Business from $24/user/mo (checked October 2026)",
+    "price_note": "Basic from $12/user/mo; Business from $24/user/mo",
     "ints": [
       "Slack",
       "Zapier"
@@ -1554,7 +1929,10 @@
     ],
     "overlapping_tools": [],
     "min_plan": "Basic ($12/user/mo)",
-    "pricing_verified_at": "October 2026"
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://www.calilio.com/pricing",
+    "billing_basis": "per_user_monthly",
+    "geographic_coverage": "global"
   },
   {
     "id": "fathom",
@@ -1563,10 +1941,10 @@
     "domain": "fathom.video",
     "stage": 4,
     "cat": "Meeting notes",
-    "tagline": "Free AI meeting recorder and CRM note-taker for Zoom, Meet, and Teams",
+    "tagline": "AI meeting recorder and CRM note-taker for Zoom, Meet, and Teams",
     "description": "Fathom joins your video meetings, transcribes conversations in real-time, generates structured summary highlights, and automatically synchronizes notes directly into CRM deals.",
     "price": "Free plan",
-    "price_note": "Free plan (unlimited individual recordings); Team Edition from $24/seat/mo (checked October 2026)",
+    "price_note": "Free for individual recording; Team Edition from $24/seat/mo billed annually ($32/seat/mo monthly)",
     "ints": [
       "HubSpot",
       "Salesforce",
@@ -1594,8 +1972,11 @@
       "meetgeek",
       "fireflies-ai"
     ],
-    "min_plan": "Free tier / Team ($24/seat/mo)",
-    "pricing_verified_at": "October 2026"
+    "min_plan": "Free tier / Team ($24/seat/mo annual / $32/seat/mo monthly)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://fathom.video/pricing",
+    "billing_basis": "per_user_monthly",
+    "geographic_coverage": "global"
   },
   {
     "id": "tl-dv",
@@ -1607,7 +1988,7 @@
     "tagline": "AI meeting recorder and sales coaching assistant for Google Meet and Zoom",
     "description": "tl;dv captures video meetings with speaker recognition, automated timestamps, multi-language transcription, and AI-generated CRM deal takeaways.",
     "price": "Free plan",
-    "price_note": "Free tier (unlimited recordings); Pro from $18/seat/mo (checked October 2026)",
+    "price_note": "Free tier (unlimited recordings); Pro from $18/seat/mo billed annually ($25/seat/mo monthly)",
     "ints": [
       "HubSpot",
       "Salesforce",
@@ -1633,8 +2014,11 @@
       "fathom",
       "meetgeek"
     ],
-    "min_plan": "Free tier / Pro ($18/seat/mo)",
-    "pricing_verified_at": "October 2026"
+    "min_plan": "Free tier / Pro ($18/seat/mo annual / $25/seat/mo monthly)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://tldv.io/pricing/",
+    "billing_basis": "per_user_monthly",
+    "geographic_coverage": "global"
   },
   {
     "id": "meetgeek",
@@ -1646,7 +2030,7 @@
     "tagline": "AI meeting assistant that records, summarizes, and automatically shares highlights",
     "description": "MeetGeek acts as an automated virtual note-taker for video calls, drafting summaries, highlighting customer sentiment, and syncing action items to Slack and Trello.",
     "price": "Free plan",
-    "price_note": "Free tier (5 hrs/mo); Pro from $15/seat/mo ($19 monthly, checked October 2026)",
+    "price_note": "Free tier (5 hrs/mo); Pro from $15/seat/mo billed annually ($19/seat/mo monthly)",
     "ints": [
       "HubSpot",
       "Slack",
@@ -1671,8 +2055,11 @@
       "fathom",
       "fireflies-ai"
     ],
-    "min_plan": "Free tier / Pro ($15/seat/mo)",
-    "pricing_verified_at": "October 2026"
+    "min_plan": "Free tier / Pro ($15/seat/mo annual / $19/seat/mo monthly)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://meetgeek.ai/pricing",
+    "billing_basis": "per_user_monthly",
+    "geographic_coverage": "global"
   },
   {
     "id": "fireflies-ai",
@@ -1684,7 +2071,7 @@
     "tagline": "AI voice assistant that transcribes, searches, and analyzes voice conversations",
     "description": "Fireflies.ai plugs into Google Meet, Zoom, and Teams to transcribe conversations, track talk-to-listen ratios, and log call summaries into leading CRMs.",
     "price": "Free plan",
-    "price_note": "Free tier (limited credits); Pro from $10/user/mo ($18 monthly, checked October 2026)",
+    "price_note": "Free tier (limited credits); Pro from $10/user/mo billed annually ($18/user/mo monthly)",
     "ints": [
       "HubSpot",
       "Salesforce",
@@ -1709,8 +2096,52 @@
       "fathom",
       "tl-dv"
     ],
-    "min_plan": "Free tier / Pro ($10/user/mo)",
-    "pricing_verified_at": "October 2026"
+    "min_plan": "Free tier / Pro ($10/user/mo annual / $18/user/mo monthly)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://fireflies.ai/pricing",
+    "billing_basis": "per_user_monthly",
+    "geographic_coverage": "global"
+  },
+  {
+    "id": "calendly",
+    "slug": "calendly",
+    "name": "Calendly",
+    "domain": "calendly.com",
+    "stage": 4,
+    "cat": "Meeting scheduling",
+    "tagline": "Automated meeting scheduling, intake qualification routing, and calendar coordination",
+    "description": "Calendly removes scheduling friction with automated calendar sync, intake qualifying forms, team round-robin routing, and CRM logging.",
+    "price": "Free plan",
+    "price_note": "Free tier (1 event type); Standard from $10/seat/mo billed annually ($12/seat/mo monthly); Teams from $16/seat/mo billed annually ($20/seat/mo monthly)",
+    "ints": [
+      "Google Workspace",
+      "HubSpot",
+      "Salesforce",
+      "Slack",
+      "Zapier"
+    ],
+    "feat": true,
+    "best": "Sales teams and consultants needing friction-free meeting bookings and automated routing",
+    "setup": 1,
+    "classification": "core",
+    "lifecycle_status": "active",
+    "primary_jtbd": "Frictionless meeting scheduling, round-robin lead routing, and qualification forms",
+    "secondary_capabilities": [
+      "Routing forms",
+      "Automated reminder workflows",
+      "CRM calendar sync"
+    ],
+    "buyer_segment": "Sales reps, agencies, and businesses of all sizes",
+    "gtm_buckets": [
+      "Inbound",
+      "Lead Capture"
+    ],
+    "overlapping_tools": [],
+    "min_plan": "Free tier / Standard ($10/seat/mo annual / $12/seat/mo monthly)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://calendly.com/pricing",
+    "billing_basis": "per_user_monthly",
+    "geographic_coverage": "global"
   },
   {
     "id": "hubspot-sales-hub",
@@ -1722,7 +2153,7 @@
     "tagline": "All-in-one sales CRM platform with deal management and pipeline tracking",
     "description": "HubSpot Sales Hub unifies contact records, deal stages, email tracking, quoting, and conversation intelligence into an ecosystem loved by scaling teams.",
     "price": "Free plan",
-    "price_note": "Free CRM tier; Starter from $15/seat/mo; Professional from $90-$100/seat/mo (checked October 2026)",
+    "price_note": "Free CRM tier; Starter from $15/seat/mo billed annually ($20/seat/mo monthly); Professional from $90/seat/mo billed annually ($100/seat/mo monthly)",
     "ints": [
       "Salesforce",
       "Slack",
@@ -1752,8 +2183,11 @@
       "attio",
       "pipedrive"
     ],
-    "min_plan": "Free tier / Starter ($15/seat/mo)",
-    "pricing_verified_at": "October 2026"
+    "min_plan": "Free tier / Starter ($15/seat/mo annual / $20/seat/mo monthly)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://www.hubspot.com/pricing/sales",
+    "billing_basis": "per_user_monthly",
+    "geographic_coverage": "global"
   },
   {
     "id": "salesforce-sales-cloud",
@@ -1765,7 +2199,7 @@
     "tagline": "The global enterprise standard CRM platform with customizable revenue data models",
     "description": "Salesforce Sales Cloud offers comprehensive lead and opportunity tracking, enterprise forecasting, workflow rules, and thousands of AppExchange ecosystem integrations.",
     "price": "Paid",
-    "price_note": "Starter Suite from $25/user/mo; Pro Suite $100/user/mo; Enterprise $165/user/mo (checked October 2026)",
+    "price_note": "Starter Suite from $25/user/mo billed annually; Pro Suite $100/user/mo; Enterprise $165/user/mo",
     "ints": [
       "Slack",
       "Zapier",
@@ -1789,8 +2223,96 @@
     "overlapping_tools": [
       "hubspot-sales-hub"
     ],
-    "min_plan": "Starter Suite ($25/user/mo)",
-    "pricing_verified_at": "October 2026"
+    "min_plan": "Starter Suite ($25/user/mo billed annually)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://www.salesforce.com/editions-pricing/sales-cloud/",
+    "billing_basis": "per_user_monthly",
+    "geographic_coverage": "global"
+  },
+  {
+    "id": "pipedrive",
+    "slug": "pipedrive",
+    "name": "Pipedrive",
+    "domain": "pipedrive.com",
+    "stage": 4,
+    "cat": "CRM",
+    "tagline": "Visual sales CRM designed around activity-based deal tracking",
+    "description": "Pipedrive organizes deals, contacts, and email communication across visual kanban stages, with workflow automation on Growth tiers and security governance on Ultimate.",
+    "price": "Paid",
+    "price_note": "Lite from $14/user/mo billed annually ($24/mo monthly); Growth from $39/user/mo ($49/mo monthly); Premium from $59/user/mo ($79/mo monthly); Ultimate from $79/user/mo ($99/mo monthly)",
+    "ints": [
+      "Google Workspace",
+      "Slack",
+      "Zapier",
+      "HubSpot"
+    ],
+    "feat": true,
+    "best": "Sales-led small and midsize teams focused on high deal velocity and activity hygiene",
+    "setup": 1,
+    "classification": "core",
+    "lifecycle_status": "active",
+    "primary_jtbd": "Visual deal pipeline tracking and sales activity management",
+    "secondary_capabilities": [
+      "Email synchronization",
+      "Workflow automation",
+      "Smart contact data"
+    ],
+    "buyer_segment": "Small to mid-market sales-led teams (1-50 reps)",
+    "gtm_buckets": [
+      "Outbound",
+      "Inbound"
+    ],
+    "overlapping_tools": [
+      "hubspot-sales-hub",
+      "close-crm"
+    ],
+    "min_plan": "Lite ($14/user/mo annual / $24/user/mo monthly)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://www.pipedrive.com/pricing",
+    "billing_basis": "per_user_monthly",
+    "geographic_coverage": "global"
+  },
+  {
+    "id": "close-crm",
+    "slug": "close-crm",
+    "name": "Close",
+    "domain": "close.com",
+    "stage": 4,
+    "cat": "CRM",
+    "tagline": "High-velocity CRM with built-in calling, SMS, and multi-channel email sequencing",
+    "description": "Close combines deal management with native two-way email, power dialer calling, and SMS automation into a single fast interface designed for inside sales.",
+    "price": "Paid",
+    "price_note": "Solo from $49/mo billed annually ($59/mo monthly; 1 user); Startup from $99/mo ($119/mo monthly; includes 3 users); Professional from $299/mo",
+    "ints": [
+      "Google Workspace",
+      "Slack",
+      "Zapier"
+    ],
+    "feat": false,
+    "best": "Outbound inside sales teams and SDR squads who want communication tools natively bundled into their CRM",
+    "setup": 2,
+    "classification": "specialist",
+    "lifecycle_status": "active",
+    "primary_jtbd": "Inside sales deal execution with native calling, SMS, and email sequencing",
+    "secondary_capabilities": [
+      "Power dialer",
+      "Two-way SMS sync",
+      "Multi-channel sequences"
+    ],
+    "buyer_segment": "Inside sales teams, outbound SDR squads, and startups",
+    "gtm_buckets": [
+      "Outbound",
+      "Lead Capture"
+    ],
+    "overlapping_tools": [
+      "pipedrive",
+      "apollo"
+    ],
+    "min_plan": "Solo ($49/mo annual / $59/mo monthly)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://www.close.com/pricing",
+    "billing_basis": "per_user_monthly",
+    "geographic_coverage": "global"
   },
   {
     "id": "attio",
@@ -1802,7 +2324,7 @@
     "tagline": "Real-time, data-driven CRM built with custom objects and automated email sync",
     "description": "Attio combines the flexibility of a modern database with an intuitive CRM interface, automatically synchronizing company communication history and relationship records.",
     "price": "Free plan",
-    "price_note": "Free tier (up to 3 users); Plus from $29/user/mo; Pro from $59/user/mo (checked October 2026)",
+    "price_note": "Free tier (up to 3 users); Plus from $29/user/mo billed annually ($34/user/mo monthly); Pro from $59/user/mo billed annually ($69/user/mo monthly)",
     "ints": [
       "Slack",
       "Zapier",
@@ -1827,8 +2349,11 @@
       "hubspot-sales-hub",
       "folk"
     ],
-    "min_plan": "Free tier / Plus ($29/user/mo)",
-    "pricing_verified_at": "October 2026"
+    "min_plan": "Free tier / Plus ($29/user/mo annual / $34/user/mo monthly)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://attio.com/pricing",
+    "billing_basis": "per_user_monthly",
+    "geographic_coverage": "global"
   },
   {
     "id": "folk",
@@ -1840,7 +2365,7 @@
     "tagline": "Lightweight collaborative CRM for contacts, pipeline management, and outreach",
     "description": "folk provides an intuitive Notion-like interface to organize contacts, manage deal pipelines, track interactions, and send mail merges with custom variables.",
     "price": "Free plan",
-    "price_note": "Free tier (100 contacts); Standard from $18/user/mo ($24 monthly, checked October 2026)",
+    "price_note": "Free tier (100 contacts); Standard from $18/user/mo billed annually ($24/user/mo monthly); Premium from $36/user/mo",
     "ints": [
       "Google Workspace",
       "Zapier"
@@ -1862,8 +2387,11 @@
     "overlapping_tools": [
       "attio"
     ],
-    "min_plan": "Free tier / Standard ($18/user/mo)",
-    "pricing_verified_at": "October 2026"
+    "min_plan": "Free tier / Standard ($18/user/mo annual / $24/user/mo monthly)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://www.folk.app/pricing",
+    "billing_basis": "per_user_monthly",
+    "geographic_coverage": "global"
   },
   {
     "id": "pandadoc",
@@ -1875,7 +2403,7 @@
     "tagline": "Document workflow automation with CPQ quoting and compliant e-signatures",
     "description": "PandaDoc accelerates deal closing with proposal templates, interactive pricing tables, CRM auto-sync, and legally binding e-signatures.",
     "price": "Paid",
-    "price_note": "14-day trial; Essentials from $19/seat/mo ($35 monthly, checked October 2026)",
+    "price_note": "14-day trial; Essentials from $19/seat/mo billed annually ($35/seat/mo monthly); Business from $49/seat/mo billed annually ($65/seat/mo monthly)",
     "ints": [
       "Google Workspace",
       "HubSpot",
@@ -1898,263 +2426,11 @@
       "Data & Orchestration"
     ],
     "overlapping_tools": [],
-    "min_plan": "Essentials ($19/seat/mo)",
-    "pricing_verified_at": "October 2026"
-  },
-  {
-    "id": "customer-io",
-    "slug": "customer-io",
-    "name": "Customer.io",
-    "domain": "customer.io",
-    "stage": 5,
-    "cat": "Email and lifecycle",
-    "tagline": "Automated messaging platform powered by real-time customer behavioral data",
-    "description": "Customer.io triggers email, push, and SMS messaging based on app activity, helping product-led B2B SaaS businesses onboard and retain customers.",
-    "price": "Paid",
-    "price_note": "Essentials from $100/mo (up to 5,000 profiles, checked October 2026)",
-    "ints": [
-      "Slack",
-      "Zapier"
-    ],
-    "feat": false,
-    "best": "Product-led B2B SaaS companies sending behavioral lifecycle and onboarding sequences",
-    "setup": 2,
-    "classification": "core",
-    "lifecycle_status": "active",
-    "primary_jtbd": "Behavioral event-triggered customer onboarding and lifecycle messaging",
-    "secondary_capabilities": [
-      "Multi-channel branching",
-      "In-app messages",
-      "Visual journey builder"
-    ],
-    "buyer_segment": "Product-led B2B SaaS & mobile applications",
-    "gtm_buckets": [
-      "Data & Orchestration"
-    ],
-    "overlapping_tools": [
-      "userlist",
-      "klaviyo"
-    ],
-    "min_plan": "Essentials ($100/mo)",
-    "pricing_verified_at": "October 2026"
-  },
-  {
-    "id": "klaviyo",
-    "slug": "klaviyo",
-    "name": "Klaviyo",
-    "domain": "klaviyo.com",
-    "stage": 5,
-    "cat": "Email and lifecycle",
-    "tagline": "Intelligent marketing automation for email, SMS, and customer retention",
-    "description": "Klaviyo unifies consumer customer data to deliver personalized email flows, SMS campaigns, and predictive lifetime value calculations.",
-    "price": "Free plan",
-    "price_note": "Free tier (up to 250 contacts); Paid tiers start from $20/mo (checked October 2026)",
-    "ints": [
-      "Zapier"
-    ],
-    "feat": false,
-    "best": "E-commerce and consumer-facing B2B brands driving repeat customer revenue",
-    "setup": 2,
-    "classification": "core",
-    "lifecycle_status": "active",
-    "primary_jtbd": "Automated revenue-driven email and SMS marketing flows",
-    "secondary_capabilities": [
-      "Predictive customer lifetime value",
-      "Segment builder"
-    ],
-    "buyer_segment": "E-commerce and digital consumer brands",
-    "gtm_buckets": [
-      "Inbound",
-      "Data & Orchestration"
-    ],
-    "overlapping_tools": [
-      "customer-io"
-    ],
-    "min_plan": "Free tier / Paid ($20/mo)",
-    "pricing_verified_at": "October 2026"
-  },
-  {
-    "id": "userlist",
-    "slug": "userlist",
-    "name": "Userlist",
-    "domain": "userlist.com",
-    "stage": 5,
-    "cat": "Email and lifecycle",
-    "tagline": "Email marketing platform built specifically for B2B SaaS companies",
-    "description": "Userlist tracks both individual users and company accounts, making it effortless to send company-level onboarding campaigns and upgrade prompts.",
-    "price": "Paid",
-    "price_note": "Basic from $149/mo (up to 5,000 company profiles, checked October 2026)",
-    "ints": [
-      "Zapier"
-    ],
-    "feat": false,
-    "best": "B2B SaaS founders wanting clean account-level lifecycle messaging without complex configuration",
-    "setup": 2,
-    "classification": "specialist",
-    "lifecycle_status": "active",
-    "primary_jtbd": "B2B account-level customer lifecycle emails and onboarding journeys",
-    "secondary_capabilities": [
-      "Company account modeling",
-      "Broadcast newsletters"
-    ],
-    "buyer_segment": "B2B SaaS companies",
-    "gtm_buckets": [
-      "Data & Orchestration"
-    ],
-    "overlapping_tools": [
-      "customer-io"
-    ],
-    "min_plan": "Basic ($149/mo)",
-    "pricing_verified_at": "October 2026"
-  },
-  {
-    "id": "vitally",
-    "slug": "vitally",
-    "name": "Vitally",
-    "domain": "vitally.io",
-    "stage": 5,
-    "cat": "Customer success",
-    "tagline": "Collaborative customer success platform with real-time account health scoring",
-    "description": "Vitally unifies product analytics, customer data, and conversation history to give CS teams customer 360s, automated health scores, and proactive churn mitigation playbooks.",
-    "price": "Custom quote",
-    "price_note": "Custom quote (tailored onboarding for mid-market CS teams; checked October 2026)",
-    "ints": [
-      "HubSpot",
-      "Salesforce",
-      "Slack",
-      "Zapier"
-    ],
-    "feat": false,
-    "best": "B2B SaaS customer success teams needing automated health scoring and proactive retention workflows",
-    "setup": 2,
-    "classification": "core",
-    "lifecycle_status": "active",
-    "primary_jtbd": "Account 360 health scoring, customer success task management, and churn mitigation",
-    "secondary_capabilities": [
-      "Automated CS playbooks",
-      "Client collaboration portals",
-      "Product usage sync"
-    ],
-    "buyer_segment": "Mid-market & High-growth SaaS CS teams",
-    "gtm_buckets": [
-      "Data & Orchestration"
-    ],
-    "overlapping_tools": [
-      "churnzero"
-    ],
-    "min_plan": "Custom quote",
-    "pricing_verified_at": "October 2026"
-  },
-  {
-    "id": "churnzero",
-    "slug": "churnzero",
-    "name": "ChurnZero",
-    "domain": "churnzero.com",
-    "stage": 5,
-    "cat": "Customer success",
-    "tagline": "Enterprise customer success platform for subscription retention and account expansion",
-    "description": "ChurnZero helps subscription businesses understand product usage, automate customer onboarding, prevent churn, and identify net retention expansion opportunities.",
-    "price": "Custom quote",
-    "price_note": "Custom quote (enterprise contracts, checked October 2026)",
-    "ints": [
-      "HubSpot",
-      "Salesforce",
-      "Slack"
-    ],
-    "feat": false,
-    "best": "Enterprise customer success teams managing complex multi-tier recurring revenue accounts",
-    "setup": 3,
-    "classification": "core",
-    "lifecycle_status": "active",
-    "primary_jtbd": "Enterprise customer health monitoring, churn prevention, and account expansion",
-    "secondary_capabilities": [
-      "In-app walkthroughs",
-      "Automated Plays",
-      "Executive dashboards"
-    ],
-    "buyer_segment": "Mid-market & Enterprise subscription software companies",
-    "gtm_buckets": [
-      "Data & Orchestration"
-    ],
-    "overlapping_tools": [
-      "vitally"
-    ],
-    "min_plan": "Custom quote",
-    "pricing_verified_at": "October 2026"
-  },
-  {
-    "id": "clari",
-    "slug": "clari",
-    "name": "Clari",
-    "domain": "clari.com",
-    "stage": 5,
-    "cat": "Revenue forecasting",
-    "tagline": "Revenue cadence, pipeline execution, and forecasting platform",
-    "description": "Clari gives executive teams complete visibility across the revenue lifecycle, forecasting closed revenue accurately and enforcing pipeline discipline.",
-    "price": "Custom quote",
-    "price_note": "Custom quote (enterprise minimums typically $1,000+/rep/yr, checked October 2026)",
-    "ints": [
-      "Salesforce",
-      "HubSpot",
-      "Slack"
-    ],
-    "feat": false,
-    "best": "Enterprise CROs and sales operations leaders requiring strict quarterly forecasting accuracy",
-    "setup": 3,
-    "classification": "core",
-    "lifecycle_status": "active",
-    "primary_jtbd": "Quarterly sales forecasting, deal slippage detection, and pipeline hygiene",
-    "secondary_capabilities": [
-      "Revenue leak analytics",
-      "CRM update automation",
-      "Executive dashboards"
-    ],
-    "buyer_segment": "Enterprise sales organizations ($30M+ ARR)",
-    "gtm_buckets": [
-      "Data & Orchestration"
-    ],
-    "overlapping_tools": [
-      "boostup",
-      "gong"
-    ],
-    "min_plan": "Custom quote ($1,000+/rep/yr)",
-    "pricing_verified_at": "October 2026"
-  },
-  {
-    "id": "boostup",
-    "slug": "boostup",
-    "name": "BoostUp",
-    "domain": "boostup.ai",
-    "stage": 5,
-    "cat": "Revenue forecasting",
-    "tagline": "AI revenue intelligence and predictive pipeline forecasting platform",
-    "description": "BoostUp monitors deal activity and buyer sentiment to deliver automated forecasting, pipeline inspection, and actionable risk alerts for sales leaders.",
-    "price": "Custom quote",
-    "price_note": "Custom quote (checked October 2026)",
-    "ints": [
-      "Salesforce",
-      "HubSpot",
-      "Slack"
-    ],
-    "feat": false,
-    "best": "Sales operations managers seeking flexible pipeline forecasting models",
-    "setup": 2,
-    "classification": "specialist",
-    "lifecycle_status": "active",
-    "primary_jtbd": "Predictive deal inspection and pipeline forecasting",
-    "secondary_capabilities": [
-      "Activity capture",
-      "Pipeline review boards"
-    ],
-    "buyer_segment": "Mid-market sales organizations",
-    "gtm_buckets": [
-      "Data & Orchestration"
-    ],
-    "overlapping_tools": [
-      "clari"
-    ],
-    "min_plan": "Custom quote",
-    "pricing_verified_at": "October 2026"
+    "min_plan": "Essentials ($19/seat/mo annual / $35/seat/mo monthly)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://www.pandadoc.com/pricing/",
+    "billing_basis": "per_user_monthly",
+    "geographic_coverage": "global"
   },
   {
     "id": "n8n",
@@ -2166,7 +2442,7 @@
     "tagline": "Fair-code workflow automation and AI agent orchestration platform",
     "description": "n8n allows technical growth and revops teams to build advanced multi-step automations and AI agent chains with self-hosting control or cloud execution.",
     "price": "Free plan",
-    "price_note": "Community Edition is free (self-hosted); Cloud Starter from €20/mo (~$22/mo, checked October 2026)",
+    "price_note": "Community Edition is free (self-hosted); Cloud Starter from €20/mo billed annually (~$22/mo) or €25/mo monthly",
     "ints": [
       "HubSpot",
       "Salesforce",
@@ -2194,8 +2470,11 @@
       "make",
       "zapier"
     ],
-    "min_plan": "Community Edition (Free) / Cloud (€20/mo)",
-    "pricing_verified_at": "October 2026"
+    "min_plan": "Community Edition (Free self-hosted) / Cloud (€20/mo)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://n8n.io/pricing/",
+    "billing_basis": "execution_tier",
+    "geographic_coverage": "global"
   },
   {
     "id": "make",
@@ -2204,10 +2483,10 @@
     "domain": "make.com",
     "stage": 4,
     "cat": "Workflow automation",
-    "tagline": "Visual integration platform for connecting apps and automating revenue workflows",
-    "description": "Make provides an intuitive visual canvas to connect apps, route webhook payloads, and automate complex B2B sales operations at scale.",
+    "tagline": "Visual integration platform with credit-based workflow orchestration",
+    "description": "Make connects apps and automates revenue operations with an intuitive visual canvas, utilizing credit-based billing (10,000 credits/mo on base paid plans).",
     "price": "Free plan",
-    "price_note": "Free tier (1,000 ops/mo); Core starts at $9/mo; Pro from $16/mo (checked October 2026)",
+    "price_note": "Free tier (1,000 credits/mo); Core from $9/mo billed annually ($10.59/mo monthly for 10,000 credits/mo); Pro from $16/mo billed annually ($18.82/mo monthly)",
     "ints": [
       "HubSpot",
       "Salesforce",
@@ -2216,7 +2495,7 @@
       "Google Workspace"
     ],
     "feat": true,
-    "best": "Growth teams and ops managers who want powerful visual branch logic at a fraction of Zapier’s cost",
+    "best": "Growth teams and ops managers wanting visual multi-step branch logic with predictable credit allowances",
     "setup": 2,
     "classification": "core",
     "lifecycle_status": "active",
@@ -2234,8 +2513,11 @@
       "zapier",
       "n8n"
     ],
-    "min_plan": "Free tier / Core ($9/mo)",
-    "pricing_verified_at": "October 2026"
+    "min_plan": "Free tier (1k credits/mo) / Core ($9/mo annual for 10k credits/mo)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://www.make.com/en/pricing",
+    "billing_basis": "credit_tier",
+    "geographic_coverage": "global"
   },
   {
     "id": "zapier",
@@ -2244,10 +2526,10 @@
     "domain": "zapier.com",
     "stage": 4,
     "cat": "Workflow automation",
-    "tagline": "The standard no-code integration platform with 7,000+ app connectors",
+    "tagline": "Ubiquitous no-code integration platform with 7,000+ app connectors",
     "description": "Zapier connects sales, marketing, and CRM software with reliable triggers and actions, automated error handling, and built-in AI copilot logic.",
     "price": "Free plan",
-    "price_note": "Free tier (100 tasks/mo); Starter from $19.99/mo (annual); Pro from $29.99/mo (checked October 2026)",
+    "price_note": "Free tier (100 tasks/mo, 2-step Zaps); Professional from $19.99/mo billed annually ($29.99/mo monthly for 750 tasks/mo); Team from $69/mo billed annually ($103.50/mo monthly)",
     "ints": [
       "HubSpot",
       "Salesforce",
@@ -2273,358 +2555,286 @@
       "make",
       "n8n"
     ],
-    "min_plan": "Free tier / Starter ($19.99/mo)",
-    "pricing_verified_at": "October 2026"
+    "min_plan": "Free tier / Professional ($19.99/mo annual / $29.99/mo monthly)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://zapier.com/pricing",
+    "billing_basis": "task_tier",
+    "geographic_coverage": "global"
   },
   {
-    "id": "pipedrive",
-    "slug": "pipedrive",
-    "name": "Pipedrive",
-    "domain": "pipedrive.com",
-    "stage": 4,
-    "cat": "CRM",
-    "tagline": "Activity-based sales CRM designed to keep deals moving through the pipeline",
-    "description": "Pipedrive provides visual kanban pipeline management, email tracking, automated activity reminders, and revenue forecasting for sales teams.",
+    "id": "customer-io",
+    "slug": "customer-io",
+    "name": "Customer.io",
+    "domain": "customer.io",
+    "stage": 5,
+    "cat": "Email and lifecycle",
+    "tagline": "Automated messaging platform powered by real-time customer behavioral data",
+    "description": "Customer.io triggers email, push, and SMS messaging based on app activity, helping product-led B2B SaaS businesses onboard and retain customers.",
     "price": "Paid",
-    "price_note": "Essential from $14/user/mo (annual); Advanced $29/user/mo; Professional $49/user/mo (checked October 2026)",
+    "price_note": "Essentials from $100/mo (up to 5,000 profiles)",
     "ints": [
-      "Google Workspace",
-      "Slack",
-      "Zapier",
-      "HubSpot"
-    ],
-    "feat": true,
-    "best": "Sales-led small and midsize teams focused on high deal velocity and simple pipeline hygiene",
-    "setup": 1,
-    "classification": "core",
-    "lifecycle_status": "active",
-    "primary_jtbd": "Visual deal pipeline tracking and sales activity management",
-    "secondary_capabilities": [
-      "LeadBooster chatbot",
-      "Email synchronization",
-      "Smart contact data"
-    ],
-    "buyer_segment": "Small to mid-market sales-led teams (1-50 reps)",
-    "gtm_buckets": [
-      "Outbound",
-      "Inbound"
-    ],
-    "overlapping_tools": [
-      "hubspot-sales-hub",
-      "close-crm"
-    ],
-    "min_plan": "Essential ($14/user/mo)",
-    "pricing_verified_at": "October 2026"
-  },
-  {
-    "id": "close-crm",
-    "slug": "close-crm",
-    "name": "Close",
-    "domain": "close.com",
-    "stage": 4,
-    "cat": "CRM",
-    "tagline": "High-velocity CRM with built-in calling, SMS, and multi-channel email sequencing",
-    "description": "Close combines deal management with native two-way email, power dialer calling, and SMS automation into a single fast interface designed for inside sales.",
-    "price": "Paid",
-    "price_note": "Solo $49/mo (1 user); Startup $99/mo (includes 3 users); Professional $299/mo (checked October 2026)",
-    "ints": [
-      "Google Workspace",
       "Slack",
       "Zapier"
     ],
     "feat": false,
-    "best": "Outbound inside sales teams and SDR squads who want communication tools natively bundled into their CRM",
+    "best": "Product-led B2B SaaS companies sending behavioral lifecycle and onboarding sequences",
     "setup": 2,
-    "classification": "specialist",
-    "lifecycle_status": "active",
-    "primary_jtbd": "Inside sales deal execution with native calling, SMS, and email sequencing",
-    "secondary_capabilities": [
-      "Power dialer",
-      "Two-way SMS sync",
-      "Multi-channel sequences"
-    ],
-    "buyer_segment": "Inside sales teams, outbound SDR squads, and startups",
-    "gtm_buckets": [
-      "Outbound",
-      "Lead Capture"
-    ],
-    "overlapping_tools": [
-      "pipedrive",
-      "apollo"
-    ],
-    "min_plan": "Solo ($49/mo) / Startup ($99/mo)",
-    "pricing_verified_at": "October 2026"
-  },
-  {
-    "id": "hunter",
-    "slug": "hunter",
-    "name": "Hunter",
-    "domain": "hunter.io",
-    "stage": 2,
-    "cat": "Lead data",
-    "tagline": "Domain search, email discovery, and verification for outbound outreach",
-    "description": "Hunter uncovers verified professional email addresses behind any domain name, verifies deliverability, and includes a simple cold email sender.",
-    "price": "Free plan",
-    "price_note": "Free tier (25 searches/mo); Starter from $34/mo (annual) or $49/mo monthly (checked October 2026)",
-    "ints": [
-      "HubSpot",
-      "Salesforce",
-      "Zapier",
-      "Google Workspace"
-    ],
-    "feat": false,
-    "best": "Outbound sales reps and marketers needing quick domain lookups and email validation",
-    "setup": 1,
     "classification": "core",
     "lifecycle_status": "active",
-    "primary_jtbd": "Domain email pattern discovery and email address verification",
+    "primary_jtbd": "Behavioral event-triggered customer onboarding and lifecycle messaging",
     "secondary_capabilities": [
-      "Chrome extension",
-      "Cold email campaigns",
-      "Bulk email verifier"
+      "Multi-channel branching",
+      "In-app messages",
+      "Visual journey builder"
     ],
-    "buyer_segment": "Sales reps, recruiters, and outbound marketers",
+    "buyer_segment": "Product-led B2B SaaS & mobile applications",
     "gtm_buckets": [
-      "Outbound"
-    ],
-    "overlapping_tools": [
-      "apollo",
-      "findymail"
-    ],
-    "min_plan": "Free tier / Starter ($34/mo)",
-    "pricing_verified_at": "October 2026"
-  },
-  {
-    "id": "dropcontact",
-    "slug": "dropcontact",
-    "name": "Dropcontact",
-    "domain": "dropcontact.com",
-    "stage": 2,
-    "cat": "Lead data",
-    "tagline": "100% GDPR-compliant B2B email enrichment and CRM contact deduplication",
-    "description": "Dropcontact cleans, deduplicates, and enriches contact records using proprietary algorithms without storing non-compliant static databases.",
-    "price": "Paid",
-    "price_note": "Starts at €24/mo (~$26/mo for 1,000 credits); CRM integration plans from €38/mo (checked October 2026)",
-    "ints": [
-      "HubSpot",
-      "Salesforce",
-      "Pipedrive",
-      "Zapier"
-    ],
-    "feat": false,
-    "best": "European and international B2B teams requiring strict GDPR compliance and automated CRM data hygiene",
-    "setup": 1,
-    "classification": "specialist",
-    "lifecycle_status": "active",
-    "primary_jtbd": "Automated CRM contact enrichment, deduplication, and GDPR-compliant email search",
-    "secondary_capabilities": [
-      "Native CRM sync",
-      "First name capitalization fix",
-      "Direct dial discovery"
-    ],
-    "buyer_segment": "European B2B companies & RevOps managers",
-    "gtm_buckets": [
-      "Outbound",
       "Data & Orchestration"
     ],
     "overlapping_tools": [
-      "clay",
-      "apollo"
+      "userlist",
+      "klaviyo"
     ],
-    "min_plan": "€24/mo (1,000 credits)",
-    "pricing_verified_at": "October 2026"
+    "min_plan": "Essentials ($100/mo)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://customer.io/pricing/",
+    "billing_basis": "profile_tier",
+    "geographic_coverage": "global"
   },
   {
-    "id": "findymail",
-    "slug": "findymail",
-    "name": "Findymail",
-    "domain": "findymail.com",
-    "stage": 2,
-    "cat": "Lead data",
-    "tagline": "High-accuracy B2B email finder and automated list scraper with built-in cleaning",
-    "description": "Findymail scrapes and finds verified B2B email addresses from LinkedIn Sales Navigator and Apollo, filtering out invalid and risky addresses automatically.",
-    "price": "Paid",
-    "price_note": "Starts at $49/mo (1,000 verified credits); Pro $99/mo (2,500 credits, checked October 2026)",
+    "id": "klaviyo",
+    "slug": "klaviyo",
+    "name": "Klaviyo",
+    "domain": "klaviyo.com",
+    "stage": 5,
+    "cat": "Email and lifecycle",
+    "tagline": "Intelligent marketing automation for email, SMS, and customer retention",
+    "description": "Klaviyo unifies consumer customer data to deliver personalized email flows, SMS campaigns, and predictive lifetime value calculations.",
+    "price": "Free plan",
+    "price_note": "Free tier (up to 250 contacts); Email plans start from $20/mo (up to 500 contacts)",
     "ints": [
       "Zapier"
     ],
     "feat": false,
-    "best": "Outbound growth teams seeking ultra-low bounce rate email waterfalls for cold campaigns",
-    "setup": 1,
-    "classification": "specialist",
-    "lifecycle_status": "active",
-    "primary_jtbd": "High-accuracy B2B email extraction and verification from LinkedIn and Apollo",
-    "secondary_capabilities": [
-      "Automated list export",
-      "Clean contact formatting"
-    ],
-    "buyer_segment": "Cold outbound specialists & growth agencies",
-    "gtm_buckets": [
-      "Outbound"
-    ],
-    "overlapping_tools": [
-      "hunter",
-      "clay"
-    ],
-    "min_plan": "$49/mo (1,000 credits)",
-    "pricing_verified_at": "October 2026"
-  },
-  {
-    "id": "rb2b",
-    "slug": "rb2b",
-    "name": "RB2B",
-    "domain": "rb2b.com",
-    "stage": 2,
-    "cat": "Intent signals",
-    "tagline": "Person-level website visitor identification delivering US LinkedIn profiles to Slack",
-    "description": "RB2B resolves anonymous US website visitors down to the individual person level and pushes their LinkedIn profile directly to Slack channels for immediate outreach.",
-    "price": "Free plan",
-    "price_note": "Free tier (100 identified profiles/mo); Pro tier from $99/mo (checked October 2026)",
-    "ints": [
-      "Slack",
-      "HubSpot",
-      "Zapier"
-    ],
-    "feat": true,
-    "best": "B2B sales teams wanting high-intent individual visitor identification without enterprise contract minimums (Top Koala alternative)",
-    "setup": 1,
+    "best": "E-commerce and consumer-facing B2B brands driving repeat customer revenue",
+    "setup": 2,
     "classification": "core",
     "lifecycle_status": "active",
-    "primary_jtbd": "Individual person-level US website visitor identification and Slack notifications",
+    "primary_jtbd": "Automated revenue-driven email and SMS marketing flows",
     "secondary_capabilities": [
-      "LinkedIn profile resolution",
-      "Webhook integrations",
-      "HubSpot sync"
+      "Predictive customer lifetime value",
+      "Segment builder"
     ],
-    "buyer_segment": "B2B startups and outbound sales teams targeting US buyers",
+    "buyer_segment": "E-commerce and digital consumer brands",
     "gtm_buckets": [
-      "Lead Capture",
-      "Inbound"
+      "Inbound",
+      "Data & Orchestration"
     ],
     "overlapping_tools": [
-      "warmly",
-      "6sense"
+      "customer-io"
     ],
-    "min_plan": "Free tier (100 profiles/mo) / Pro ($99/mo)",
-    "pricing_verified_at": "October 2026"
+    "min_plan": "Free tier / Paid ($20/mo)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://www.klaviyo.com/pricing",
+    "billing_basis": "contact_tier",
+    "geographic_coverage": "global"
   },
   {
-    "id": "warmly",
-    "slug": "warmly",
-    "name": "Warmly",
-    "domain": "warmly.ai",
-    "stage": 2,
-    "cat": "Intent signals",
-    "tagline": "Autonomous website visitor deanonymization, intent tracking, and instant pipeline orchestration",
-    "description": "Warmly reveals accounts browsing your site, enriches buying committee contacts, and dynamically triggers video/chat popups or automated SDR outreach.",
-    "price": "Free plan",
-    "price_note": "Free tier (up to 500 company reveals/mo); Starter from $400/mo; Custom enterprise (checked October 2026)",
+    "id": "userlist",
+    "slug": "userlist",
+    "name": "Userlist",
+    "domain": "userlist.com",
+    "stage": 5,
+    "cat": "Email and lifecycle",
+    "tagline": "Email marketing platform built specifically for B2B SaaS companies",
+    "description": "Userlist tracks both individual users and company accounts, making it effortless to send company-level onboarding campaigns and upgrade prompts.",
+    "price": "Paid",
+    "price_note": "Basic from $149/mo (up to 5,000 company/user profiles)",
     "ints": [
-      "HubSpot",
-      "Salesforce",
-      "Slack",
       "Zapier"
     ],
     "feat": false,
-    "best": "Growth-stage B2B companies looking to convert website traffic into outbound pipeline before visitors bounce",
+    "best": "B2B SaaS founders wanting clean account-level lifecycle messaging without complex configuration",
     "setup": 2,
     "classification": "specialist",
     "lifecycle_status": "active",
-    "primary_jtbd": "Autonomous website visitor deanonymization and instant live meeting orchestration",
+    "primary_jtbd": "B2B account-level customer lifecycle emails and onboarding journeys",
     "secondary_capabilities": [
-      "Automated email follow-up",
-      "Live video chat widgets",
-      "Buying committee enrichment"
+      "Company account modeling",
+      "Broadcast newsletters"
     ],
-    "buyer_segment": "B2B growth teams & mid-market sales",
+    "buyer_segment": "B2B SaaS companies",
     "gtm_buckets": [
-      "Lead Capture",
-      "Inbound",
-      "Agentic Operations"
+      "Data & Orchestration"
     ],
     "overlapping_tools": [
-      "rb2b",
-      "qualified"
+      "customer-io"
     ],
-    "min_plan": "Free tier / Starter ($400/mo)",
-    "pricing_verified_at": "October 2026"
+    "min_plan": "Basic ($149/mo)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://userlist.com/pricing/",
+    "billing_basis": "profile_tier",
+    "geographic_coverage": "global"
   },
   {
-    "id": "calendly",
-    "slug": "calendly",
-    "name": "Calendly",
-    "domain": "calendly.com",
-    "stage": 4,
-    "cat": "Meeting notes",
-    "tagline": "Automated scheduling, meeting routing forms, and calendar qualification",
-    "description": "Calendly removes back-and-forth scheduling friction with automated calendar sync, intake qualifying forms, team round-robin routing, and CRM logging.",
-    "price": "Free plan",
-    "price_note": "Free tier (1 event type); Standard from $10/seat/mo; Teams from $16/seat/mo (checked October 2026)",
+    "id": "vitally",
+    "slug": "vitally",
+    "name": "Vitally",
+    "domain": "vitally.io",
+    "stage": 5,
+    "cat": "Customer success",
+    "tagline": "Collaborative customer success platform with real-time account health scoring",
+    "description": "Vitally unifies product analytics, customer data, and conversation history to give CS teams customer 360s, automated health scores, and proactive churn mitigation playbooks.",
+    "price": "Custom quote",
+    "price_note": "Custom quote (Pricing upon request; contact sales)",
     "ints": [
-      "Google Workspace",
       "HubSpot",
       "Salesforce",
       "Slack",
       "Zapier"
     ],
-    "feat": true,
-    "best": "Sales teams and consultants needing friction-free meeting bookings and automated routing",
-    "setup": 1,
+    "feat": false,
+    "best": "B2B SaaS customer success teams needing automated health scoring and proactive retention workflows",
+    "setup": 2,
     "classification": "core",
     "lifecycle_status": "active",
-    "primary_jtbd": "Frictionless meeting scheduling, round-robin lead routing, and qualification forms",
+    "primary_jtbd": "Account 360 health scoring, customer success task management, and churn mitigation",
     "secondary_capabilities": [
-      "Routing forms",
-      "Automated reminder workflows",
-      "CRM calendar sync"
+      "Automated CS playbooks",
+      "Client collaboration portals",
+      "Product usage sync"
     ],
-    "buyer_segment": "Sales reps, agencies, and businesses of all sizes",
+    "buyer_segment": "Mid-market & High-growth SaaS CS teams",
     "gtm_buckets": [
-      "Inbound",
-      "Lead Capture"
+      "Data & Orchestration"
     ],
-    "overlapping_tools": [],
-    "min_plan": "Free tier / Standard ($10/seat/mo)",
-    "pricing_verified_at": "October 2026"
+    "overlapping_tools": [
+      "churnzero"
+    ],
+    "min_plan": "Custom quote",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://www.vitally.io/pricing",
+    "billing_basis": "custom_contract",
+    "geographic_coverage": "global"
   },
   {
-    "id": "1mind",
-    "slug": "1mind",
-    "name": "1mind",
-    "domain": "1mind.com",
-    "stage": 3,
-    "cat": "Chat and conversion",
-    "tagline": "Autonomous AI buyer engagement platform and interactive product demonstrations",
-    "description": "1mind deploys autonomous digital teammates that guide inbound prospects through real-time conversations, interactive product demos, and pipeline qualification (official Drift successor).",
+    "id": "churnzero",
+    "slug": "churnzero",
+    "name": "ChurnZero",
+    "domain": "churnzero.com",
+    "stage": 5,
+    "cat": "Customer success",
+    "tagline": "Enterprise customer success platform for subscription retention and account expansion",
+    "description": "ChurnZero helps subscription businesses understand product usage, automate customer onboarding, prevent churn, and identify net retention expansion opportunities.",
     "price": "Custom quote",
-    "price_note": "Custom quote (Pilot & enterprise tiers; evaluated October 2026)",
+    "price_note": "Custom quote (Pricing upon request; contact sales)",
+    "ints": [
+      "HubSpot",
+      "Salesforce",
+      "Slack"
+    ],
+    "feat": false,
+    "best": "Enterprise customer success teams managing complex multi-tier recurring revenue accounts",
+    "setup": 3,
+    "classification": "core",
+    "lifecycle_status": "active",
+    "primary_jtbd": "Enterprise customer health monitoring, churn prevention, and account expansion",
+    "secondary_capabilities": [
+      "In-app walkthroughs",
+      "Automated Plays",
+      "Executive dashboards"
+    ],
+    "buyer_segment": "Mid-market & Enterprise subscription software companies",
+    "gtm_buckets": [
+      "Data & Orchestration"
+    ],
+    "overlapping_tools": [
+      "vitally"
+    ],
+    "min_plan": "Custom quote",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://churnzero.com/pricing/",
+    "billing_basis": "custom_contract",
+    "geographic_coverage": "global"
+  },
+  {
+    "id": "clari",
+    "slug": "clari",
+    "name": "Clari",
+    "domain": "clari.com",
+    "stage": 5,
+    "cat": "Revenue forecasting",
+    "tagline": "Revenue cadence, pipeline execution, and forecasting platform",
+    "description": "Clari gives executive teams complete visibility across the revenue lifecycle, forecasting closed revenue accurately and enforcing pipeline discipline.",
+    "price": "Custom quote",
+    "price_note": "Custom quote (Pricing upon request; contact sales)",
     "ints": [
       "Salesforce",
       "HubSpot",
       "Slack"
     ],
     "feat": false,
-    "best": "B2B revenue organizations transitioning from legacy chatbots (like Drift) to autonomous AI inbound conversations",
+    "best": "Enterprise CROs and sales operations leaders requiring strict quarterly forecasting accuracy",
+    "setup": 3,
+    "classification": "core",
+    "lifecycle_status": "active",
+    "primary_jtbd": "Quarterly sales forecasting, deal slippage detection, and pipeline hygiene",
+    "secondary_capabilities": [
+      "Revenue leak analytics",
+      "CRM update automation",
+      "Executive dashboards"
+    ],
+    "buyer_segment": "Enterprise sales organizations ($30M+ ARR)",
+    "gtm_buckets": [
+      "Data & Orchestration"
+    ],
+    "overlapping_tools": [
+      "boostup",
+      "gong"
+    ],
+    "min_plan": "Custom quote",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://www.clari.com/pricing/",
+    "billing_basis": "custom_contract",
+    "geographic_coverage": "global"
+  },
+  {
+    "id": "boostup",
+    "slug": "boostup",
+    "name": "BoostUp",
+    "domain": "boostup.ai",
+    "stage": 5,
+    "cat": "Revenue forecasting",
+    "tagline": "AI revenue intelligence and predictive pipeline forecasting platform",
+    "description": "BoostUp monitors deal activity and buyer sentiment to deliver automated forecasting, pipeline inspection, and actionable risk alerts for sales leaders.",
+    "price": "Custom quote",
+    "price_note": "Custom quote (Pricing upon request; contact sales)",
+    "ints": [
+      "Salesforce",
+      "HubSpot",
+      "Slack"
+    ],
+    "feat": false,
+    "best": "Sales operations managers seeking flexible pipeline forecasting models",
     "setup": 2,
     "classification": "specialist",
     "lifecycle_status": "active",
-    "primary_jtbd": "Autonomous inbound AI buyer conversations and interactive product walkthroughs",
+    "primary_jtbd": "Predictive deal inspection and pipeline forecasting",
     "secondary_capabilities": [
-      "Real-time objection handling",
-      "Automated meeting qualification",
-      "CRM deal creation"
+      "Activity capture",
+      "Pipeline review boards"
     ],
-    "buyer_segment": "Mid-market & Enterprise sales teams transitioning from legacy chatbots",
+    "buyer_segment": "Mid-market sales organizations",
     "gtm_buckets": [
-      "Inbound",
-      "Lead Capture",
-      "Agentic Operations"
+      "Data & Orchestration"
     ],
     "overlapping_tools": [
-      "qualified",
-      "intercom"
+      "clari"
     ],
     "min_plan": "Custom quote",
-    "pricing_verified_at": "October 2026"
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://boostup.ai/pricing/",
+    "billing_basis": "custom_contract",
+    "geographic_coverage": "global"
   }
 ]

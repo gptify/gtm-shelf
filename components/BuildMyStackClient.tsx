@@ -36,7 +36,7 @@ const BUCKET_DEFINITIONS: { id: CapabilityBucket; label: string; desc: string; s
     id: 'lead_capture',
     label: 'Lead Capture',
     desc: 'Conversational chat conversion, website visitor intent, and automated meeting booking.',
-    sampleCategories: ['Chat and conversion', 'Intent signals', 'Meeting notes'],
+    sampleCategories: ['Chat and conversion', 'Intent signals', 'Meeting notes', 'Meeting scheduling'],
   },
   {
     id: 'data_orchestration',
@@ -101,6 +101,11 @@ const TEAM_SIZES = [
   { id: 'enterprise', label: '50+ people' },
 ];
 
+const REGIONS = [
+  { id: 'global', label: 'Global / North America (US, CA, Worldwide)' },
+  { id: 'eu', label: 'European Union & UK (GDPR & EMEA compliance focus)' },
+];
+
 const COMMON_EXISTING_TOOLS = [
   'Apollo.io',
   'Clay',
@@ -131,6 +136,7 @@ export function BuildMyStackClient({ tools, initialParams = {} }: BuildMyStackCl
   const [selectedCrm, setSelectedCrm] = useState<string>(initialParams.crm || 'HubSpot');
   const [selectedBudget, setSelectedBudget] = useState<string>(initialParams.budget || 'growth');
   const [selectedTeamSize, setSelectedTeamSize] = useState<string>(initialParams.size || 'early');
+  const [selectedRegion, setSelectedRegion] = useState<string>(initialParams.region || 'global');
   const [existingTools, setExistingTools] = useState<Set<string>>(() => {
     if (initialParams.existing) {
       return new Set(initialParams.existing.split(','));
@@ -192,6 +198,10 @@ export function BuildMyStackClient({ tools, initialParams = {} }: BuildMyStackCl
         ? activeBucketsList
         : OBJECTIVES.find((o) => o.id === selectedObjective)?.defaultBuckets || ['outbound'];
 
+    let totalEstMin = 0;
+    let totalEstMax = 0;
+    let hasEnterpriseQuote = false;
+
     const bucketPicks: {
       bucket: (typeof BUCKET_DEFINITIONS)[0];
       tools: {
@@ -202,11 +212,9 @@ export function BuildMyStackClient({ tools, initialParams = {} }: BuildMyStackCl
         pricingType: 'verified' | 'estimated';
         integrationNote: string;
         isRetainedExisting: boolean;
+        alternativesConsidered: string[];
       }[];
     }[] = [];
-
-    let totalEstMin = 0;
-    let totalEstMax = 0;
 
     effectiveBuckets.forEach((bucketId) => {
       const bucketDef = BUCKET_DEFINITIONS.find((b) => b.id === bucketId)!;
@@ -216,6 +224,20 @@ export function BuildMyStackClient({ tools, initialParams = {} }: BuildMyStackCl
         if (t.classification === 'discontinued' || t.classification === 'sunsetting') return false;
         if (t.id === 'koala' || t.id === 'drift') return false;
 
+        // Disqualify secondary CRM platforms from workflow automation / data orchestration if primary CRM chosen
+        if (bucketId === 'data_orchestration' && ['hubspot-sales-hub', 'salesforce-sales-cloud', 'pipedrive', 'close-crm'].includes(t.id)) {
+          return false;
+        }
+        // Exclude standalone CRM from raw outbound sequencers
+        if (bucketId === 'outbound' && ['hubspot-sales-hub', 'salesforce-sales-cloud', 'pipedrive', 'close-crm'].includes(t.id)) {
+          return false;
+        }
+
+        // Geographic compliance filter (e.g., RB2B is strictly US-only; disqualify for EU buyers)
+        if (selectedRegion === 'eu' && t.geographic_coverage === 'us_only') {
+          return false;
+        }
+
         const matchesBucket =
           t.gtm_buckets && t.gtm_buckets.length > 0
             ? t.gtm_buckets.some((b) => b.toLowerCase().replace(/[^a-z]/g, '') === bucketId.replace(/[^a-z]/g, ''))
@@ -224,42 +246,84 @@ export function BuildMyStackClient({ tools, initialParams = {} }: BuildMyStackCl
         return matchesBucket || bucketDef.sampleCategories.includes(t.category_name);
       });
 
-      // Score tools based on CRM compatibility, budget alignment, team size, and complexity
+      // Score tools based on objective outcome, CRM compatibility, budget alignment, team size, and region
       const scored = candidateTools.map((t) => {
         let score = 0;
         // Core architecture stability
-        if (t.classification === 'core') score += 4;
+        if (t.classification === 'core') score += 5;
 
         // Native CRM compatibility (High weight)
-        if (selectedCrm !== 'None / Other' && t.integrations.some((i) => i.toLowerCase().includes(selectedCrm.toLowerCase().split(' ')[0]))) {
-          score += 8;
-        }
+        const hasDirectCrmSync =
+          selectedCrm !== 'None / Other' &&
+          t.integrations.some((i) => i.toLowerCase().includes(selectedCrm.toLowerCase().split(' ')[0]));
+        if (hasDirectCrmSync) score += 10;
+
+        // Existing tool retention
+        const isExisting = Array.from(existingTools).some(
+          (et) => et.toLowerCase() === t.name.toLowerCase() || et.toLowerCase() === t.id.toLowerCase() || (et.toLowerCase().includes('apollo') && t.id === 'apollo')
+        );
+        if (isExisting) score += 35;
 
         // Budget alignment
         if (selectedBudget === 'free') {
-          if (t.pricing_model === 'free_plan') score += 15;
-          if (t.pricing_model === 'custom_quote') score -= 25;
-          if (t.pricing_model === 'paid') score -= 10;
+          if (t.pricing_model === 'free_plan') score += 25;
+          if (t.pricing_model === 'custom_quote') score -= 35;
+          if (t.pricing_model === 'paid') score -= 35;
         } else if (selectedBudget === 'starter') {
-          if (t.pricing_model === 'free_plan') score += 8;
+          if (t.pricing_model === 'free_plan') score += 10;
           if (t.pricing_model === 'paid') score += 8;
-          if (t.pricing_model === 'custom_quote') score -= 15;
-          if (t.setup_effort === 1) score += 3;
+          if (t.pricing_model === 'custom_quote') score -= 20;
+          if (t.setup_effort === 1) score += 4;
         } else if (selectedBudget === 'growth') {
-          if (t.pricing_model === 'paid') score += 8;
-          if (t.pricing_model === 'free_plan') score += 3;
+          if (t.pricing_model === 'paid') score += 12;
+          if (t.pricing_model === 'free_plan') score += 4;
+          if (t.pricing_model === 'custom_quote') score -= 10;
         } else if (selectedBudget === 'scale' || selectedBudget === 'enterprise') {
-          if (t.pricing_model === 'custom_quote') score += 10;
-          if (t.pricing_model === 'paid') score += 6;
+          if (t.pricing_model === 'custom_quote') score += 15;
+          if (t.pricing_model === 'paid') score += 8;
           if (t.setup_effort === 3) score += 4;
         }
 
         // Team size & operational complexity alignment
-        if (selectedTeamSize === '1' || selectedTeamSize === '2-5') {
-          if (t.setup_effort === 1) score += 4;
-        } else if (selectedTeamSize === '21-50' || selectedTeamSize === '50+') {
+        if (selectedTeamSize === 'solo') {
+          if (t.setup_effort === 1) score += 5;
+        } else if (selectedTeamSize === 'enterprise') {
           if (t.classification === 'core') score += 4;
-          if (t.integrations.includes('Salesforce')) score += 3;
+          if (t.integrations.includes('Salesforce')) score += 5;
+        }
+
+        // Objective alignment (Primary Job to be Done)
+        if (bucketId === 'outbound') {
+          if (selectedObjective === 'outbound_pipeline') {
+            if (t.id === 'apollo') score += 12;
+            if (t.id === 'instantly' || t.id === 'smartlead') score += 8;
+            if (t.id === 'clay') score += 7;
+          }
+        }
+        if (bucketId === 'inbound') {
+          if (selectedObjective === 'inbound_demand') {
+            if (t.id === 'copy-ai') score += 10;
+            if (t.id === 'surfer') score += 8;
+          }
+        }
+        if (bucketId === 'lead_capture') {
+          if (selectedObjective === 'outbound_pipeline' || selectedBudget === 'free') {
+            if (t.id === 'calendly') score += 14;
+          }
+          if (selectedRegion === 'eu' && t.id === '6sense') score += 10;
+        }
+        if (bucketId === 'data_orchestration') {
+          if (t.category_name === 'Workflow automation') score += 10;
+        }
+
+        // Redundancy suppression: If existing tools already include Apollo, suppress redundant sequencers and standalone databases
+        if (Array.from(existingTools).some((et) => et.toLowerCase().includes('apollo'))) {
+          if (['instantly', 'smartlead', 'lemlist', 'lusha', 'seamless-ai', 'hunter'].includes(t.id)) {
+            score -= 30;
+          }
+          if (['heyreach', 'clay'].includes(t.id)) {
+            score += 15;
+          }
         }
 
         return { tool: t, score };
@@ -267,9 +331,14 @@ export function BuildMyStackClient({ tools, initialParams = {} }: BuildMyStackCl
 
       scored.sort((a, b) => b.score - a.score);
 
-      // Select top 1-2 tools per bucket
-      const chosen = scored.slice(0, bucketId === 'outbound' || bucketId === 'inbound' ? 2 : 1).map(({ tool }) => {
-        const isExisting = Array.from(existingTools).some((et) => et.toLowerCase() === tool.name.toLowerCase());
+      const chosenCount = bucketId === 'outbound' || bucketId === 'inbound' ? 2 : 1;
+      const topPicks = scored.slice(0, chosenCount);
+
+      // Select top tools per bucket
+      const chosen = topPicks.map(({ tool }, idx) => {
+        const isExisting = Array.from(existingTools).some(
+          (et) => et.toLowerCase() === tool.name.toLowerCase() || et.toLowerCase() === tool.id.toLowerCase() || (et.toLowerCase().includes('apollo') && tool.id === 'apollo')
+        );
         const hasDirectCrmSync =
           selectedCrm !== 'None / Other' &&
           tool.integrations.some((i) => i.toLowerCase().includes(selectedCrm.toLowerCase().split(' ')[0]));
@@ -277,20 +346,34 @@ export function BuildMyStackClient({ tools, initialParams = {} }: BuildMyStackCl
         let priceText = tool.min_plan ? `Verified: ${tool.min_plan}` : tool.price_note ? `Verified: ${tool.price_note}` : 'Estimated: $49 – $99 / mo';
         let priceType: 'verified' | 'estimated' = tool.min_plan || tool.price_note ? 'verified' : 'estimated';
 
-        if (tool.pricing_model === 'free_plan') {
-          priceText = tool.min_plan ? `Verified: ${tool.min_plan}` : 'Verified: Free tier available';
-          priceType = 'verified';
-        } else if (tool.pricing_model === 'custom_quote') {
+        if (tool.pricing_model === 'custom_quote' || tool.price_note?.toLowerCase().includes('custom quote') || tool.price_note?.toLowerCase().includes('contact sales')) {
           priceText = tool.min_plan ? `Verified: ${tool.min_plan}` : 'Verified: Custom quote / enterprise contract';
           priceType = 'verified';
+          hasEnterpriseQuote = true;
+        } else if (selectedBudget === 'free') {
+          priceText = tool.min_plan ? `Verified: ${tool.min_plan}` : 'Verified: Free tier available';
+          priceType = 'verified';
         } else {
-          totalEstMin += 49;
-          totalEstMax += 99;
+          const text = `${tool.min_plan || ''} ${tool.price_note || ''}`;
+          const match = text.match(/[\$€]([0-9]+(?:\.[0-9]+)?)/);
+          if (match) {
+            const num = Math.round(parseFloat(match[1]));
+            totalEstMin += num;
+            totalEstMax += Math.round(num * 1.35);
+          } else {
+            totalEstMin += 49;
+            totalEstMax += 99;
+          }
         }
 
+        const altNames = scored
+          .slice(chosenCount, chosenCount + 2)
+          .map((s) => s.tool.name)
+          .filter((n) => n !== tool.name);
+
         const whyReason = hasDirectCrmSync
-          ? `Engineered for ${bucketDef.label.toLowerCase()} workflows with direct native synchronization into ${selectedCrm}.`
-          : `High-leverage tool for ${bucketDef.label.toLowerCase()} operations, connecting easily via Webhook or Zapier.`;
+          ? `Selected for ${bucketDef.label.toLowerCase()} outcomes with direct native synchronization into ${selectedCrm}.`
+          : `High-leverage tool for ${bucketDef.label.toLowerCase()} operations, connecting flexibly via Webhook or Zapier.`;
 
         return {
           tool,
@@ -302,6 +385,7 @@ export function BuildMyStackClient({ tools, initialParams = {} }: BuildMyStackCl
             ? `✓ Direct native integration with ${selectedCrm}`
             : `Syncs via Zapier / Webhooks`,
           isRetainedExisting: isExisting,
+          alternativesConsidered: altNames,
         };
       });
 
@@ -343,15 +427,23 @@ export function BuildMyStackClient({ tools, initialParams = {} }: BuildMyStackCl
       );
     }
 
+    let totalCostDisplay = '';
+    if (selectedBudget === 'free' || (totalEstMin === 0 && totalEstMax === 0)) {
+      totalCostDisplay = hasEnterpriseQuote
+        ? 'Free tiers + Custom quote for enterprise tools'
+        : 'Free tier ($0/mo base software)';
+    } else {
+      totalCostDisplay = hasEnterpriseQuote
+        ? `$${totalEstMin} – $${totalEstMax} / mo + Custom quote for enterprise tools`
+        : `$${totalEstMin} – $${totalEstMax} / mo`;
+    }
+
     return {
       bucketPicks,
       overlaps,
-      totalCostRange:
-        totalEstMin === 0 && totalEstMax === 0
-          ? 'Free / Starter Tiers'
-          : `$${totalEstMin} – $${totalEstMax} / mo`,
+      totalCostRange: totalCostDisplay,
     };
-  }, [tools, selectedObjective, selectedBuckets, selectedCrm, selectedBudget, selectedTeamSize, existingTools]);
+  }, [tools, selectedObjective, selectedBuckets, selectedCrm, selectedBudget, selectedTeamSize, selectedRegion, existingTools]);
 
   // Construct shareable link URL
   const shareableUrl = useMemo(() => {
@@ -363,11 +455,12 @@ export function BuildMyStackClient({ tools, initialParams = {} }: BuildMyStackCl
     params.set('crm', selectedCrm);
     params.set('budget', selectedBudget);
     params.set('size', selectedTeamSize);
+    params.set('region', selectedRegion);
     if (existingTools.size > 0) {
       params.set('existing', Array.from(existingTools).join(','));
     }
     return `${window.location.origin}/build-my-stack?${params.toString()}`;
-  }, [selectedObjective, selectedBuckets, selectedCrm, selectedBudget, selectedTeamSize, existingTools]);
+  }, [selectedObjective, selectedBuckets, selectedCrm, selectedBudget, selectedTeamSize, selectedRegion, existingTools]);
 
   const handleCopyLink = () => {
     if (typeof navigator !== 'undefined' && navigator.clipboard) {
@@ -399,7 +492,7 @@ export function BuildMyStackClient({ tools, initialParams = {} }: BuildMyStackCl
               Your Tailored GTM Architecture
             </h1>
             <p style={{ color: 'var(--muted)', fontSize: '1rem', margin: 0 }}>
-              Tailored for <strong>{OBJECTIVES.find((o) => o.id === selectedObjective)?.title}</strong> with CRM integration for <strong>{selectedCrm}</strong>.
+              Tailored for <strong>{OBJECTIVES.find((o) => o.id === selectedObjective)?.title}</strong> with CRM integration for <strong>{selectedCrm}</strong> ({selectedRegion === 'eu' ? 'EU/EMEA compliant' : 'Global coverage'}).
             </p>
           </div>
 
@@ -451,6 +544,9 @@ export function BuildMyStackClient({ tools, initialParams = {} }: BuildMyStackCl
             <div style={{ fontWeight: 700, fontSize: '1.125rem', marginTop: '4px', color: 'var(--brand)' }}>
               {stackRecommendation.totalCostRange}
             </div>
+            <div style={{ fontSize: '0.75rem', color: 'var(--muted)', marginTop: '2px' }}>
+              + ~$24–$48/mo infrastructure (secondary domains &amp; inboxes)
+            </div>
           </div>
         </div>
 
@@ -487,7 +583,7 @@ export function BuildMyStackClient({ tools, initialParams = {} }: BuildMyStackCl
               </div>
 
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
-                {bTools.map(({ tool, role, why, pricingDisplay, pricingType, integrationNote, isRetainedExisting }) => {
+                {bTools.map(({ tool, role, why, pricingDisplay, pricingType, integrationNote, isRetainedExisting, alternativesConsidered }) => {
                   const outbound = getOutboundLinkInfo(tool.slug, tool.website_url);
                   return (
                     <div
@@ -528,6 +624,12 @@ export function BuildMyStackClient({ tools, initialParams = {} }: BuildMyStackCl
                           <div style={{ fontWeight: 600, color: 'var(--ink)', marginBottom: '4px' }}>Role: {role}</div>
                           <div style={{ color: 'var(--muted)', lineHeight: 1.4 }}>{why}</div>
                         </div>
+
+                        {alternativesConsidered.length > 0 && (
+                          <div style={{ fontSize: '0.75rem', color: 'var(--muted)', marginBottom: '12px', lineHeight: 1.4 }}>
+                            <strong style={{ color: 'var(--ink)' }}>Alternatives evaluated:</strong> {alternativesConsidered.join(', ')}
+                          </div>
+                        )}
 
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '0.75rem', color: 'var(--muted)', marginBottom: '16px' }}>
                           <span style={{ fontWeight: 600, color: pricingType === 'verified' ? 'var(--brand)' : 'inherit' }}>
@@ -573,7 +675,7 @@ export function BuildMyStackClient({ tools, initialParams = {} }: BuildMyStackCl
 
         {/* Affiliate Disclosure Notice */}
         <p style={{ fontSize: '0.75rem', color: 'var(--muted)', textAlign: 'center', margin: '36px 0 20px', lineHeight: 1.5 }}>
-          {STANDARD_AFFILIATE_DISCLOSURE} Pricing estimates are approximate and may change based on vendor plans.
+          {STANDARD_AFFILIATE_DISCLOSURE} Pricing estimates reflect verified base software plans. Quote-based enterprise vendors require custom contracts.
         </p>
 
         {/* Share & Actions Banner */}
@@ -793,30 +895,60 @@ export function BuildMyStackClient({ tools, initialParams = {} }: BuildMyStackCl
         </>
       )}
 
-      {/* Step 5: Team Size & Stage */}
+      {/* Step 5: Team Size & Regional Compliance */}
       {step === 5 && (
         <>
-          <h1 className="qh">What is your team size or stage?</h1>
-          <p className="help">Helps us calibrate setup complexity and seat management capabilities.</p>
-          <div className="choices">
-            {TEAM_SIZES.map((t) => (
-              <button
-                key={t.id}
-                type="button"
-                className={`choice ${selectedTeamSize === t.id ? 'active' : ''}`}
-                style={{ textAlign: 'left', fontWeight: 600, padding: '14px 20px', border: selectedTeamSize === t.id ? '2px solid var(--brand)' : '1px solid var(--line)' }}
-                onClick={() => {
-                  setSelectedTeamSize(t.id);
-                  setStep(6);
-                }}
-              >
-                {t.label}
-              </button>
-            ))}
+          <h1 className="qh">What is your team size and operating region?</h1>
+          <p className="help">Calibrates operational complexity, seat licensing, and geographic compliance (e.g. EU GDPR vs US data graphs).</p>
+          
+          <div style={{ marginBottom: '24px' }}>
+            <span style={{ fontSize: '0.8125rem', textTransform: 'uppercase', color: 'var(--muted)', fontWeight: 700, display: 'block', marginBottom: '8px' }}>
+              Team Size
+            </span>
+            <div className="choices">
+              {TEAM_SIZES.map((t) => (
+                <button
+                  key={t.id}
+                  type="button"
+                  className={`choice ${selectedTeamSize === t.id ? 'active' : ''}`}
+                  style={{ textAlign: 'left', fontWeight: 600, padding: '14px 20px', border: selectedTeamSize === t.id ? '2px solid var(--brand)' : '1px solid var(--line)' }}
+                  onClick={() => setSelectedTeamSize(t.id)}
+                >
+                  {t.label}
+                </button>
+              ))}
+            </div>
           </div>
-          <div className="qnav">
+
+          <div style={{ marginBottom: '24px' }}>
+            <span style={{ fontSize: '0.8125rem', textTransform: 'uppercase', color: 'var(--muted)', fontWeight: 700, display: 'block', marginBottom: '8px' }}>
+              Operating Region &amp; Data Compliance
+            </span>
+            <div className="choices">
+              {REGIONS.map((r) => (
+                <button
+                  key={r.id}
+                  type="button"
+                  className={`choice ${selectedRegion === r.id ? 'active' : ''}`}
+                  style={{ textAlign: 'left', fontWeight: 600, padding: '14px 20px', border: selectedRegion === r.id ? '2px solid var(--brand)' : '1px solid var(--line)' }}
+                  onClick={() => setSelectedRegion(r.id)}
+                >
+                  {r.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="qnav" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <button type="button" className="btn btn-ghost" onClick={() => setStep(4)}>
               Back
+            </button>
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() => setStep(6)}
+            >
+              Continue to Existing Tools →
             </button>
           </div>
         </>

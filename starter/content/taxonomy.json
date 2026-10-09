@@ -164,6 +164,13 @@
       "name": "Customer success",
       "sort": 3,
       "phrase": "customer success and retention"
+    },
+    {
+      "stage_id": 4,
+      "slug": "meeting-scheduling",
+      "name": "Meeting scheduling",
+      "sort": 6,
+      "phrase": "scheduling meetings and qualification routing"
     }
   ],
   "integrations": [
