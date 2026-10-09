@@ -395,9 +395,9 @@ export function BuildMyStackClient({ tools, initialParams = {} }: BuildMyStackCl
               type="button"
               className="btn btn-primary"
               onClick={handleCopyLink}
-              style={{ padding: '8px 16px', fontSize: '0.875rem', display: 'inline-flex', alignItems: 'center', gap: '6px' }}
+              style={{ padding: '8px 16px', fontSize: '0.875rem' }}
             >
-              {copyFeedback ? '✓ Copied Link!' : '🔗 Copy Shareable Link'}
+              {copyFeedback ? 'Copied to Clipboard' : 'Copy Shareable Link'}
             </button>
             <button
               type="button"
@@ -436,8 +436,8 @@ export function BuildMyStackClient({ tools, initialParams = {} }: BuildMyStackCl
         {/* Overlap warnings if any */}
         {stackRecommendation.overlaps.length > 0 && (
           <div style={{ padding: '16px 20px', background: '#fffbeb', border: '1px solid #fde68a', borderRadius: '10px', marginBottom: '32px' }}>
-            <h3 style={{ fontSize: '0.9375rem', fontWeight: 700, color: '#92400e', margin: '0 0 8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <span>⚠️</span> Software Overlap &amp; Workflow Advisory
+            <h3 style={{ fontSize: '0.9375rem', fontWeight: 700, color: '#92400e', margin: '0 0 8px' }}>
+              Software Overlap &amp; Workflow Advisory
             </h3>
             {stackRecommendation.overlaps.map((overlap, idx) => (
               <p key={idx} style={{ fontSize: '0.875rem', color: '#78350f', margin: idx === 0 ? 0 : '8px 0 0', lineHeight: 1.5 }}>

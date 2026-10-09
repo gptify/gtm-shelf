@@ -76,7 +76,7 @@ export default function PartnersPage() {
           {/* Value Pillars */}
           <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '20px', marginBottom: '56px' }}>
             <div style={{ padding: '24px', background: 'var(--surface)', border: '1px solid var(--line)', borderRadius: '12px' }}>
-              <div style={{ fontSize: '1.5rem', marginBottom: '8px' }}>🎯</div>
+              <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--brand)', textTransform: 'uppercase', display: 'block', marginBottom: '8px' }}>Pillar 01</span>
               <h3 style={{ fontSize: '1.125rem', fontWeight: 700, margin: '0 0 8px', color: 'var(--ink)' }}>
                 High-Intent Operators
               </h3>
@@ -86,7 +86,7 @@ export default function PartnersPage() {
             </div>
 
             <div style={{ padding: '24px', background: 'var(--surface)', border: '1px solid var(--line)', borderRadius: '12px' }}>
-              <div style={{ fontSize: '1.5rem', marginBottom: '8px' }}>🧩</div>
+              <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--brand)', textTransform: 'uppercase', display: 'block', marginBottom: '8px' }}>Pillar 02</span>
               <h3 style={{ fontSize: '1.125rem', fontWeight: 700, margin: '0 0 8px', color: 'var(--ink)' }}>
                 Contextual Stack Placement
               </h3>
@@ -96,7 +96,7 @@ export default function PartnersPage() {
             </div>
 
             <div style={{ padding: '24px', background: 'var(--surface)', border: '1px solid var(--line)', borderRadius: '12px' }}>
-              <div style={{ fontSize: '1.5rem', marginBottom: '8px' }}>📣</div>
+              <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--brand)', textTransform: 'uppercase', display: 'block', marginBottom: '8px' }}>Pillar 03</span>
               <h3 style={{ fontSize: '1.125rem', fontWeight: 700, margin: '0 0 8px', color: 'var(--ink)' }}>
                 GPTify Amplification
               </h3>
@@ -174,7 +174,7 @@ export default function PartnersPage() {
             }}
           >
             <h3 style={{ fontSize: '1rem', fontWeight: 700, margin: '0 0 8px', color: 'var(--ink)' }}>
-              🛡️ Our Editorial Integrity Standard
+              Editorial Integrity Standard
             </h3>
             <p style={{ fontSize: '0.875rem', color: 'var(--muted)', margin: 0 }}>
               At GTMShelf, recommendations are strictly determined by software utility, integration depth, and budget fit. Paid sponsorships are clearly labeled as sponsored placements and never alter objective tool specifications or organic ranking algorithms.
