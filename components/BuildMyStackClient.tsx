@@ -142,10 +142,6 @@ export function BuildMyStackClient({ tools, initialParams = {} }: BuildMyStackCl
   const [activeDrawerTool, setActiveDrawerTool] = useState<ToolPublic | null>(null);
   const [savedTools, setSavedTools] = useState<Set<string>>(new Set());
   const [copyFeedback, setCopyFeedback] = useState(false);
-  const [leadEmail, setLeadEmail] = useState('');
-  const [leadConsent, setLeadConsent] = useState(false);
-  const [leadSubmitted, setLeadSubmitted] = useState(false);
-  const [leadSubmitting, setLeadSubmitting] = useState(false);
 
   useEffect(() => {
     try {
@@ -332,39 +328,6 @@ export function BuildMyStackClient({ tools, initialParams = {} }: BuildMyStackCl
     window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareableUrl)}`, '_blank');
   };
 
-  const handleLeadSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!leadEmail.trim() || leadSubmitting) return;
-    setLeadSubmitting(true);
-
-    try {
-      const topIds = stackRecommendation.bucketPicks.flatMap((b) => b.tools.map((t) => t.tool.id));
-      await fetch('/api/lead', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email: leadEmail.trim(),
-          source: 'build_my_stack',
-          finder_answers: {
-            objective: selectedObjective,
-            buckets: Array.from(selectedBuckets),
-            crm: selectedCrm,
-            budget: selectedBudget,
-            size: selectedTeamSize,
-          },
-          pick_tool_ids: topIds,
-          consent: leadConsent,
-        }),
-      });
-      setLeadSubmitted(true);
-      setLeadEmail('');
-    } catch {
-      setLeadSubmitted(true);
-    } finally {
-      setLeadSubmitting(false);
-    }
-  };
-
   // Step 7: Completed Stack Results View
   if (step === 7) {
     return (
@@ -549,39 +512,54 @@ export function BuildMyStackClient({ tools, initialParams = {} }: BuildMyStackCl
           {STANDARD_AFFILIATE_DISCLOSURE} Pricing estimates are approximate and may change based on vendor plans.
         </p>
 
-        {/* Email Stack capture */}
-        <div className="capture" style={{ marginTop: '32px' }}>
-          <h2>Email me this stack configuration</h2>
-          <p>We will send your complete architecture blueprint with integration setup notes directly to your inbox.</p>
-          {leadSubmitted ? (
-            <p style={{ color: 'var(--brand)', fontWeight: 600 }}>
-              ✓ Check your inbox! Your stack blueprint and confirmation link have been sent.
+        {/* Share & Actions Banner */}
+        <div
+          style={{
+            marginTop: '36px',
+            padding: '24px 28px',
+            background: 'var(--surface)',
+            border: '1px solid var(--line)',
+            borderRadius: '16px',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+            gap: '16px',
+          }}
+        >
+          <div>
+            <h3 style={{ fontSize: '1.125rem', fontWeight: 700, margin: '0 0 4px', color: 'var(--ink)' }}>
+              Save or share this architecture
+            </h3>
+            <p style={{ fontSize: '0.875rem', color: 'var(--muted)', margin: 0 }}>
+              Use your tailored link to revisit this stack anytime or share it directly with your team.
             </p>
-          ) : (
-            <form onSubmit={handleLeadSubmit} noValidate>
-              <input
-                type="email"
-                placeholder="you@company.com"
-                value={leadEmail}
-                onChange={(e) => setLeadEmail(e.target.value)}
-                required
-              />
-              <button type="submit" className="btn btn-primary" disabled={leadSubmitting}>
-                {leadSubmitting ? 'Sending...' : 'Email My Stack'}
-              </button>
-            </form>
-          )}
-          <div style={{ marginTop: '10px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <input
-              id="lead-consent-stack"
-              type="checkbox"
-              checked={leadConsent}
-              onChange={(e) => setLeadConsent(e.target.checked)}
-              style={{ width: '16px', height: '16px', margin: 0 }}
-            />
-            <label htmlFor="lead-consent-stack" className="fine">
-              Also subscribe me to <strong>AI Insights for Sales &amp; Marketing</strong>, sent weekly by GPTify.co.
-            </label>
+          </div>
+          <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={handleCopyLink}
+              style={{ padding: '10px 20px', fontSize: '0.875rem', fontWeight: 600 }}
+            >
+              {copyFeedback ? 'Copied to Clipboard' : 'Copy Shareable Link'}
+            </button>
+            <button
+              type="button"
+              className="btn btn-ghost"
+              onClick={handleShareLinkedIn}
+              style={{ padding: '10px 18px', fontSize: '0.875rem' }}
+            >
+              Share on LinkedIn
+            </button>
+            <button
+              type="button"
+              className="btn btn-ghost"
+              onClick={() => setStep(1)}
+              style={{ padding: '10px 18px', fontSize: '0.875rem' }}
+            >
+              Edit Answers
+            </button>
           </div>
         </div>
 
