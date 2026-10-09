@@ -1,0 +1,1309 @@
+const fs = require('fs');
+const path = require('path');
+
+const useCases = [
+  {
+    id: "uc-01",
+    slug: "crm-enrichment-waterfall",
+    title: "Multi-Vendor Waterfall Email & Phone Enrichment for CRM Records",
+    short_summary: "Automatically cascade missing B2B contacts across multiple provider APIs to maximize verified work emails and direct mobile numbers while eliminating stale database waste.",
+    bucket: "Data & Orchestration",
+    stage_id: 2,
+    buyer: "RevOps Managers, BDR Leads, Growth Engineers",
+    intended_outcome: "Increase enrich match rate from ~45% to 80%+ while reducing duplicate provider spend by sequencing cheaper lookup APIs first.",
+    business_problem: "Single enrichment databases miss 50-60% of European and specialist technical contacts. Manual rep lookups waste 8-12 hours weekly and create incomplete, stale CRM records.",
+    prerequisites: [
+      "CRM access with read/write permissions on Leads/Contacts (HubSpot, Salesforce, Pipedrive, or Attio)",
+      "API keys for lookup providers (Hunter, Dropcontact, Apollo, Findymail)",
+      "Clay or automation engine account with webhooks enabled"
+    ],
+    workflow_steps: [
+      {
+        step: 1,
+        title: "Ingest Incomplete Record",
+        description: "Trigger a webhook upon new lead creation or CSV upload lacking verified email or direct phone.",
+        recommended_action: "Set up real-time CRM webhook filtered on missing 'work_email' or 'phone' properties."
+      },
+      {
+        step: 2,
+        title: "Primary Low-Cost Lookup",
+        description: "Query Hunter or Apollo for domain pattern validation and direct work email matching.",
+        recommended_action: "Execute single credit lookup against primary database; exit cascade if deliverability confidence >95%."
+      },
+      {
+        step: 3,
+        title: "Fallback Waterfall Cascade",
+        description: "If primary status is unverifiable or risky, query Dropcontact (GDPR-focused algorithmic generation) followed by Findymail.",
+        recommended_action: "Only invoke subsequent provider APIs when prior step returns empty or deliverability status is 'risky'."
+      },
+      {
+        step: 4,
+        title: "Mobile / Direct Line Verification",
+        description: "For target tier-1 buyer accounts, ping mobile phone enrichment APIs conditionally to control data costs.",
+        recommended_action: "Gate mobile enrichment behind ICP qualification rules (e.g., employee count >50 or VP+ title)."
+      },
+      {
+        step: 5,
+        title: "CRM Writeback & Notification",
+        description: "Push validated status, verified email, and enrichment timestamp into CRM; alert owner in Slack.",
+        recommended_action: "Write back standardized data fields and set record status to 'Enriched & Verified'."
+      }
+    ],
+    human_checkpoints: [
+      {
+        checkpoint: "Review Catch-All Domains",
+        why_required: "Leads flagged as 'accept-all/catch-all' should be vetted before cold sequencing to protect domain deliverability."
+      },
+      {
+        checkpoint: "Mobile Calling Governance",
+        why_required: "Ensure high-value enterprise prospects are checked against regional opt-out registries before initiating cold calls."
+      }
+    ],
+    primary_tool_slugs: ["clay", "dropcontact", "findymail", "hunter", "apollo"],
+    alternative_tool_slugs: ["n8n", "make", "hubspot-sales-hub"],
+    cost_note: "$150-$400/mo depending on enrichment credit volume; 3-5x cheaper than monolithic enterprise data contracts.",
+    effort_level: 1,
+    time_to_value: "48 hours",
+    privacy_security_considerations: [
+      "Ensure GDPR compliance for EU contact searches (Dropcontact specializes in algorithmic generation without storing personal directory snapshots).",
+      "Store opt-out flags in CRM and exclude unsubscribed contacts from subsequent enrichment runs."
+    ],
+    builder_query: {
+      goal: "outbound_pipeline",
+      buckets: "outbound,data_orchestration"
+    },
+    gptify_resource_url: "https://gptify.co/ai-use-cases-for-sales-marketing/"
+  },
+  {
+    id: "uc-02",
+    slug: "webhook-lead-routing",
+    title: "Real-Time Webhook Lead Routing & Data Normalization",
+    short_summary: "Standardize incoming form fills, webinar attendees, and product signups into normalized CRM records with instant routing to the right account owner.",
+    bucket: "Data & Orchestration",
+    stage_id: 1,
+    buyer: "RevOps Directors, Marketing Operations Leads",
+    intended_outcome: "Cut speed-to-lead response time from hours to under 3 minutes; eliminate misrouted leads and missing firmographic tags.",
+    business_problem: "Native form builders send messy data (freemail domains, varied country spellings, unassigned territories). High-intent leads sit uncontacted for 24+ hours.",
+    prerequisites: [
+      "Inbound form endpoint capable of sending JSON webhooks",
+      "n8n, Make, or Zapier instance configured with error retries",
+      "Defined territory routing rules and user email map in CRM"
+    ],
+    workflow_steps: [
+      {
+        step: 1,
+        title: "Catch Inbound Webhook",
+        description: "Receive instant payload from form submit, product signup, or demo request.",
+        recommended_action: "Deploy secure HTTPS webhook URL with signature verification header."
+      },
+      {
+        step: 2,
+        title: "Cleanse & Normalize Data",
+        description: "Filter test spam, convert free email domains, normalize country/state naming, and sanitize company names.",
+        recommended_action: "Run standard JavaScript transform regex to strip legal entity suffixes (LLC, Inc) and lowercase emails."
+      },
+      {
+        step: 3,
+        title: "Firmographic Tagging",
+        description: "Query company registry or Apollo/Clay API to infer company employee count, industry, and revenue tier.",
+        recommended_action: "Enrich domain with employee range and industry classification before routing."
+      },
+      {
+        step: 4,
+        title: "Round-Robin & Territory Assignment",
+        description: "Match against account owner routing matrix (Enterprise vs Mid-Market vs SMB).",
+        recommended_action: "Check existing account ownership in CRM first; fallback to round-robin pool if net-new."
+      },
+      {
+        step: 5,
+        title: "CRM Deal Creation & Slack Alert",
+        description: "Create CRM Lead/Deal and send interactive Slack card with one-click claim button to rep.",
+        recommended_action: "Post message with contact details, company summary, and direct CRM deep link."
+      }
+    ],
+    human_checkpoints: [
+      {
+        checkpoint: "Conflict Resolution Check",
+        why_required: "If an account already has an open deal with another AE, alert both reps before changing account ownership."
+      },
+      {
+        checkpoint: "Enterprise Holding Exceptions",
+        why_required: "Flag complex corporate hierarchies or conglomerates for manual assignment to prevent territory clashes."
+      }
+    ],
+    primary_tool_slugs: ["n8n", "make", "zapier", "hubspot-sales-hub", "attio"],
+    alternative_tool_slugs: ["pipedrive", "close-crm"],
+    cost_note: "$20-$100/mo for automation platform tasks.",
+    effort_level: 2,
+    time_to_value: "3 days",
+    privacy_security_considerations: [
+      "Sanitize PII in intermediary workflow execution logs.",
+      "Use encrypted webhook payloads with signature validation (HMAC tokens)."
+    ],
+    builder_query: {
+      goal: "full_funnel",
+      buckets: "data_orchestration,agentic_ops"
+    },
+    gptify_resource_url: "https://gptify.co/ai-use-case-library/"
+  },
+  {
+    id: "uc-03",
+    slug: "closed-lost-revival",
+    title: "Closed-Lost Opportunity Revival & Job Change Trigger Alerts",
+    short_summary: "Monitor previously lost deals and former champions for trigger events—such as funding rounds, leadership changes, or new roles—to re-engage at the ideal moment.",
+    bucket: "Data & Orchestration",
+    stage_id: 4,
+    buyer: "VP of Sales, Account Executives, RevOps",
+    intended_outcome: "Re-open 10-15% of stale opportunities without cold prospecting costs; capitalize on existing brand familiarity.",
+    business_problem: "Sales teams abandon closed-lost deals after 30 days. Meanwhile, 20% of B2B decision-makers change jobs annually, taking their preferred tool stacks with them.",
+    prerequisites: [
+      "Historic closed-lost deal records with contact LinkedIn URLs or emails in CRM",
+      "Clay or Apollo enrichment account",
+      "Slack channel for revenue signals"
+    ],
+    workflow_steps: [
+      {
+        step: 1,
+        title: "Sync Closed-Lost Cohort",
+        description: "Query CRM for deals marked Closed-Lost >90 days ago with reasons 'Budget', 'Timing', or 'Feature Gap'.",
+        recommended_action: "Filter out 'Wrong ICP' or 'Competitor Contract (Long Term)' to preserve rep focus."
+      },
+      {
+        step: 2,
+        title: "Continuous Job Change Tracking",
+        description: "Ping LinkedIn profiles monthly to detect role promotions or moves to new companies.",
+        recommended_action: "Run Clay or Apollo person tracking to detect company domain changes."
+      },
+      {
+        step: 3,
+        title: "Company Signal Detection",
+        description: "Scan company domain for fresh funding announcements, executive hires, or tech stack updates.",
+        recommended_action: "Monitor news triggers and new leadership announcements."
+      },
+      {
+        step: 4,
+        title: "Prioritized Slack Alert",
+        description: "Trigger alert to original AE: 'Your former champion Jane Doe just became VP of Sales at Acme Corp'.",
+        recommended_action: "Include previous deal notes, buyer's new title, and company headcount in the notification."
+      },
+      {
+        step: 5,
+        title: "Contextual Re-Engagement Draft",
+        description: "Generate personalized draft email referencing prior evaluation and current context.",
+        recommended_action: "Stage draft in CRM or sequence tool for rep review before sending."
+      }
+    ],
+    human_checkpoints: [
+      {
+        checkpoint: "AE Relationship Verification",
+        why_required: "Ensure rep reviews relationship history and former objections before sending the outreach."
+      },
+      {
+        checkpoint: "Account Sentiment Check",
+        why_required: "Verify the original deal didn't close due to product dissatisfaction or contractual breach."
+      }
+    ],
+    primary_tool_slugs: ["clay", "apollo", "hubspot-sales-hub", "pipedrive"],
+    alternative_tool_slugs: ["smartlead", "close-crm", "attio"],
+    cost_note: "$150-$300/mo for monthly tracking queries.",
+    effort_level: 1,
+    time_to_value: "1 week",
+    privacy_security_considerations: [
+      "Comply with local communication regulations when reaching out to champions at their new corporate email addresses."
+    ],
+    builder_query: {
+      goal: "outbound_pipeline",
+      buckets: "data_orchestration,outbound"
+    },
+    gptify_resource_url: "https://gptify.co/ai-use-cases-for-sales-marketing/"
+  },
+  {
+    id: "uc-04",
+    slug: "product-usage-alerting",
+    title: "Product Usage Drop Alerting & Proactive Health Scoring",
+    short_summary: "Detect declining product telemetry and license adoption before quarterly renewal reviews, alerting customer success teams to intervene proactively.",
+    bucket: "Data & Orchestration",
+    stage_id: 5,
+    buyer: "Customer Success Leaders, Account Managers, VP of Retention",
+    intended_outcome: "Reduce logo churn by 20-30% and expand net revenue retention (NRR) through early warning signals 60-90 days prior to contract renewals.",
+    business_problem: "Customer churn usually surprises CS teams because traditional reviews occur too late. Silent usage drops happen weeks before customers request cancellation.",
+    prerequisites: [
+      "Product telemetry or database event stream (weekly active users, feature runs)",
+      "CS platform or CRM account (Vitally, ChurnZero, Attio, or HubSpot)",
+      "Designated customer health metric thresholds"
+    ],
+    workflow_steps: [
+      {
+        step: 1,
+        title: "Telemetry Ingestion",
+        description: "Stream product activity metrics (weekly logins, seat utilization, key feature events) into CS platform.",
+        recommended_action: "Push aggregated weekly usage counts per account via webhook or Segment sync."
+      },
+      {
+        step: 2,
+        title: "Health Score Algorithm",
+        description: "Calculate rolling 30-day health score factoring usage velocity, support ticket sentiment, and NPS.",
+        recommended_action: "Weight login frequency (40%), core action completions (40%), and support tickets (20%)."
+      },
+      {
+        step: 3,
+        title: "Anomaly Detection Alert",
+        description: "Trigger alert when core feature usage drops >35% week-over-week or when champion user stops logging in.",
+        recommended_action: "Post high-priority alert into customer success Slack channel with account link."
+      },
+      {
+        step: 4,
+        title: "Automated Triage Workflow",
+        description: "Assign an urgent CSM review task and automatically assemble a usage diagnostic summary.",
+        recommended_action: "Create CS task with 48-hour SLA to review account engagement history."
+      },
+      {
+        step: 5,
+        title: "Proactive Value Outreach",
+        description: "Send automated check-in template offering personalized enablement or executive review.",
+        recommended_action: "Stage helpful playbook email from assigned CSM focusing on adoption bottlenecks."
+      }
+    ],
+    human_checkpoints: [
+      {
+        checkpoint: "CSM Account Assessment",
+        why_required: "Confirm if low usage is seasonal (e.g., holiday shutdowns) or genuine adoption friction before client outreach."
+      },
+      {
+        checkpoint: "Contract Terms & Sponsorship Review",
+        why_required: "Explicitly review contract terms and executive sponsorship before staging discount offers."
+      }
+    ],
+    primary_tool_slugs: ["vitally", "churnzero", "attio", "hubspot-sales-hub"],
+    alternative_tool_slugs: ["n8n", "customer-io"],
+    cost_note: "Included in CS platform tiers ($300-$1,200/mo depending on customer account volume).",
+    effort_level: 2,
+    time_to_value: "2 weeks",
+    privacy_security_considerations: [
+      "Aggregate telemetry data to prevent unauthorized employee surveillance while monitoring overall team account health."
+    ],
+    builder_query: {
+      goal: "customer_retention",
+      buckets: "data_orchestration,inbound"
+    },
+    gptify_resource_url: "https://gptify.co/ai-use-case-library/"
+  },
+  {
+    id: "uc-05",
+    slug: "high-intent-deanonymization",
+    title: "High-Intent Website Visitor De-anonymization & Routing",
+    short_summary: "Reveal corporate domains and US buyer personas visiting pricing and documentation pages, matching them to target accounts for timely sales follow-up.",
+    bucket: "Lead Capture",
+    stage_id: 1,
+    buyer: "Demand Gen Managers, BDR Directors, Growth Leads",
+    intended_outcome: "Turn anonymous website traffic into actionable sales pipeline; generate warm outbound sequences within 15 minutes of site visits.",
+    business_problem: "97% of B2B website visitors never fill out forms. SDRs cold-call blind accounts while active buyers are currently reading case studies unnoticed.",
+    prerequisites: [
+      "Website traffic snippet installed on high-intent pages (Pricing, Product, Enterprise)",
+      "RB2B account (specifically optimized for US visitor resolution) or domain identification engine",
+      "Slack webhook integration"
+    ],
+    workflow_steps: [
+      {
+        step: 1,
+        title: "Pixel Trigger on Key URLs",
+        description: "Detect visits specifically to high-intent paths (e.g. /pricing, /integrations, /enterprise).",
+        recommended_action: "Exclude low-intent pages (e.g. /careers, /blog general home) to maintain high lead signal quality."
+      },
+      {
+        step: 2,
+        title: "Identity Resolution",
+        description: "Resolve visitor profile (US LinkedIn profile via RB2B, or firmographic IP lookup via enrichment).",
+        recommended_action: "Parse company domain, visitor title, and location from identification payload."
+      },
+      {
+        step: 3,
+        title: "ICP Verification",
+        description: "Filter out students, competitors, and non-target industries; check if domain already has an active CRM deal.",
+        recommended_action: "Run automated filter checking company headcount and existing open CRM pipeline."
+      },
+      {
+        step: 4,
+        title: "Real-Time Sales Notification",
+        description: "Post visitor card to #inbound-intent Slack channel showing visited URLs and tenure.",
+        recommended_action: "Include visitor profile details, target company name, and one-click CRM add button."
+      },
+      {
+        step: 5,
+        title: "Timed Multi-Touch Follow-up",
+        description: "Route contact into warm LinkedIn connection or soft outbound email flow referencing their specific interest area.",
+        recommended_action: "Initiate soft touchpoint after a 30-45 minute delay referencing relevant category trends."
+      }
+    ],
+    human_checkpoints: [
+      {
+        checkpoint: "Outreach Timing & Tone Delay",
+        why_required: "Avoid aggressive 'I saw you on our site 30 seconds ago' phrasing; frame messages around industry challenges."
+      },
+      {
+        checkpoint: "Jurisdictional Privacy Verification",
+        why_required: "Restrict individual-level person resolution to US traffic in accordance with privacy laws and regulations."
+      }
+    ],
+    primary_tool_slugs: ["rb2b", "clay", "hubspot-sales-hub", "attio"],
+    alternative_tool_slugs: ["apollo", "smartlead"],
+    cost_note: "RB2B offers a free tier for US profiles; Clay workflow processing costs ~$50-$150/mo.",
+    effort_level: 1,
+    time_to_value: "24 hours",
+    privacy_security_considerations: [
+      "Explicit privacy policy disclosure regarding visitor tracking pixels.",
+      "Respect regional restrictions: do not apply individual resolution to EU/UK visitors without prior consent."
+    ],
+    builder_query: {
+      goal: "inbound_demand",
+      buckets: "lead_capture,data_orchestration"
+    },
+    gptify_resource_url: "https://gptify.co/ai-use-cases-for-sales-marketing/"
+  },
+  {
+    id: "uc-06",
+    slug: "conversational-qualification",
+    title: "24/7 Inbound Conversational Qualification & Automated Booking",
+    short_summary: "Deploy an intelligent conversational agent on web pages to answer prospect questions, qualify B2B criteria, and book discovery calls directly onto AE calendars.",
+    bucket: "Lead Capture",
+    stage_id: 1,
+    buyer: "Inbound Marketing Leads, Sales Development Leaders",
+    intended_outcome: "Eliminate lead qualification bottlenecks during off-hours and increase inbound visitor-to-demo conversion rate by 25-40%.",
+    business_problem: "Prospects asking urgent buying questions outside 9-to-5 business hours bounce and book demos with competitors instead.",
+    prerequisites: [
+      "Central product knowledge base or documentation FAQs",
+      "Intercom messenger or chat widget on site",
+      "Connected sales rep Calendly links"
+    ],
+    workflow_steps: [
+      {
+        step: 1,
+        title: "Visitor Engagement Trigger",
+        description: "Trigger contextual chat bubble when high-intent visitor spends >45s on product or pricing page.",
+        recommended_action: "Display friendly prompt referencing the current page context without interrupting reading."
+      },
+      {
+        step: 2,
+        title: "Natural Language Answering",
+        description: "AI bot parses visitor inquiries using verified product docs and pricing rules.",
+        recommended_action: "Ground answers in verified product documentation to prevent hallucinated commitments."
+      },
+      {
+        step: 3,
+        title: "Qualification Questions",
+        description: "Ask qualifying questions (team size, current tech stack, implementation timeline).",
+        recommended_action: "Collect team size and CRM in 2 concise conversational prompts."
+      },
+      {
+        step: 4,
+        title: "Automated Tier-Based Routing",
+        description: "If qualified, present interactive AE calendar modal for instant booking; if unqualified, offer self-serve guide.",
+        recommended_action: "Embed calendar selector directly in chat for instant time-slot reservation."
+      },
+      {
+        step: 5,
+        title: "CRM Lead Record Sync",
+        description: "Push transcript, qualification answers, and calendar meeting record into CRM.",
+        recommended_action: "Create or update CRM contact and assign meeting to booked representative."
+      }
+    ],
+    human_checkpoints: [
+      {
+        checkpoint: "Live Handoff Capability",
+        why_required: "Permit human SDR to override bot in real-time when high-value VIP accounts initiate chat."
+      },
+      {
+        checkpoint: "Knowledge Base Audit",
+        why_required: "Weekly review of unresolved bot questions to prevent inaccurate hallucinated product promises."
+      }
+    ],
+    primary_tool_slugs: ["intercom", "calendly", "hubspot-sales-hub", "close-crm"],
+    alternative_tool_slugs: ["pipedrive", "attio"],
+    cost_note: "$75-$150/seat/mo for conversational AI and calendar seats.",
+    effort_level: 1,
+    time_to_value: "3 days",
+    privacy_security_considerations: [
+      "Maintain clear bot disclosure indicating conversation is AI-assisted.",
+      "Collect explicit consent before capturing business email and phone number."
+    ],
+    builder_query: {
+      goal: "inbound_demand",
+      buckets: "lead_capture,inbound"
+    },
+    gptify_resource_url: "https://gptify.co/ai-use-case-library/"
+  },
+  {
+    id: "uc-07",
+    slug: "interactive-social-funnels",
+    title: "Automated Social DM Lead Capture & Instant Resource Delivery",
+    short_summary: "Capture leads directly from LinkedIn and Instagram comments or keyword DMs, instantly distributing case studies, templates, and booking links.",
+    bucket: "Lead Capture",
+    stage_id: 1,
+    buyer: "Social Media Managers, Growth Marketers, Founder-Led Sales",
+    intended_outcome: "Boost post lead capture conversion by 4-5x compared to external link clicks; deliver gated assets in under 10 seconds.",
+    business_problem: "Asking followers to click a link in bio introduces friction; 80% abandon before reaching the external landing page form.",
+    prerequisites: [
+      "Connected Instagram or LinkedIn company channel",
+      "Manychat account with keyword triggers configured",
+      "Lead magnet asset or calculator hosted on CDN"
+    ],
+    workflow_steps: [
+      {
+        step: 1,
+        title: "Comment Keyword Trigger",
+        description: "User comments specific keyword (e.g. 'STACK' or 'PLAYBOOK') on post.",
+        recommended_action: "Set Manychat automation trigger to monitor public comments on designated post."
+      },
+      {
+        step: 2,
+        title: "Instant DM Dispatch",
+        description: "Manychat automation sends conversational message with high-value deliverable link.",
+        recommended_action: "Send direct message with greeting and asset link within 10 seconds of comment."
+      },
+      {
+        step: 3,
+        title: "Email Capture Conversational Flow",
+        description: "Prompt user for work email to receive full editable spreadsheet or template.",
+        recommended_action: "Use quick-reply button asking for work email in exchange for editable version."
+      },
+      {
+        step: 4,
+        title: "Verification & Sync",
+        description: "Zapier/Make webhook validates email and syncs lead into CRM nurture list.",
+        recommended_action: "Trigger webhook to create CRM subscriber and tag with campaign source."
+      },
+      {
+        step: 5,
+        title: "Retargeting & Meeting CTA",
+        description: "Follow up 2 hours later in DM asking if the resource was helpful, offering a brief demo link.",
+        recommended_action: "Deliver automated soft check-in within the 24-hour conversational window."
+      }
+    ],
+    human_checkpoints: [
+      {
+        checkpoint: "Community Manager Monitoring",
+        why_required: "Maintain human oversight in DM inbox to step in when users ask custom enterprise questions."
+      },
+      {
+        checkpoint: "Platform Rate Limit Compliance",
+        why_required: "Adhere strictly to platform messaging rate limits and 24-hour interaction windows."
+      }
+    ],
+    primary_tool_slugs: ["manychat", "zapier", "hubspot-sales-hub", "pipedrive"],
+    alternative_tool_slugs: ["make", "close-crm"],
+    cost_note: "Manychat starts at $15/mo; Zapier starter plan $20/mo.",
+    effort_level: 1,
+    time_to_value: "24 hours",
+    privacy_security_considerations: [
+      "Disclose privacy policy link in chat; allow user to unsubscribe with a single word ('STOP')."
+    ],
+    builder_query: {
+      goal: "inbound_demand",
+      buckets: "lead_capture,data_orchestration"
+    },
+    gptify_resource_url: "https://gptify.co/ai-use-cases-for-sales-marketing/"
+  },
+  {
+    id: "uc-08",
+    slug: "signal-based-prospecting",
+    title: "Signal-Based Outbound Prospecting on Hiring & Funding Events",
+    short_summary: "Replace generic outbound lists with event-driven prospecting triggered by verified executive hiring, fresh venture rounds, or technology migrations.",
+    bucket: "Outbound",
+    stage_id: 2,
+    buyer: "Outbound Sales Leaders, Growth Engineers, SDR Managers",
+    intended_outcome: "Achieve 3-5x higher positive reply rates (8-14%) compared to cold spray-and-pray outbound by reaching prospects during active budget expansion.",
+    business_problem: "Static buyer lists have low response rates (<1%). Reaching out when companies aren't actively solving a problem wastes domain reputation.",
+    prerequisites: [
+      "Defined Ideal Customer Profile (ICP) criteria",
+      "Clay account with data integrations or Apollo filters",
+      "Dedicated secondary outbound sending domains configured with SPF/DKIM"
+    ],
+    workflow_steps: [
+      {
+        step: 1,
+        title: "Signal Aggregation",
+        description: "Monitor job postings (e.g., 'Hiring Head of RevOps'), tech installs, or funding announcements.",
+        recommended_action: "Set up Clay table integrating job board web scrapers and Crunchbase funding webhooks."
+      },
+      {
+        step: 2,
+        title: "Account ICP Filter",
+        description: "Reject accounts outside target headcount (e.g., 50-500 employees) or non-target geographies.",
+        recommended_action: "Filter raw accounts through strict employee count and geography criteria."
+      },
+      {
+        step: 3,
+        title: "Decision Maker Identification",
+        description: "Identify the exact newly appointed executive or department head on LinkedIn.",
+        recommended_action: "Enrich executive contact details using Apollo and Findymail waterfall."
+      },
+      {
+        step: 4,
+        title: "Contextual Copy Personalization",
+        description: "Draft concise email referencing the specific signal and immediate 90-day onboarding priorities.",
+        recommended_action: "Use formula: [Signal Observation] + [Common 90-day Problem] + [Brief Proof Point] + [Low-friction CTA]."
+      },
+      {
+        step: 5,
+        title: "Multi-Mailbox Sequence Enrollment",
+        description: "Push verified record into Smartlead or Instantly sequence across warmed secondary mailboxes.",
+        recommended_action: "Throttle sends to 30 emails/mailbox/day with randomized 15-minute sending intervals."
+      }
+    ],
+    human_checkpoints: [
+      {
+        checkpoint: "Relevance & Tone Sanity Check",
+        why_required: "Inspect initial 50 personalized drafts to ensure signal inferences make logical business sense."
+      },
+      {
+        checkpoint: "Sending Cap Guardrails",
+        why_required: "Limit cold sends to max 30-50 per mailbox per day to protect domain health."
+      }
+    ],
+    primary_tool_slugs: ["clay", "apollo", "smartlead", "instantly"],
+    alternative_tool_slugs: ["findymail", "hunter", "lemlist"],
+    cost_note: "$250-$500/mo total for Clay table runs and cold email sender infrastructure.",
+    effort_level: 2,
+    time_to_value: "5 days",
+    privacy_security_considerations: [
+      "Provide immediate, functional one-click unsubscribe links and clear business sender physical address.",
+      "Target strictly verified B2B corporate inboxes."
+    ],
+    builder_query: {
+      goal: "outbound_pipeline",
+      buckets: "outbound,data_orchestration"
+    },
+    gptify_resource_url: "https://gptify.co/ai-use-cases-for-sales-marketing/"
+  },
+  {
+    id: "uc-09",
+    slug: "multi-channel-cold-sequences",
+    title: "Multi-Channel Cold Email & LinkedIn InMail Sequences",
+    short_summary: "Coordinate synchronized outreach across email inboxes and LinkedIn profiles to engage prospects where they are most responsive without overlapping touches.",
+    bucket: "Outbound",
+    stage_id: 3,
+    buyer: "SDR Directors, Account Executives, Agency Owners",
+    intended_outcome: "Maximize touchpoint coverage and double meeting booking rates by engaging decision-makers across email and LinkedIn in a structured cadence.",
+    business_problem: "Single-channel email campaigns suffer from spam filtering, while standalone LinkedIn outreach hits weekly connection request limits.",
+    prerequisites: [
+      "Verified target contact list with work emails and LinkedIn profile URLs",
+      "Smartlead or Instantly for email rotation",
+      "HeyReach for safe LinkedIn account rotation"
+    ],
+    workflow_steps: [
+      {
+        step: 1,
+        title: "Contact Segmentation",
+        description: "Split prospects by primary channel likelihood (e.g., tech founders on LinkedIn, finance leaders on email).",
+        recommended_action: "Tag contacts based on LinkedIn activity recency (active posters vs inactive)."
+      },
+      {
+        step: 2,
+        title: "Touch 1 (Email)",
+        description: "Send tailored, problem-focused 75-word email from rotated secondary domain.",
+        recommended_action: "Focus on primary operational challenge with single question CTA."
+      },
+      {
+        step: 3,
+        title: "Touch 2 (LinkedIn Profile View & Connect)",
+        description: "If no reply in 48 hours, HeyReach views profile and sends blank or soft connection request.",
+        recommended_action: "Rotate connection requests across 3 SDR LinkedIn accounts to stay within weekly limits."
+      },
+      {
+        step: 4,
+        title: "Touch 3 (InMail / Direct Message)",
+        description: "Upon connection acceptance, deliver follow-up context; if email bounced, switch to InMail.",
+        recommended_action: "Deliver conversational message referencing the earlier email topic."
+      },
+      {
+        step: 5,
+        title: "Touch 4 (Final Value Touch)",
+        description: "Send relevant case study or video audit; automatically pause sequence upon any prospect reply.",
+        recommended_action: "Ensure sequence halts across both email and LinkedIn immediately when prospect responds."
+      }
+    ],
+    human_checkpoints: [
+      {
+        checkpoint: "Stop-on-Reply Webhook Audit",
+        why_required: "Confirm sequences pause across ALL channels immediately when a prospect responds on ANY channel."
+      },
+      {
+        checkpoint: "Connection Note Tone",
+        why_required: "Avoid aggressive pitches in connection requests; prioritize professional peer alignment."
+      }
+    ],
+    primary_tool_slugs: ["smartlead", "instantly", "heyreach", "lemlist"],
+    alternative_tool_slugs: ["apollo", "hubspot-sales-hub"],
+    cost_note: "Smartlead ($39-$94/mo) + HeyReach ($79/sender/mo).",
+    effort_level: 2,
+    time_to_value: "4 days",
+    privacy_security_considerations: [
+      "Adhere strictly to platform terms: maintain conservative daily LinkedIn action limits to protect personal profiles."
+    ],
+    builder_query: {
+      goal: "outbound_pipeline",
+      buckets: "outbound"
+    },
+    gptify_resource_url: "https://gptify.co/ai-use-cases-for-sales-marketing/"
+  },
+  {
+    id: "uc-10",
+    slug: "deliverability-monitoring",
+    title: "Domain Warmup & Cold Email Deliverability Guardrails",
+    short_summary: "Set up automated multi-domain infrastructure, SPF/DKIM/DMARC authentication, and inbox deliverability monitoring to ensure cold campaigns reach primary inboxes.",
+    bucket: "Outbound",
+    stage_id: 2,
+    buyer: "Growth Engineers, Outbound Operations, Agency Founders",
+    intended_outcome: "Maintain >95% inbox placement rates, zero spam folder penalties, and keep primary company domain completely isolated from cold outreach risks.",
+    business_problem: "Sending cold emails from primary company domains risks getting corporate Google Workspace or Microsoft 365 blacklisted, disrupting critical customer and team emails.",
+    prerequisites: [
+      "3-5 dedicated secondary domains configured on Cloudflare or Google Domains",
+      "Google Workspace or Microsoft 365 secondary accounts",
+      "Smartlead or Instantly deliverability suite with warmup enabled"
+    ],
+    workflow_steps: [
+      {
+        step: 1,
+        title: "Secondary Domain Registration",
+        description: "Register variations of brand domain (e.g., getbrand.com, brandhq.com).",
+        recommended_action: "Forward all web traffic from secondary domains to your primary marketing website."
+      },
+      {
+        step: 2,
+        title: "DNS Authentication Setup",
+        description: "Configure SPF, DKIM, DMARC (with p=none moving to p=quarantine), and custom tracking domain.",
+        recommended_action: "Generate unique 2048-bit DKIM keys and verify MX records."
+      },
+      {
+        step: 3,
+        title: "Automated Warmup Network",
+        description: "Enroll inboxes into peer-to-peer warmup networks with slow ramp-up schedule.",
+        recommended_action: "Ramp up from 2 to 25 emails/day per inbox over 21 days with 35% reply simulation rate."
+      },
+      {
+        step: 4,
+        title: "Pre-Send List Verification",
+        description: "Use Findymail or Hunter to pre-clean all lists; set automated alerts if bounce rate exceeds 2%.",
+        recommended_action: "Purge all invalid, disposable, or high-risk emails prior to sequence enrollment."
+      },
+      {
+        step: 5,
+        title: "Automated Mailbox Resting",
+        description: "Automatically pause sending and alert admin if health score dips below 90%.",
+        recommended_action: "Set threshold trigger in Smartlead/Instantly to rest struggling mailboxes for 7 days."
+      }
+    ],
+    human_checkpoints: [
+      {
+        checkpoint: "DMARC Report Review",
+        why_required: "Monthly check of DMARC aggregate reports to detect unauthorized domain spoofing attempts."
+      },
+      {
+        checkpoint: "Content Spam Word Audit",
+        why_required: "Scan copy for spam trigger words and excessive tracking links before campaign launch."
+      }
+    ],
+    primary_tool_slugs: ["smartlead", "instantly", "findymail", "hunter"],
+    alternative_tool_slugs: ["apollo"],
+    cost_note: "$50-$150/mo including secondary domains, Google Workspace licenses, and warmup tool.",
+    effort_level: 1,
+    time_to_value: "14-21 days (warmup ramp period)",
+    privacy_security_considerations: [
+      "Never send from domains without transparent WHOIS ownership or proper CAN-SPAM / GDPR opt-out footers."
+    ],
+    builder_query: {
+      goal: "outbound_pipeline",
+      buckets: "outbound,data_orchestration"
+    },
+    gptify_resource_url: "https://gptify.co/ai-use-cases-for-sales-marketing/"
+  },
+  {
+    id: "uc-11",
+    slug: "competitor-displacement",
+    title: "Competitor Displacement Outbound Campaigns",
+    short_summary: "Identify companies using rival software with known price hikes or deprecation issues, launching targeted outreach offering seamless migration playbooks.",
+    bucket: "Outbound",
+    stage_id: 2,
+    buyer: "Sales Directors, PMMs, Outbound Campaign Managers",
+    intended_outcome: "Generate deals with 35%+ win rates by targeting prospects already spending budget on existing tools but facing frustration.",
+    business_problem: "Selling to non-buyers requires budget creation. Targeting satisfied users of competitors yields low conversion unless timed to contract renewals or vendor dissatisfaction.",
+    prerequisites: [
+      "List of target competitors and their specific pain points (e.g., forced price increases, sunsetted features)",
+      "Apollo or Clay technographic filter",
+      "Battlecard comparison guide and migration checklist"
+    ],
+    workflow_steps: [
+      {
+        step: 1,
+        title: "Technographic Discovery",
+        description: "Query Apollo/Clay for companies currently running competitor software scripts or integrations.",
+        recommended_action: "Filter for companies with 50-500 employees currently verified as active users of competitor."
+      },
+      {
+        step: 2,
+        title: "Dissatisfaction Signal Check",
+        description: "Scan review sites or Semrush keyword trends for competitor pricing complaints or feature issues.",
+        recommended_action: "Identify the top 2 customer grievances from recent public product reviews."
+      },
+      {
+        step: 3,
+        title: "Migration Friction Analysis",
+        description: "Determine the exact friction points preventing buyers from switching (data export complexity, retraining).",
+        recommended_action: "Draft step-by-step migration blueprint highlighting zero data loss guarantees."
+      },
+      {
+        step: 4,
+        title: "Value-Add Campaign Deployment",
+        description: "Send targeted outreach highlighting free migration assistance, price-lock guarantees, and direct feature comparisons.",
+        recommended_action: "Enroll decision-makers into Smartlead/Instantly campaign with specific migration offer."
+      },
+      {
+        step: 5,
+        title: "Rapid Discovery Cadence",
+        description: "Route interested prospects directly to dedicated competitor battlecard landing pages.",
+        recommended_action: "Provide AE with pre-call brief on competitor's recent pricing tier changes."
+      }
+    ],
+    human_checkpoints: [
+      {
+        checkpoint: "Legal & Claims Accuracy",
+        why_required: "Strictly review all comparative claims against competitor terms to avoid misleading statements."
+      },
+      {
+        checkpoint: "Displaced Rep Alignment",
+        why_required: "Equip sales reps with exact objection handling scripts before calls go live."
+      }
+    ],
+    primary_tool_slugs: ["semrush", "apollo", "clay", "smartlead"],
+    alternative_tool_slugs: ["instantly", "hubspot-sales-hub"],
+    cost_note: "$250-$450/mo for data enrichment and sequence delivery.",
+    effort_level: 2,
+    time_to_value: "1 week",
+    privacy_security_considerations: [
+      "Ensure data scraped regarding tech stack installations complies with public telemetry guidelines."
+    ],
+    builder_query: {
+      goal: "outbound_pipeline",
+      buckets: "outbound,inbound"
+    },
+    gptify_resource_url: "https://gptify.co/ai-use-cases-for-sales-marketing/"
+  },
+  {
+    id: "uc-12",
+    slug: "programmatic-seo-engine",
+    title: "Programmatic SEO & High-Intent Competitor Comparison Engine",
+    short_summary: "Build a systematic organic acquisition engine with high-ranking competitor comparison pages, alternative roundups, and workflow guides that capture bottom-of-funnel searchers.",
+    bucket: "Inbound",
+    stage_id: 1,
+    buyer: "Content Directors, SEO Strategists, Head of Growth",
+    intended_outcome: "Drive 10,000+ monthly organic visitors with high buyer intent at near-zero incremental acquisition cost; capture buyers actively searching '[Competitor] alternatives'.",
+    business_problem: "Manually writing individual 'Tool A vs Tool B' comparison pages takes months of engineering and agency budget, resulting in missed search demand.",
+    prerequisites: [
+      "Keyword research list of competitor and category queries (Semrush)",
+      "Content optimization and NLP scoring tool (Surfer)",
+      "Headless CMS or Next.js static site generator"
+    ],
+    workflow_steps: [
+      {
+        step: 1,
+        title: "Keyword Intent Mapping",
+        description: "Extract all 'X vs Y' and 'best X tools for Y' keywords with search volume >100/mo using Semrush.",
+        recommended_action: "Cluster keywords by buyer journey stage (Alternative, Comparison, Pricing)."
+      },
+      {
+        step: 2,
+        title: "Structured Data Model",
+        description: "Define comparison schema (pricing, key features, best-for, Pros/Cons, integrations).",
+        recommended_action: "Create centralized JSON catalog defining verified tool metadata."
+      },
+      {
+        step: 3,
+        title: "Content Optimization Score",
+        description: "Use Surfer NLP benchmarks to ensure technical depth, keyword density, and heading structures.",
+        recommended_action: "Benchmark draft templates against top 3 Google SERP ranking pages."
+      },
+      {
+        step: 4,
+        title: "Programmatic Page Generation",
+        description: "Render dynamic, fast-loading comparison pages using structured Markdown or JSON templates.",
+        recommended_action: "Deploy static pages with automated XML sitemap updates."
+      },
+      {
+        step: 5,
+        title: "Direct Conversion Hooks",
+        description: "Embed interactive calculators or 'Build My Stack' widgets directly within comparison tables.",
+        recommended_action: "Place prefilled CTA buttons leading to relevant stack recommendation workflows."
+      }
+    ],
+    human_checkpoints: [
+      {
+        checkpoint: "Editorial Fact Verification",
+        why_required: "Double-check all competitor pricing numbers and feature availability before publishing."
+      },
+      {
+        checkpoint: "Brand Fairness Review",
+        why_required: "Maintain objective, neutral comparison tone rather than obvious bias, which builds genuine buyer trust."
+      }
+    ],
+    primary_tool_slugs: ["semrush", "surfer", "hubspot-sales-hub"],
+    alternative_tool_slugs: ["copy-ai", "gamma"],
+    cost_note: "Semrush ($139/mo) + Surfer ($89/mo) = ~$230/mo.",
+    effort_level: 2,
+    time_to_value: "4-8 weeks (SEO indexation timeline)",
+    privacy_security_considerations: [
+      "Ensure all competitor trademarks and fair-use comparative product statements follow trademark guidelines."
+    ],
+    builder_query: {
+      goal: "inbound_demand",
+      buckets: "inbound"
+    },
+    gptify_resource_url: "https://gptify.co/ai-use-case-library/"
+  },
+  {
+    id: "uc-13",
+    slug: "behavioral-lifecycle-onboarding",
+    title: "Automated Product Lifecycle Onboarding & Behavioral Email Nurture",
+    short_summary: "Trigger event-driven onboarding sequences based on real product milestones (e.g. invited first teammate, created first project) rather than arbitrary calendar delays.",
+    bucket: "Inbound",
+    stage_id: 5,
+    buyer: "Product Marketers, Lifecycle Marketing Managers, Head of Growth",
+    intended_outcome: "Increase product activation rate by 35% and accelerate free-to-paid conversion time by sending targeted guidance at the exact moment users get stuck.",
+    business_problem: "Static 7-day time-based drip campaigns fail because users onboard at different speeds. Users who completed setup get beginner tips, while stuck users get sales pitches.",
+    prerequisites: [
+      "In-app product event tracking (Segment, PostHog, or custom webhooks)",
+      "Customer.io or Klaviyo account",
+      "Transactional email sending domain with authenticated DNS"
+    ],
+    workflow_steps: [
+      {
+        step: 1,
+        title: "Track Key Milestones",
+        description: "Define activation event (e.g. workspace_created, teammate_invited, first_export).",
+        recommended_action: "Instrument telemetry events with user and organization IDs."
+      },
+      {
+        step: 2,
+        title: "Behavioral Branching",
+        description: "If user reaches Milestone 1 within 24h, send advanced tip; if stuck after 48h, send quick 2-minute video walkthrough.",
+        recommended_action: "Build campaign branching logic based on boolean event property triggers."
+      },
+      {
+        step: 3,
+        title: "Value Milestone Celebration",
+        description: "Send congratulatory milestone email with proof of value metrics when key outcome is reached.",
+        recommended_action: "Highlight hours saved or records processed in dynamic email template."
+      },
+      {
+        step: 4,
+        title: "Sales Handoff Trigger",
+        description: "When account hits 5+ active seats or hits plan usage limits, trigger notification to account AE.",
+        recommended_action: "Post Slack notification to sales team with account product usage summary."
+      },
+      {
+        step: 5,
+        title: "Feedback & NPS Loop",
+        description: "Solicit feedback automatically from users after 14 days of sustained activity.",
+        recommended_action: "Send micro-survey link to understand user delight points."
+      }
+    ],
+    human_checkpoints: [
+      {
+        checkpoint: "Frequency Capping Audit",
+        why_required: "Ensure users don't receive multiple overlapping marketing and product emails on the same day."
+      },
+      {
+        checkpoint: "Unsubscribe & Preference Handling",
+        why_required: "Honor preference centers: allow opting out of marketing tips while keeping transactional security alerts active."
+      }
+    ],
+    primary_tool_slugs: ["customer-io", "klaviyo", "hubspot-sales-hub"],
+    alternative_tool_slugs: ["vitally", "make"],
+    cost_note: "$100-$350/mo depending on active profile volume.",
+    effort_level: 2,
+    time_to_value: "10 days",
+    privacy_security_considerations: [
+      "Adhere to CAN-SPAM and GDPR requirements for behavioral tracking and marketing communications."
+    ],
+    builder_query: {
+      goal: "customer_retention",
+      buckets: "inbound,data_orchestration"
+    },
+    gptify_resource_url: "https://gptify.co/ai-use-case-library/"
+  },
+  {
+    id: "uc-14",
+    slug: "frictionless-scheduling",
+    title: "Instant Lead-to-Meeting Frictionless Scheduling Engine",
+    short_summary: "Eliminate back-and-forth email scheduling by embedding smart calendar booking directly into forms, emails, and chatbots with automated round-robin routing.",
+    bucket: "Inbound",
+    stage_id: 3,
+    buyer: "Inbound Sales Managers, RevOps, Demand Gen Leads",
+    intended_outcome: "Cut drop-off between form submission and held meetings by 50%; eliminate multi-day email chains negotiating time zones.",
+    business_problem: "Traditional 'Thank you, our team will reach out' forms lose 40-60% of interested buyers who fail to respond to subsequent scheduling emails.",
+    prerequisites: [
+      "Google or Outlook business calendar sync",
+      "Calendly or native CRM scheduler with round-robin support",
+      "Website form or landing page builder"
+    ],
+    workflow_steps: [
+      {
+        step: 1,
+        title: "In-Form Booking Display",
+        description: "Embed Calendly widget on form submission page immediately after qualifying fields are submitted.",
+        recommended_action: "Display real-time rep calendar slots directly on the confirmation screen."
+      },
+      {
+        step: 2,
+        title: "Availability Optimization",
+        description: "Set buffer times, minimum scheduling notices, and working hour restrictions to protect AE focus time.",
+        recommended_action: "Configure 15-minute buffers and minimum 4-hour advance booking window."
+      },
+      {
+        step: 3,
+        title: "Automated Meeting Confirmation",
+        description: "Instantly send calendar invite with Zoom/Google Meet link and preparation agenda to both parties.",
+        recommended_action: "Include custom agenda questionnaire and preparation resources in invite description."
+      },
+      {
+        step: 4,
+        title: "Multi-Touch Reminders",
+        description: "Send automated reminder 24 hours and 1 hour before scheduled call, reducing no-show rates.",
+        recommended_action: "Configure automated email reminder with simple meeting join link."
+      },
+      {
+        step: 5,
+        title: "Rescheduling Automation",
+        description: "Include self-serve one-click reschedule links in all reminders to prevent outright cancellations.",
+        recommended_action: "Enable frictionless reschedule button to preserve high-intent pipeline."
+      }
+    ],
+    human_checkpoints: [
+      {
+        checkpoint: "Capacity Balancing Review",
+        why_required: "Regularly monitor AE meeting loads to prevent individual rep burnout during heavy campaign periods."
+      },
+      {
+        checkpoint: "No-Show Outreach Triage",
+        why_required: "Sales development rep reaches out within 10 minutes of a missed call with a friendly reschedule link."
+      }
+    ],
+    primary_tool_slugs: ["calendly", "hubspot-sales-hub", "close-crm"],
+    alternative_tool_slugs: ["pipedrive", "attio"],
+    cost_note: "$12-$16/user/mo for scheduling platforms.",
+    effort_level: 1,
+    time_to_value: "24 hours",
+    privacy_security_considerations: [
+      "Never expose private calendar attendee details to external prospects; respect calendar privacy controls."
+    ],
+    builder_query: {
+      goal: "inbound_demand",
+      buckets: "lead_capture,inbound"
+    },
+    gptify_resource_url: "https://gptify.co/ai-use-cases-for-sales-marketing/"
+  },
+  {
+    id: "uc-15",
+    slug: "ai-researcher-pre-call-briefs",
+    title: "Autonomous B2B Account Research & Pre-Call Intelligence Briefs",
+    short_summary: "Automatically research prospect companies, latest executive news, recent 10-K filings, and tech stacks, delivering a concise 1-page brief to the AE before discovery calls.",
+    bucket: "Agentic Operations",
+    stage_id: 3,
+    buyer: "VP of Sales, Account Executives, Commercial SDRs",
+    intended_outcome: "Save reps 30-45 minutes per call while increasing discovery-to-demo conversion rates through highly personalized, strategic questions.",
+    business_problem: "AEs enter discovery calls under-prepared or spend hours manually browsing LinkedIn, press releases, and quarterly reports instead of selling.",
+    prerequisites: [
+      "Scheduled meeting on calendar with prospect company domain",
+      "Copy.ai or Artisan automated research agent",
+      "Slack or CRM integration for brief delivery"
+    ],
+    workflow_steps: [
+      {
+        step: 1,
+        title: "Calendar Event Trigger",
+        description: "Webhook detects new discovery meeting on rep calendar 2 hours prior to scheduled call.",
+        recommended_action: "Trigger research workflow extracting prospect domain and participant names."
+      },
+      {
+        step: 2,
+        title: "Account Intelligence Scrape",
+        description: "AI agent crawls company website, recent press releases, LinkedIn company updates, and job boards.",
+        recommended_action: "Extract strategic initiatives, recent product launches, and key hiring priorities."
+      },
+      {
+        step: 3,
+        title: "Pain Hypothesis Formulation",
+        description: "Synthesize company business model, probable pain points, and current tech stack into 3 tailored discovery questions.",
+        recommended_action: "Generate 3 high-impact questions focused on business outcomes."
+      },
+      {
+        step: 4,
+        title: "Competitor & Client Overlap",
+        description: "Identify existing customers in the same industry to provide social proof references.",
+        recommended_action: "Match prospect industry against internal CRM won accounts to pull 2 case studies."
+      },
+      {
+        step: 5,
+        title: "Delivery to Slack & CRM",
+        description: "Post clean, formatted summary into private Slack DM for AE and attach note to CRM Deal record.",
+        recommended_action: "Send 1-page markdown brief 30 minutes before call starts."
+      }
+    ],
+    human_checkpoints: [
+      {
+        checkpoint: "AE Brief Review",
+        why_required: "AE spends 3 minutes reviewing hypothesis before entering the call to ensure natural conversational flow."
+      },
+      {
+        checkpoint: "Fact & Metric Verification",
+        why_required: "Verify financial numbers or quotes if referencing specific press statements in call."
+      }
+    ],
+    primary_tool_slugs: ["artisan", "copy-ai", "clay", "slack"],
+    alternative_tool_slugs: ["apollo", "hubspot-sales-hub"],
+    cost_note: "$100-$300/mo for AI workflow automation credits.",
+    effort_level: 1,
+    time_to_value: "3 days",
+    privacy_security_considerations: [
+      "Use only public corporate data; do not scrape private personal profiles or confidential databases."
+    ],
+    builder_query: {
+      goal: "call_intelligence",
+      buckets: "agentic_ops,data_orchestration"
+    },
+    gptify_resource_url: "https://gptify.co/ai-use-cases-for-sales-marketing/"
+  },
+  {
+    id: "uc-16",
+    slug: "call-recording-crm-sync",
+    title: "Meeting Transcription, Action Item Extraction & Autonomous CRM Sync",
+    short_summary: "Automatically record sales calls, generate executive summaries and MEDDPICC qualification tags, and update CRM deal fields without manual rep data entry.",
+    bucket: "Agentic Operations",
+    stage_id: 3,
+    buyer: "Sales Directors, RevOps Managers, Account Executives",
+    intended_outcome: "Eliminate 4-6 hours of manual CRM updates per rep per week; maintain 100% complete CRM deal records and next-step accountability.",
+    business_problem: "Sales reps hate entering CRM notes; vital deal intelligence, competitor mentions, and buyer objections remain locked in reps' heads.",
+    prerequisites: [
+      "Zoom, Google Meet, or Microsoft Teams conference tool",
+      "Meeting recording AI app (Fathom, Fireflies.ai, MeetGeek, or Gong)",
+      "CRM integration enabled with write permissions"
+    ],
+    workflow_steps: [
+      {
+        step: 1,
+        title: "Automatic Bot Join",
+        description: "Recording assistant automatically joins scheduled client call and transcribes audio with speaker diarization.",
+        recommended_action: "Ensure bot joins 1 minute before scheduled start time with clear recording notice."
+      },
+      {
+        step: 2,
+        title: "Structured Note Generation",
+        description: "AI generates summary: Pain points, Decisions Made, Objections, Agreed Next Steps, and MEDDPICC criteria.",
+        recommended_action: "Structure output using standard executive bullet format."
+      },
+      {
+        step: 3,
+        title: "Field-Level CRM Update",
+        description: "Push structured fields (e.g. Next Steps date, Competitor identified, Budget stated) into corresponding CRM fields.",
+        recommended_action: "Sync fields into CRM deal record within 5 minutes of call termination."
+      },
+      {
+        step: 4,
+        title: "Slack Team Notification",
+        description: "Post call highlights and action items into dedicated deal channel for management visibility.",
+        recommended_action: "Send Slack alert tagging account team with call recording timestamp link."
+      },
+      {
+        step: 5,
+        title: "Follow-Up Email Drafting",
+        description: "Automatically draft follow-up email with bulleted next steps ready for rep review and sending.",
+        recommended_action: "Stage email in rep's Gmail/Outlook drafts for 1-click review and send."
+      }
+    ],
+    human_checkpoints: [
+      {
+        checkpoint: "Rep Email Approval",
+        why_required: "Sales rep reviews the draft follow-up email and edits tone before clicking send to client."
+      },
+      {
+        checkpoint: "Confidentiality Audit",
+        why_required: "Verify no confidential customer IP or payment details are captured in open CRM notes."
+      }
+    ],
+    primary_tool_slugs: ["fathom", "fireflies-ai", "meetgeek", "gong", "hubspot-sales-hub", "salesforce-sales-cloud"],
+    alternative_tool_slugs: ["pipedrive", "close-crm", "attio"],
+    cost_note: "Free (Fathom) to $19-$29/user/mo (Fireflies, MeetGeek) up to enterprise quotes (Gong).",
+    effort_level: 1,
+    time_to_value: "24 hours",
+    privacy_security_considerations: [
+      "Comply with two-party consent laws: ensure recording notification or audible announcement is enabled at the start of every call."
+    ],
+    builder_query: {
+      goal: "call_intelligence",
+      buckets: "agentic_ops,data_orchestration"
+    },
+    gptify_resource_url: "https://gptify.co/ai-use-cases-for-sales-marketing/"
+  },
+  {
+    id: "uc-17",
+    slug: "automated-proposals-cpq",
+    title: "One-Click Deal Proposal Generation & Document Tracking",
+    short_summary: "Generate customized sales proposals and contracts directly from CRM deal fields, tracking prospect document engagement and signatures in real-time.",
+    bucket: "Agentic Operations",
+    stage_id: 4,
+    buyer: "Sales Operations, AEs, VP of Sales, Legal",
+    intended_outcome: "Accelerate deal closing cycles by 40%; know exactly which pricing tiers prospects spend the most time reviewing.",
+    business_problem: "AEs waste hours copy-pasting numbers into outdated Word or slide templates, risking pricing errors, expired terms, and sluggish deal momentum.",
+    prerequisites: [
+      "Approved pricing table and standard MSA/contract templates",
+      "PandaDoc account",
+      "CRM deal stage automation configured"
+    ],
+    workflow_steps: [
+      {
+        step: 1,
+        title: "CRM Stage Trigger",
+        description: "Rep moves CRM deal to 'Proposal Requested' stage.",
+        recommended_action: "Ensure deal has products, seat quantities, and primary contact assigned."
+      },
+      {
+        step: 2,
+        title: "One-Click Document Assembly",
+        description: "PandaDoc auto-populates client name, contact details, selected products, discounts, and terms from CRM fields.",
+        recommended_action: "Map CRM fields directly to dynamic PandaDoc template tokens."
+      },
+      {
+        step: 3,
+        title: "Interactive Pricing Table",
+        description: "Client receives interactive proposal where they can select optional add-ons or tiers with dynamic total calculations.",
+        recommended_action: "Enable optional checkboxes for onboarding packages and multi-year discounts."
+      },
+      {
+        step: 4,
+        title: "Page-by-Page Engagement Tracking",
+        description: "Sales rep receives instant alert when client opens proposal, spending 5+ minutes on the pricing page.",
+        recommended_action: "Post Slack notification when prospect views proposal for >3 minutes."
+      },
+      {
+        step: 5,
+        title: "Legally Binding E-Signature & Sync",
+        description: "Once signed, document PDF is archived in CRM, deal moves to 'Closed-Won', and onboarding tasks trigger.",
+        recommended_action: "Trigger automated webhook updating deal stage to Closed-Won upon signature completion."
+      }
+    ],
+    human_checkpoints: [
+      {
+        checkpoint: "Discount Approval Threshold",
+        why_required: "Automated workflow routes proposals with >20% discount to sales leadership for approval before client send."
+      },
+      {
+        checkpoint: "Legal Clause Review",
+        why_required: "Flag modified legal clauses or custom redlines for legal team sign-off."
+      }
+    ],
+    primary_tool_slugs: ["pandadoc", "hubspot-sales-hub", "pipedrive", "close-crm"],
+    alternative_tool_slugs: ["attio", "salesforce-sales-cloud"],
+    cost_note: "$19-$49/seat/mo for PandaDoc.",
+    effort_level: 1,
+    time_to_value: "3 days",
+    privacy_security_considerations: [
+      "Maintain encrypted document storage and audit trails compliant with SOC 2, HIPAA, and eIDAS electronic signature standards."
+    ],
+    builder_query: {
+      goal: "call_intelligence",
+      buckets: "agentic_ops,lead_capture"
+    },
+    gptify_resource_url: "https://gptify.co/ai-use-cases-for-sales-marketing/"
+  },
+  {
+    id: "uc-18",
+    slug: "revenue-forecasting-slippage",
+    title: "AI Revenue Forecasting & Deal Slippage Risk Detection",
+    short_summary: "Ingest deal activity, meeting frequency, and email response velocity to flag pipeline risks and accurately forecast quarterly revenue outcomes.",
+    bucket: "Agentic Operations",
+    stage_id: 4,
+    buyer: "CROs, VPs of Sales, RevOps Directors, CFOs",
+    intended_outcome: "Eliminate subjective 'gut-feel' pipeline forecasting, improve quarterly forecast accuracy to within 5%, and rescue at-risk deals 30 days before quarter end.",
+    business_problem: "Sales reps consistently over-promise deals in commit status that lack recent engagement, leading to missed revenue targets and unexpected board surprises.",
+    prerequisites: [
+      "Established sales team with active CRM pipeline and email/calendar activity logging",
+      "Clari or Gong revenue intelligence platform",
+      "Defined deal stages and qualification benchmarks"
+    ],
+    workflow_steps: [
+      {
+        step: 1,
+        title: "Omnichannel Activity Ingestion",
+        description: "Continuously capture all emails, meetings, and proposal views associated with active pipeline opportunities.",
+        recommended_action: "Connect rep Google Workspace/Outlook accounts to Clari or Gong platform."
+      },
+      {
+        step: 2,
+        title: "Engagement Velocity Scoring",
+        description: "Analyze time gaps between buyer responses; detect sudden drops in executive stakeholder participation.",
+        recommended_action: "Calculate buyer sentiment and momentum score across last 14 days."
+      },
+      {
+        step: 3,
+        title: "Objective Risk Flagging",
+        description: "Algorithm flags deals with high risk: 'Deal #104 has no scheduled next meeting and buyer hasn't replied to last 3 emails'.",
+        recommended_action: "Highlight flagged deals in red during weekly pipeline review dashboards."
+      },
+      {
+        step: 4,
+        title: "Predictive Forecast Simulation",
+        description: "Project expected quarterly revenue range based on historic conversion rates across similar deal profiles.",
+        recommended_action: "Compare rep commit numbers against machine learning forecast model."
+      },
+      {
+        step: 5,
+        title: "Weekly Forecast Cadence",
+        description: "Leadership reviews AI risk alerts during pipeline calls, focusing coaching on actionable deal rescues.",
+        recommended_action: "Assign executive sponsor touchpoint for high-value at-risk deals."
+      }
+    ],
+    human_checkpoints: [
+      {
+        checkpoint: "Executive Opportunity Review",
+        why_required: "CRO validates flagged risks with deal owners during weekly 1-on-1 forecast reviews."
+      },
+      {
+        checkpoint: "Exemption Justification",
+        why_required: "Allow reps to log offline relationship context (e.g. in-person meeting conducted without calendar sync)."
+      }
+    ],
+    primary_tool_slugs: ["clari", "gong", "salesforce-sales-cloud", "hubspot-sales-hub"],
+    alternative_tool_slugs: ["attio"],
+    cost_note: "Enterprise pricing; custom quote based on sales team headcount.",
+    effort_level: 2,
+    time_to_value: "30 days (requires baseline deal telemetry)",
+    privacy_security_considerations: [
+      "Anonymize internal conversation transcripts and establish strict role-based access control (RBAC) on compensation and forecast data."
+    ],
+    builder_query: {
+      goal: "call_intelligence",
+      buckets: "agentic_ops,data_orchestration"
+    },
+    gptify_resource_url: "https://gptify.co/ai-use-case-library/"
+  }
+];
+
+const targetPath = path.join(__dirname, '..', 'data', 'use-cases.json');
+fs.writeFileSync(targetPath, JSON.stringify(useCases, null, 2), 'utf-8');
+console.log(`Successfully generated ${useCases.length} use cases at: ${targetPath}`);
+
+// Validation
+const toolsData = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'tools.json'), 'utf-8'));
+const toolSlugs = new Set(toolsData.map(t => t.slug));
+let missingSlugs = [];
+useCases.forEach(uc => {
+  [...uc.primary_tool_slugs, ...uc.alternative_tool_slugs].forEach(s => {
+    if (!toolSlugs.has(s) && s !== 'slack') {
+      missingSlugs.push({ useCase: uc.slug, slug: s });
+    }
+  });
+});
+
+console.log('Missing tool slugs in use cases:', missingSlugs);
+if (missingSlugs.length === 0) {
+  console.log('All tool slugs successfully matched!');
+}

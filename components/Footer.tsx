@@ -28,6 +28,9 @@ export function Footer({ stages = STAGES }: FooterProps) {
           <Link href="/build-my-stack" style={{ color: 'inherit', textDecoration: 'none' }}>
             Build My Stack
           </Link>
+          <Link href="/use-cases" style={{ color: 'inherit', textDecoration: 'none' }}>
+            Use Cases
+          </Link>
           <Link href="/stacks" style={{ color: 'inherit', textDecoration: 'none' }}>
             Stacks
           </Link>

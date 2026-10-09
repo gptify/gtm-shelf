@@ -91,3 +91,41 @@ export interface Guide {
   b?: string;
 }
 
+export interface UseCaseStep {
+  step: number;
+  title: string;
+  description: string;
+  recommended_action: string;
+}
+
+export interface UseCaseHumanCheckpoint {
+  checkpoint: string;
+  why_required: string;
+}
+
+export interface UseCase {
+  id: string;
+  slug: string;
+  title: string;
+  short_summary: string;
+  bucket: GtmBucket;
+  stage_id: number;
+  buyer: string;
+  intended_outcome: string;
+  business_problem: string;
+  prerequisites: string[];
+  workflow_steps: UseCaseStep[];
+  human_checkpoints: UseCaseHumanCheckpoint[];
+  primary_tool_slugs: string[];
+  alternative_tool_slugs: string[];
+  cost_note: string;
+  effort_level: 1 | 2 | 3;
+  time_to_value: string;
+  privacy_security_considerations: string[];
+  builder_query: {
+    goal: string;
+    buckets: string;
+  };
+  gptify_resource_url?: string;
+}
+

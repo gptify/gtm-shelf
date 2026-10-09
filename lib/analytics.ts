@@ -19,7 +19,10 @@ export type AnalyticsEvent =
   | 'guide_view'
   | 'submit_tool'
   | 'custom_request'
-  | 'lead_confirmed';
+  | 'lead_confirmed'
+  | 'use_case_viewed'
+  | 'use_case_stack_started'
+  | 'use_case_tool_clicked';
 
 declare global {
   interface Window {

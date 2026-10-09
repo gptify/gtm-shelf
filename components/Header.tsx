@@ -35,6 +35,9 @@ export function Header({ onOpenSubmit }: HeaderProps) {
         <Link href="/" aria-current={pathname === '/' ? 'page' : undefined}>
           Tools
         </Link>
+        <Link href="/use-cases" aria-current={pathname.startsWith('/use-cases') ? 'page' : undefined}>
+          Use Cases
+        </Link>
         <Link href="/build-my-stack" aria-current={pathname === '/build-my-stack' ? 'page' : undefined}>
           Build Stack
         </Link>

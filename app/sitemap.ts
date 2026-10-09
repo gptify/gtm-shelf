@@ -3,6 +3,7 @@ import { getTools, STAGES, CATEGORIES } from '@/lib/db/data';
 import guidesData from '@/starter/content/guides.json';
 
 import { getAllStacks } from '@/lib/stacks';
+import { getAllUseCases } from '@/lib/use-cases';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://gtmshelf.com';
@@ -11,6 +12,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes: MetadataRoute.Sitemap = [
     '',
     '/build-my-stack',
+    '/use-cases',
     '/find',
     '/stacks',
     '/gptify',
@@ -30,7 +32,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url: `${baseUrl}${route}`,
     lastModified: now,
     changeFrequency: 'weekly',
-    priority: route === '' ? 1.0 : (route === '/stacks' ? 0.9 : 0.8),
+    priority: route === '' ? 1.0 : (route === '/stacks' || route === '/use-cases' ? 0.9 : 0.8),
   }));
 
   const stackRoutes: MetadataRoute.Sitemap = getAllStacks().map((stack) => ({
@@ -69,9 +71,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
+  const useCaseRoutes: MetadataRoute.Sitemap = getAllUseCases().map((uc) => ({
+    url: `${baseUrl}/use-cases/${uc.slug}`,
+    lastModified: now,
+    changeFrequency: 'weekly',
+    priority: 0.85,
+  }));
+
   return [
     ...staticRoutes,
     ...stackRoutes,
+    ...useCaseRoutes,
     ...stageRoutes,
     ...categoryRoutes,
     ...toolRoutes,
