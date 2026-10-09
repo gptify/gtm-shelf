@@ -488,7 +488,7 @@ export function FinderClient({ tools }: FinderClientProps) {
             Request a custom build
           </Link>
           <p className="fine" style={{ marginTop: '12px' }}>
-            GTM Shelf is run by <a href="https://gptify.co" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'underline', color: 'inherit' }}>GPTify.co</a>. Custom builds are never ranked among the tools.
+            Custom builds are never ranked among the tools.
           </p>
         </div>
 
