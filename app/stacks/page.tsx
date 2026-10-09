@@ -236,12 +236,12 @@ export default function StacksPage() {
                 Don&apos;t see your exact growth motion?
               </h2>
               <p style={{ font: '400 0.9375rem/1.6 var(--body)', color: 'var(--muted)', margin: 0 }}>
-                Answer 4 quick questions about your sales motion, team headcount, and CRM to get a tailored 3-tool recommendation with integration verification.
+                Complete the 6-step architecture builder to calibrate goals, capability buckets, CRM integrations, and budget limits into a customized GTM stack.
               </p>
             </div>
             <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-              <Link href="/find" className="btn btn-primary" style={{ padding: '12px 22px' }}>
-                Run Stack Finder
+              <Link href="/build-my-stack" className="btn btn-primary" style={{ padding: '12px 22px' }}>
+                Build My GTM Stack →
               </Link>
               <Link href="/custom" className="btn btn-ghost" style={{ padding: '12px 22px' }}>
                 Request Custom Review
