@@ -17,7 +17,7 @@ export function Hero({ searchQuery, onSearchChange, children }: HeroProps) {
         <div className="hero-intro">
           <div className="trust-pill" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '0.8125rem', fontWeight: 600, color: 'var(--muted)', background: 'var(--brand-soft)', border: '1px solid var(--line)', padding: '4px 12px', borderRadius: '999px', marginBottom: '14px' }}>
             <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--brand)', display: 'inline-block' }}></span>
-            50+ vetted tools across 5 funnel stages • Zero vendor bias
+            50 vetted tools across 5 funnel stages • Zero vendor bias
           </div>
           <h1 id="h1">
             Discover the right <mark className="hl">AI tools</mark>.<br className="desk-br" />{' '}

@@ -92,22 +92,7 @@ function mapSampleTools(): ToolPublic[] {
  * Returns all tools including archived/inactive candidates (useful for dedicated comparisons/admin)
  */
 export async function getAllTools(): Promise<ToolPublic[]> {
-  if (supabase) {
-    try {
-      const { data, error } = await supabase
-        .from('tools_public')
-        .select('*')
-        .order('featured', { ascending: false })
-        .order('name', { ascending: true });
-
-      if (!error && data && data.length > 0) {
-        return data as ToolPublic[];
-      }
-    } catch {
-      // fallback to sample tools
-    }
-  }
-
+  // Use authoritative local curated catalog containing verified pricing, GTM buckets, and lifecycle statuses
   return mapSampleTools();
 }
 
