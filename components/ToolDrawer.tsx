@@ -229,7 +229,19 @@ export function ToolDrawer({
           )}
           <div>
             <dt>Verified</dt>
-            <dd>{tool.pricing_verified_at || tool.verified_at || 'October 2026'}</dd>
+            <dd>
+              {tool.pricing_verified_at || tool.verified_at || 'October 2026'}
+              {tool.source_url && (
+                <a
+                  href={tool.source_url}
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                  style={{ display: 'block', fontSize: '0.75rem', color: 'var(--brand)', marginTop: '2px', textDecoration: 'underline' }}
+                >
+                  View official pricing source ↗
+                </a>
+              )}
+            </dd>
           </div>
         </dl>
 
