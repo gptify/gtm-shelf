@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { UseCase, GtmBucket } from '@/lib/types';
 import { trackEvent } from '@/lib/analytics';
@@ -278,7 +278,7 @@ export function UseCasesDirectoryClient({ initialUseCases }: Props) {
           {filteredUseCases.map((uc) => {
             const badge = getBucketBadgeStyle(uc.bucket);
             const effort = getEffortBadge(uc.effort_level);
-            const builderHref = `/build-my-stack?goal=${uc.builder_query.goal}&buckets=${uc.builder_query.buckets}`;
+            const builderHref = `/build-my-stack?use_case=${encodeURIComponent(uc.slug)}&goal=${encodeURIComponent(uc.builder_query.goal)}&buckets=${encodeURIComponent(uc.builder_query.buckets)}`;
 
             return (
               <article
@@ -366,12 +366,43 @@ export function UseCasesDirectoryClient({ initialUseCases }: Props) {
                     style={{
                       color: 'var(--muted)',
                       fontSize: '0.875rem',
-                      lineHeight: 1.6,
-                      margin: '0 0 16px',
+                      lineHeight: 1.55,
+                      margin: '0 0 14px',
                     }}
                   >
                     {uc.short_summary}
                   </p>
+
+                  {/* Compact 3-Step Visual Workflow Preview */}
+                  {uc.mini_preview && uc.mini_preview.length > 0 && (
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        gap: '4px',
+                        margin: '0 0 16px',
+                        padding: '8px 12px',
+                        background: 'var(--bg)',
+                        borderRadius: '8px',
+                        border: '1px solid var(--line)',
+                        fontSize: '0.75rem',
+                        fontWeight: 600,
+                      }}
+                    >
+                      {uc.mini_preview.map((st, i) => (
+                        <React.Fragment key={i}>
+                          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', color: 'var(--ink)' }}>
+                            <span style={{ color: 'var(--brand)', fontSize: '0.8125rem' }}>•</span>
+                            {st.label}
+                          </span>
+                          {i < uc.mini_preview.length - 1 && (
+                            <span style={{ color: 'var(--muted)', opacity: 0.7 }} aria-hidden="true">→</span>
+                          )}
+                        </React.Fragment>
+                      ))}
+                    </div>
+                  )}
 
                   {/* Target Buyer & Time to Value */}
                   <div
@@ -379,7 +410,7 @@ export function UseCasesDirectoryClient({ initialUseCases }: Props) {
                       display: 'flex',
                       flexWrap: 'wrap',
                       gap: '8px',
-                      marginBottom: '18px',
+                      marginBottom: '16px',
                       fontSize: '0.75rem',
                     }}
                   >
@@ -420,12 +451,12 @@ export function UseCasesDirectoryClient({ initialUseCases }: Props) {
                         <circle cx="12" cy="12" r="10" />
                         <polyline points="12 6 12 12 16 14" />
                       </svg>
-                      <span>Value: {uc.time_to_value}</span>
+                      <span>{uc.time_to_value}</span>
                     </div>
                   </div>
 
-                  {/* Primary Tools List */}
-                  <div style={{ marginBottom: '20px' }}>
+                  {/* Suggested Tools List */}
+                  <div style={{ marginBottom: '18px' }}>
                     <div
                       style={{
                         fontSize: '0.6875rem',
@@ -436,7 +467,7 @@ export function UseCasesDirectoryClient({ initialUseCases }: Props) {
                         marginBottom: '8px',
                       }}
                     >
-                      Primary Verified Stack:
+                      Suggested Tools:
                     </div>
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
                       {uc.primary_tool_slugs.map((toolSlug) => (
@@ -504,6 +535,7 @@ export function UseCasesDirectoryClient({ initialUseCases }: Props) {
                     onClick={() => {
                       trackEvent('use_case_stack_started', {
                         slug: uc.slug,
+                        use_case: uc.slug,
                         goal: uc.builder_query.goal,
                       });
                     }}

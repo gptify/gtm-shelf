@@ -37,7 +37,7 @@ export function UseCaseStackButton({
 }: StackButtonProps) {
   return (
     <Link
-      href={`/build-my-stack?goal=${goal}&buckets=${buckets}`}
+      href={`/build-my-stack?goal=${goal}&buckets=${buckets}&use_case=${slug}`}
       onClick={() => {
         trackEvent('use_case_stack_started', { slug, goal });
       }}

@@ -12,6 +12,8 @@ import {
   UseCaseStackButton,
   UseCaseToolLink,
 } from '@/components/UseCaseDetailTracker';
+import { WorkflowDiagram } from '@/components/WorkflowDiagram';
+import { StackTierComparison } from '@/components/StackTierComparison';
 import { GtmBucket } from '@/lib/types';
 
 interface PageProps {
@@ -381,6 +383,14 @@ export default async function UseCaseDetailPage({ params }: PageProps) {
             </p>
           </section>
 
+          {/* Section 1.5: Interactive Workflow Visual Diagram */}
+          {uc.workflow_diagram && uc.workflow_diagram.length > 0 && (
+            <WorkflowDiagram
+              steps={uc.workflow_diagram}
+              useCaseSlug={uc.slug}
+            />
+          )}
+
           {/* Section 2: Prerequisites */}
           <section
             style={{
@@ -588,153 +598,167 @@ export default async function UseCaseDetailPage({ params }: PageProps) {
             </div>
           </section>
 
-          {/* Section 5: Primary Tool Stack & Alternatives */}
-          <section
-            style={{
-              background: 'var(--surface)',
-              border: '1px solid var(--line)',
-              borderRadius: '16px',
-              padding: '32px',
-              marginBottom: '28px',
-            }}
-          >
-            <div style={{ marginBottom: '24px' }}>
-              <h2
-                style={{
-                  font: '700 1.375rem/1.3 var(--display)',
-                  color: 'var(--ink)',
-                  margin: '0 0 8px',
-                  letterSpacing: '-0.015em',
-                }}
-              >
-                Recommended Primary Stack
-              </h2>
-              <p style={{ color: 'var(--muted)', fontSize: '0.9375rem', margin: 0 }}>
-                Every tool below is verified in our active 50-tool catalog with tested integrations and pricing.
-              </p>
-            </div>
-
-            <div
+          {/* Section 5: Stack Architecture: Lean vs. Advanced Configurations */}
+          {uc.stack_options ? (
+            <StackTierComparison
+              useCaseSlug={uc.slug}
+              useCaseTitle={uc.title}
+              leanOption={uc.stack_options.lean}
+              advancedOption={uc.stack_options.advanced}
+              builderQuery={{
+                goal: uc.builder_query.goal,
+                buckets: uc.builder_query.buckets,
+                use_case: uc.slug,
+              }}
+            />
+          ) : (
+            <section
               style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
-                gap: '16px',
-                marginBottom: '32px',
+                background: 'var(--surface)',
+                border: '1px solid var(--line)',
+                borderRadius: '16px',
+                padding: '32px',
+                marginBottom: '28px',
               }}
             >
-              {primaryTools.map((t) => (
-                <div
-                  key={t.slug}
+              <div style={{ marginBottom: '24px' }}>
+                <h2
                   style={{
-                    border: '1px solid var(--line)',
-                    borderRadius: '12px',
-                    padding: '16px',
-                    background: 'var(--bg)',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'space-between',
+                    font: '700 1.375rem/1.3 var(--display)',
+                    color: 'var(--ink)',
+                    margin: '0 0 8px',
+                    letterSpacing: '-0.015em',
                   }}
                 >
-                  <div>
-                    <div
-                      style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '10px',
-                        marginBottom: '8px',
-                      }}
-                    >
+                  Suggested Tools
+                </h2>
+                <p style={{ color: 'var(--muted)', fontSize: '0.9375rem', margin: 0 }}>
+                  Tools cataloged from our active 50-tool GTM index to support this workflow.
+                </p>
+              </div>
+
+              <div
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
+                  gap: '16px',
+                  marginBottom: '32px',
+                }}
+              >
+                {primaryTools.map((t) => (
+                  <div
+                    key={t.slug}
+                    style={{
+                      border: '1px solid var(--line)',
+                      borderRadius: '12px',
+                      padding: '16px',
+                      background: 'var(--bg)',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'space-between',
+                    }}
+                  >
+                    <div>
                       <div
-                        className="mono"
-                        style={{ '--h': hue(t.name), width: '32px', height: '32px', fontSize: '0.875rem' } as React.CSSProperties}
-                        aria-hidden="true"
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '10px',
+                          marginBottom: '8px',
+                        }}
                       >
-                        {initial(t.name)}
-                      </div>
-                      <div>
-                        <div style={{ fontWeight: 700, fontSize: '0.9375rem', color: 'var(--ink)' }}>
-                          {t.name}
+                        <div
+                          className="mono"
+                          style={{ '--h': hue(t.name), width: '32px', height: '32px', fontSize: '0.875rem' } as React.CSSProperties}
+                          aria-hidden="true"
+                        >
+                          {initial(t.name)}
                         </div>
-                        <div style={{ fontSize: '0.75rem', color: 'var(--muted)' }}>
-                          {t.price}
+                        <div>
+                          <div style={{ fontWeight: 700, fontSize: '0.9375rem', color: 'var(--ink)' }}>
+                            {t.name}
+                          </div>
+                          <div style={{ fontSize: '0.75rem', color: 'var(--muted)' }}>
+                            {t.price}
+                          </div>
                         </div>
                       </div>
+
+                      <p style={{ fontSize: '0.8125rem', color: 'var(--muted)', lineHeight: 1.5, margin: '0 0 12px' }}>
+                        {t.tagline}
+                      </p>
                     </div>
 
-                    <p style={{ fontSize: '0.8125rem', color: 'var(--muted)', lineHeight: 1.5, margin: '0 0 12px' }}>
-                      {t.tagline}
-                    </p>
+                    <div>
+                      {t.existsInCatalog ? (
+                        <UseCaseToolLink
+                          useCaseSlug={uc.slug}
+                          toolSlug={t.slug}
+                          style={{
+                            fontSize: '0.8125rem',
+                            fontWeight: 600,
+                            color: 'var(--brand)',
+                            textDecoration: 'none',
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '4px',
+                          }}
+                        >
+                          View Profile & Pricing →
+                        </UseCaseToolLink>
+                      ) : (
+                        <span style={{ fontSize: '0.75rem', color: 'var(--muted)' }}>
+                          Ecosystem Platform
+                        </span>
+                      )}
+                    </div>
                   </div>
+                ))}
+              </div>
 
-                  <div>
-                    {t.existsInCatalog ? (
+              {/* Alternatives */}
+              {alternativeTools.length > 0 && (
+                <div>
+                  <h3
+                    style={{
+                      font: '600 1.0625rem/1.3 var(--display)',
+                      color: 'var(--ink)',
+                      margin: '0 0 12px',
+                    }}
+                  >
+                    Choose-One Alternatives
+                  </h3>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                    {alternativeTools.map((t) => (
                       <UseCaseToolLink
+                        key={t.slug}
                         useCaseSlug={uc.slug}
                         toolSlug={t.slug}
                         style={{
-                          fontSize: '0.8125rem',
-                          fontWeight: 600,
-                          color: 'var(--brand)',
-                          textDecoration: 'none',
                           display: 'inline-flex',
                           alignItems: 'center',
-                          gap: '4px',
+                          gap: '6px',
+                          padding: '6px 12px',
+                          borderRadius: '6px',
+                          background: 'var(--bg)',
+                          border: '1px solid var(--line)',
+                          color: 'var(--ink)',
+                          fontSize: '0.8125rem',
+                          fontWeight: 600,
+                          textDecoration: 'none',
                         }}
                       >
-                        View Profile & Pricing →
+                        <span>{t.name}</span>
+                        <span style={{ fontSize: '0.75rem', color: 'var(--muted)', fontWeight: 400 }}>
+                          ({t.price})
+                        </span>
                       </UseCaseToolLink>
-                    ) : (
-                      <span style={{ fontSize: '0.75rem', color: 'var(--muted)' }}>
-                        Ecosystem Platform
-                      </span>
-                    )}
+                    ))}
                   </div>
                 </div>
-              ))}
-            </div>
-
-            {/* Alternatives */}
-            {alternativeTools.length > 0 && (
-              <div>
-                <h3
-                  style={{
-                    font: '600 1.0625rem/1.3 var(--display)',
-                    color: 'var(--ink)',
-                    margin: '0 0 12px',
-                  }}
-                >
-                  Alternative & Complementary Options
-                </h3>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                  {alternativeTools.map((t) => (
-                    <UseCaseToolLink
-                      key={t.slug}
-                      useCaseSlug={uc.slug}
-                      toolSlug={t.slug}
-                      style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '6px',
-                        padding: '6px 12px',
-                        borderRadius: '6px',
-                        background: 'var(--bg)',
-                        border: '1px solid var(--line)',
-                        color: 'var(--ink)',
-                        fontSize: '0.8125rem',
-                        fontWeight: 600,
-                        textDecoration: 'none',
-                      }}
-                    >
-                      <span>{t.name}</span>
-                      <span style={{ fontSize: '0.75rem', color: 'var(--muted)', fontWeight: 400 }}>
-                        ({t.price})
-                      </span>
-                    </UseCaseToolLink>
-                  ))}
-                </div>
-              </div>
-            )}
-          </section>
+              )}
+            </section>
+          )}
 
           {/* Section 6: Data Privacy & Security */}
           <section
@@ -805,8 +829,8 @@ export default async function UseCaseDetailPage({ params }: PageProps) {
                 margin: '0 auto 24px',
               }}
             >
-              Use our interactive recommendation engine to calculate exact monthly subscription costs,
-              check integration compatibility, and verify buyer discounts across this exact workflow.
+              Use our interactive recommendation engine to calculate estimated monthly subscription costs,
+              check CRM compatibility, and customize this workflow for your team size and budget.
             </p>
             <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
               <UseCaseStackButton

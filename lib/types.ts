@@ -103,6 +103,47 @@ export interface UseCaseHumanCheckpoint {
   why_required: string;
 }
 
+export interface WorkflowStepData {
+  id?: string;
+  step_id?: string;
+  step_number: number;
+  label: string;
+  action_type: 'trigger' | 'enrich' | 'action' | 'approval' | 'deliver' | 'sync';
+  description: string;
+  tool_slugs: string[];
+  tool_role?: string;
+  is_optional?: boolean;
+  is_required?: boolean;
+  is_human_gate?: boolean;
+  gate_reason?: string;
+}
+
+export interface MiniStepPreview {
+  label: string;
+  icon: 'search' | 'database' | 'mail' | 'chat' | 'user' | 'calendar' | 'check' | 'bell' | 'file' | 'trending';
+}
+
+export interface StackToolItem {
+  slug: string;
+  name: string;
+  role: string;
+}
+
+export interface StackOption {
+  tier: 'lean' | 'advanced';
+  title: string;
+  description: string;
+  target_profile: string;
+  estimated_cost: string;
+  required_tools: StackToolItem[];
+  choose_one_alternatives?: {
+    role: string;
+    description: string;
+    options: StackToolItem[];
+  }[];
+  optional_upgrades?: StackToolItem[];
+}
+
 export interface UseCase {
   id: string;
   slug: string;
@@ -114,8 +155,14 @@ export interface UseCase {
   intended_outcome: string;
   business_problem: string;
   prerequisites: string[];
+  mini_preview: MiniStepPreview[];
+  workflow_diagram: WorkflowStepData[];
   workflow_steps: UseCaseStep[];
   human_checkpoints: UseCaseHumanCheckpoint[];
+  stack_options: {
+    lean: StackOption;
+    advanced?: StackOption;
+  };
   primary_tool_slugs: string[];
   alternative_tool_slugs: string[];
   cost_note: string;
@@ -125,6 +172,7 @@ export interface UseCase {
   builder_query: {
     goal: string;
     buckets: string;
+    use_case: string;
   };
   gptify_resource_url?: string;
 }

@@ -149,6 +149,27 @@ export function BuildMyStackClient({ tools, initialParams = {} }: BuildMyStackCl
   const [savedTools, setSavedTools] = useState<Set<string>>(new Set());
   const [copyFeedback, setCopyFeedback] = useState(false);
 
+  // Active Use Case context if linked from /use-cases/[slug]
+  const [useCaseSlug] = useState<string | undefined>(initialParams.use_case);
+  const [useCaseData, setUseCaseData] = useState<{ title: string; slug: string; bucket: string; mini_preview?: { label: string }[]; short_summary?: string } | null>(null);
+
+  useEffect(() => {
+    if (!useCaseSlug) return;
+    import('@/data/use-cases.json').then((mod) => {
+      const list = (mod.default || mod) as any[];
+      const found = list.find((u) => u.slug === useCaseSlug);
+      if (found) {
+        setUseCaseData({
+          title: found.title,
+          slug: found.slug,
+          bucket: found.bucket,
+          mini_preview: found.mini_preview,
+          short_summary: found.short_summary,
+        });
+      }
+    }).catch(() => {});
+  }, [useCaseSlug]);
+
   useEffect(() => {
     try {
       const stored = localStorage.getItem('fi-saved');
@@ -456,11 +477,17 @@ export function BuildMyStackClient({ tools, initialParams = {} }: BuildMyStackCl
     params.set('budget', selectedBudget);
     params.set('size', selectedTeamSize);
     params.set('region', selectedRegion);
+    if (selectedRegion !== 'global') {
+      params.set('region', selectedRegion);
+    }
     if (existingTools.size > 0) {
       params.set('existing', Array.from(existingTools).join(','));
     }
+    if (useCaseSlug) {
+      params.set('use_case', useCaseSlug);
+    }
     return `${window.location.origin}/build-my-stack?${params.toString()}`;
-  }, [selectedObjective, selectedBuckets, selectedCrm, selectedBudget, selectedTeamSize, selectedRegion, existingTools]);
+  }, [selectedObjective, selectedBuckets, selectedCrm, selectedBudget, selectedTeamSize, selectedRegion, existingTools, useCaseSlug]);
 
   const handleCopyLink = () => {
     if (typeof navigator !== 'undefined' && navigator.clipboard) {
@@ -483,6 +510,52 @@ export function BuildMyStackClient({ tools, initialParams = {} }: BuildMyStackCl
   if (step === 7) {
     return (
       <main className="page" id="main-content" style={{ maxWidth: '960px', margin: '0 auto', paddingBottom: '80px' }}>
+        {/* Use-Case Context Banner if arriving from a Blueprint */}
+        {useCaseData && (
+          <div
+            style={{
+              marginBottom: '24px',
+              padding: '16px 20px',
+              borderRadius: '12px',
+              background: '#eff6ff',
+              border: '1px solid #bfdbfe',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: '16px',
+              flexWrap: 'wrap',
+            }}
+          >
+            <div>
+              <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', color: '#1e40af', letterSpacing: '0.05em', marginBottom: '2px' }}>
+                Operational Blueprint Integration
+              </div>
+              <div style={{ fontSize: '0.9375rem', fontWeight: 700, color: '#1e3a8a' }}>
+                Configured to operationalize: {useCaseData.title}
+              </div>
+              <div style={{ fontSize: '0.8125rem', color: '#3b82f6', marginTop: '2px' }}>
+                Each recommended tool below directly fulfills one step in this workflow blueprint.
+              </div>
+            </div>
+            <Link
+              href={`/use-cases/${useCaseData.slug}`}
+              style={{
+                fontSize: '0.8125rem',
+                fontWeight: 600,
+                color: '#1d4ed8',
+                textDecoration: 'none',
+                padding: '6px 12px',
+                background: '#ffffff',
+                border: '1px solid #bfdbfe',
+                borderRadius: '6px',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              View Full Blueprint Workflow →
+            </Link>
+          </div>
+        )}
+
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px', flexWrap: 'wrap', gap: '16px' }}>
           <div>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '4px 12px', borderRadius: '999px', background: 'var(--brand-soft)', border: '1px solid var(--line)', fontSize: '0.8125rem', fontWeight: 600, color: 'var(--brand)' }}>
@@ -752,6 +825,35 @@ export function BuildMyStackClient({ tools, initialParams = {} }: BuildMyStackCl
       </div>
 
       <p className="qmeta">Step {step} of 6</p>
+
+      {/* Blueprint context banner if arriving from a Use-Case Blueprint */}
+      {useCaseData && (
+        <div
+          style={{
+            marginBottom: '20px',
+            padding: '12px 16px',
+            borderRadius: '10px',
+            background: '#eff6ff',
+            border: '1px solid #bfdbfe',
+            fontSize: '0.875rem',
+            color: '#1e40af',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: '12px',
+          }}
+        >
+          <span>
+            <b>Target Blueprint:</b> {useCaseData.title}
+          </span>
+          <Link
+            href={`/use-cases/${useCaseData.slug}`}
+            style={{ color: '#1d4ed8', fontWeight: 600, fontSize: '0.8125rem', textDecoration: 'none', whiteSpace: 'nowrap' }}
+          >
+            View Blueprint ↗
+          </Link>
+        </div>
+      )}
 
       {/* Step 1: Objective */}
       {step === 1 && (
