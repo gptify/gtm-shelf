@@ -455,48 +455,154 @@ export function UseCasesDirectoryClient({ initialUseCases }: Props) {
                     </div>
                   </div>
 
-                  {/* Suggested Tools List */}
+                  {/* Structured Tool Setup: Required vs. Alternatives */}
                   <div style={{ marginBottom: '18px' }}>
-                    <div
-                      style={{
-                        fontSize: '0.6875rem',
-                        fontWeight: 700,
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.06em',
-                        color: 'var(--muted)',
-                        marginBottom: '8px',
-                      }}
-                    >
-                      Suggested Tools:
-                    </div>
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
-                      {uc.primary_tool_slugs.map((toolSlug) => (
-                        <Link
-                          key={toolSlug}
-                          href={`/tools/${toolSlug}`}
-                          onClick={() => {
-                            trackEvent('use_case_tool_clicked', {
-                              use_case: uc.slug,
-                              tool: toolSlug,
-                            });
-                          }}
+                    {uc.stack_options?.lean ? (
+                      <div>
+                        {/* Minimum Viable Required Tools */}
+                        {uc.stack_options.lean.required_tools && uc.stack_options.lean.required_tools.length > 0 && (
+                          <div style={{ marginBottom: '8px' }}>
+                            <div
+                              style={{
+                                fontSize: '0.6875rem',
+                                fontWeight: 700,
+                                textTransform: 'uppercase',
+                                letterSpacing: '0.06em',
+                                color: 'var(--ink)',
+                                marginBottom: '6px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '4px',
+                              }}
+                            >
+                              <span>Minimum Viable Setup:</span>
+                              <span style={{ fontSize: '0.6875rem', fontWeight: 500, color: 'var(--muted)', textTransform: 'none' }}>
+                                ({uc.stack_options.lean.estimated_cost})
+                              </span>
+                            </div>
+                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                              {uc.stack_options.lean.required_tools.map((rt) => (
+                                <Link
+                                  key={rt.slug}
+                                  href={`/tools/${rt.slug}`}
+                                  onClick={() => {
+                                    trackEvent('use_case_tool_clicked', {
+                                      use_case: uc.slug,
+                                      tool: rt.slug,
+                                    });
+                                  }}
+                                  style={{
+                                    display: 'inline-flex',
+                                    alignItems: 'center',
+                                    padding: '3px 8px',
+                                    borderRadius: '4px',
+                                    background: 'var(--surface)',
+                                    color: 'var(--brand)',
+                                    border: '1px solid var(--brand)',
+                                    fontSize: '0.75rem',
+                                    fontWeight: 600,
+                                    textDecoration: 'none',
+                                  }}
+                                  title={rt.role}
+                                >
+                                  {rt.name}
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Choose-One Alternatives */}
+                        {uc.stack_options.lean.choose_one_alternatives && uc.stack_options.lean.choose_one_alternatives.length > 0 && (
+                          <div>
+                            <div
+                              style={{
+                                fontSize: '0.6875rem',
+                                fontWeight: 600,
+                                textTransform: 'uppercase',
+                                letterSpacing: '0.05em',
+                                color: 'var(--muted)',
+                                marginBottom: '4px',
+                              }}
+                            >
+                              Choose-One Alternatives:
+                            </div>
+                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px' }}>
+                              {uc.stack_options.lean.choose_one_alternatives[0].options.map((alt) => (
+                                <Link
+                                  key={alt.slug}
+                                  href={`/tools/${alt.slug}`}
+                                  onClick={() => {
+                                    trackEvent('use_case_tool_clicked', {
+                                      use_case: uc.slug,
+                                      tool: alt.slug,
+                                    });
+                                  }}
+                                  style={{
+                                    display: 'inline-flex',
+                                    alignItems: 'center',
+                                    padding: '2px 7px',
+                                    borderRadius: '4px',
+                                    background: 'var(--bg)',
+                                    color: 'var(--muted)',
+                                    border: '1px solid var(--line)',
+                                    fontSize: '0.6875rem',
+                                    fontWeight: 500,
+                                    textDecoration: 'none',
+                                  }}
+                                  title={alt.role}
+                                >
+                                  {alt.name}
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    ) : (
+                      <div>
+                        <div
                           style={{
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                            padding: '3px 8px',
-                            borderRadius: '4px',
-                            background: 'var(--bg)',
-                            color: 'var(--ink)',
-                            border: '1px solid var(--line)',
-                            fontSize: '0.75rem',
-                            fontWeight: 600,
-                            textDecoration: 'none',
+                            fontSize: '0.6875rem',
+                            fontWeight: 700,
+                            textTransform: 'uppercase',
+                            letterSpacing: '0.06em',
+                            color: 'var(--muted)',
+                            marginBottom: '8px',
                           }}
                         >
-                          {toolSlug}
-                        </Link>
-                      ))}
-                    </div>
+                          Suggested Tools:
+                        </div>
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                          {uc.primary_tool_slugs.map((toolSlug) => (
+                            <Link
+                              key={toolSlug}
+                              href={`/tools/${toolSlug}`}
+                              onClick={() => {
+                                trackEvent('use_case_tool_clicked', {
+                                  use_case: uc.slug,
+                                  tool: toolSlug,
+                                });
+                              }}
+                              style={{
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                padding: '3px 8px',
+                                borderRadius: '4px',
+                                background: 'var(--bg)',
+                                color: 'var(--ink)',
+                                border: '1px solid var(--line)',
+                                fontSize: '0.75rem',
+                                fontWeight: 600,
+                                textDecoration: 'none',
+                              }}
+                            >
+                              {toolSlug}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
 

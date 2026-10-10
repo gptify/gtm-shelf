@@ -9,14 +9,14 @@ import { UseCasesDirectoryClient } from '@/components/UseCasesDirectoryClient';
 export const metadata: Metadata = {
   title: 'GTM Use-Case Library • 18 B2B Revenue Workflows & AI Stacks | GTMShelf',
   description:
-    'Explore 18 battle-tested B2B go-to-market operational blueprints. Step-by-step workflows for waterfall enrichment, inbound lead routing, signal prospecting, and autonomous CRM sync.',
+    'Explore 18 pragmatic B2B go-to-market operational blueprints. Step-by-step workflows for waterfall enrichment, inbound lead routing, signal prospecting, and autonomous CRM sync.',
   alternates: {
     canonical: '/use-cases',
   },
   openGraph: {
     title: 'GTM Use-Case Library • 18 B2B Revenue Workflows & AI Stacks | GTMShelf',
     description:
-      'From revenue bottlenecks to working software stacks. Explore 18 operational GTM blueprints with human approval checkpoints and verified tool combinations.',
+      'From revenue bottlenecks to working software stacks. Explore 18 operational GTM blueprints with human approval checkpoints and suggested tool configurations.',
     url: 'https://gtmshelf.com/use-cases',
     siteName: 'GTM Shelf',
   },
@@ -31,7 +31,7 @@ export default function UseCasesPage() {
     '@type': 'CollectionPage',
     name: 'GTM Use-Case Library: 18 Operational Revenue Blueprints',
     description:
-      'Curated operational blueprints matching common B2B revenue problems to verified software stacks and step-by-step implementation workflows.',
+      'Curated operational blueprints matching common B2B revenue problems to suggested software stacks and step-by-step implementation workflows.',
     url: 'https://gtmshelf.com/use-cases',
     mainEntity: {
       '@type': 'ItemList',
@@ -111,8 +111,8 @@ export default function UseCasesPage() {
               }}
             >
               Stop buying disconnected point solutions. Map your immediate revenue problems to
-              tested step-by-step workflows, human review checkpoints, data privacy guardrails, and
-              verified tool stacks from our curated 50-tool catalog.
+              pragmatic step-by-step workflows, human review checkpoints, data privacy guardrails, and
+              suggested tool configurations from our curated 50-tool catalog.
             </p>
 
             <div
