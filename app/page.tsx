@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
 };
 
-export const revalidate = 3600; // hourly revalidation fallback
+export const revalidate = 0; // immediate dynamic rendering
 
 interface PageProps {
   searchParams?: {
