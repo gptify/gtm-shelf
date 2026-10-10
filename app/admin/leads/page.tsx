@@ -125,7 +125,11 @@ export default function AdminLeadsPage() {
                         )}
                       </td>
                       <td className="p-3.5">
-                        {lead.pick_tool_ids && lead.pick_tool_ids.length > 0 ? (
+                        {lead.finder_answers && Array.isArray((lead.finder_answers as any).selected_tool_picks) && (lead.finder_answers as any).selected_tool_picks.length > 0 ? (
+                          <span className="font-semibold text-[var(--color-primary)]">
+                            {(lead.finder_answers as any).selected_tool_picks.join(', ')}
+                          </span>
+                        ) : lead.pick_tool_ids && lead.pick_tool_ids.length > 0 ? (
                           <span className="font-semibold">{lead.pick_tool_ids.length} tools</span>
                         ) : (
                           <span className="text-[var(--color-muted)]">None</span>

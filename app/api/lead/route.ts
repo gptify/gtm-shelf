@@ -1,13 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createLead } from '@/lib/leads';
 import { hashIp, checkRateLimit } from '@/lib/security';
-import { sendLeadNotificationEmail } from '@/lib/email';
+import { sendLeadNotificationEmail, sendPicksEmailToUser } from '@/lib/email';
 import { sendTelegramLeadNotification } from '@/lib/telegram';
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { email, source = 'finder', finder_answers, pick_tool_ids, hp_field } = body;
+    const { email, source = 'finder', finder_answers, pick_tool_ids, picks, hp_field } = body;
 
     // Honeypot check
     if (hp_field) {
@@ -45,14 +45,24 @@ export async function POST(req: NextRequest) {
       consent_text: consentText,
     });
 
-    // Dispatch instant Telegram alert
+    // 1. Dispatch automated picks email directly to user's inbox
+    if (Array.isArray(picks) && picks.length > 0) {
+      sendPicksEmailToUser({
+        email: cleanEmail,
+        picks,
+      }).catch((err) => console.error('Automated user picks email dispatch failed:', err));
+    }
+
+    // 2. Dispatch instant Telegram alert with tool names and user email
     sendTelegramLeadNotification({
       email: cleanEmail,
       source,
       finder_answers,
+      pick_tool_ids,
+      pick_tools: Array.isArray(picks) ? picks : undefined,
     }).catch((err) => console.error('Telegram lead alert failed:', err));
 
-    // Dispatch email alert to gptify.co@gmail.com
+    // 3. Dispatch internal admin alert
     await sendLeadNotificationEmail({
       email: cleanEmail,
       source,
@@ -63,7 +73,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({
       success: true,
       confirm_url: `/confirm?token=${token}`,
-      message: 'Request received. Recommendations saved.',
+      message: 'Picks emailed successfully. Recommendations saved.',
     });
   } catch {
     return NextResponse.json(

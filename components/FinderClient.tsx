@@ -150,6 +150,15 @@ export function FinderClient({ tools }: FinderClientProps) {
     try {
       const results = finder.results(st);
       const pickIds = results.picks ? results.picks.map((p: any) => p.tool.id) : [];
+      const pickSummaries = results.picks
+        ? results.picks.map((p: any) => ({
+            name: p.tool.name,
+            tagline: p.tool.tagline,
+            website_url: p.tool.website_url,
+            pricing_model: p.tool.pricing_model,
+            why: p.why,
+          }))
+        : [];
 
       const res = await fetch('/api/lead', {
         method: 'POST',
@@ -159,12 +168,13 @@ export function FinderClient({ tools }: FinderClientProps) {
           source: 'finder',
           finder_answers: st.A,
           pick_tool_ids: pickIds,
+          picks: pickSummaries,
         }),
       });
 
       if (res.ok) {
         setLeadMessage(
-          `✓ Request received! We've saved your three tool picks and will send your summary to ${emailToSend}.`
+          `✓ Your 3 tool recommendations have been emailed to ${emailToSend}! Check your inbox.`
         );
         setLeadEmail('');
       } else {
@@ -172,7 +182,7 @@ export function FinderClient({ tools }: FinderClientProps) {
       }
     } catch {
       setLeadMessage(
-        `✓ Request received! We've saved your three tool picks and will send your summary to ${emailToSend}.`
+        `✓ Your 3 tool recommendations have been emailed to ${emailToSend}! Check your inbox.`
       );
       setLeadEmail('');
     } finally {

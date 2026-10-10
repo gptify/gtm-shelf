@@ -37,11 +37,26 @@ export async function createLead(params: {
   const id = crypto.randomUUID();
   const now = new Date().toISOString();
 
+  const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+  const validUuidList: string[] = [];
+  if (Array.isArray(params.pick_tool_ids)) {
+    for (const id of params.pick_tool_ids) {
+      if (typeof id === 'string' && uuidRegex.test(id)) {
+        validUuidList.push(id);
+      }
+    }
+  }
+
+  const enrichedAnswers: Record<string, unknown> = {
+    ...(params.finder_answers || {}),
+    selected_tool_picks: params.pick_tool_ids || [],
+  };
+
   const record: LeadRecord = {
     id,
     email: params.email.trim().toLowerCase(),
     source: params.source || 'finder',
-    finder_answers: params.finder_answers || null,
+    finder_answers: enrichedAnswers,
     pick_tool_ids: params.pick_tool_ids || [],
     consent_text: params.consent_text,
     consent_at: now,
@@ -57,12 +72,12 @@ export async function createLead(params: {
   // If Supabase is available, insert or update
   if (supabase) {
     try {
-      await supabase.from('leads').upsert(
+      const { error: upsertError } = await supabase.from('leads').upsert(
         {
           email: record.email,
           source: record.source,
-          finder_answers: record.finder_answers,
-          pick_tool_ids: record.pick_tool_ids,
+          finder_answers: enrichedAnswers,
+          pick_tool_ids: validUuidList,
           consent_text: record.consent_text,
           consent_at: record.consent_at,
           confirm_token: record.confirm_token,
@@ -70,6 +85,9 @@ export async function createLead(params: {
         },
         { onConflict: 'email,source' }
       );
+      if (upsertError) {
+        console.error('Supabase lead upsert error:', upsertError);
+      }
     } catch (err) {
       console.error('Supabase lead create error:', err);
     }

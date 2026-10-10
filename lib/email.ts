@@ -286,3 +286,96 @@ export async function sendLeadNotificationEmail(params: {
   }
 }
 
+function escapeHtml(text: string): string {
+  return String(text || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+export interface UserPickItem {
+  name: string;
+  tagline?: string;
+  website_url?: string;
+  pricing_model?: string;
+  why?: string;
+}
+
+export async function sendPicksEmailToUser(params: {
+  email: string;
+  picks: UserPickItem[];
+}) {
+  if (!resend) {
+    console.warn('[Email Dispatch] RESEND_API_KEY is not set. Cannot send automated picks email to user.');
+    return { success: false, reason: 'NO_API_KEY' };
+  }
+
+  const subject = 'Your Curated AI Tool Picks — GTM Shelf';
+
+  const toolCardsHtml = (params.picks || []).map((t) => `
+    <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 18px 20px; margin-bottom: 14px;">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px;">
+        <h3 style="margin: 0; font-size: 17px; font-weight: 700; color: #0f172a;">${escapeHtml(t.name)}</h3>
+        <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; background: #e0e7ff; color: #4338ca; padding: 2px 8px; border-radius: 999px;">
+          ${escapeHtml(t.pricing_model || 'Free plan')}
+        </span>
+      </div>
+      ${t.tagline ? `<p style="margin: 0 0 8px; color: #475569; font-size: 14px; line-height: 1.5;">${escapeHtml(t.tagline)}</p>` : ''}
+      ${t.why ? `<p style="margin: 0 0 10px; color: #0f172a; font-size: 13px; line-height: 1.5; font-style: italic; background: #f8fafc; padding: 8px 12px; border-radius: 6px;">Why it fits: ${escapeHtml(t.why)}</p>` : ''}
+      ${t.website_url ? `<a href="${escapeHtml(t.website_url)}" style="display: inline-block; color: #2F45E0; font-weight: 600; font-size: 13px; text-decoration: none;">Visit ${escapeHtml(t.name)} →</a>` : ''}
+    </div>
+  `).join('');
+
+  const html = `
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <meta charset="utf-8">
+        <style>
+          body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #15172B; background: #f8fafc; padding: 24px; }
+          .container { max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; padding: 32px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+          .badge { display: inline-block; padding: 4px 10px; border-radius: 999px; background: #E5E9FF; color: #2F45E0; font-size: 12px; font-weight: 700; text-transform: uppercase; margin-bottom: 12px; }
+          h2 { margin: 0 0 12px; font-size: 22px; color: #15172B; font-weight: 800; }
+          p.intro { color: #475569; font-size: 15px; margin: 0 0 24px; line-height: 1.6; }
+          .btn { display: inline-block; background: #2F45E0; color: #ffffff !important; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; }
+          .footer { margin-top: 32px; padding-top: 16px; border-top: 1px solid #e2e8f0; font-size: 12px; color: #94a3b8; text-align: center; }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <span class="badge">Curated Recommendations</span>
+          <h2>Your 3 Recommended GTM Tools</h2>
+          <p class="intro">
+            Here are the tailored AI sales and marketing tools matched to your workflow requirements:
+          </p>
+
+          ${toolCardsHtml}
+
+          <div style="margin-top: 24px; text-align: center;">
+            <a href="https://www.gtmshelf.com" class="btn">
+              Explore Full GTM Catalog (50 Tools) →
+            </a>
+          </div>
+
+          <div class="footer">
+            Delivered automatically by <a href="https://www.gtmshelf.com" style="color: #64748b;">GTM Shelf</a>. You requested these recommendations via the Tool Finder.
+          </div>
+        </div>
+      </body>
+    </html>
+  `;
+
+  try {
+    const result = await resend.emails.send({
+      from: FROM_EMAIL,
+      to: [params.email],
+      subject,
+      html,
+    });
+    return { success: true, data: result };
+  } catch (err) {
+    console.error('[User Picks Email Error]', err);
+    return { success: false, error: err };
+  }
+}
+

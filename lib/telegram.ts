@@ -107,12 +107,21 @@ export async function sendTelegramLeadNotification(params: {
   email: string;
   source: string;
   finder_answers?: unknown;
+  pick_tool_ids?: string[];
+  pick_tools?: Array<{ name: string; tagline?: string }>;
 }): Promise<boolean> {
   const lines: string[] = [
-    '📬 <b>Yangi Lead / Newsletter Obunachisi (GTM Shelf)</b>\n',
+    '📬 <b>Yangi Tool Picks So\'rovi / Lead (GTM Shelf)</b>\n',
     `📧 <b>Email:</b> <code>${escapeHtml(params.email)}</code>`,
     `📍 <b>Manba:</b> <code>${escapeHtml(params.source)}</code>`,
   ];
+
+  if (params.pick_tools && params.pick_tools.length > 0) {
+    const names = params.pick_tools.map((t) => t.name).join(', ');
+    lines.push(`🛠 <b>Tavsiya qilingan tool-lar:</b> <b>${escapeHtml(names)}</b>`);
+  } else if (params.pick_tool_ids && params.pick_tool_ids.length > 0) {
+    lines.push(`🛠 <b>Tool-lar:</b> <code>${escapeHtml(params.pick_tool_ids.join(', '))}</code>`);
+  }
 
   if (params.finder_answers) {
     try {
