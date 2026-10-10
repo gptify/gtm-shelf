@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { AdvertiseInquiryForm } from '@/components/AdvertiseInquiryForm';
 
 export const metadata: Metadata = {
   title: 'Advertise & Listings — GTM Shelf',
@@ -239,7 +240,7 @@ export default function AdvertisePage() {
 
               <div style={{ marginTop: '28px', paddingTop: '20px', borderTop: '1px solid var(--border)' }}>
                 <a
-                  href="mailto:team@gptify.co?subject=GTM%20Shelf%20Premium%20Listing%20Inquiry%20($149)&body=Hi%20team,%0A%0AWe%20would%20like%20to%20upgrade%20our%20listing%20to%20Premium%20($149%20one-time/annual).%0A%0ATool%20Name:%20%0AWebsite:%20%0ADemo%20URL:%20%0A%0AThanks!"
+                  href="#inquire"
                   className="btn btn-primary"
                   style={{ width: '100%', textAlign: 'center', padding: '10px 16px', display: 'block', textDecoration: 'none' }}
                 >
@@ -304,7 +305,7 @@ export default function AdvertisePage() {
 
               <div style={{ marginTop: '28px', paddingTop: '20px', borderTop: '1px solid var(--border)' }}>
                 <a
-                  href="mailto:team@gptify.co?subject=GTM%20Shelf%20Sponsored%20Slot%20Inquiry%20($299)&body=Hi%20team,%0A%0AWe%20would%20like%20to%20book%20a%20Sponsored%20Slot%20/%20Launch%20Spotlight.%0A%0ATool%20Name:%20%0AWebsite:%20%0ATarget%20Funnel%20Stage:%20%0A%0AThanks!"
+                  href="#inquire"
                   className="btn btn-secondary"
                   style={{ width: '100%', textAlign: 'center', padding: '10px 16px', display: 'block', textDecoration: 'none' }}
                 >
@@ -316,7 +317,7 @@ export default function AdvertisePage() {
         </section>
 
         {/* Additional Collaboration Levers */}
-        <section style={{ margin: '56px 0', borderTop: '1px solid var(--border)', paddingTop: '40px' }}>
+        <section style={{ margin: '56px 0 20px', borderTop: '1px solid var(--border)', paddingTop: '40px' }}>
           <h2 style={{ fontSize: '1.375rem', fontWeight: 700, marginBottom: '20px', textAlign: 'center' }}>
             Further Collaboration Levers
           </h2>
@@ -327,7 +328,7 @@ export default function AdvertisePage() {
                 Affiliate &amp; Partner Networks
               </h3>
               <p style={{ fontSize: '0.875rem', color: 'var(--muted)', lineHeight: 1.5, margin: 0 }}>
-                Do you manage an affiliate or partner program on PartnerStack, Rewardful, or FirstPromoter? We integrate transparent referral tracking for qualifying tools. Email us at <a href="mailto:team@gptify.co" style={{ color: 'var(--primary)', fontFamily: 'monospace' }}>team@gptify.co</a>.
+                Do you manage an affiliate or partner program on PartnerStack, Rewardful, or FirstPromoter? We integrate transparent referral tracking for qualifying tools. Explore our <Link href="/partners" style={{ color: 'var(--primary)', textDecoration: 'underline' }}>Vendor Partnerships Program</Link> or send an inquiry below.
               </p>
             </div>
 
@@ -342,22 +343,8 @@ export default function AdvertisePage() {
           </div>
         </section>
 
-        {/* General Inquiries Box */}
-        <section style={{ maxWidth: '600px', margin: '40px auto 20px', padding: '28px', border: '1px solid var(--border)', borderRadius: '14px', background: 'var(--surface)', textAlign: 'center' }}>
-          <h3 style={{ fontSize: '1.125rem', fontWeight: 700, marginBottom: '6px' }}>
-            Have Questions About Listings?
-          </h3>
-          <p style={{ fontSize: '0.875rem', color: 'var(--muted)', marginBottom: '16px' }}>
-            Reach out directly with your tool details and team size.
-          </p>
-          <a
-            href="mailto:team@gptify.co?subject=GTM%20Shelf%20Listing%20Inquiry"
-            className="btn btn-secondary"
-            style={{ padding: '10px 20px', fontSize: '0.875rem', textDecoration: 'none' }}
-          >
-            Email team@gptify.co
-          </a>
-        </section>
+        {/* Dedicated Listing & Sponsorship Inquiry Form */}
+        <AdvertiseInquiryForm />
       </main>
 
       <Footer />

@@ -105,7 +105,7 @@ export default function AboutPage() {
           <section className="space-y-4">
             <h2 className="text-2xl font-bold tracking-tight">3. Checked at Listing Time</h2>
             <p className="text-base text-[var(--color-muted)] leading-relaxed">
-              Every tool listed here is checked once before it goes live — the link works, the category and pricing badge are accurate, and the description reflects what the vendor actually offers. We don&apos;t promise ongoing re-audits; if something&apos;s out of date, <Link href="/submit" className="text-[var(--color-primary)] underline">use the submit-a-tool form</Link> or email us at <a href="mailto:team@gptify.co" className="text-[var(--color-primary)] underline">team@gptify.co</a> and we&apos;ll fix it.
+              Every tool listed here is checked once before it goes live — the link works, the category and pricing badge are accurate, and the description reflects what the vendor actually offers. We don&apos;t promise ongoing re-audits; if something&apos;s out of date, <Link href="/submit" className="text-[var(--color-primary)] underline">use the submit-a-tool form</Link> or <Link href="/custom" className="text-[var(--color-primary)] underline">contact our team</Link> and we&apos;ll fix it.
             </p>
           </section>
 

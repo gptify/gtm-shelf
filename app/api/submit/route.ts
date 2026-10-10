@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { supabase, getTools, CATEGORIES } from '@/lib/db/data';
 import { hashIp, checkRateLimit } from '@/lib/security';
 import { sendToolSubmissionEmail } from '@/lib/email';
+import { sendTelegramToolSubmission } from '@/lib/telegram';
 
 export async function POST(req: NextRequest) {
   try {
@@ -37,7 +38,10 @@ export async function POST(req: NextRequest) {
     }
 
     const cleanName = (name || '').trim();
-    const cleanUrl = (website_url || '').trim();
+    let cleanUrl = (website_url || '').trim();
+    if (cleanUrl && !/^https?:\/\//i.test(cleanUrl)) {
+      cleanUrl = 'https://' + cleanUrl;
+    }
     const cleanTagline = (tagline || '').trim();
     const cleanEmail = (contact_email || '').trim().toLowerCase();
 
@@ -91,6 +95,7 @@ export async function POST(req: NextRequest) {
     // Map category
     const cat = CATEGORIES.find((c) => c.name.toLowerCase() === (category_name || '').toLowerCase());
     const categoryId = cat ? cat.id : null;
+    const numericStageId = stage_id && Number(stage_id) > 0 ? Number(stage_id) : null;
 
     // Map pricing model
     let normalizedPricing = 'free_plan';
@@ -104,7 +109,7 @@ export async function POST(req: NextRequest) {
           {
             name: cleanName,
             website_url: cleanUrl,
-            stage_id: stage_id ? Number(stage_id) : null,
+            stage_id: numericStageId,
             category_id: categoryId,
             pricing_model: normalizedPricing,
             tagline: cleanTagline,
@@ -122,6 +127,17 @@ export async function POST(req: NextRequest) {
         console.error('Supabase submission insert error:', err);
       }
     }
+
+    // Dispatch Telegram alert
+    sendTelegramToolSubmission({
+      name: cleanName,
+      website_url: cleanUrl,
+      tagline: cleanTagline,
+      pricing_model: normalizedPricing,
+      contact_email: cleanEmail,
+      category_name: category_name || (cat ? cat.name : 'Other / Not sure'),
+      is_vendor: Boolean(is_vendor),
+    }).catch((err) => console.error('Telegram tool submission alert dispatch failed:', err));
 
     // Dispatch email notification to gptify.co@gmail.com
     sendToolSubmissionEmail({

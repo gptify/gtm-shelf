@@ -43,7 +43,13 @@ function QueryPrefill({
 
     const parts = [];
     if (stack) parts.push(`Architecture Blueprint: ${stack}`);
-    if (need) parts.push(`Primary need: ${need}`);
+    if (need === 'premium_listing') {
+      parts.push('Inquiry: Verified Premium Listing Upgrade ($149 one-time/annual)');
+    } else if (need === 'sponsored_slot') {
+      parts.push('Inquiry: Sponsored Slot & Multi-Channel Spotlight ($299 one-time)');
+    } else if (need) {
+      parts.push(`Primary need: ${need}`);
+    }
     if (goal) parts.push(`Stage/Goal: ${goal}`);
     if (q) parts.push(`Requested tool/topic: ${q}`);
     if (crm && crm !== 'none') parts.push(`Current CRM: ${crm}`);
@@ -56,7 +62,9 @@ function QueryPrefill({
     else if (team) teamSize = team;
 
     let budget = '';
-    if (rawBudget === 'low') budget = 'Under $2,000';
+    if (need === 'premium_listing') budget = '$149';
+    else if (need === 'sponsored_slot') budget = '$299';
+    else if (rawBudget === 'low') budget = 'Under $2,000';
     else if (rawBudget === 'mid') budget = '$2,000 – $5,000';
     else if (rawBudget === 'high') budget = '$5,000 – $15,000';
 

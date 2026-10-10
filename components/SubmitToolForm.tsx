@@ -9,6 +9,15 @@ interface SubmitToolFormProps {
   categories: Category[];
 }
 
+function normalizeUrl(input: string): string {
+  let trimmed = input.trim();
+  if (!trimmed) return '';
+  if (!/^https?:\/\//i.test(trimmed)) {
+    trimmed = 'https://' + trimmed;
+  }
+  return trimmed;
+}
+
 export function SubmitToolForm({ stages, categories }: SubmitToolFormProps) {
   const [stageId, setStageId] = useState<number>(stages[0]?.id || 1);
   const [name, setName] = useState('');
@@ -28,7 +37,9 @@ export function SubmitToolForm({ stages, categories }: SubmitToolFormProps) {
   const availableCategories = categories.filter((c) => c.stage_id === stageId);
 
   useEffect(() => {
-    if (availableCategories.length > 0 && !availableCategories.some((c) => c.name === categoryName)) {
+    if (stageId === 0) {
+      setCategoryName('Other / Not sure');
+    } else if (availableCategories.length > 0 && !availableCategories.some((c) => c.name === categoryName) && categoryName !== 'Other / Not sure') {
       setCategoryName(availableCategories[0].name);
     }
   }, [stageId, availableCategories, categoryName]);
@@ -45,18 +56,21 @@ export function SubmitToolForm({ stages, categories }: SubmitToolFormProps) {
 
     const errs: Record<string, string> = {};
     if (!name.trim()) errs.name = 'Enter the tool name.';
-    if (!url.trim()) {
-      errs.url = 'Enter a full web address, like https://example.com.';
+
+    const normalizedUrl = normalizeUrl(url);
+    if (!normalizedUrl) {
+      errs.url = 'Enter a web address, like example.com or https://example.com.';
     } else {
       try {
-        const parsed = new URL(url.trim());
-        if (parsed.protocol !== 'http:' && parsed.protocol !== 'https:') {
-          errs.url = 'Enter a valid URL with http:// or https://.';
+        const parsed = new URL(normalizedUrl);
+        if (!parsed.hostname || !parsed.hostname.includes('.')) {
+          errs.url = 'Enter a valid web address, like example.com or https://example.com.';
         }
       } catch {
-        errs.url = 'Enter a full web address, like https://example.com.';
+        errs.url = 'Enter a valid web address, like example.com or https://example.com.';
       }
     }
+
     if (!tagline.trim()) {
       errs.tagline = 'Add a one-line summary.';
     } else if (tagline.trim().length > 90) {
@@ -81,9 +95,9 @@ export function SubmitToolForm({ stages, categories }: SubmitToolFormProps) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: name.trim(),
-          website_url: url.trim(),
-          stage_id: stageId,
-          category_name: categoryName,
+          website_url: normalizedUrl,
+          stage_id: stageId === 0 ? null : stageId,
+          category_name: categoryName || 'Other / Not sure',
           pricing_model: pricing,
           tagline: tagline.trim(),
           description: description.trim(),
@@ -113,7 +127,7 @@ export function SubmitToolForm({ stages, categories }: SubmitToolFormProps) {
         <div className="check">✓</div>
         <h2>Tool Submitted!</h2>
         <p>
-          Thank you for submitting <strong style={{ color: 'var(--ink)' }}>{name}</strong>. Our editorial team reviews every listing against vendor documentation before publication.
+          Thank you for submitting <strong style={{ color: 'var(--ink)' }}>{name}</strong>. Our editorial team will review your submission against vendor documentation and get back to you{contactEmail ? <> at <strong style={{ color: 'var(--ink)' }}>{contactEmail}</strong></> : null} within 1 business day.
         </p>
         <div className="actions">
           <Link href="/" className="btn btn-primary">
@@ -126,6 +140,7 @@ export function SubmitToolForm({ stages, categories }: SubmitToolFormProps) {
               setUrl('');
               setTagline('');
               setDescription('');
+              setContactEmail('');
               setSubmitted(false);
             }}
             className="btn btn-ghost"
@@ -181,11 +196,11 @@ export function SubmitToolForm({ stages, categories }: SubmitToolFormProps) {
           </label>
           <input
             id="website_url"
-            type="url"
+            type="text"
             value={url}
             onChange={(e) => setUrl(e.target.value)}
             className={errors.url ? 'err' : ''}
-            placeholder="https://example.com"
+            placeholder="example.com or https://example.com"
             aria-invalid={Boolean(errors.url)}
           />
           {errors.url && <span className="err">{errors.url}</span>}
@@ -200,13 +215,20 @@ export function SubmitToolForm({ stages, categories }: SubmitToolFormProps) {
           <select
             id="stage_select"
             value={stageId}
-            onChange={(e) => setStageId(Number(e.target.value))}
+            onChange={(e) => {
+              const val = Number(e.target.value);
+              setStageId(val);
+              if (val === 0) {
+                setCategoryName('Other / Not sure');
+              }
+            }}
           >
             {stages.map((s) => (
               <option key={s.id} value={s.id}>
                 {s.name} ({s.hint})
               </option>
             ))}
+            <option value={0}>Other / Not sure</option>
           </select>
         </div>
 
@@ -219,11 +241,18 @@ export function SubmitToolForm({ stages, categories }: SubmitToolFormProps) {
             value={categoryName}
             onChange={(e) => setCategoryName(e.target.value)}
           >
-            {availableCategories.map((c) => (
-              <option key={c.id} value={c.name}>
-                {c.name}
-              </option>
-            ))}
+            {stageId === 0 ? (
+              <option value="Other / Not sure">Other / Not sure</option>
+            ) : (
+              <>
+                {availableCategories.map((c) => (
+                  <option key={c.id} value={c.name}>
+                    {c.name}
+                  </option>
+                ))}
+                <option value="Other / Not sure">Other / Not sure</option>
+              </>
+            )}
           </select>
         </div>
       </div>
