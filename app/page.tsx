@@ -5,14 +5,14 @@ import { HomeDirectory } from '@/components/HomeDirectory';
 export const metadata: Metadata = {
   title: 'GTM Shelf: Discover AI Tools for Sales and Marketing',
   description:
-    '50 vetted AI tools for sales and marketing, sorted by funnel stage. Build your GTM stack in a few questions.',
+    'Vetted AI tools for sales and marketing, sorted by funnel stage. Build your GTM stack in a few questions.',
   alternates: {
     canonical: '/',
   },
   openGraph: {
     title: 'GTM Shelf: Discover AI Tools for Sales and Marketing',
     description:
-      '50 vetted AI tools for sales and marketing, sorted by funnel stage. Build your GTM stack in a few questions.',
+      'Vetted AI tools for sales and marketing, sorted by funnel stage. Build your GTM stack in a few questions.',
     url: 'https://gtmshelf.com/',
     siteName: 'GTM Shelf',
     images: [
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
         url: 'https://gtmshelf.com/og-image.png?v=2',
         width: 1200,
         height: 627,
-        alt: 'GTM Shelf: 50 vetted AI tools for sales and marketing, sorted by funnel stage',
+        alt: 'GTM Shelf: Vetted AI tools for sales and marketing, sorted by funnel stage',
       },
     ],
     locale: 'en_US',
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'GTM Shelf: Discover AI Tools for Sales and Marketing',
     description:
-      '50 vetted AI tools for sales and marketing, sorted by funnel stage. Build your GTM stack in a few questions.',
+      'Vetted AI tools for sales and marketing, sorted by funnel stage. Build your GTM stack in a few questions.',
     images: ['https://gtmshelf.com/og-image.png?v=2'],
   },
 };

@@ -2211,7 +2211,7 @@
     "slug": "calendly",
     "name": "Calendly",
     "domain": "calendly.com",
-    "stage": 4,
+    "stage": 3,
     "cat": "Meeting scheduling",
     "tagline": "Automated meeting scheduling, intake qualification routing, and calendar coordination",
     "description": "Calendly removes scheduling friction with automated calendar sync, intake qualifying forms, team round-robin routing, and CRM logging.",
@@ -2595,15 +2595,15 @@
     "source_url": "https://n8n.io/pricing/",
     "billing_basis": "execution_tier",
     "geographic_coverage": "global",
-    "is_public": true,
-    "status": "active"
+    "is_public": false,
+    "status": "inactive"
   },
   {
     "id": "make",
     "slug": "make",
     "name": "Make",
     "domain": "make.com",
-    "stage": 4,
+    "stage": 5,
     "cat": "Workflow automation",
     "tagline": "Visual integration platform with credit-based workflow orchestration",
     "description": "Make connects apps and automates revenue operations with an intuitive visual canvas, utilizing credit-based billing (10,000 credits/mo on base paid plans).",
@@ -2684,8 +2684,8 @@
     "source_url": "https://zapier.com/pricing",
     "billing_basis": "task_tier",
     "geographic_coverage": "global",
-    "is_public": true,
-    "status": "active"
+    "is_public": false,
+    "status": "inactive"
   },
   {
     "id": "customer-io",

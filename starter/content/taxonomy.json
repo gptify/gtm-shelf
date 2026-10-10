@@ -16,19 +16,19 @@
       "id": 3,
       "slug": "engage",
       "name": "Engage",
-      "hint": "Outreach, SDR agents, chat"
+      "hint": "Outreach, SDR agents, chat, scheduling"
     },
     {
       "id": 4,
       "slug": "close",
       "name": "Close",
-      "hint": "Calls, meetings, CRM"
+      "hint": "Calls, meeting notes, CRM, proposals"
     },
     {
       "id": 5,
       "slug": "grow",
       "name": "Grow",
-      "hint": "Lifecycle and forecasting"
+      "hint": "Lifecycle, forecasting, automation"
     }
   ],
   "categories": [
@@ -152,7 +152,7 @@
       "phrase": "proposals, CPQ, and document automation"
     },
     {
-      "stage_id": 4,
+      "stage_id": 5,
       "slug": "workflow-automation",
       "name": "Workflow automation",
       "sort": 5,
@@ -166,7 +166,7 @@
       "phrase": "customer success and retention"
     },
     {
-      "stage_id": 4,
+      "stage_id": 3,
       "slug": "meeting-scheduling",
       "name": "Meeting scheduling",
       "sort": 6,

@@ -112,7 +112,7 @@ export default function UseCasesPage() {
             >
               Stop buying disconnected point solutions. Map your immediate revenue problems to
               pragmatic step-by-step workflows, human review checkpoints, data privacy guardrails, and
-              suggested tool configurations from our curated 50-tool catalog.
+              suggested tool configurations from our curated GTM tool catalog.
             </p>
 
             <div

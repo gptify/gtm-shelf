@@ -68,7 +68,7 @@ export function PartnerInquiryForm() {
         Apply for Vendor Partnership
       </h3>
       <p style={{ fontSize: '0.875rem', color: 'var(--muted)', margin: '0 0 24px', lineHeight: 1.5 }}>
-        Join 50+ vetted AI tools evaluated by operators across B2B sales and marketing.
+        Join vetted AI tools evaluated by operators across B2B sales and marketing.
       </p>
 
       {errorMsg && (

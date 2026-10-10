@@ -623,7 +623,7 @@ export default async function UseCaseDetailPage({ params }: PageProps) {
                   Suggested Tools
                 </h2>
                 <p style={{ color: 'var(--muted)', fontSize: '0.9375rem', margin: 0 }}>
-                  Tools cataloged from our active 50-tool GTM index to support this workflow.
+                  Tools cataloged from our active GTM index to support this workflow.
                 </p>
               </div>
 
