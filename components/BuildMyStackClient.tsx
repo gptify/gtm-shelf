@@ -2,10 +2,11 @@
 
 import { useState, useMemo, useEffect, useCallback } from 'react';
 import Link from 'next/link';
-import { ToolPublic } from '@/lib/types';
+import { ToolPublic, UseCase } from '@/lib/types';
 import { ToolDrawer } from '@/components/ToolDrawer';
 import { trackEvent } from '@/lib/analytics';
 import { getOutboundLinkInfo, STANDARD_AFFILIATE_DISCLOSURE } from '@/lib/affiliates';
+import useCasesData from '@/data/use-cases.json';
 
 interface BuildMyStackClientProps {
   tools: ToolPublic[];
@@ -151,23 +152,9 @@ export function BuildMyStackClient({ tools, initialParams = {} }: BuildMyStackCl
 
   // Active Use Case context if linked from /use-cases/[slug]
   const [useCaseSlug] = useState<string | undefined>(initialParams.use_case);
-  const [useCaseData, setUseCaseData] = useState<{ title: string; slug: string; bucket: string; mini_preview?: { label: string }[]; short_summary?: string } | null>(null);
-
-  useEffect(() => {
-    if (!useCaseSlug) return;
-    import('@/data/use-cases.json').then((mod) => {
-      const list = (mod.default || mod) as any[];
-      const found = list.find((u) => u.slug === useCaseSlug);
-      if (found) {
-        setUseCaseData({
-          title: found.title,
-          slug: found.slug,
-          bucket: found.bucket,
-          mini_preview: found.mini_preview,
-          short_summary: found.short_summary,
-        });
-      }
-    }).catch(() => {});
+  const activeUseCase = useMemo(() => {
+    if (!useCaseSlug) return null;
+    return (useCasesData as unknown as UseCase[]).find((u) => u.slug === useCaseSlug) || null;
   }, [useCaseSlug]);
 
   useEffect(() => {
@@ -347,6 +334,19 @@ export function BuildMyStackClient({ tools, initialParams = {} }: BuildMyStackCl
           }
         }
 
+        // Use-Case Blueprint Alignment: Directly influence recommendation if user arrived from a blueprint
+        if (activeUseCase) {
+          const isPrimaryUseCaseTool = activeUseCase.primary_tool_slugs.includes(t.slug) || activeUseCase.primary_tool_slugs.includes(t.id);
+          const isLeanUseCaseTool = activeUseCase.stack_options?.lean?.required_tools?.some((rt) => rt.slug === t.slug || rt.slug === t.id);
+          const isAdvancedUseCaseTool = activeUseCase.stack_options?.advanced?.required_tools?.some((rt) => rt.slug === t.slug || rt.slug === t.id);
+
+          if (isLeanUseCaseTool) {
+            score += 25;
+          } else if (isPrimaryUseCaseTool || isAdvancedUseCaseTool) {
+            score += 18;
+          }
+        }
+
         return { tool: t, score };
       });
 
@@ -392,9 +392,18 @@ export function BuildMyStackClient({ tools, initialParams = {} }: BuildMyStackCl
           .map((s) => s.tool.name)
           .filter((n) => n !== tool.name);
 
-        const whyReason = hasDirectCrmSync
+        // Check if this tool fulfills a specific step in the target use case
+        const blueprintStep = activeUseCase?.workflow_diagram?.find((st) =>
+          st.tool_slugs?.some((ts) => ts === tool.slug || ts === tool.id)
+        );
+
+        let whyReason = hasDirectCrmSync
           ? `Selected for ${bucketDef.label.toLowerCase()} outcomes with direct native synchronization into ${selectedCrm}.`
           : `High-leverage tool for ${bucketDef.label.toLowerCase()} operations, connecting flexibly via Webhook or Zapier.`;
+
+        if (blueprintStep && activeUseCase) {
+          whyReason = `Directly fulfills "${blueprintStep.label}" in the ${activeUseCase.title} blueprint.`;
+        }
 
         return {
           tool,
@@ -511,7 +520,7 @@ export function BuildMyStackClient({ tools, initialParams = {} }: BuildMyStackCl
     return (
       <main className="page" id="main-content" style={{ maxWidth: '960px', margin: '0 auto', paddingBottom: '80px' }}>
         {/* Use-Case Context Banner if arriving from a Blueprint */}
-        {useCaseData && (
+        {activeUseCase && (
           <div
             style={{
               marginBottom: '24px',
@@ -531,14 +540,14 @@ export function BuildMyStackClient({ tools, initialParams = {} }: BuildMyStackCl
                 Operational Blueprint Integration
               </div>
               <div style={{ fontSize: '0.9375rem', fontWeight: 700, color: '#1e3a8a' }}>
-                Configured to operationalize: {useCaseData.title}
+                Configured to operationalize: {activeUseCase.title}
               </div>
               <div style={{ fontSize: '0.8125rem', color: '#3b82f6', marginTop: '2px' }}>
                 Each recommended tool below directly fulfills one step in this workflow blueprint.
               </div>
             </div>
             <Link
-              href={`/use-cases/${useCaseData.slug}`}
+              href={`/use-cases/${activeUseCase.slug}`}
               style={{
                 fontSize: '0.8125rem',
                 fontWeight: 600,
@@ -827,7 +836,7 @@ export function BuildMyStackClient({ tools, initialParams = {} }: BuildMyStackCl
       <p className="qmeta">Step {step} of 6</p>
 
       {/* Blueprint context banner if arriving from a Use-Case Blueprint */}
-      {useCaseData && (
+      {activeUseCase && (
         <div
           style={{
             marginBottom: '20px',
@@ -844,10 +853,10 @@ export function BuildMyStackClient({ tools, initialParams = {} }: BuildMyStackCl
           }}
         >
           <span>
-            <b>Target Blueprint:</b> {useCaseData.title}
+            <b>Target Blueprint:</b> {activeUseCase.title}
           </span>
           <Link
-            href={`/use-cases/${useCaseData.slug}`}
+            href={`/use-cases/${activeUseCase.slug}`}
             style={{ color: '#1d4ed8', fontWeight: 600, fontSize: '0.8125rem', textDecoration: 'none', whiteSpace: 'nowrap' }}
           >
             View Blueprint ↗
