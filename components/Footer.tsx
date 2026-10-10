@@ -29,13 +29,13 @@ export function Footer({ stages = STAGES }: FooterProps) {
             Build My Stack
           </Link>
           <Link href="/use-cases" style={{ color: 'inherit', textDecoration: 'none' }}>
-            Use Cases
+            Playbooks
           </Link>
           <Link href="/stacks" style={{ color: 'inherit', textDecoration: 'none' }}>
             Stacks
           </Link>
           <Link href="/guides" style={{ color: 'inherit', textDecoration: 'none' }}>
-            Guides
+            Resources
           </Link>
           <Link href="/free-tools" style={{ color: 'inherit', textDecoration: 'none' }}>
             Free Tools

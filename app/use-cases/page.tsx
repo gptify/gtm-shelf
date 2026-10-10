@@ -7,14 +7,14 @@ import { getAllUseCases } from '@/lib/use-cases';
 import { UseCasesDirectoryClient } from '@/components/UseCasesDirectoryClient';
 
 export const metadata: Metadata = {
-  title: 'GTM Use-Case Library • 18 B2B Revenue Workflows and AI Stacks | GTM Shelf',
+  title: 'GTM Playbooks & Revenue Workflows • 18 Operational Blueprints | GTM Shelf',
   description:
     'Explore 18 pragmatic B2B go-to-market operational blueprints. Step-by-step workflows for waterfall enrichment, inbound lead routing, signal prospecting, and autonomous CRM sync.',
   alternates: {
     canonical: '/use-cases',
   },
   openGraph: {
-    title: 'GTM Use-Case Library • 18 B2B Revenue Workflows and AI Stacks | GTM Shelf',
+    title: 'GTM Playbooks & Revenue Workflows • 18 Operational Blueprints | GTM Shelf',
     description:
       'From revenue bottlenecks to working software stacks. Explore 18 operational GTM blueprints with human approval checkpoints and suggested tool configurations.',
     url: 'https://gtmshelf.com/use-cases',
@@ -29,7 +29,7 @@ export default function UseCasesPage() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: 'GTM Use-Case Library: 18 Operational Revenue Blueprints',
+    name: 'GTM Playbooks & Revenue Workflows: 18 Operational Blueprints',
     description:
       'Curated operational blueprints matching common B2B revenue problems to suggested software stacks and step-by-step implementation workflows.',
     url: 'https://gtmshelf.com/use-cases',
@@ -88,7 +88,7 @@ export default function UseCasesPage() {
                   background: 'var(--brand)',
                 }}
               />
-              18 Operational GTM Blueprints
+              18 Operational GTM Playbooks
             </div>
 
             <h1

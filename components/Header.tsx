@@ -36,13 +36,13 @@ export function Header({ onOpenSubmit }: HeaderProps) {
           Tools
         </Link>
         <Link href="/use-cases" aria-current={pathname.startsWith('/use-cases') ? 'page' : undefined}>
-          Use Cases
+          Playbooks
         </Link>
         <Link href="/stacks" aria-current={pathname.startsWith('/stacks') ? 'page' : undefined}>
           Stacks
         </Link>
         <Link href="/guides" aria-current={pathname.startsWith('/guides') ? 'page' : undefined}>
-          Guides
+          Resources
         </Link>
         <Link href="/partners" aria-current={pathname === '/partners' ? 'page' : undefined}>
           Partners

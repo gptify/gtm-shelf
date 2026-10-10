@@ -5,14 +5,14 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'Guides and Comparisons — GTM Shelf',
-  description: 'Curated evaluation guides and side-by-side comparisons of AI tools for sales and marketing teams.',
+  title: 'Resources and Buyer Guides — GTM Shelf',
+  description: 'Free B2B revenue calculators, AI readiness assessments, buyer guides, and head-to-head comparisons for sales and marketing teams.',
   alternates: {
     canonical: '/guides',
   },
   openGraph: {
-    title: 'Guides and Comparisons — GTM Shelf',
-    description: 'Curated evaluation guides and side-by-side comparisons of AI tools for sales and marketing teams.',
+    title: 'Resources and Buyer Guides — GTM Shelf',
+    description: 'Free B2B revenue calculators, AI readiness assessments, buyer guides, and head-to-head comparisons for sales and marketing teams.',
     url: '/guides',
     siteName: 'GTM Shelf',
   },
@@ -35,22 +35,186 @@ export default function GuidesIndexPage() {
               <Link href="/">Home</Link>
             </li>
             <li aria-hidden="true">/</li>
-            <li aria-current="page">Guides</li>
+            <li aria-current="page">Resources</li>
           </ol>
         </nav>
 
         {/* Page Hero */}
-        <header style={{ marginBottom: '28px' }}>
-          <h1>Guides & Comparisons</h1>
+        <header style={{ marginBottom: '32px' }}>
+          <span className="badge-pill" style={{ marginBottom: '8px', display: 'inline-block' }}>
+            Resource Center
+          </span>
+          <h1 style={{ margin: '0 0 10px' }}>Resources &amp; Buyer Guides</h1>
           <p className="lede">
-            Short, pragmatic buyer guides and side-by-side breakdowns to help you choose the right AI tools for your funnel without vendor fluff. Not sure where to start? <Link href="/find" style={{ color: 'var(--brand)', fontWeight: 600 }}>Try the Tool Finder</Link>.
+            Pragmatic evaluation guides, head-to-head tool comparisons, interactive ROI calculators, and operational revenue definitions — built without vendor fluff. Not sure where to start? <Link href="/find" style={{ color: 'var(--brand)', fontWeight: 600 }}>Try the Tool Finder</Link>.
           </p>
         </header>
+
+        {/* Section 0: Interactive Calculators & Free Tools */}
+        <section aria-labelledby="free-tools-heading" style={{ marginBottom: '44px' }}>
+          <div className="gl-group" style={{ marginTop: 0 }}>
+            <h2 id="free-tools-heading" style={{ margin: 0, font: 'inherit' }}>
+              Free Calculators &amp; Diagnostics
+            </h2>
+            <Link
+              href="/free-tools"
+              style={{
+                fontSize: '.875rem',
+                color: 'var(--brand)',
+                fontWeight: 600,
+                textDecoration: 'none',
+              }}
+            >
+              View all 6 free tools →
+            </Link>
+          </div>
+
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+              gap: '18px',
+              marginTop: '16px',
+            }}
+          >
+            {/* Tool 1: ROI Calculator */}
+            <div
+              style={{
+                padding: '24px',
+                borderRadius: '14px',
+                background: 'var(--surface)',
+                border: '1px solid var(--border)',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+              }}
+            >
+              <div>
+                <span
+                  style={{
+                    fontSize: '0.75rem',
+                    fontWeight: 700,
+                    textTransform: 'uppercase',
+                    color: 'var(--brand)',
+                    letterSpacing: '0.04em',
+                    display: 'block',
+                    marginBottom: '8px',
+                  }}
+                >
+                  Financial Model • Free
+                </span>
+                <h3 style={{ fontSize: '1.1875rem', fontWeight: 700, margin: '0 0 8px', color: 'var(--ink)' }}>
+                  AI ROI &amp; Payback Calculator
+                </h3>
+                <p style={{ fontSize: '0.875rem', color: 'var(--muted)', margin: 0, lineHeight: 1.5 }}>
+                  Model your software budget, manual data entry hours eliminated, and payback period across pipeline velocity before purchasing licenses.
+                </p>
+              </div>
+              <div style={{ marginTop: '20px', paddingTop: '16px', borderTop: '1px solid var(--border)' }}>
+                <Link
+                  href="/roi-calculator"
+                  className="btn btn-primary"
+                  style={{ width: '100%', textAlign: 'center', padding: '9px 16px', fontSize: '0.875rem' }}
+                >
+                  Launch ROI Calculator →
+                </Link>
+              </div>
+            </div>
+
+            {/* Tool 2: AI Readiness Assessment */}
+            <div
+              style={{
+                padding: '24px',
+                borderRadius: '14px',
+                background: 'var(--surface)',
+                border: '1px solid var(--border)',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+              }}
+            >
+              <div>
+                <span
+                  style={{
+                    fontSize: '0.75rem',
+                    fontWeight: 700,
+                    textTransform: 'uppercase',
+                    color: '#059669',
+                    letterSpacing: '0.04em',
+                    display: 'block',
+                    marginBottom: '8px',
+                  }}
+                >
+                  Diagnostic Audit • 5 Minutes
+                </span>
+                <h3 style={{ fontSize: '1.1875rem', fontWeight: 700, margin: '0 0 8px', color: 'var(--ink)' }}>
+                  AI Revenue Readiness Diagnostic
+                </h3>
+                <p style={{ fontSize: '0.875rem', color: 'var(--muted)', margin: 0, lineHeight: 1.5 }}>
+                  Benchmark your revenue team&apos;s automation maturity, CRM hygiene, and data readiness across 6 dimensions with an instant 0–100 score.
+                </p>
+              </div>
+              <div style={{ marginTop: '20px', paddingTop: '16px', borderTop: '1px solid var(--border)' }}>
+                <Link
+                  href="/ai-readiness"
+                  className="btn btn-primary"
+                  style={{ width: '100%', textAlign: 'center', padding: '9px 16px', fontSize: '0.875rem' }}
+                >
+                  Take Readiness Assessment →
+                </Link>
+              </div>
+            </div>
+
+            {/* Tool 3: Stack Cost Simulator */}
+            <div
+              style={{
+                padding: '24px',
+                borderRadius: '14px',
+                background: 'var(--surface)',
+                border: '1px solid var(--border)',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+              }}
+            >
+              <div>
+                <span
+                  style={{
+                    fontSize: '0.75rem',
+                    fontWeight: 700,
+                    textTransform: 'uppercase',
+                    color: '#4f46e5',
+                    letterSpacing: '0.04em',
+                    display: 'block',
+                    marginBottom: '8px',
+                  }}
+                >
+                  Cost Estimator • Interactive
+                </span>
+                <h3 style={{ fontSize: '1.1875rem', fontWeight: 700, margin: '0 0 8px', color: 'var(--ink)' }}>
+                  GTM Stack Cost Simulator
+                </h3>
+                <p style={{ fontSize: '0.875rem', color: 'var(--muted)', margin: 0, lineHeight: 1.5 }}>
+                  Simulate monthly software expenditures across CRM tiers (HubSpot, Salesforce), outbound seats, and workflow automation usage.
+                </p>
+              </div>
+              <div style={{ marginTop: '20px', paddingTop: '16px', borderTop: '1px solid var(--border)' }}>
+                <Link
+                  href="/free-tools"
+                  className="btn btn-secondary"
+                  style={{ width: '100%', textAlign: 'center', padding: '9px 16px', fontSize: '0.875rem', display: 'block' }}
+                >
+                  Open Simulator Hub →
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* Featured Glossary Banner */}
         <div
           style={{
-            marginBottom: '36px',
+            marginBottom: '40px',
             padding: '20px 24px',
             borderRadius: '14px',
             background: 'var(--surface)',
