@@ -436,6 +436,13 @@ h1, h2, h3, h4{text-wrap:balance}
 .pre{margin:0 0 16px;font-size:.9375rem;color:var(--brand);font-weight:600}
 .reqform .fine{margin:12px 0 0;font-size:.8125rem;color:var(--muted)}
 
+@media (min-width:721px) and (max-width:960px){
+  .top{gap:12px}
+  .nav{gap:12px}
+  .nav a{font-size:.875rem}
+  .top .btn-ghost{display:none}
+}
+
 @media (max-width:720px){
   .top{flex-wrap:wrap;gap:8px 16px}
   .dt th:last-child,.dt td:last-child{position:static;box-shadow:none}

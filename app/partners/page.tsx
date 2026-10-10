@@ -6,14 +6,14 @@ import { STAGES } from '@/lib/db/data';
 import { PartnerInquiryForm } from '@/components/PartnerInquiryForm';
 
 export const metadata: Metadata = {
-  title: 'Partner with GTMShelf • Vendor Partnerships & Co-Marketing',
+  title: 'Partner with GTM Shelf • Vendor Partnerships and Co-Marketing',
   description:
     'Put your AI sales or marketing tool in front of high-intent B2B operators, founders, and revenue architects actively building their software stacks.',
   alternates: {
     canonical: '/partners',
   },
   openGraph: {
-    title: 'Partner with GTMShelf • Vendor Partnerships & Co-Marketing',
+    title: 'Partner with GTM Shelf • Vendor Partnerships and Co-Marketing',
     description:
       'Put your AI tool in front of modern B2B operators actively building their software stacks.',
     url: '/partners',
@@ -69,7 +69,7 @@ export default function PartnersPage() {
                 margin: '0 auto 28px',
               }}
             >
-              GTMShelf is where founders, VPs of Sales, and growth architects come to design their AI software architecture. We cut through marketing hype to match real tools with real workflows.
+              GTM Shelf is where founders, VPs of Sales, and growth architects come to design their AI software architecture. We cut through marketing hype to match real tools with real workflows.
             </p>
           </div>
 
@@ -81,7 +81,7 @@ export default function PartnersPage() {
                 Targeted B2B Readership
               </h3>
               <p style={{ fontSize: '0.875rem', color: 'var(--muted)', margin: 0, lineHeight: 1.5 }}>
-                Visitors explore GTMShelf to evaluate software combinations, integrations, and operational workflows for revenue and marketing teams.
+                Visitors explore GTM Shelf to evaluate software combinations, integrations, and operational workflows for revenue and marketing teams.
               </p>
             </div>
 
@@ -182,7 +182,7 @@ export default function PartnersPage() {
               Editorial Integrity Standard
             </h3>
             <p style={{ fontSize: '0.875rem', color: 'var(--muted)', margin: 0 }}>
-              At GTMShelf, recommendations are strictly determined by software utility, integration depth, and budget fit. Paid sponsorships are clearly labeled as sponsored placements and never alter objective tool specifications or organic ranking algorithms.
+              At GTM Shelf, recommendations are strictly determined by software utility, integration depth, and budget fit. Paid sponsorships are clearly labeled as sponsored placements and never alter objective tool specifications or organic ranking algorithms.
             </p>
           </section>
 

@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const uc = getUseCaseBySlug(params.slug);
   if (!uc) return {};
 
-  const title = `${uc.title} • GTM Blueprint & Tool Stack | GTMShelf`;
+  const title = `${uc.title} • GTM Blueprint and Tool Stack | GTM Shelf`;
   const description = `${uc.short_summary} Intended outcome: ${uc.intended_outcome}`.slice(0, 155);
 
   return {
@@ -146,34 +146,24 @@ export default async function UseCaseDetailPage({ params }: PageProps) {
 
         <main style={{ paddingBottom: '64px', maxWidth: '960px', margin: '0 auto' }}>
           {/* Breadcrumb Navigation */}
-          <nav
-            aria-label="Breadcrumbs"
-            style={{
-              padding: '24px 0 16px',
-              fontSize: '0.8125rem',
-              color: 'var(--muted)',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-              flexWrap: 'wrap',
-            }}
-          >
-            <Link href="/" style={{ color: 'inherit', textDecoration: 'none' }}>
-              Home
-            </Link>
-            <span>/</span>
-            <Link href="/use-cases" style={{ color: 'inherit', textDecoration: 'none' }}>
-              Use Cases
-            </Link>
-            <span>/</span>
-            <Link
-              href={`/use-cases?bucket=${encodeURIComponent(uc.bucket)}`}
-              style={{ color: 'inherit', textDecoration: 'none' }}
-            >
-              {uc.bucket}
-            </Link>
-            <span>/</span>
-            <span style={{ color: 'var(--ink)', fontWeight: 600 }}>{uc.title}</span>
+          <nav aria-label="Breadcrumb">
+            <ol className="crumbs">
+              <li>
+                <Link href="/">Home</Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li>
+                <Link href="/use-cases">Use Cases</Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li>
+                <Link href={`/use-cases?bucket=${encodeURIComponent(uc.bucket)}`}>
+                  {uc.bucket}
+                </Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li aria-current="page">{uc.title}</li>
+            </ol>
           </nav>
 
           {/* Hero Header */}

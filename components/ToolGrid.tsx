@@ -55,8 +55,13 @@ export function ToolGrid({
               >
                 {tool.name}
               </button>
-              {tool.featured && <span className="badge">Featured</span>}
+              {tool.featured && <span className="badge">Editor’s Pick</span>}
               {tool.sponsored && <span className="badge">Sponsored</span>}
+              {tool.slug === 'cubeo-ai' && (
+                <span className="badge" style={{ background: '#f1f5f9', color: '#475569', borderColor: '#cbd5e1' }} title="Co-founded by GTM Shelf founder Shukhrat Iskandarov">
+                  Founder Project
+                </span>
+              )}
               {tool.lifecycle_status === 'discontinued' && (
                 <span className="badge" style={{ background: '#fee2e2', color: '#991b1b', borderColor: '#fca5a5' }}>
                   Discontinued

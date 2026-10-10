@@ -17,14 +17,38 @@ const figtree = Figtree({
 });
 
 export const metadata: Metadata = {
-  title: 'GTM Shelf: AI tools for sales and marketing',
+  title: 'GTM Shelf: Discover AI Tools for Sales and Marketing',
   description:
-    'A curated directory of AI tools built only for sales and marketing. Browse by funnel stage or answer a few questions to get three picks.',
+    '50 vetted AI tools for sales and marketing, sorted by funnel stage. Build your GTM stack in a few questions.',
   icons: {
     icon: '/favicon.ico',
     apple: '/brand/png/gtm-shelf-apple-touch-icon-180.png',
   },
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://gtmshelf.com'),
+  openGraph: {
+    title: 'GTM Shelf: Discover AI Tools for Sales and Marketing',
+    description:
+      '50 vetted AI tools for sales and marketing, sorted by funnel stage. Build your GTM stack in a few questions.',
+    url: 'https://gtmshelf.com/',
+    siteName: 'GTM Shelf',
+    images: [
+      {
+        url: 'https://gtmshelf.com/og-image.png',
+        width: 1200,
+        height: 627,
+        alt: 'GTM Shelf: Discover AI Tools for Sales and Marketing',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'GTM Shelf: Discover AI Tools for Sales and Marketing',
+    description:
+      '50 vetted AI tools for sales and marketing, sorted by funnel stage. Build your GTM stack in a few questions.',
+    images: ['https://gtmshelf.com/og-image.png'],
+  },
 };
 
 export default function RootLayout({

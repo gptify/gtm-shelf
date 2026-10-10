@@ -7,14 +7,14 @@ import { getAllUseCases } from '@/lib/use-cases';
 import { UseCasesDirectoryClient } from '@/components/UseCasesDirectoryClient';
 
 export const metadata: Metadata = {
-  title: 'GTM Use-Case Library • 18 B2B Revenue Workflows & AI Stacks | GTMShelf',
+  title: 'GTM Use-Case Library • 18 B2B Revenue Workflows and AI Stacks | GTM Shelf',
   description:
     'Explore 18 pragmatic B2B go-to-market operational blueprints. Step-by-step workflows for waterfall enrichment, inbound lead routing, signal prospecting, and autonomous CRM sync.',
   alternates: {
     canonical: '/use-cases',
   },
   openGraph: {
-    title: 'GTM Use-Case Library • 18 B2B Revenue Workflows & AI Stacks | GTMShelf',
+    title: 'GTM Use-Case Library • 18 B2B Revenue Workflows and AI Stacks | GTM Shelf',
     description:
       'From revenue bottlenecks to working software stacks. Explore 18 operational GTM blueprints with human approval checkpoints and suggested tool configurations.',
     url: 'https://gtmshelf.com/use-cases',

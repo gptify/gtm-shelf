@@ -5,13 +5,13 @@ import { Footer } from '@/components/Footer';
 import { NewsletterSignup } from '@/components/NewsletterSignup';
 
 export const metadata: Metadata = {
-  title: 'B2B Sales & Marketing AI Glossary — GTM Shelf',
+  title: 'B2B Sales and Marketing AI Glossary — GTM Shelf',
   description: 'Plain-English definitions and practical use cases for 21 essential AI and modern revenue concepts, with direct links to vetted software tools.',
   alternates: {
     canonical: '/guides/glossary',
   },
   openGraph: {
-    title: 'B2B Sales & Marketing AI Glossary — GTM Shelf',
+    title: 'B2B Sales and Marketing AI Glossary — GTM Shelf',
     description: 'Plain-English definitions and practical use cases for 21 essential AI and modern revenue concepts, with direct links to vetted software tools.',
     url: '/guides/glossary',
     siteName: 'GTM Shelf',

@@ -53,9 +53,6 @@ export function Header({ onOpenSubmit }: HeaderProps) {
             NEW
           </span>
         </Link>
-        <Link href="/build-my-stack" aria-current={pathname === '/build-my-stack' ? 'page' : undefined}>
-          Build Stack
-        </Link>
         <Link href="/stacks" aria-current={pathname.startsWith('/stacks') ? 'page' : undefined}>
           Stacks
         </Link>

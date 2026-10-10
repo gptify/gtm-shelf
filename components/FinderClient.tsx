@@ -451,7 +451,7 @@ export function FinderClient({ tools }: FinderClientProps) {
                         >
                           {tool.name}
                         </button>
-                        {tool.feat && <span className="badge">Featured</span>}
+                        {tool.feat && <span className="badge">Editor’s Pick</span>}
                       </h3>
                       <p className="tag">{tool.tagline}</p>
                       <div className="chips">

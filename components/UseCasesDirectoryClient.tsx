@@ -104,7 +104,7 @@ export function UseCasesDirectoryClient({ initialUseCases }: Props) {
             type="search"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search use cases by problem, tool (e.g. Clay, Smartlead), or buyer role..."
+            placeholder="Search use cases by problem, tool (e.g. Clay), or role..."
             aria-label="Search use cases"
             style={{
               width: '100%',

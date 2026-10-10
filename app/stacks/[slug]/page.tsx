@@ -52,12 +52,18 @@ export default function StackDetailPage({ params }: StackPageProps) {
 
         <main style={{ paddingBottom: '60px' }}>
           {/* Breadcrumbs */}
-          <nav aria-label="Breadcrumb" style={{ padding: '24px 0 12px', fontSize: '0.875rem', color: 'var(--muted)' }}>
-            <Link href="/" style={{ color: 'var(--muted)', textDecoration: 'none' }}>Home</Link>
-            <span style={{ margin: '0 8px' }}>/</span>
-            <Link href="/stacks" style={{ color: 'var(--muted)', textDecoration: 'none' }}>Stacks</Link>
-            <span style={{ margin: '0 8px' }}>/</span>
-            <span style={{ color: 'var(--ink)', fontWeight: 500 }}>{stack.title}</span>
+          <nav aria-label="Breadcrumb">
+            <ol className="crumbs">
+              <li>
+                <Link href="/">Home</Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li>
+                <Link href="/stacks">Stacks</Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li aria-current="page">{stack.title}</li>
+            </ol>
           </nav>
 
           {/* Hero Header */}

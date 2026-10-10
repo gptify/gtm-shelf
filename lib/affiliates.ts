@@ -15,7 +15,7 @@ export interface AffiliateRecord {
 }
 
 export const STANDARD_AFFILIATE_DISCLOSURE =
-  'Some links may be affiliate links. GTMShelf may earn a commission from qualifying purchases at no additional cost to you. Commercial relationships do not determine our independent recommendations.';
+  'Some links may be affiliate links. GTM Shelf may earn a commission from qualifying purchases at no additional cost to you. Commercial relationships do not determine our independent recommendations.';
 
 export const AFFILIATE_REGISTRY: Record<string, AffiliateRecord> = {
   'adcreative-ai': {

@@ -5,13 +5,13 @@ import { Footer } from '@/components/Footer';
 import { AdvertiseInquiryForm } from '@/components/AdvertiseInquiryForm';
 
 export const metadata: Metadata = {
-  title: 'Advertise & Listings — GTM Shelf',
+  title: 'Advertise and Listings — GTM Shelf',
   description: 'Put your B2B AI tool in front of active revenue leaders, founders, and operators. Free, Premium, and Sponsored tiers with zero pay-to-play rankings.',
   alternates: {
     canonical: '/advertise',
   },
   openGraph: {
-    title: 'Advertise & Listings — GTM Shelf',
+    title: 'Advertise and Listings — GTM Shelf',
     description: 'Put your B2B AI tool in front of active revenue leaders, founders, and operators. Free, Premium, and Sponsored tiers with zero pay-to-play rankings.',
     url: '/advertise',
     siteName: 'GTM Shelf',
@@ -178,25 +178,6 @@ export default function AdvertisePage() {
                 boxShadow: '0 8px 30px rgba(0, 0, 0, 0.05)',
               }}
             >
-              <div
-                style={{
-                  position: 'absolute',
-                  top: '-12px',
-                  left: '50%',
-                  transform: 'translateX(-50%)',
-                  background: 'var(--primary)',
-                  color: '#fff',
-                  padding: '3px 12px',
-                  borderRadius: '999px',
-                  fontSize: '0.75rem',
-                  fontWeight: 700,
-                  letterSpacing: '0.04em',
-                  textTransform: 'uppercase',
-                }}
-              >
-                Recommended
-              </div>
-
               <div>
                 <span className="badge-pill" style={{ marginBottom: '12px', display: 'inline-block' }}>
                   Enhanced Profile
@@ -205,10 +186,10 @@ export default function AdvertisePage() {
                   Premium Listing
                 </h3>
                 <div style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--ink)', marginBottom: '4px' }}>
-                  $149 <span style={{ fontSize: '0.875rem', fontWeight: 500, color: 'var(--muted)' }}>one-time / annual</span>
+                  $149 <span style={{ fontSize: '0.875rem', fontWeight: 500, color: 'var(--muted)' }}>/ year</span>
                 </div>
                 <div style={{ fontSize: '0.75rem', color: 'var(--muted)', marginBottom: '16px' }}>
-                  One-time or annual payment • No monthly recurring subscription traps
+                  Annual verified profile • No monthly subscription traps
                 </div>
                 <p style={{ fontSize: '0.875rem', color: 'var(--muted)', lineHeight: 1.5, marginBottom: '20px' }}>
                   A richer profile built to turn directory visitors into qualified pipeline and demo bookings.
@@ -229,7 +210,7 @@ export default function AdvertisePage() {
                   </li>
                   <li style={{ display: 'flex', gap: '8px' }}>
                     <span style={{ color: 'var(--primary)', fontWeight: 700 }}>✓</span>
-                    <span>Self-reported &quot;Verified by vendor&quot; profile badge</span>
+                    <span>&quot;Vendor-supplied details&quot; profile badge</span>
                   </li>
                   <li style={{ display: 'flex', gap: '8px' }}>
                     <span style={{ color: 'var(--primary)', fontWeight: 700 }}>✓</span>
@@ -269,10 +250,10 @@ export default function AdvertisePage() {
                   Sponsored Slot &amp; Launch
                 </h3>
                 <div style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--ink)', marginBottom: '4px' }}>
-                  $299 <span style={{ fontSize: '0.875rem', fontWeight: 500, color: 'var(--muted)' }}>one-time</span>
+                  $299 <span style={{ fontSize: '0.875rem', fontWeight: 500, color: 'var(--muted)' }}>one-time campaign</span>
                 </div>
                 <div style={{ fontSize: '0.75rem', color: 'var(--muted)', marginBottom: '16px' }}>
-                  One-time launch package • Permanent presence across guides &amp; directory
+                  Launch sponsorship • 30-day top sponsor placement + dedicated newsletter feature
                 </div>
                 <p style={{ fontSize: '0.875rem', color: 'var(--muted)', lineHeight: 1.5, marginBottom: '20px' }}>
                   Prominent, transparently labeled placements across directory rows, guide pages, and newsletter.

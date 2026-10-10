@@ -572,7 +572,24 @@ export function HomeDirectory({
               onToggleFiltersMobile={() => setIsFiltersOpenMobile((prev) => !prev)}
             />
 
-            <div id="results" style={{ marginTop: '16px' }}>
+            {/* Editorial Standard Disclosure */}
+            <div
+              style={{
+                marginTop: '12px',
+                marginBottom: '4px',
+                fontSize: '0.8125rem',
+                color: 'var(--muted)',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                flexWrap: 'wrap',
+              }}
+            >
+              <span style={{ color: 'var(--brand)', fontWeight: 600 }}>• Editor’s picks:</span>
+              <span>Selected strictly for real-world workflow reliability and adoption. Zero pay-to-play.</span>
+            </div>
+
+            <div id="results" style={{ marginTop: '12px' }}>
               {filteredTools.length === 0 ? (
                 <div className="empty">
                   <strong>No tools match these filters</strong>

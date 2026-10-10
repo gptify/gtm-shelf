@@ -134,7 +134,7 @@ export function Toolbar({
           value={sortBy}
           onChange={(e) => onSortChange(e.target.value)}
         >
-          <option value="featured">Featured first</option>
+          <option value="featured">Editor’s picks first</option>
           <option value="name">Name A to Z</option>
           <option value="stage">Funnel stage</option>
           <option value="cat">Category</option>

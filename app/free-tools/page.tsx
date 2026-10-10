@@ -5,13 +5,13 @@ import { Footer } from '@/components/Footer';
 import { StackCostSimulator } from '@/components/StackCostSimulator';
 
 export const metadata: Metadata = {
-  title: 'Free AI Calculators & Tools for Revenue Teams — GTM Shelf',
+  title: 'Free AI Calculators and Tools for Revenue Teams — GTM Shelf',
   description: 'Interactive ROI calculators, AI readiness assessments, policy generators, and prompt builders built by GPTify.co to help B2B teams evaluate AI investments.',
   alternates: {
     canonical: '/free-tools',
   },
   openGraph: {
-    title: 'Free AI Calculators & Tools for Revenue Teams — GTM Shelf',
+    title: 'Free AI Calculators and Tools for Revenue Teams — GTM Shelf',
     description: 'Interactive ROI calculators, AI readiness assessments, policy generators, and prompt builders built by GPTify.co to help B2B teams evaluate AI investments.',
     url: '/free-tools',
     siteName: 'GTM Shelf',

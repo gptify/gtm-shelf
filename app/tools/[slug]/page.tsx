@@ -182,6 +182,12 @@ export default async function ToolPage({ params }: PageProps) {
             </div>
           )}
 
+          {tool.slug === 'cubeo-ai' && (
+            <div style={{ padding: '14px 18px', background: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: '10px', margin: '20px 0', color: '#334155', fontSize: '0.875rem', lineHeight: 1.5 }}>
+              <strong>Founder Disclosure:</strong> Cubeo.ai is co-founded by Shukhrat Iskandarov (founder at GPTify.co &amp; GTM Shelf). Profile and evaluations adhere to the same zero-pay-to-play editorial standards.
+            </div>
+          )}
+
           <p className="lede" style={{ marginBottom: '32px' }}>
             {tool.description}
           </p>

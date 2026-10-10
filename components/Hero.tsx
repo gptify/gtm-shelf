@@ -67,7 +67,7 @@ export function Hero({ searchQuery, onSearchChange, children }: HeroProps) {
               type="search"
               value={searchQuery}
               onChange={(e) => onSearchChange(e.target.value)}
-              placeholder="Search by name, category, or workflow..."
+              placeholder="Search 50 tools or workflows..."
               aria-label="Search AI tools by name, category, or workflow"
             />
           </div>

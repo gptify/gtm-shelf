@@ -131,7 +131,12 @@ export default async function CategoryPage({ params }: PageProps) {
                       <Link href={`/tools/${tool.slug}`} style={{ color: 'inherit', textDecoration: 'none' }}>
                         {tool.name}
                       </Link>
-                      {tool.featured && <span className="badge">Featured</span>}
+                      {tool.featured && <span className="badge">Editor’s Pick</span>}
+                      {tool.slug === 'cubeo-ai' && (
+                        <span className="badge" style={{ background: '#f1f5f9', color: '#475569', borderColor: '#cbd5e1' }} title="Co-founded by GTM Shelf founder Shukhrat Iskandarov">
+                          Founder Project
+                        </span>
+                      )}
                     </h3>
                     <p className="tag">{tool.tagline}</p>
                     <div className="chips">

@@ -5,13 +5,13 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'Guides & Comparisons — GTM Shelf',
+  title: 'Guides and Comparisons — GTM Shelf',
   description: 'Curated evaluation guides and side-by-side comparisons of AI tools for sales and marketing teams.',
   alternates: {
     canonical: '/guides',
   },
   openGraph: {
-    title: 'Guides & Comparisons — GTM Shelf',
+    title: 'Guides and Comparisons — GTM Shelf',
     description: 'Curated evaluation guides and side-by-side comparisons of AI tools for sales and marketing teams.',
     url: '/guides',
     siteName: 'GTM Shelf',
@@ -132,10 +132,12 @@ export default function GuidesIndexPage() {
                 className="guide-card"
               >
                 <div>
-                  <span className="badge-pill success">Comparison</span>
-                  <span style={{ fontSize: '.8125rem', color: 'var(--muted)', marginLeft: '8px' }}>
-                    {guide.a} vs {guide.b}
-                  </span>
+                  <span className="badge-pill success">Head-to-Head</span>
+                  {guide.cat && (
+                    <span style={{ fontSize: '.8125rem', color: 'var(--muted)', marginLeft: '8px' }}>
+                      {guide.cat}
+                    </span>
+                  )}
                 </div>
                 <h3 className="gt">{guide.title}</h3>
                 <p className="gd">{guide.desc}</p>
