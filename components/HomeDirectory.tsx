@@ -66,7 +66,7 @@ export function HomeDirectory({
   const [viewMode, setViewMode] = useState<ViewMode>(() => {
     const v = initialParams.view;
     if (v === 'grid' || v === 'table' || v === 'list') return v;
-    return 'list';
+    return 'grid';
   });
   const [sortBy, setSortBy] = useState(initialParams.sort || 'featured');
   const [sortDir, setSortDir] = useState(1);
@@ -87,7 +87,7 @@ export function HomeDirectory({
       if (storedSaved) {
         setSavedTools(new Set(JSON.parse(storedSaved)));
       }
-      const storedView = localStorage.getItem('fi-view');
+      const storedView = localStorage.getItem('fi-view-v2');
       if (storedView === 'grid' || storedView === 'table' || storedView === 'list') {
         setViewMode(storedView as ViewMode);
       }
@@ -116,7 +116,7 @@ export function HomeDirectory({
     if (selectedIntegrations.size > 0) {
       params.set('integrations', Array.from(selectedIntegrations).join(','));
     }
-    if (viewMode !== 'list') {
+    if (viewMode !== 'grid') {
       params.set('view', viewMode);
     }
     if (sortBy !== 'featured') {
@@ -160,7 +160,7 @@ export function HomeDirectory({
   const handleViewChange = (mode: ViewMode) => {
     setViewMode(mode);
     try {
-      localStorage.setItem('fi-view', mode);
+      localStorage.setItem('fi-view-v2', mode);
     } catch {
       // ignore
     }

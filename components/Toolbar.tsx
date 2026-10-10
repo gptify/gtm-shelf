@@ -81,6 +81,21 @@ export function Toolbar({
         <div className="seg" role="group" aria-label="View format">
           <button
             type="button"
+            data-view="grid"
+            aria-pressed={viewMode === 'grid'}
+            title="Grid view"
+            onClick={() => onViewChange('grid')}
+          >
+            <svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="3" y="3" width="7" height="7" />
+              <rect x="14" y="3" width="7" height="7" />
+              <rect x="14" y="14" width="7" height="7" />
+              <rect x="3" y="14" width="7" height="7" />
+            </svg>
+            <span>Grid</span>
+          </button>
+          <button
+            type="button"
             data-view="list"
             aria-pressed={viewMode === 'list'}
             title="List view"
@@ -95,21 +110,6 @@ export function Toolbar({
               <line x1="3" y1="18" x2="3.01" y2="18" />
             </svg>
             <span>List</span>
-          </button>
-          <button
-            type="button"
-            data-view="grid"
-            aria-pressed={viewMode === 'grid'}
-            title="Grid view"
-            onClick={() => onViewChange('grid')}
-          >
-            <svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true">
-              <rect x="3" y="3" width="7" height="7" />
-              <rect x="14" y="3" width="7" height="7" />
-              <rect x="14" y="14" width="7" height="7" />
-              <rect x="3" y="14" width="7" height="7" />
-            </svg>
-            <span>Grid</span>
           </button>
           <button
             type="button"
@@ -134,7 +134,7 @@ export function Toolbar({
           value={sortBy}
           onChange={(e) => onSortChange(e.target.value)}
         >
-          <option value="featured">Editor’s picks first</option>
+          <option value="featured">Editor’s pick</option>
           <option value="name">Name A to Z</option>
           <option value="stage">Funnel stage</option>
           <option value="cat">Category</option>
