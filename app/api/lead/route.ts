@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createLead } from '@/lib/leads';
 import { hashIp, checkRateLimit } from '@/lib/security';
 import { sendLeadNotificationEmail } from '@/lib/email';
+import { sendTelegramLeadNotification } from '@/lib/telegram';
 
 export async function POST(req: NextRequest) {
   try {
@@ -34,8 +35,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const consentText =
-      'Send me weekly updates on new AI tools for sales and marketing. Double opt-in: we will send a confirmation link first.';
+    const consentText = 'Email me my curated tool recommendations from the GTM Shelf Finder.';
 
     const { token } = await createLead({
       email: cleanEmail,
@@ -44,6 +44,13 @@ export async function POST(req: NextRequest) {
       pick_tool_ids,
       consent_text: consentText,
     });
+
+    // Dispatch instant Telegram alert
+    sendTelegramLeadNotification({
+      email: cleanEmail,
+      source,
+      finder_answers,
+    }).catch((err) => console.error('Telegram lead alert failed:', err));
 
     // Dispatch email alert to gptify.co@gmail.com
     await sendLeadNotificationEmail({
@@ -56,7 +63,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({
       success: true,
       confirm_url: `/confirm?token=${token}`,
-      message: 'Confirmation email sent. Please check your inbox to confirm your picks.',
+      message: 'Request received. Recommendations saved.',
     });
   } catch {
     return NextResponse.json(

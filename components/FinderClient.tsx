@@ -47,7 +47,6 @@ export function FinderClient({ tools }: FinderClientProps) {
   const [activeDrawerTool, setActiveDrawerTool] = useState<ToolPublic | null>(null);
   const [savedTools, setSavedTools] = useState<Set<string>>(new Set());
   const [leadEmail, setLeadEmail] = useState('');
-  const [leadConsent, setLeadConsent] = useState(false);
   const [leadMessage, setLeadMessage] = useState<string | null>(null);
   const [leadSubmitting, setLeadSubmitting] = useState(false);
 
@@ -138,13 +137,15 @@ export function FinderClient({ tools }: FinderClientProps) {
     setSt(finder.start());
   };
 
-  // Lead submit (double opt-in email my picks)
+  // Lead submit (email my picks)
   const handleLeadSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!leadEmail.trim() || leadSubmitting) return;
 
     setLeadSubmitting(true);
     setLeadMessage(null);
+
+    const emailToSend = leadEmail.trim();
 
     try {
       const results = finder.results(st);
@@ -154,17 +155,16 @@ export function FinderClient({ tools }: FinderClientProps) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          email: leadEmail.trim(),
+          email: emailToSend,
           source: 'finder',
           finder_answers: st.A,
           pick_tool_ids: pickIds,
-          consent: leadConsent,
         }),
       });
 
       if (res.ok) {
         setLeadMessage(
-          'Check your inbox! We sent a confirmation link. Your picks will arrive as soon as you confirm.'
+          `✓ Request received! We've saved your three tool picks and will send your summary to ${emailToSend}.`
         );
         setLeadEmail('');
       } else {
@@ -172,7 +172,7 @@ export function FinderClient({ tools }: FinderClientProps) {
       }
     } catch {
       setLeadMessage(
-        'Check your inbox! We sent a confirmation link. Your picks will arrive as soon as you confirm.'
+        `✓ Request received! We've saved your three tool picks and will send your summary to ${emailToSend}.`
       );
       setLeadEmail('');
     } finally {
@@ -519,26 +519,13 @@ export function FinderClient({ tools }: FinderClientProps) {
             </button>
           </form>
 
-          <div style={{ marginTop: '10px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <input
-              id="lead-consent"
-              type="checkbox"
-              checked={leadConsent}
-              onChange={(e) => setLeadConsent(e.target.checked)}
-              style={{ width: '16px', height: '16px', margin: 0 }}
-            />
-            <label htmlFor="lead-consent" className="fine">
-              Also subscribe me to <strong>AI Insights for Sales &amp; Marketing</strong>, sent weekly by GPTify.co.
-            </label>
-          </div>
-
           {leadMessage && (
             <p style={{ marginTop: '12px', color: 'var(--brand)', fontWeight: 600 }}>
               {leadMessage}
             </p>
           )}
-          <p className="fine">
-            Double opt-in: we will send a confirmation link first. You can unsubscribe at any time. Or join directly on <a href="https://gptify.co/newsletter-and-resources-2/?utm_source=gtmshelf&utm_medium=finder-results&utm_campaign=newsletter" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'underline', color: 'inherit' }}>GPTify.co ↗</a>
+          <p className="fine" style={{ marginTop: '10px' }}>
+            🔒 No spam. We only use your email to send your curated tool recommendations.
           </p>
         </div>
       </main>
