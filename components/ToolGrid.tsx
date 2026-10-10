@@ -47,14 +47,16 @@ export function ToolGrid({
               </button>
             </div>
 
-            <h3>
-              <button
-                type="button"
-                className="open"
-                onClick={() => onOpenTool(tool)}
-              >
-                {tool.name}
-              </button>
+            <div className="card-head" style={{ display: 'flex', flexWrap: 'wrap', gap: '6px 8px', alignItems: 'center' }}>
+              <h3 style={{ margin: 0 }}>
+                <button
+                  type="button"
+                  className="open"
+                  onClick={() => onOpenTool(tool)}
+                >
+                  {tool.name}
+                </button>
+              </h3>
               {tool.featured && <span className="badge">Editor’s Pick</span>}
               {tool.sponsored && <span className="badge">Sponsored</span>}
               {tool.slug === 'cubeo-ai' && (
@@ -72,7 +74,7 @@ export function ToolGrid({
                   Sunsetting
                 </span>
               )}
-            </h3>
+            </div>
 
             <p className="tag">{tool.tagline}</p>
 

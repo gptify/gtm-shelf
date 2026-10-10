@@ -141,17 +141,19 @@ export default async function StagePage({ params }: PageProps) {
                     {tool.name.charAt(0)}
                   </div>
                   <div className="main">
-                    <h3>
-                      <Link href={`/tools/${tool.slug}`} style={{ color: 'inherit', textDecoration: 'none' }}>
-                        {tool.name}
-                      </Link>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px 8px', alignItems: 'center' }}>
+                      <h3 style={{ margin: 0 }}>
+                        <Link href={`/tools/${tool.slug}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+                          {tool.name}
+                        </Link>
+                      </h3>
                       {tool.featured && <span className="badge">Editor’s Pick</span>}
                       {tool.slug === 'cubeo-ai' && (
                         <span className="badge" style={{ background: '#f1f5f9', color: '#475569', borderColor: '#cbd5e1' }} title="Co-founded by GTM Shelf founder Shukhrat Iskandarov">
                           Founder Project
                         </span>
                       )}
-                    </h3>
+                    </div>
                     <p className="tag">{tool.tagline}</p>
                     <div className="chips">
                       <span className="chip st">{tool.stage_name}</span>

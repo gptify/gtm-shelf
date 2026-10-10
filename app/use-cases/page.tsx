@@ -184,7 +184,7 @@ export default function UseCasesPage() {
                 >
                   GPTify Use-Case Library ↗
                 </a>{' '}
-                for organizational strategy, then use GTMShelf to select and price the exact tooling.
+                for organizational strategy, then use GTM Shelf to select and price the exact tooling.
               </span>
             </div>
           </section>

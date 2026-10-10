@@ -34,10 +34,10 @@ export const metadata: Metadata = {
     siteName: 'GTM Shelf',
     images: [
       {
-        url: 'https://gtmshelf.com/og-image.png',
+        url: 'https://gtmshelf.com/og-image.png?v=2',
         width: 1200,
         height: 627,
-        alt: 'GTM Shelf: Discover AI Tools for Sales and Marketing',
+        alt: 'GTM Shelf: 50 vetted AI tools for sales and marketing, sorted by funnel stage',
       },
     ],
     locale: 'en_US',
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     title: 'GTM Shelf: Discover AI Tools for Sales and Marketing',
     description:
       '50 vetted AI tools for sales and marketing, sorted by funnel stage. Build your GTM stack in a few questions.',
-    images: ['https://gtmshelf.com/og-image.png'],
+    images: ['https://gtmshelf.com/og-image.png?v=2'],
   },
 };
 

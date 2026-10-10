@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   openGraph: {
-    title: 'From AI Insights to Your Next GTM Stack • GTMShelf',
+    title: 'From AI Insights to Your Next GTM Stack • GTM Shelf',
     description:
       'Curated AI tools and architecture blueprints for GPTify readers and modern B2B revenue teams.',
     url: '/gptify',
@@ -108,7 +108,7 @@ export default async function GptifyLandingPage() {
             </p>
           </div>
 
-          {/* Clarity on GPTify & GTMShelf connection */}
+          {/* Clarity on GPTify & GTM Shelf connection */}
           <div
             style={{
               padding: '24px 28px',
@@ -120,13 +120,13 @@ export default async function GptifyLandingPage() {
             }}
           >
             <h2 style={{ fontSize: '1.125rem', fontWeight: 700, margin: '0 0 10px', color: 'var(--ink)' }}>
-              How GTMShelf &amp; GPTify work together
+              How GTM Shelf &amp; GPTify work together
             </h2>
             <p style={{ margin: '0 0 10px', color: 'var(--muted)', fontSize: '0.9375rem' }}>
-              <strong>GTMShelf</strong> was developed by the team at <strong>GPTify.co</strong> as a public, independent architecture directory. While GPTify focuses on deep-dive workflow playbooks and bespoke B2B AI consulting, GTMShelf exists to help revenue teams quickly evaluate pricing, CRM integrations, and tech stack compatibility without marketing spin.
+              <strong>GTM Shelf</strong> was developed by the team at <strong>GPTify.co</strong> as a public, independent architecture directory. While GPTify focuses on deep-dive workflow playbooks and bespoke B2B AI consulting, GTM Shelf exists to help revenue teams quickly evaluate pricing, CRM integrations, and tech stack compatibility without marketing spin.
             </p>
             <p style={{ margin: 0, color: 'var(--muted)', fontSize: '0.8125rem', borderTop: '1px solid var(--line)', paddingTop: '10px' }}>
-              <em>Note:</em> Visiting GTMShelf from GPTify does not share your contact details. Subscriptions to GTMShelf alerts or stack exports require your separate opt-in consent.
+              <em>Note:</em> Visiting GTM Shelf from GPTify does not share your contact details. Subscriptions to GTM Shelf alerts or stack exports require your separate opt-in consent.
             </p>
           </div>
 

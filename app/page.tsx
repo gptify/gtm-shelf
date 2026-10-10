@@ -17,10 +17,10 @@ export const metadata: Metadata = {
     siteName: 'GTM Shelf',
     images: [
       {
-        url: 'https://gtmshelf.com/og-image.png',
+        url: 'https://gtmshelf.com/og-image.png?v=2',
         width: 1200,
         height: 627,
-        alt: 'GTM Shelf: Discover AI Tools for Sales and Marketing',
+        alt: 'GTM Shelf: 50 vetted AI tools for sales and marketing, sorted by funnel stage',
       },
     ],
     locale: 'en_US',
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     title: 'GTM Shelf: Discover AI Tools for Sales and Marketing',
     description:
       '50 vetted AI tools for sales and marketing, sorted by funnel stage. Build your GTM stack in a few questions.',
-    images: ['https://gtmshelf.com/og-image.png'],
+    images: ['https://gtmshelf.com/og-image.png?v=2'],
   },
 };
 
@@ -83,15 +83,6 @@ export default async function HomePage({ searchParams }: PageProps) {
 
   return (
     <>
-      <head>
-        <meta property="og:title" content="GTM Shelf: Discover AI Tools for Sales and Marketing" />
-        <meta property="og:description" content="50 vetted AI tools for sales and marketing, sorted by funnel stage. Build your GTM stack in a few questions." />
-        <meta property="og:image" content="https://gtmshelf.com/og-image.png" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="627" />
-        <meta property="og:url" content="https://gtmshelf.com/" />
-        <meta name="twitter:card" content="summary_large_image" />
-      </head>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

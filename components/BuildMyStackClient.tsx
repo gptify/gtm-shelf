@@ -510,7 +510,7 @@ export function BuildMyStackClient({ tools, initialParams = {} }: BuildMyStackCl
   const handleShareLinkedIn = () => {
     trackEvent('stack_shared', { method: 'linkedin' });
     const text = encodeURIComponent(
-      `I just configured my AI Go-To-Market stack on GTMShelf: ${OBJECTIVES.find((o) => o.id === selectedObjective)?.title}. Check it out here: ${shareableUrl}`
+      `I just configured my AI Go-To-Market stack on GTM Shelf: ${OBJECTIVES.find((o) => o.id === selectedObjective)?.title}. Check it out here: ${shareableUrl}`
     );
     window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareableUrl)}`, '_blank');
   };
