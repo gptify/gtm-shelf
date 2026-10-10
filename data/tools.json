@@ -749,14 +749,15 @@
     "domain": "lusha.com",
     "stage": 2,
     "cat": "Lead data",
-    "tagline": "Direct mobile phone numbers and verified B2B email finder extension",
-    "description": "Lusha helps sales reps instantly find direct dials and contact info on LinkedIn profiles or company domains and sync them into CRM records.",
+    "tagline": "B2B contact intelligence platform with direct mobile dials and email verification",
+    "description": "Lusha helps sales reps and RevOps teams pinpoint accurate direct phone numbers and verified business emails on LinkedIn and company domains with instant CRM synchronization.",
     "price": "Free plan",
-    "price_note": "Free tier (5 credits/mo); Pro from $36/user/mo billed annually ($49/user/mo monthly for 40 credits)",
+    "price_note": "Free plan (40 credits); Starter from /user/mo billed annually (/user/mo monthly)",
     "ints": [
       "HubSpot",
       "Salesforce",
-      "Zapier"
+      "Zapier",
+      "Google Workspace"
     ],
     "feat": false,
     "best": "SDRs and account executives needing direct phone numbers while browsing LinkedIn",
@@ -776,13 +777,13 @@
       "apollo",
       "cognism"
     ],
-    "min_plan": "Free tier / Pro ($36/user/mo annual / $49/user/mo monthly)",
+    "min_plan": "Free plan / Starter (/user/mo annual / /user/mo monthly)",
     "pricing_verified_at": "October 2026",
     "source_url": "https://www.lusha.com/pricing/",
     "billing_basis": "per_user_monthly",
     "geographic_coverage": "global",
-    "is_public": false,
-    "status": "inactive"
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "cognism",
@@ -2478,13 +2479,14 @@
     "domain": "folk.app",
     "stage": 4,
     "cat": "CRM",
-    "tagline": "Lightweight collaborative CRM for contacts, pipeline management, and outreach",
-    "description": "folk provides an intuitive Notion-like interface to organize contacts, manage deal pipelines, track interactions, and send mail merges with custom variables.",
-    "price": "Free plan",
-    "price_note": "Free tier (100 contacts); Standard from $18/user/mo billed annually ($24/user/mo monthly); Premium from $36/user/mo",
+    "tagline": "All-in-one CRM for high-velocity deal pipelines, contact enrichment, and mail merges",
+    "description": "folk combines the flexibility of Notion with dedicated CRM contact enrichment, deal pipeline stages, and personalized outreach sequences for boutique teams and founders.",
+    "price": "Free trial",
+    "price_note": "14-day free trial; Standard from /member/mo billed annually (/member/mo monthly); Premium from /member/mo",
     "ints": [
       "Google Workspace",
-      "Zapier"
+      "Zapier",
+      "Slack"
     ],
     "feat": false,
     "best": "Boutique agencies, recruiters, and consultants wanting a quick, flexible contact manager",
@@ -2503,13 +2505,13 @@
     "overlapping_tools": [
       "attio"
     ],
-    "min_plan": "Free tier / Standard ($18/user/mo annual / $24/user/mo monthly)",
+    "min_plan": "Standard (/member/mo annual / /member/mo monthly)",
     "pricing_verified_at": "October 2026",
     "source_url": "https://www.folk.app/pricing",
     "billing_basis": "per_user_monthly",
     "geographic_coverage": "global",
-    "is_public": false,
-    "status": "inactive"
+    "is_public": true,
+    "status": "active"
   },
   {
     "id": "pandadoc",
@@ -2976,5 +2978,185 @@
     "geographic_coverage": "global",
     "is_public": false,
     "status": "inactive"
+  },
+  {
+    "id": "fullenrich",
+    "slug": "fullenrich",
+    "name": "FullEnrich",
+    "domain": "fullenrich.com",
+    "stage": 2,
+    "cat": "Lead data",
+    "tagline": "Waterfall lead enrichment cascading across 20+ B2B data providers to maximize hit rates",
+    "description": "FullEnrich queries 20+ premium data vendors in a sequential waterfall until a verified email and direct dial are found, delivering up to 80% contact coverage with zero duplicate charges.",
+    "price": "Free trial",
+    "price_note": "Free trial (50 credits); Base plans from /mo (500 credits) to /mo (1,000 credits)",
+    "ints": [
+      "HubSpot",
+      "Salesforce",
+      "Zapier",
+      "Make"
+    ],
+    "feat": false,
+    "best": "Outbound sales teams and RevOps wanting the highest verified mobile and work email match rates",
+    "setup": 1,
+    "classification": "specialist",
+    "lifecycle_status": "active",
+    "primary_jtbd": "Multi-vendor waterfall email and phone enrichment",
+    "secondary_capabilities": [
+      "Reverse email lookup",
+      "Bulk CSV enrichment",
+      "API enrichment"
+    ],
+    "buyer_segment": "Outbound SDR teams & RevOps engineers",
+    "gtm_buckets": [
+      "Outbound",
+      "Data & Orchestration"
+    ],
+    "overlapping_tools": [
+      "dropcontact",
+      "findymail",
+      "clay"
+    ],
+    "min_plan": "Base (/mo for 500 credits)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://www.fullenrich.com/pricing",
+    "billing_basis": "credit_based_monthly",
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
+  },
+  {
+    "id": "bitscale",
+    "slug": "bitscale",
+    "name": "Bitscale",
+    "domain": "bitscale.ai",
+    "stage": 2,
+    "cat": "Lead data",
+    "tagline": "AI data grid and prospecting workbench aggregating 100+ enrichment providers",
+    "description": "Bitscale provides a spreadsheet-like data orchestration workbench that scrapes the web, waterfalls 100+ enrichment providers, and runs AI research agents before pushing leads to outreach tools.",
+    "price": "Free plan",
+    "price_note": "Free tier (200 lifetime credits); Growth from /mo (15,000 credits/mo with 2-way HubSpot sync)",
+    "ints": [
+      "HubSpot",
+      "Salesforce",
+      "Zapier",
+      "Make"
+    ],
+    "feat": false,
+    "best": "Growth marketers and RevOps who want programmable AI data scraping and multi-source enrichment",
+    "setup": 2,
+    "classification": "specialist",
+    "lifecycle_status": "active",
+    "primary_jtbd": "AI lead research, web data scraping, and multi-source enrichment grids",
+    "secondary_capabilities": [
+      "AI research agents",
+      "HubSpot two-way sync",
+      "Waterfall data providers"
+    ],
+    "buyer_segment": "Growth engineers & outbound operations",
+    "gtm_buckets": [
+      "Outbound",
+      "Data & Orchestration"
+    ],
+    "overlapping_tools": [
+      "clay",
+      "apollo"
+    ],
+    "min_plan": "Free tier / Growth (/mo)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://www.bitscale.ai/pricing",
+    "billing_basis": "credit_based_monthly",
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
+  },
+  {
+    "id": "aisdr",
+    "slug": "aisdr",
+    "name": "AiSDR",
+    "domain": "aisdr.com",
+    "stage": 3,
+    "cat": "AI SDR agents",
+    "tagline": "Autonomous AI SDR agent that researches prospects, writes personalized outreach, and books meetings",
+    "description": "AiSDR acts as an autonomous sales rep that reads inbound leads and prospect signals, writes contextual multi-channel email sequences, handles prospect objections, and coordinates meeting times.",
+    "price": "Paid",
+    "price_note": "Solo from /mo (200 contacts); Explore from /mo (800-1,000 contacts, quarterly); 20% discount on annual billing",
+    "ints": [
+      "HubSpot",
+      "Salesforce",
+      "Google Workspace",
+      "Zapier"
+    ],
+    "feat": false,
+    "best": "Founders and lean sales teams wanting autonomous SDR lead qualification and meeting booking without hiring reps",
+    "setup": 2,
+    "classification": "specialist",
+    "lifecycle_status": "active",
+    "primary_jtbd": "Autonomous AI prospect qualification, personalized follow-ups, and meeting booking",
+    "secondary_capabilities": [
+      "Lead database access",
+      "Objection handling",
+      "Calendar scheduling"
+    ],
+    "buyer_segment": "Founders & B2B sales teams",
+    "gtm_buckets": [
+      "Outbound",
+      "Inbound"
+    ],
+    "overlapping_tools": [
+      "artisan",
+      "11x",
+      "regie-ai"
+    ],
+    "min_plan": "Solo (/mo)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://aisdr.com/pricing",
+    "billing_basis": "per_seat_monthly",
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
+  },
+  {
+    "id": "reclaim-ai",
+    "slug": "reclaim-ai",
+    "name": "Reclaim.ai",
+    "domain": "reclaim.ai",
+    "stage": 3,
+    "cat": "Meeting scheduling",
+    "tagline": "AI calendar assistant and meeting scheduling engine for revenue teams",
+    "description": "Reclaim.ai intelligently defends calendar time for prospecting, auto-reschedules conflicting internal tasks, and coordinates high-converting meeting booking links for sales reps.",
+    "price": "Free plan",
+    "price_note": "Free Lite tier; Starter from /user/mo billed annually (/user/mo monthly); Business from /user/mo billed annually (/user/mo monthly)",
+    "ints": [
+      "Google Workspace",
+      "Slack",
+      "Zoom"
+    ],
+    "feat": false,
+    "best": "Sales reps, founders, and RevOps looking to optimize calendar availability and automate smart meeting booking",
+    "setup": 1,
+    "classification": "core",
+    "lifecycle_status": "active",
+    "primary_jtbd": "Smart calendar management, focus time protection, and flexible meeting scheduling",
+    "secondary_capabilities": [
+      "Habit scheduling",
+      "Buffer time between calls",
+      "Multi-calendar sync"
+    ],
+    "buyer_segment": "Sales reps, founders & remote teams",
+    "gtm_buckets": [
+      "Inbound",
+      "Data & Orchestration"
+    ],
+    "overlapping_tools": [
+      "calendly"
+    ],
+    "min_plan": "Free tier / Starter (/user/mo annual / /user/mo monthly)",
+    "pricing_verified_at": "October 2026",
+    "source_url": "https://reclaim.ai/pricing",
+    "billing_basis": "per_user_monthly",
+    "geographic_coverage": "global",
+    "is_public": true,
+    "status": "active"
   }
 ]
