@@ -3113,8 +3113,8 @@
     "source_url": "https://aisdr.com/pricing",
     "billing_basis": "per_seat_monthly",
     "geographic_coverage": "global",
-    "is_public": true,
-    "status": "active"
+    "is_public": false,
+    "status": "inactive"
   },
   {
     "id": "reclaim-ai",
