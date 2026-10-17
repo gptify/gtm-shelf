@@ -238,6 +238,28 @@ export const AFFILIATE_REGISTRY: Record<string, AffiliateRecord> = {
     lastVerifiedDate: '2026-10-10',
     disclosureRequired: true,
   },
+  'close-crm': {
+    toolId: 'close-crm',
+    toolSlug: 'close-crm',
+    vendorName: 'Close',
+    destinationUrl: 'https://close.com',
+    affiliateUrl: 'https://refer.close.com/ztpkbfv7qqzt',
+    programStatus: 'active',
+    approvedForGTMShelf: true,
+    lastVerifiedDate: '2026-10-17',
+    disclosureRequired: true,
+  },
+  'fireflies-ai': {
+    toolId: 'fireflies-ai',
+    toolSlug: 'fireflies-ai',
+    vendorName: 'Fireflies.ai',
+    destinationUrl: 'https://fireflies.ai',
+    affiliateUrl: 'https://fireflies.ai/?fpr=gptify77',
+    programStatus: 'active',
+    approvedForGTMShelf: true,
+    lastVerifiedDate: '2026-10-17',
+    disclosureRequired: true,
+  },
 };
 
 export interface OutboundLinkInfo {
